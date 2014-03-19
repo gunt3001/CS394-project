@@ -14,7 +14,6 @@
 		B0B882DD18C69A4E003D37EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B882DC18C69A4E003D37EC /* main.m */; };
 		B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */; };
 		B0B882E418C69A4E003D37EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B882E218C69A4E003D37EC /* Main.storyboard */; };
-		B0B882E718C69A4E003D37EC /* MSPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B882E618C69A4E003D37EC /* MSPViewController.m */; };
 		B0B882E918C69A4E003D37EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B882E818C69A4E003D37EC /* Images.xcassets */; };
 		B0B882F018C69A4E003D37EC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882EF18C69A4E003D37EC /* XCTest.framework */; };
 		B0B882F118C69A4E003D37EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D018C69A4E003D37EC /* Foundation.framework */; };
@@ -45,8 +44,6 @@
 		B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSPAppDelegate.h; sourceTree = "<group>"; };
 		B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSPAppDelegate.m; sourceTree = "<group>"; };
 		B0B882E318C69A4E003D37EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B0B882E518C69A4E003D37EC /* MSPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSPViewController.h; sourceTree = "<group>"; };
-		B0B882E618C69A4E003D37EC /* MSPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSPViewController.m; sourceTree = "<group>"; };
 		B0B882E818C69A4E003D37EC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B0B882EE18C69A4E003D37EC /* MesoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MesoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B882EF18C69A4E003D37EC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -115,8 +112,6 @@
 				B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */,
 				B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */,
 				B0B882E218C69A4E003D37EC /* Main.storyboard */,
-				B0B882E518C69A4E003D37EC /* MSPViewController.h */,
-				B0B882E618C69A4E003D37EC /* MSPViewController.m */,
 				B0B882E818C69A4E003D37EC /* Images.xcassets */,
 				B0B882D718C69A4E003D37EC /* Supporting Files */,
 			);
@@ -251,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
-				B0B882E718C69A4E003D37EC /* MSPViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
