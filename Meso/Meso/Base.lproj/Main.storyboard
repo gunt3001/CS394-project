@@ -173,11 +173,12 @@
                         <segue destination="t5u-Sp-CBY" kind="relationship" relationship="viewControllers" id="iAc-ft-acG"/>
                         <segue destination="0Y2-gp-dbw" kind="relationship" relationship="viewControllers" id="XcR-3Q-njH"/>
                         <segue destination="UhY-Dk-Wue" kind="relationship" relationship="viewControllers" id="GqC-RB-m5r"/>
+                        <segue destination="6yu-cs-rav" kind="relationship" relationship="viewControllers" id="x8B-qP-NG7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8v-OZ-Yhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6" y="40"/>
+            <point key="canvasLocation" x="-546" y="-968"/>
         </scene>
         <!--Navigation Controller - Playlists-->
         <scene sceneID="4l3-4Y-HpZ">
@@ -324,6 +325,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ip2-Ea-gv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079" y="-231"/>
+        </scene>
+        <!--View Controller - About-->
+        <scene sceneID="WGr-wZ-nju">
+            <objects>
+                <viewController id="6yu-cs-rav" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cWQ-bx-D5v"/>
+                        <viewControllerLayoutGuide type="bottom" id="ik4-jJ-oAA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x4y-pv-fn1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3f5-AN-5Ew">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Meso - Melody Social
+by Napat Ratanakul and Jacky Guo
+
+Icons by icons8.com</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3f5-AN-5Ew" firstAttribute="leading" secondItem="x4y-pv-fn1" secondAttribute="leading" id="BPr-1w-Bne"/>
+                            <constraint firstItem="3f5-AN-5Ew" firstAttribute="top" secondItem="x4y-pv-fn1" secondAttribute="top" id="SxZ-wn-WeS"/>
+                            <constraint firstItem="ik4-jJ-oAA" firstAttribute="top" secondItem="3f5-AN-5Ew" secondAttribute="bottom" id="Vw3-bn-zy5"/>
+                            <constraint firstAttribute="trailing" secondItem="3f5-AN-5Ew" secondAttribute="trailing" id="pYy-cG-1RC"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="About" id="5TS-xl-ns2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evg-4Q-0Xl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-505" y="220"/>
         </scene>
         <!--Navigation Controller - Meso-->
         <scene sceneID="Zhe-6t-XMH">
