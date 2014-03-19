@@ -184,7 +184,7 @@
         <scene sceneID="4l3-4Y-HpZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ohb-Sz-WgJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Playlists" id="Zpj-RX-SqE"/>
+                    <tabBarItem key="tabBarItem" title="Playlists" image="TabBarPlaylists" id="Zpj-RX-SqE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mgt-zm-0DI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -203,7 +203,7 @@
         <scene sceneID="FVq-e7-IC9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xgq-xK-WDf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Songs" id="TST-yf-Wfa"/>
+                    <tabBarItem key="tabBarItem" title="Songs" image="TabBarSongs" id="TST-yf-Wfa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cog-zd-cFx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -345,7 +345,9 @@
                                 <string key="text">Meso - Melody Social
 by Napat Ratanakul and Jacky Guo
 
-Icons by icons8.com</string>
+Icons by
+- Apple
+- Pixeden.com</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -359,7 +361,7 @@ Icons by icons8.com</string>
                             <constraint firstAttribute="trailing" secondItem="3f5-AN-5Ew" secondAttribute="trailing" id="pYy-cG-1RC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" id="5TS-xl-ns2"/>
+                    <tabBarItem key="tabBarItem" title="About" image="TabBarAbout" id="5TS-xl-ns2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evg-4Q-0Xl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -369,7 +371,7 @@ Icons by icons8.com</string>
         <scene sceneID="Zhe-6t-XMH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t5u-Sp-CBY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Meso" image="TabIconMeso" id="t7L-lg-J0H"/>
+                    <tabBarItem key="tabBarItem" title="Meso" image="TabBarMeso" id="t7L-lg-J0H"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t6Z-nv-1IO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -388,7 +390,7 @@ Icons by icons8.com</string>
         <scene sceneID="ZxS-hW-U08">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Y2-gp-dbw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Artists" id="fWO-bc-mG8"/>
+                    <tabBarItem key="tabBarItem" title="Artists" image="TabBarArtists" id="fWO-bc-mG8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7OW-s0-pVQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -407,7 +409,7 @@ Icons by icons8.com</string>
         <scene sceneID="euz-P5-UGm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UhY-Dk-Wue" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Albums" id="vhq-Aq-DjU"/>
+                    <tabBarItem key="tabBarItem" title="Albums" image="TabBarAlbums" id="vhq-Aq-DjU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R5G-UW-MiU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -640,7 +642,12 @@ Icons by icons8.com</string>
         </scene>
     </scenes>
     <resources>
-        <image name="TabIconMeso" width="553" height="397"/>
+        <image name="TabBarAbout" width="30" height="30"/>
+        <image name="TabBarAlbums" width="30" height="30"/>
+        <image name="TabBarArtists" width="30" height="30"/>
+        <image name="TabBarMeso" width="30" height="30"/>
+        <image name="TabBarPlaylists" width="30" height="30"/>
+        <image name="TabBarSongs" width="30" height="30"/>
         <image name="nil" width="600" height="600"/>
         <image name="radar" width="600" height="600"/>
         <image name="shuffleicon" width="600" height="600"/>
@@ -651,6 +658,6 @@ Icons by icons8.com</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PDY-od-PhP"/>
+        <segue reference="XKf-fF-THG"/>
     </inferredMetricsTieBreakers>
 </document>
