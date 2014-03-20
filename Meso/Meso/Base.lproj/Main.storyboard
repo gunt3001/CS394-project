@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" title="Playlists" id="sB1-HD-7si">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="dsT-Ku-Ulp">
                             <connections>
-                                <segue destination="kQc-2K-L24" kind="push" id="7Vc-ac-oOZ"/>
+                                <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="7Vc-ac-oOZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -121,14 +121,14 @@
                     <navigationItem key="navigationItem" title="Meso" id="AsQ-Nf-k87">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="wo8-vN-SVb">
                             <connections>
-                                <segue destination="kQc-2K-L24" kind="push" id="kSn-WJ-ndQ"/>
+                                <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="kSn-WJ-ndQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvT-85-Sdt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="500"/>
+            <point key="canvasLocation" x="1066" y="464"/>
         </scene>
         <!--View Controller - Player-->
         <scene sceneID="r8l-0Q-BSX">
@@ -139,7 +139,7 @@
                         <viewControllerLayoutGuide type="bottom" id="mVH-Zr-n8C"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zdp-jK-W43">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Music player screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="df0-vs-nSO">
@@ -216,7 +216,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71Q-AP-IWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1070" y="-213"/>
+            <point key="canvasLocation" x="534" y="-249"/>
         </scene>
         <!--Songs Table View Controller - Songs-->
         <scene sceneID="UOl-ex-uvF">
@@ -251,7 +251,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kQc-2K-L24" kind="push" id="QF0-pE-SaB"/>
+                                    <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="QF0-pE-SaB"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitem" textLabel="LMJ-Bp-CWl" detailTextLabel="wOo-Pl-Wpg" imageView="P4A-FL-xHG" style="IBUITableViewCellStyleSubtitle" id="ceu-OQ-1KN" customClass="MSPTableViewCell">
@@ -282,7 +282,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kQc-2K-L24" kind="push" id="RsV-mO-FrG"/>
+                                    <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="RsV-mO-FrG"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemnoart" textLabel="Sk7-xh-O0J" detailTextLabel="WE3-XL-ezC" style="IBUITableViewCellStyleSubtitle" id="0yC-qd-Dl6" customClass="MSPTableViewCell">
@@ -309,7 +309,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kQc-2K-L24" kind="push" id="iOb-Rq-hET"/>
+                                    <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="iOb-Rq-hET"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -322,14 +322,14 @@
                     <navigationItem key="navigationItem" title="Songs" id="DpY-AZ-4UV">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="8YM-O0-gyx">
                             <connections>
-                                <segue destination="kQc-2K-L24" kind="push" id="XKf-fF-THG"/>
+                                <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="XKf-fF-THG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ip2-Ea-gv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1605" y="-231"/>
+            <point key="canvasLocation" x="1069" y="-267"/>
         </scene>
         <!--View Controller - About-->
         <scene sceneID="WGr-wZ-nju">
@@ -389,7 +389,7 @@ Icons by
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qiu-4H-ais" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="500"/>
+            <point key="canvasLocation" x="540" y="464"/>
         </scene>
         <!--Navigation Controller - Artists-->
         <scene sceneID="ZxS-hW-U08">
@@ -528,7 +528,7 @@ Icons by
                     <navigationItem key="navigationItem" title="Artists" id="Tq9-9q-e6n">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="vKh-Rt-NZm">
                             <connections>
-                                <segue destination="kQc-2K-L24" kind="push" id="6N2-QI-RYT"/>
+                                <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="6N2-QI-RYT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -636,7 +636,7 @@ Icons by
                     <navigationItem key="navigationItem" title="Albums" id="Snm-Ai-vZF">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="0ua-pj-DGG">
                             <connections>
-                                <segue destination="kQc-2K-L24" kind="push" id="PDY-od-PhP"/>
+                                <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="PDY-od-PhP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -682,6 +682,6 @@ Icons by
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PDY-od-PhP"/>
+        <segue reference="kSn-WJ-ndQ"/>
     </inferredMetricsTieBreakers>
 </document>
