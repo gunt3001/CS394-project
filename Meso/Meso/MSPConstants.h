@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface MSPConstants : NSObject
-
-extern NSInteger const TABLE_VIEW_ALBUM_ART_WIDTH = 60;
-extern NSInteger const TABLE_VIEW_ALBUM_ART_HEIGHT = 60;
-extern NSInteger const TABLE_VIEW_SHUFFLE_ROW_HEIGHT = 45;
-
 @end
+
+NSInteger const TABLE_VIEW_ALBUM_ART_WIDTH = 60;
+NSInteger const TABLE_VIEW_ALBUM_ART_HEIGHT = 60;
+NSInteger const TABLE_VIEW_SHUFFLE_ROW_HEIGHT = 45;
