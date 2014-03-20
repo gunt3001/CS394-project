@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPTableViewCell : UITableViewCell
 
 @property (nonatomic) NSNumber* PID;        // Media library PID
+
+- (void)addThumbnailWithMediaItemArtwork:(MPMediaItemArtwork*)artwork;
 
 @end
