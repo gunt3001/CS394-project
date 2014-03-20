@@ -8,6 +8,10 @@
 
 #import "MSPConstants.h"
 
-@implementation MSPConstants
-
-@end
+NSInteger const TABLE_VIEW_ALBUM_ART_WIDTH = 50;
+NSInteger const TABLE_VIEW_ALBUM_ART_HEIGHT = 50;
+NSInteger const TABLE_VIEW_SHUFFLE_ROW_HEIGHT = 45;
+NSString* const TABLE_VIEW_SONG_COUNT_FORMAT = @"%ld Songs";
+NSString* const TABLE_VIEW_SUBTITLE_FORMAT = @"%@ - %@";
+NSString* const STRING_UNKNOWN_ARTIST = @"Unknown Artist";
+NSString* const STRING_UNKNOWN_ALBUM = @"Unknown Album";

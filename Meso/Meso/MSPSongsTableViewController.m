@@ -91,7 +91,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"idshuffleitem" forIndexPath:indexPath];
         
         NSInteger songsCount = [[allSongsQuery items] count];
-        NSString* songsCountText = [NSString stringWithFormat:@"%ld Songs", (long)songsCount];
+        NSString* songsCountText = [NSString stringWithFormat:TABLE_VIEW_SONG_COUNT_FORMAT, (long)songsCount];
         [[cell detailTextLabel] setText:songsCountText];
     }
     // Otherwise it's a song
@@ -129,9 +129,9 @@
         // Title
         [[cell textLabel] setText:songTitle];
         // Subtitle
-        if (songArtist == nil) songArtist = @"Unknown Artist";
-        if (songAlbum == nil) songAlbum = @"Unknown Album";
-        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@ - %@", songArtist, songAlbum]];
+        if (songArtist == nil) songArtist = STRING_UNKNOWN_ARTIST;
+        if (songAlbum == nil) songAlbum = STRING_UNKNOWN_ALBUM;
+        [[cell detailTextLabel] setText:[NSString stringWithFormat:TABLE_VIEW_SUBTITLE_FORMAT, songArtist, songAlbum]];
         // PID
         [cell setPID:songPID];
     }
