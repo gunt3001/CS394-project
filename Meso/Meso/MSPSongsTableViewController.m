@@ -139,6 +139,8 @@
     return cell;
 }
 
+#pragma mark Indexing
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     // Return the section titles
     
@@ -154,8 +156,7 @@
     
     NSMutableArray* indexes = [[NSMutableArray alloc] init];
     
-    // The first section (shuffle)
-    [indexes addObject:@"↻"];
+    // The first section (shuffle) don't need indexing
 
     // Add the rest from library
     MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
@@ -166,6 +167,13 @@
     return indexes;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    // Return the appropriate section index according to the index title
+    
+    // Since the shuffle section does not have an index, the rest of the sections are offset by 1
+    return index + 1;
+    
+}
 
 
 #pragma mark - Navigation
