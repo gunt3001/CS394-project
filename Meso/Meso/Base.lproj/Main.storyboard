@@ -128,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvT-85-Sdt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="500"/>
+            <point key="canvasLocation" x="1602" y="500"/>
         </scene>
         <!--View Controller - Player-->
         <scene sceneID="r8l-0Q-BSX">
@@ -155,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1925" y="174"/>
+            <point key="canvasLocation" x="2451" y="174"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="owC-AY-az0">
@@ -173,7 +173,7 @@
                         <segue destination="t5u-Sp-CBY" kind="relationship" relationship="viewControllers" id="iAc-ft-acG"/>
                         <segue destination="0Y2-gp-dbw" kind="relationship" relationship="viewControllers" id="XcR-3Q-njH"/>
                         <segue destination="UhY-Dk-Wue" kind="relationship" relationship="viewControllers" id="GqC-RB-m5r"/>
-                        <segue destination="6yu-cs-rav" kind="relationship" relationship="viewControllers" id="x8B-qP-NG7"/>
+                        <segue destination="ybv-CI-YbO" kind="relationship" relationship="viewControllers" id="x8B-qP-NG7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8v-OZ-Yhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,7 +216,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71Q-AP-IWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="544" y="-213"/>
+            <point key="canvasLocation" x="1070" y="-213"/>
         </scene>
         <!--Songs Table View Controller - Songs-->
         <scene sceneID="UOl-ex-uvF">
@@ -329,7 +329,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ip2-Ea-gv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="-231"/>
+            <point key="canvasLocation" x="1605" y="-231"/>
         </scene>
         <!--View Controller - About-->
         <scene sceneID="WGr-wZ-nju">
@@ -366,11 +366,11 @@ Icons by
                             <constraint firstAttribute="trailing" secondItem="3f5-AN-5Ew" secondAttribute="trailing" id="pYy-cG-1RC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" image="TabBarAbout" id="5TS-xl-ns2"/>
+                    <navigationItem key="navigationItem" title="About" id="rho-dm-okw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evg-4Q-0Xl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-505" y="220"/>
+            <point key="canvasLocation" x="963" y="2716"/>
         </scene>
         <!--Navigation Controller - Meso-->
         <scene sceneID="Zhe-6t-XMH">
@@ -389,7 +389,7 @@ Icons by
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qiu-4H-ais" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="550" y="500"/>
+            <point key="canvasLocation" x="1076" y="500"/>
         </scene>
         <!--Navigation Controller - Artists-->
         <scene sceneID="ZxS-hW-U08">
@@ -644,6 +644,25 @@ Icons by
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2om-7F-qQj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1051" y="1909"/>
+        </scene>
+        <!--Navigation Controller - About-->
+        <scene sceneID="GaL-bO-ZCc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ybv-CI-YbO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="About" image="TabBarAbout" id="5TS-xl-ns2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hpU-vW-I2y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6yu-cs-rav" kind="relationship" relationship="rootViewController" id="Tl0-IE-CF8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6va-I2-Mas" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="511" y="2716"/>
         </scene>
     </scenes>
     <resources>
