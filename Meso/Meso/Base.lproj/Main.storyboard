@@ -86,7 +86,7 @@
                             <outlet property="delegate" destination="iaB-zq-KvC" id="WW0-tc-e4c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="sB1-HD-7si">
+                    <navigationItem key="navigationItem" title="Playlists" id="sB1-HD-7si">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="dsT-Ku-Ulp">
                             <connections>
                                 <segue destination="kQc-2K-L24" kind="push" id="7Vc-ac-oOZ"/>
@@ -118,7 +118,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="AsQ-Nf-k87">
+                    <navigationItem key="navigationItem" title="Meso" id="AsQ-Nf-k87">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="wo8-vN-SVb">
                             <connections>
                                 <segue destination="kQc-2K-L24" kind="push" id="kSn-WJ-ndQ"/>
@@ -319,7 +319,7 @@
                             <outlet property="delegate" destination="lA8-jF-DqF" id="HrT-4u-Oa0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="DpY-AZ-4UV">
+                    <navigationItem key="navigationItem" title="Songs" id="DpY-AZ-4UV">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="8YM-O0-gyx">
                             <connections>
                                 <segue destination="kQc-2K-L24" kind="push" id="XKf-fF-THG"/>
@@ -525,7 +525,7 @@ Icons by
                             <outlet property="delegate" destination="Tc5-Lw-q8C" id="FVa-Mv-IWj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Tq9-9q-e6n">
+                    <navigationItem key="navigationItem" title="Artists" id="Tq9-9q-e6n">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="vKh-Rt-NZm">
                             <connections>
                                 <segue destination="kQc-2K-L24" kind="push" id="6N2-QI-RYT"/>
@@ -633,7 +633,7 @@ Icons by
                             <outlet property="delegate" destination="IiO-3V-2gZ" id="fcM-PH-Odg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Snm-Ai-vZF">
+                    <navigationItem key="navigationItem" title="Albums" id="Snm-Ai-vZF">
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="0ua-pj-DGG">
                             <connections>
                                 <segue destination="kQc-2K-L24" kind="push" id="PDY-od-PhP"/>
@@ -663,6 +663,6 @@ Icons by
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XKf-fF-THG"/>
+        <segue reference="PDY-od-PhP"/>
     </inferredMetricsTieBreakers>
 </document>
