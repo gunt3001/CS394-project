@@ -181,16 +181,42 @@
     // Start playing selected music
     if ([sender isKindOfClass:[MSPTableViewCell class]]){
         MSPTableViewCell* selectedCell = (MSPTableViewCell*) sender;
+        
+        // If it's a song
         if ([selectedCell PID] != nil){
             // Query the song object from the stored PID
             MPMediaQuery* songQuery = [MPMediaQuery songsQuery];
             [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
             MPMediaItem* song = [[songQuery items] objectAtIndex:0];
             
+            // Set the playing Queue to be all songs
+            MPMediaQuery* allSongs = [MPMediaQuery songsQuery];
+            
             // Ask the iPod to play it
             MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+            [iPodMusicPlayer setQueueWithQuery:allSongs];
             [iPodMusicPlayer setNowPlayingItem:song];
+            
+            // Cycle shuffle mode so that the new song is first in the playing queue
+            if ([iPodMusicPlayer shuffleMode] != MPMusicShuffleModeOff){
+                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
+                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
+            }
+            
             [iPodMusicPlayer play];
+            NSLog(@"Playing Song: %@ at index %ld of playlist", [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyTitle], [iPodMusicPlayer indexOfNowPlayingItem]);
+        }
+        // If it's the shuffle button
+        else{
+            // Set the playing Queue to be all songs
+            MPMediaQuery* allSongs = [MPMediaQuery songsQuery];
+            
+            // Ask the iPod to play it
+            MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+            [iPodMusicPlayer setQueueWithQuery:allSongs];
+            
+            [iPodMusicPlayer play];
+            NSLog(@"Playing Song: %@ at index %ld of playlist", [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyTitle], [iPodMusicPlayer indexOfNowPlayingItem]);
         }
     }
 }
