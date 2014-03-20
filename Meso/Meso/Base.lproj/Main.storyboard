@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Table View Controller - Playlists-->
         <scene sceneID="ccz-KG-T5p">
             <objects>
-                <tableViewController id="iaB-zq-KvC" sceneMemberID="viewController">
+                <tableViewController title="Playlists" id="iaB-zq-KvC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uSW-Jq-X9E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="1051" y="-950"/>
         </scene>
-        <!--View Controller - Songs-->
+        <!--View Controller - Meso-->
         <scene sceneID="oWk-gt-Riz">
             <objects>
-                <viewController title="Songs" id="Fqs-xx-ewx" sceneMemberID="viewController">
+                <viewController title="Meso" id="Fqs-xx-ewx" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ceg-BU-x0G"/>
                         <viewControllerLayoutGuide type="bottom" id="7Id-Wo-6d5"/>
@@ -218,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="544" y="-213"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Table View Controller - Songs-->
         <scene sceneID="UOl-ex-uvF">
             <objects>
-                <tableViewController id="lA8-jF-DqF" sceneMemberID="viewController">
+                <tableViewController title="Songs" id="lA8-jF-DqF" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3A9-JV-Vy1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,10 +424,10 @@ Icons by
             </objects>
             <point key="canvasLocation" x="534" y="1926"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Table View Controller - Artists-->
         <scene sceneID="KyS-wv-KyQ">
             <objects>
-                <tableViewController id="Tc5-Lw-q8C" sceneMemberID="viewController">
+                <tableViewController title="Artists" id="Tc5-Lw-q8C" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5bn-3z-Nne">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -532,10 +532,10 @@ Icons by
             </objects>
             <point key="canvasLocation" x="1037" y="1174"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Table View Controller - Albums-->
         <scene sceneID="bG0-eM-frG">
             <objects>
-                <tableViewController id="IiO-3V-2gZ" sceneMemberID="viewController">
+                <tableViewController title="Albums" id="IiO-3V-2gZ" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3eX-v8-mFF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -658,6 +658,6 @@ Icons by
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XKf-fF-THG"/>
+        <segue reference="PDY-od-PhP"/>
     </inferredMetricsTieBreakers>
 </document>
