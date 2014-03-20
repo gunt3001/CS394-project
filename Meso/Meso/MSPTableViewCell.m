@@ -39,9 +39,6 @@
     // Add the given image as a subview shown as thumbnail
     // Replace the existing thumb if one already exists
     
-    // Do nothing if nil
-    if (image == nil) return;
-    
     // Check if we already have a thumbnail
     if (hasThumb){
         UIImageView* customView = (UIImageView*)[self viewWithTag:TABLE_VIEW_CELL_THUMBNAIL_TAG];
