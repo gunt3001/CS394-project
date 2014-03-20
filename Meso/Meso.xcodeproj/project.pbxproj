@@ -24,6 +24,7 @@
 		B0BEC4F518DA7142003EAC01 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */; };
 		B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */; };
 		B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */; };
+		B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPTableViewCell.m; sourceTree = "<group>"; };
 		B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPConstants.h; sourceTree = "<group>"; };
 		B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPConstants.m; sourceTree = "<group>"; };
+		B0BEC4FC18DACCC4003EAC01 /* MSPNowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPNowPlayingViewController.h; sourceTree = "<group>"; };
+		B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPNowPlayingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 		B02C433C18DA307800C0390C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B0BEC4FC18DACCC4003EAC01 /* MSPNowPlayingViewController.h */,
+				B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */,
 				B0BEC4F618DAA718003EAC01 /* MSPTableViewCell.h */,
 				B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */,
 				B0BEC4F118DA6DE0003EAC01 /* MSPSongsTableViewController.h */,
@@ -273,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */,
+				B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */,
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
 				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
