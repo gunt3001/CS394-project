@@ -91,7 +91,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"idshuffleitem" forIndexPath:indexPath];
         
         NSInteger songsCount = [[allSongsQuery items] count];
-        NSString* songsCountText = [NSString stringWithFormat:@"%d Songs", songsCount];
+        NSString* songsCountText = [NSString stringWithFormat:@"%ld Songs", (long)songsCount];
         [[cell detailTextLabel] setText:songsCountText];
     }
     // Otherwise it's a song
