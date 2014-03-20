@@ -166,17 +166,19 @@
     // Pass the selected object to the new view controller.
  
     // Start playing selected music
-    MSPTableViewCell* selectedCell = (MSPTableViewCell*) sender;
-    if ([selectedCell PID] != nil){
-        // Query the song object from the stored PID
-        MPMediaQuery* songQuery = [MPMediaQuery songsQuery];
-        [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
-        MPMediaItem* song = [[songQuery items] objectAtIndex:0];
-        
-        // Ask the iPod to play it
-        MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
-        [iPodMusicPlayer setNowPlayingItem:song];
-        [iPodMusicPlayer play];
+    if ([sender isKindOfClass:[MSPTableViewCell class]]){
+        MSPTableViewCell* selectedCell = (MSPTableViewCell*) sender;
+        if ([selectedCell PID] != nil){
+            // Query the song object from the stored PID
+            MPMediaQuery* songQuery = [MPMediaQuery songsQuery];
+            [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
+            MPMediaItem* song = [[songQuery items] objectAtIndex:0];
+            
+            // Ask the iPod to play it
+            MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+            [iPodMusicPlayer setNowPlayingItem:song];
+            [iPodMusicPlayer play];
+        }
     }
 }
 
