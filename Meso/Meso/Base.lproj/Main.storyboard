@@ -227,7 +227,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idshuffleitem" textLabel="dzK-1h-FZR" detailTextLabel="yOQ-fg-x4N" rowHeight="44" style="IBUITableViewCellStyleValue1" id="IKJ-Gm-QRZ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idshuffleitem" textLabel="dzK-1h-FZR" detailTextLabel="yOQ-fg-x4N" rowHeight="44" style="IBUITableViewCellStyleValue1" id="IKJ-Gm-QRZ" customClass="MSPTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IKJ-Gm-QRZ" id="R5i-1g-2qp">
@@ -254,7 +254,7 @@
                                     <segue destination="kQc-2K-L24" kind="push" id="QF0-pE-SaB"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitem" textLabel="LMJ-Bp-CWl" detailTextLabel="wOo-Pl-Wpg" imageView="P4A-FL-xHG" style="IBUITableViewCellStyleSubtitle" id="ceu-OQ-1KN">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitem" textLabel="LMJ-Bp-CWl" detailTextLabel="wOo-Pl-Wpg" imageView="P4A-FL-xHG" style="IBUITableViewCellStyleSubtitle" id="ceu-OQ-1KN" customClass="MSPTableViewCell">
                                 <rect key="frame" x="0.0" y="130" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ceu-OQ-1KN" id="jNA-Rr-5F3">
@@ -285,7 +285,7 @@
                                     <segue destination="kQc-2K-L24" kind="push" id="RsV-mO-FrG"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemnoart" textLabel="Sk7-xh-O0J" detailTextLabel="WE3-XL-ezC" style="IBUITableViewCellStyleSubtitle" id="0yC-qd-Dl6">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemnoart" textLabel="Sk7-xh-O0J" detailTextLabel="WE3-XL-ezC" style="IBUITableViewCellStyleSubtitle" id="0yC-qd-Dl6" customClass="MSPTableViewCell">
                                 <rect key="frame" x="0.0" y="190" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0yC-qd-Dl6" id="2Ol-d3-ig3">

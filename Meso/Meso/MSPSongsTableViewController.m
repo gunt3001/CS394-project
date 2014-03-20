@@ -7,6 +7,7 @@
 //
 
 #import "MSPSongsTableViewController.h"
+#import "MSPTableViewCell.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPSongsTableViewController ()
@@ -68,7 +69,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return the cell for the table
-    UITableViewCell *cell;
+    
+    MSPTableViewCell* cell;
     MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
     
     // First section is always the shuffle item
@@ -98,6 +100,8 @@
         // Artwork
         MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
         UIImage* songArtImage = [songArt imageWithSize:(CGSizeMake(50.0, 50.0))];
+        // Unique Persistent ID for the song
+        NSNumber* songPID = [song valueForProperty:MPMediaItemPropertyPersistentID];
         
         // Set cell data
         // If cell has artwork
@@ -115,7 +119,8 @@
         if (songArtist == nil) songArtist = @"Unknown Artist";
         if (songAlbum == nil) songAlbum = @"Unknown Album";
         [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@ - %@", songArtist, songAlbum]];
-                
+        // PID
+        [cell setPID:songPID];
     }
     
     return cell;
@@ -138,7 +143,7 @@
     
     NSMutableArray* indexes = [[NSMutableArray alloc] init];
     
-    // The first section (shuffle) does not need indexing
+    // The first section (shuffle)
     [indexes addObject:@"↻"];
 
     // Add the rest from library
@@ -151,7 +156,7 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -159,7 +164,21 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+ 
+    // Start playing selected music
+    MSPTableViewCell* selectedCell = (MSPTableViewCell*) sender;
+    if ([selectedCell PID] != nil){
+        // Query the song object from the stored PID
+        MPMediaQuery* songQuery = [MPMediaQuery songsQuery];
+        [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
+        MPMediaItem* song = [[songQuery items] objectAtIndex:0];
+        
+        // Ask the iPod to play it
+        MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+        [iPodMusicPlayer setNowPlayingItem:song];
+        [iPodMusicPlayer play];
+    }
 }
-*/
+
 
 @end
