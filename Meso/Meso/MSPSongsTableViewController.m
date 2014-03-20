@@ -204,7 +204,6 @@
             }
             
             [iPodMusicPlayer play];
-            NSLog(@"Playing Song: %@ at index %ld of playlist", [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyTitle], [iPodMusicPlayer indexOfNowPlayingItem]);
         }
         // If it's the shuffle button
         else{
@@ -216,7 +215,6 @@
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             
             [iPodMusicPlayer play];
-            NSLog(@"Playing Song: %@ at index %ld of playlist", [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyTitle], [iPodMusicPlayer indexOfNowPlayingItem]);
         }
     }
 }
