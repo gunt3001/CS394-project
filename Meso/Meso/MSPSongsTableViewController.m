@@ -7,6 +7,7 @@
 //
 
 #import "MSPSongsTableViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPSongsTableViewController ()
 
@@ -44,67 +45,111 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+    // Return the number of sections
     
-    return 0;
+    // 1 for Shuffle + Whatever number of sections is returned by the MediaQuery object
+    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    return 1 + [[allSongsQuery itemSections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    
+    // 1 row for the shuffle section
+    if (section == 0) return 1;
+    
+    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    MPMediaQuerySection* thisSection = [[allSongsQuery collectionSections] objectAtIndex:(section - 1)];
+    return [thisSection range].length;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    // Return the cell for the table
+    UITableViewCell *cell;
+    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
     
-    // Configure the cell...
+    // First section is always the shuffle item
+    if ([indexPath section] == 0){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"idshuffleitem" forIndexPath:indexPath];
+        
+        NSInteger songsCount = [[allSongsQuery items] count];
+        NSString* songsCountText = [NSString stringWithFormat:@"%d Songs", songsCount];
+        [[cell detailTextLabel] setText:songsCountText];
+    }
+    // Otherwise it's a song
+    else{
+        // Get song object from library
+        NSInteger section = [indexPath section] - 1; // -1 to offset for shuffle
+        NSInteger row = [indexPath row];
+        MPMediaQuerySection* thisSection = [[allSongsQuery itemSections] objectAtIndex:section];
+        NSInteger sectionOffset = [thisSection range].location;
+        MPMediaItem* song = [[allSongsQuery items] objectAtIndex:(sectionOffset + row)];
+        
+        // Grab song data
+        // Title
+        NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
+        // Artist
+        NSString* songArtist = [song valueForProperty:MPMediaItemPropertyArtist];
+        // Album
+        NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
+        // Artwork
+        MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
+        UIImage* songArtImage = [songArt imageWithSize:(CGSizeMake(50.0, 50.0))];
+        
+        // Set cell data
+        // If cell has artwork
+        if (songArtImage != nil) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
+            [[cell imageView] setImage:songArtImage];
+        }
+        // Otherwise use the cell without artwork
+        else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemnoart" forIndexPath:indexPath];
+        }
+        // Title
+        [[cell textLabel] setText:songTitle];
+        // Subtitle
+        if (songArtist == nil) songArtist = @"Unknown Artist";
+        if (songAlbum == nil) songAlbum = @"Unknown Album";
+        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@ - %@", songArtist, songAlbum]];
+                
+    }
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma Sections and Indexing
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    // Return the section titles
+    
+    // First section (shuffle) does not have title
+    if (section == 0) return nil;
+    
+    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    return [[[allSongsQuery collectionSections] objectAtIndex:(section - 1)] title];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    // Return the section titles for indexing
+    
+    NSMutableArray* indexes = [[NSMutableArray alloc] init];
+    
+    // The first section (shuffle) does not need indexing
+    [indexes addObject:@"↻"];
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    // Add the rest from library
+    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    for (MPMediaQuerySection* eachSection in [allSongsQuery itemSections]){
+        [indexes addObject:[eachSection title]];
+    }
+    
+    return indexes;
 }
-*/
+
 
 /*
 #pragma mark - Navigation
