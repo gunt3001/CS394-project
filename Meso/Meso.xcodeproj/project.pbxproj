@@ -20,6 +20,7 @@
 		B0B882F218C69A4E003D37EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D418C69A4E003D37EC /* UIKit.framework */; };
 		B0B882FA18C69A4E003D37EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0B882F818C69A4E003D37EC /* InfoPlist.strings */; };
 		B0B882FC18C69A4E003D37EC /* MesoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B882FB18C69A4E003D37EC /* MesoTests.m */; };
+		B0BEC4F518DA7142003EAC01 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		B0B882F718C69A4E003D37EC /* MesoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MesoTests-Info.plist"; sourceTree = "<group>"; };
 		B0B882F918C69A4E003D37EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B0B882FB18C69A4E003D37EC /* MesoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MesoTests.m; sourceTree = "<group>"; };
+		B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0BEC4F518DA7142003EAC01 /* MediaPlayer.framework in Frameworks */,
 				B0B882D318C69A4E003D37EC /* CoreGraphics.framework in Frameworks */,
 				B0B882D518C69A4E003D37EC /* UIKit.framework in Frameworks */,
 				B0B882D118C69A4E003D37EC /* Foundation.framework in Frameworks */,
@@ -105,6 +108,7 @@
 		B0B882CF18C69A4E003D37EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */,
 				B0B882D018C69A4E003D37EC /* Foundation.framework */,
 				B0B882D218C69A4E003D37EC /* CoreGraphics.framework */,
 				B0B882D418C69A4E003D37EC /* UIKit.framework */,
