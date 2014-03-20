@@ -111,8 +111,18 @@
         // Album
         NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
         // Artwork
+        // Create custom view for image instead of the one provided by uitableview
+        // to maintain aspect ratio of album arts
         MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
         UIImage* songArtImage = [songArt imageWithSize:(CGSizeMake(TABLE_VIEW_ALBUM_ART_WIDTH, TABLE_VIEW_ALBUM_ART_HEIGHT))];
+        UIImageView* customView = [[UIImageView alloc] initWithFrame:CGRectMake(TABLE_VIEW_ALBUM_ART_PADDING,
+                                                                                TABLE_VIEW_ALBUM_ART_PADDING,
+                                                                                TABLE_VIEW_ALBUM_ART_WIDTH,
+                                                                                TABLE_VIEW_ALBUM_ART_HEIGHT)];
+        [customView setImage:songArtImage];
+        [customView setBounds:[customView frame]];
+        [customView setContentMode:UIViewContentModeScaleAspectFill];
+        [customView setClipsToBounds:YES];
         // Unique Persistent ID for the song
         NSNumber* songPID = [song valueForProperty:MPMediaItemPropertyPersistentID];
         
@@ -120,7 +130,8 @@
         // If cell has artwork
         if (songArtImage != nil) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
-            [[cell imageView] setImage:songArtImage];
+            [cell addSubview:customView];
+            [cell setIndentationWidth:(TABLE_VIEW_ALBUM_ART_WIDTH)];
         }
         // Otherwise use the cell without artwork
         else{

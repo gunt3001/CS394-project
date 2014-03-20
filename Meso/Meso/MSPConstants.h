@@ -8,6 +8,7 @@
 
 extern NSInteger const TABLE_VIEW_ALBUM_ART_WIDTH;
 extern NSInteger const TABLE_VIEW_ALBUM_ART_HEIGHT;
+extern NSInteger const TABLE_VIEW_ALBUM_ART_PADDING;
 extern NSInteger const TABLE_VIEW_SHUFFLE_ROW_HEIGHT;
 extern NSString* const TABLE_VIEW_SONG_COUNT_FORMAT;
 extern NSString* const TABLE_VIEW_SUBTITLE_FORMAT;
