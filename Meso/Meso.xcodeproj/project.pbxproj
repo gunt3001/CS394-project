@@ -23,6 +23,7 @@
 		B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4F218DA6DE0003EAC01 /* MSPSongsTableViewController.m */; };
 		B0BEC4F518DA7142003EAC01 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */; };
 		B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */; };
+		B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B0BEC4F618DAA718003EAC01 /* MSPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPTableViewCell.h; sourceTree = "<group>"; };
 		B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPTableViewCell.m; sourceTree = "<group>"; };
+		B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPConstants.h; sourceTree = "<group>"; };
+		B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
+				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
+				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
 				B02C433C18DA307800C0390C /* ViewControllers */,
 				B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */,
 				B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */,
@@ -271,6 +276,7 @@
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
 				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
+				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
