@@ -20,6 +20,7 @@
 		B0B882F218C69A4E003D37EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D418C69A4E003D37EC /* UIKit.framework */; };
 		B0B882FA18C69A4E003D37EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0B882F818C69A4E003D37EC /* InfoPlist.strings */; };
 		B0B882FC18C69A4E003D37EC /* MesoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B882FB18C69A4E003D37EC /* MesoTests.m */; };
+		B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4F218DA6DE0003EAC01 /* MSPSongsTableViewController.m */; };
 		B0BEC4F518DA7142003EAC01 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,8 @@
 		B0B882F718C69A4E003D37EC /* MesoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MesoTests-Info.plist"; sourceTree = "<group>"; };
 		B0B882F918C69A4E003D37EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B0B882FB18C69A4E003D37EC /* MesoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MesoTests.m; sourceTree = "<group>"; };
+		B0BEC4F118DA6DE0003EAC01 /* MSPSongsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPSongsTableViewController.h; sourceTree = "<group>"; };
+		B0BEC4F218DA6DE0003EAC01 /* MSPSongsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPSongsTableViewController.m; sourceTree = "<group>"; };
 		B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -82,6 +85,8 @@
 		B02C433C18DA307800C0390C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B0BEC4F118DA6DE0003EAC01 /* MSPSongsTableViewController.h */,
+				B0BEC4F218DA6DE0003EAC01 /* MSPSongsTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
+				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
