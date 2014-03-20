@@ -50,7 +50,7 @@
     // Return the number of sections
     
     // 1 for Shuffle + Whatever number of sections is returned by the MediaQuery object
-    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
     return 1 + [[allSongsQuery itemSections] count];
 }
 
@@ -61,7 +61,7 @@
     // 1 row for the shuffle section
     if (section == 0) return 1;
     
-    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
     MPMediaQuerySection* thisSection = [[allSongsQuery collectionSections] objectAtIndex:(section - 1)];
     return [thisSection range].length;
 }
@@ -84,7 +84,7 @@
     // Return the cell for the table
     
     MSPTableViewCell* cell;
-    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
     
     // First section is always the shuffle item
     if ([indexPath section] == 0){
@@ -139,15 +139,13 @@
     return cell;
 }
 
-#pragma Sections and Indexing
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     // Return the section titles
     
     // First section (shuffle) does not have title
     if (section == 0) return nil;
     
-    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
     return [[[allSongsQuery collectionSections] objectAtIndex:(section - 1)] title];
 }
 
@@ -160,7 +158,7 @@
     [indexes addObject:@"↻"];
 
     // Add the rest from library
-    MPMediaQuery* allSongsQuery = [MPMediaQuery songsQuery];
+    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
     for (MPMediaQuerySection* eachSection in [allSongsQuery itemSections]){
         [indexes addObject:[eachSection title]];
     }
@@ -185,12 +183,12 @@
         // If it's a song
         if ([selectedCell PID] != nil){
             // Query the song object from the stored PID
-            MPMediaQuery* songQuery = [MPMediaQuery songsQuery];
+            MPMediaQuery* songQuery = [self getAllSongsWithoutICloudQuery];
             [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
             MPMediaItem* song = [[songQuery items] objectAtIndex:0];
             
-            // Set the playing Queue to be all songs
-            MPMediaQuery* allSongs = [MPMediaQuery songsQuery];
+            // Set the playing Queue to be all songs, not including iCloud items
+            MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             
             // Ask the iPod to play it
             MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
@@ -207,8 +205,8 @@
         }
         // If it's the shuffle button
         else{
-            // Set the playing Queue to be all songs
-            MPMediaQuery* allSongs = [MPMediaQuery songsQuery];
+            // Set the playing Queue to be all songs, not including iCloud items
+            MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             
             // Ask the iPod to play it
             MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
@@ -217,6 +215,17 @@
             [iPodMusicPlayer play];
         }
     }
+}
+
+#pragma mark - Helper Methods
+
+- (MPMediaQuery*) getAllSongsWithoutICloudQuery{
+    // Return a MPMediaQuery of all songs in the iPod Library without iCloud music
+    
+    MPMediaQuery* allSongs = [MPMediaQuery songsQuery];
+    [allSongs addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithBool:NO] forProperty:MPMediaItemPropertyIsCloudItem]];
+    
+    return allSongs;
 }
 
 
