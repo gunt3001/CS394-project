@@ -227,22 +227,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idshuffleitem" textLabel="dzK-1h-FZR" detailTextLabel="yOQ-fg-x4N" rowHeight="44" style="IBUITableViewCellStyleValue1" id="IKJ-Gm-QRZ" customClass="MSPTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idshuffleitem" textLabel="dzK-1h-FZR" detailTextLabel="yOQ-fg-x4N" style="IBUITableViewCellStyleValue1" id="IKJ-Gm-QRZ" customClass="MSPTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IKJ-Gm-QRZ" id="R5i-1g-2qp">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Shuffle All" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dzK-1h-FZR">
-                                            <rect key="frame" x="15" y="11" width="77" height="21"/>
+                                            <rect key="frame" x="15" y="19" width="77" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="0 Songs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yOQ-fg-x4N">
-                                            <rect key="frame" x="241" y="11" width="64" height="21"/>
+                                            <rect key="frame" x="241" y="19" width="64" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -255,7 +255,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitem" textLabel="LMJ-Bp-CWl" detailTextLabel="wOo-Pl-Wpg" imageView="P4A-FL-xHG" style="IBUITableViewCellStyleSubtitle" id="ceu-OQ-1KN" customClass="MSPTableViewCell">
-                                <rect key="frame" x="0.0" y="130" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="146" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ceu-OQ-1KN" id="jNA-Rr-5F3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -286,7 +286,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemnoart" textLabel="Sk7-xh-O0J" detailTextLabel="WE3-XL-ezC" style="IBUITableViewCellStyleSubtitle" id="0yC-qd-Dl6" customClass="MSPTableViewCell">
-                                <rect key="frame" x="0.0" y="190" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="206" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0yC-qd-Dl6" id="2Ol-d3-ig3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>

@@ -8,6 +8,7 @@
 
 #import "MSPSongsTableViewController.h"
 #import "MSPTableViewCell.h"
+#import "MSPConstants.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPSongsTableViewController ()
@@ -66,6 +67,18 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    // Return the height for rows in table
+    
+    // Shuffle button have reduced height
+    if ([indexPath section] == 0){
+        return TABLE_VIEW_SHUFFLE_ROW_HEIGHT;
+    }
+    
+    // Songs have regular height
+    else return [tableView rowHeight];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return the cell for the table
@@ -99,7 +112,7 @@
         NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
         // Artwork
         MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
-        UIImage* songArtImage = [songArt imageWithSize:(CGSizeMake(50.0, 50.0))];
+        UIImage* songArtImage = [songArt imageWithSize:(CGSizeMake(TABLE_VIEW_ALBUM_ART_WIDTH, TABLE_VIEW_ALBUM_ART_HEIGHT))];
         // Unique Persistent ID for the song
         NSNumber* songPID = [song valueForProperty:MPMediaItemPropertyPersistentID];
         
