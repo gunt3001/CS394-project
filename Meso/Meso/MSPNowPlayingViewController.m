@@ -190,6 +190,8 @@
     // Display them
     isShowingAltTitle = NO;
     [[self labelSongTitle] setText:title];
+    if (!album) album = STRING_UNKNOWN_ALBUM;
+    if (!artist) artist = STRING_UNKNOWN_ARTIST;
     [[self labelSongSubtitle] setText:[NSString stringWithFormat:NOWPLAYING_VIEW_SUBTITLE_FORMAT, artist, album]];
     
     // Artwork (Animated)
