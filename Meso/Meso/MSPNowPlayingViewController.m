@@ -189,6 +189,7 @@
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     
     // Display them
+    isShowingAltTitle = NO;
     [[self labelSongTitle] setText:title];
     [[self labelSongSubtitle] setText:[NSString stringWithFormat:NOWPLAYING_VIEW_SUBTITLE_FORMAT, artist, album]];
     
