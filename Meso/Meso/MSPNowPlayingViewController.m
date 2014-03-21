@@ -110,7 +110,11 @@
 }
 */
 
-#pragma mark - View Orientations
+#pragma mark - View & Orientations
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 - (NSUInteger) supportedInterfaceOrientations {
     // Return a bitmask of supported orientations. If you need more,
