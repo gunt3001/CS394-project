@@ -215,6 +215,9 @@
             MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             
+            // Turn on shuffle
+            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
+            
             [iPodMusicPlayer play];
         }
     }
