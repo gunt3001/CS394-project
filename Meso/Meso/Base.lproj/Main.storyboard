@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zU3-3q-veN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Table View Controller - Playlists-->
@@ -270,11 +269,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmz-iN-Pjz">
-                                <rect key="frame" x="64" y="107" width="192" height="192"/>
+                                <rect key="frame" x="20" y="107" width="280" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="mmz-iN-Pjz" secondAttribute="height" multiplier="1:1" id="za7-Dz-OZD"/>
-                                </constraints>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ybr-wy-wvB">
                                 <rect key="frame" x="58" y="317" width="204" height="2"/>
@@ -297,12 +293,12 @@
                             <constraint firstItem="Eun-l4-RPJ" firstAttribute="leading" secondItem="ybr-wy-wvB" secondAttribute="trailing" constant="8" id="081-qZ-DaB"/>
                             <constraint firstItem="mVH-Zr-n8C" firstAttribute="top" secondItem="ybr-wy-wvB" secondAttribute="bottom" constant="161" id="0eX-fq-Vzd"/>
                             <constraint firstItem="mVH-Zr-n8C" firstAttribute="top" secondItem="AIz-9Q-4uF" secondAttribute="bottom" constant="16" id="11a-VV-3hD"/>
-                            <constraint firstAttribute="centerX" secondItem="mmz-iN-Pjz" secondAttribute="centerX" id="17A-2c-kou"/>
                             <constraint firstItem="1Gg-2g-VLR" firstAttribute="leading" secondItem="Zdp-jK-W43" secondAttribute="leading" id="1dh-z4-jPo"/>
                             <constraint firstAttribute="bottom" secondItem="1Gg-2g-VLR" secondAttribute="bottom" id="2dO-gY-viD"/>
                             <constraint firstAttribute="centerX" secondItem="6VG-MS-3pH" secondAttribute="centerX" constant="-0.5" id="3hb-Tc-Gw1"/>
                             <constraint firstItem="mmz-iN-Pjz" firstAttribute="top" secondItem="2Cn-ut-wg6" secondAttribute="bottom" constant="87" id="6vl-mD-M82"/>
                             <constraint firstAttribute="trailing" secondItem="AIz-9Q-4uF" secondAttribute="trailing" constant="20" id="APd-dT-jQi"/>
+                            <constraint firstAttribute="trailing" secondItem="mmz-iN-Pjz" secondAttribute="trailing" constant="20" id="GUm-uZ-DDw"/>
                             <constraint firstItem="mVH-Zr-n8C" firstAttribute="top" secondItem="t3e-kt-Kh8" secondAttribute="bottom" constant="54" id="Gku-Kb-vUd"/>
                             <constraint firstItem="9Ly-qQ-e2w" firstAttribute="centerY" secondItem="ybr-wy-wvB" secondAttribute="centerY" constant="-0.5" id="Gnv-HC-sVy"/>
                             <constraint firstItem="TIu-1b-qfR" firstAttribute="leading" secondItem="Zdp-jK-W43" secondAttribute="leading" constant="20" id="H26-rb-MJN"/>
@@ -311,6 +307,7 @@
                             <constraint firstItem="VeK-vC-uLh" firstAttribute="top" secondItem="2Cn-ut-wg6" secondAttribute="bottom" id="RCu-3B-fl1"/>
                             <constraint firstItem="K0i-Mq-War" firstAttribute="top" secondItem="2Cn-ut-wg6" secondAttribute="bottom" constant="58" id="RHu-Rn-yWt"/>
                             <constraint firstItem="ybr-wy-wvB" firstAttribute="leading" secondItem="9Ly-qQ-e2w" secondAttribute="trailing" constant="8" id="Sq7-7H-zAN"/>
+                            <constraint firstItem="mmz-iN-Pjz" firstAttribute="leading" secondItem="Zdp-jK-W43" secondAttribute="leading" constant="20" id="UEZ-19-byI"/>
                             <constraint firstItem="v2w-cs-8yR" firstAttribute="leading" secondItem="6VG-MS-3pH" secondAttribute="trailing" constant="8" id="Ubf-lb-nfx"/>
                             <constraint firstItem="mVH-Zr-n8C" firstAttribute="top" secondItem="mmz-iN-Pjz" secondAttribute="bottom" constant="181" id="W5E-He-i7h"/>
                             <constraint firstItem="mVH-Zr-n8C" firstAttribute="top" secondItem="hoj-SG-Y7q" secondAttribute="bottom" constant="93" id="ZP3-x9-APf"/>
@@ -836,6 +833,6 @@ Icons by
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PDY-od-PhP"/>
+        <segue reference="RsV-mO-FrG"/>
     </inferredMetricsTieBreakers>
 </document>
