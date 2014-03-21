@@ -239,6 +239,11 @@
     else if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying){
         [_buttonPlayPause setTitle:@"PAUSE" forState:UIControlStateNormal];
     }
+    
+    // Note that sometimes iPodMusicPlayer will report a wrong state
+    // This is a bug with iOS
+    // Please refer to http://stackoverflow.com/questions/10118726/getting-wrong-playback-state-in-mp-music-player-controller-in-ios-5
+    // for more information.
 }
 
 - (void)handleNowPlayingItemChanged:(id)notification {
