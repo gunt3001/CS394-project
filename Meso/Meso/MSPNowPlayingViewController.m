@@ -7,8 +7,13 @@
 //
 
 #import "MSPNowPlayingViewController.h"
+#import "MSPConstants.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPNowPlayingViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *labelSongTitle;
+@property (weak, nonatomic) IBOutlet UILabel *labelSongSubtitle;
+@property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
 
 @end
 
@@ -27,6 +32,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Do the initial update of now playing item
+    [self refreshMediaData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,6 +70,24 @@
     // user can still rotate. You don't have to implement this method, in which
     // case it launches in the current orientation
     return UIInterfaceOrientationPortrait;
+}
+
+- (void) refreshMediaData{
+    // Refresh the media data from iPod player to the view
+    
+    // Grab necessary information
+    MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+    MPMediaItem* nowPlaying = [iPodMusicPlayer nowPlayingItem];
+    NSString* title = [nowPlaying valueForProperty:MPMediaItemPropertyTitle];
+    NSString* album = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumTitle];
+    NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
+    MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
+    UIImage* artworkImage = [art imageWithSize:[art bounds].size];
+    
+    // Display them
+    [[self labelSongTitle] setText:title];
+    [[self labelSongSubtitle] setText:[NSString stringWithFormat:NOWPLAYING_VIEW_SUBTITLE_FORMAT, artist, album]];
+    [[self imageArtwork] setImage:artworkImage];
 }
 
 @end
