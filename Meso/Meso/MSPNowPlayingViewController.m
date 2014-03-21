@@ -24,6 +24,11 @@
 @implementation MSPNowPlayingViewController {
     dispatch_queue_t imageBlurringQueue;
     int blurringQueueCount;
+    BOOL isShowingAltTitle;
+    
+    // Also store other now playing metadata
+    NSString* nowPlayingSongTitle;
+    NSString* nowPlayingSongAlternateTitle;
 };
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,12 +59,45 @@
                            selector:@selector(handlePlaybackStateChanged:)
                                name:MPMusicPlayerControllerPlaybackStateDidChangeNotification
                              object:sharedPlayer];
+    
+    // Enable tapping on song title to show alternate title
+    isShowingAltTitle = NO;
+    UITapGestureRecognizer* tapToViewAltTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAltTitle:)];
+    [tapToViewAltTitle setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:tapToViewAltTitle];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Gestures
+
+- (void)showAltTitle:(UITapGestureRecognizer*) sender{
+    // Show alternate song title
+    
+    // Prepare to animate text change
+    CATransition *animation = [CATransition animation];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.2;
+    [_labelSongTitle.layer addAnimation:animation forKey:@"kCATransitionFade"];
+    
+    if (CGRectContainsPoint(_labelSongTitle.frame, [sender locationInView:self.view])){
+        if (isShowingAltTitle){
+            [_labelSongTitle setText:nowPlayingSongTitle];
+            isShowingAltTitle = NO;
+        }
+        else {
+            [_labelSongTitle setText:nowPlayingSongAlternateTitle];
+            isShowingAltTitle = YES;
+        }
+    }
+    
 }
 
 #pragma mark - Buttons
@@ -148,6 +186,7 @@
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
+    NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     
     // Display them
     [[self labelSongTitle] setText:title];
@@ -177,6 +216,10 @@
         }
         blurringQueueCount--;
     });
+    
+    // Set other metadata
+    nowPlayingSongTitle = title;
+    nowPlayingSongAlternateTitle = altTitle;
     
     // Also refresh play button to reflect current playing status
     [self refreshPlayPauseButtonState];
