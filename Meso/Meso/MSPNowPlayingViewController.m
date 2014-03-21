@@ -20,7 +20,9 @@
 
 @end
 
-@implementation MSPNowPlayingViewController
+@implementation MSPNowPlayingViewController {
+    dispatch_queue_t imageBlurringQueue;
+};
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -119,7 +121,9 @@
     [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
     
     // Apply the heavy task of blurring image in background thread
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    if (!imageBlurringQueue) imageBlurringQueue = dispatch_queue_create("imageBlurringQueue", NULL);    // Initialize Queue if needed
+    
+    dispatch_async(imageBlurringQueue, ^{
         UIImage* blurredArt = [artworkImage applyDarkEffect];
         
         // Update UI after finishing (Animated)
