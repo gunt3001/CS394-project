@@ -36,6 +36,19 @@
     
     // Do the initial update of now playing item
     [self refreshMediaData];
+    
+    // Subscribe to media status changes
+    MPMusicPlayerController* sharedPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(handleNowPlayingItemChanged:)
+                               name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                             object:sharedPlayer];
+    [notificationCenter addObserver:self
+                           selector:@selector(handlePlaybackStateChanged:)
+                               name:MPMusicPlayerControllerPlaybackStateDidChangeNotification
+                             object:sharedPlayer];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +102,21 @@
     [[self labelSongTitle] setText:title];
     [[self labelSongSubtitle] setText:[NSString stringWithFormat:NOWPLAYING_VIEW_SUBTITLE_FORMAT, artist, album]];
     [[self imageArtwork] setImage:artworkImage];
+}
+
+- (void)handleNowPlayingItemChanged:(id)notification {
+    [self refreshMediaData];
+}
+
+- (void)handlePlaybackStateChanged:(id)notification {
+    /*
+    MPMusicPlaybackState playbackState = self.musicPlayer.playbackState;
+    if (playbackState == MPMusicPlaybackStatePaused || playbackState == MPMusicPlaybackStateStopped) {
+        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    } else if (playbackState == MPMusicPlaybackStatePlaying) {
+        [self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+    }
+     */
 }
 
 @end

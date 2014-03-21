@@ -16,6 +16,8 @@
     
     // Initialize the global music player
     [self setSharedPlayer:[MPMusicPlayerController iPodMusicPlayer]];
+    // Tell the iPod to notify of any status changes, which will be handled in appropriate classes
+    [_sharedPlayer beginGeneratingPlaybackNotifications];
     
     return YES;
 }
