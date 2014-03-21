@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSongSubtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
+@property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;
 
 @end
 
@@ -66,6 +67,36 @@
 - (IBAction)buttonBack:(id)sender {
     // Back button action - dismiss current view
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)buttonPlayPause:(id)sender {
+    // Pause if playing, play if paused
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePaused ||
+        [iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
+        [iPodMusicPlayer play];
+    }
+    else if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying){
+        [iPodMusicPlayer pause];
+    }
+    
+    [self refreshPlayPauseButtonState];
+}
+
+- (IBAction)buttonForward:(id)sender {
+    // Skip to next song
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    [iPodMusicPlayer skipToNextItem];
+}
+- (IBAction)buttonBackward:(id)sender {
+    // Skip to beginning, or to previous song if at less than 0:05
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    if ([iPodMusicPlayer currentPlaybackTime] <= 5.0){
+        [iPodMusicPlayer skipToPreviousItem];
+    }
+    else{
+        [iPodMusicPlayer skipToBeginning];
+    }
 }
 
 /*
@@ -132,6 +163,22 @@
         });
     });
     
+    // Also refresh play button to reflect current playing status
+    [self refreshPlayPauseButtonState];
+}
+
+- (void)refreshPlayPauseButtonState{
+    // Refresh play button to reflect current playing status
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePaused ||
+        [iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
+        [_buttonPlayPause setTitle:@"PLAY" forState:UIControlStateNormal];
+    }
+    else if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying){
+        [_buttonPlayPause setTitle:@"PAUSE" forState:UIControlStateNormal];
+    }
 }
 
 - (void)handleNowPlayingItemChanged:(id)notification {
@@ -139,7 +186,7 @@
 }
 
 - (void)handlePlaybackStateChanged:(id)notification {
-#warning unimplemented
+    [self refreshPlayPauseButtonState];
 }
 
 #pragma mark - Helper Methods

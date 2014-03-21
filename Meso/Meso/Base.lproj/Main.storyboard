@@ -183,6 +183,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPlayPause:" destination="kQc-2K-L24" eventType="touchUpInside" id="Fam-d9-qE8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2w-cs-8yR">
                                 <rect key="frame" x="198" y="327" width="60" height="60"/>
@@ -195,6 +198,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonForward:" destination="kQc-2K-L24" eventType="touchUpInside" id="wBM-mh-d5m"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-SG-Y7q">
                                 <rect key="frame" x="62" y="327" width="60" height="60"/>
@@ -207,6 +213,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonBackward:" destination="kQc-2K-L24" eventType="touchUpInside" id="ewr-FH-7DH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIu-1b-qfR">
                                 <rect key="frame" x="20" y="434" width="60" height="30"/>
@@ -329,6 +338,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="CFQ-Qg-SRk"/>
                     <connections>
+                        <outlet property="buttonPlayPause" destination="6VG-MS-3pH" id="vVk-QX-XHn"/>
                         <outlet property="imageArtwork" destination="mmz-iN-Pjz" id="Yhp-Uu-cj9"/>
                         <outlet property="imageArtworkBack" destination="1Gg-2g-VLR" id="HuY-Fq-tIV"/>
                         <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="MVo-Vl-gzx"/>
