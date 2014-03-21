@@ -112,13 +112,12 @@
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePaused ||
         [iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
+        [iPodMusicPlayer pause];    // Pause once before playing to fix when state would get occasionally stuck at paused
         [iPodMusicPlayer play];
     }
     else if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying){
         [iPodMusicPlayer pause];
     }
-    
-    [self refreshPlayPauseButtonState];
 }
 
 - (IBAction)buttonForward:(id)sender {
