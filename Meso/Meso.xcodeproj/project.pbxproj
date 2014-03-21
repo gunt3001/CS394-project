@@ -138,12 +138,12 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
-				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
-				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
 				B02C433C18DA307800C0390C /* ViewControllers */,
 				B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */,
 				B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */,
 				B0B882E218C69A4E003D37EC /* Main.storyboard */,
+				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
+				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
 				B0B882E818C69A4E003D37EC /* Images.xcassets */,
 				B0B882D718C69A4E003D37EC /* Supporting Files */,
 			);
