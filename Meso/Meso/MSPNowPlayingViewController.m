@@ -9,12 +9,14 @@
 #import "MSPNowPlayingViewController.h"
 #import "MSPAppDelegate.h"
 #import "MSPConstants.h"
+#import "UIImage+ImageEffects.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPNowPlayingViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *labelSongTitle;
 @property (weak, nonatomic) IBOutlet UILabel *labelSongSubtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
+@property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
 
 @end
 
@@ -56,6 +58,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Buttons
+
 - (IBAction)buttonBack:(id)sender {
     // Back button action - dismiss current view
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -72,6 +77,8 @@
 }
 */
 
+#pragma mark - View Orientations
+
 - (NSUInteger) supportedInterfaceOrientations {
     // Return a bitmask of supported orientations. If you need more,
     // use bitwise or (see the commented return).
@@ -86,6 +93,8 @@
     return UIInterfaceOrientationPortrait;
 }
 
+#pragma mark - Responding to Media Changes
+
 - (void) refreshMediaData{
     // Refresh the media data from iPod player to the view
     
@@ -96,12 +105,29 @@
     NSString* album = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumTitle];
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
-    UIImage* artworkImage = [art imageWithSize:[art bounds].size];
+    UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     
     // Display them
     [[self labelSongTitle] setText:title];
     [[self labelSongSubtitle] setText:[NSString stringWithFormat:NOWPLAYING_VIEW_SUBTITLE_FORMAT, artist, album]];
-    [[self imageArtwork] setImage:artworkImage];
+    
+    // Artwork (Animated)
+    [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];
+    
+    // Background Artwork (Animated)
+    // For now, set it to nil because blurring takes a little while
+    [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
+    
+    // Apply the heavy task of blurring image in background thread
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage* blurredArt = [artworkImage applyDarkEffect];
+        
+        // Update UI after finishing (Animated)
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
+        });
+    });
+    
 }
 
 - (void)handleNowPlayingItemChanged:(id)notification {
@@ -109,14 +135,19 @@
 }
 
 - (void)handlePlaybackStateChanged:(id)notification {
-    /*
-    MPMusicPlaybackState playbackState = self.musicPlayer.playbackState;
-    if (playbackState == MPMusicPlaybackStatePaused || playbackState == MPMusicPlaybackStateStopped) {
-        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
-    } else if (playbackState == MPMusicPlaybackStatePlaying) {
-        [self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
-    }
-     */
+#warning unimplemented
+}
+
+#pragma mark - Helper Methods
+- (void) changeImageWithTransitionOn:(UIImageView*)view withImage:(UIImage*)image{
+    // Change image in the given uiimageview with fading animation
+    
+    [UIView transitionWithView:view
+                      duration:0.2f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [view setImage:image];
+                    } completion:NULL];
 }
 
 @end

@@ -25,6 +25,7 @@
 		B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */; };
 		B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */; };
 		B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */; };
+		B0E352C018DBCA3F00276682 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPConstants.m; sourceTree = "<group>"; };
 		B0BEC4FC18DACCC4003EAC01 /* MSPNowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPNowPlayingViewController.h; sourceTree = "<group>"; };
 		B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPNowPlayingViewController.m; sourceTree = "<group>"; };
+		B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,7 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
+				B0E352BD18DBCA2900276682 /* External Library */,
 				B02C433C18DA307800C0390C /* ViewControllers */,
 				B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */,
 				B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */,
@@ -177,6 +181,15 @@
 				B0B882F818C69A4E003D37EC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0E352BD18DBCA2900276682 /* External Library */ = {
+			isa = PBXGroup;
+			children = (
+				B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */,
+				B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */,
+			);
+			name = "External Library";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +292,7 @@
 			files = (
 				B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */,
 				B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */,
+				B0E352C018DBCA3F00276682 /* UIImage+ImageEffects.m in Sources */,
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
 				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
