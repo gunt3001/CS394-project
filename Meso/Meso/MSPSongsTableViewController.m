@@ -182,6 +182,7 @@
     // Start playing selected music
     if ([sender isKindOfClass:[MSPTableViewCell class]]){
         MSPTableViewCell* selectedCell = (MSPTableViewCell*) sender;
+        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
         
         // If it's a song
         if ([selectedCell PID] != nil){
@@ -194,7 +195,6 @@
             MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             
             // Ask the iPod to play it
-            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             [iPodMusicPlayer setNowPlayingItem:song];
             
@@ -212,7 +212,6 @@
             MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             
             // Ask the iPod to play it
-            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             
             // Turn on shuffle
