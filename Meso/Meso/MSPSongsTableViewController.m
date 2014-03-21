@@ -191,18 +191,25 @@
             [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
             MPMediaItem* song = [[songQuery items] objectAtIndex:0];
             
+            NSLog(@"found %d songs, first is %@", [[songQuery items] count], [song valueForProperty:MPMediaItemPropertyTitle]);
+            
             // Set the playing Queue to be all songs, not including iCloud items
             MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
+            
+            // Temporarily turn off shuffle to prevent race condition
+            MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
+            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
             
             // Ask the iPod to play it
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             [iPodMusicPlayer setNowPlayingItem:song];
             
-            // Cycle shuffle mode so that the new song is first in the playing queue
-            if ([iPodMusicPlayer shuffleMode] != MPMusicShuffleModeOff){
-                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
-                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
+            // Turn shuffle back on, if it was on
+            if (oldShufMode != MPMusicShuffleModeOff){
+                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeDefault];
             }
+            
+            
             
             [iPodMusicPlayer play];
         }
