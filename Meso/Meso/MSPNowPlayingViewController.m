@@ -53,7 +53,6 @@
                            selector:@selector(handlePlaybackStateChanged:)
                                name:MPMusicPlayerControllerPlaybackStateDidChangeNotification
                              object:sharedPlayer];
-    
 }
 
 - (void)didReceiveMemoryWarning
