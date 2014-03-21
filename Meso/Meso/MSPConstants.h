@@ -19,3 +19,8 @@ extern NSString* const TABLE_VIEW_SUBTITLE_FORMAT;      // Format of subtitle in
 extern NSString* const NOWPLAYING_VIEW_SUBTITLE_FORMAT; // Format of subtitle in the now playing view
 extern NSString* const STRING_UNKNOWN_ARTIST;           // String for unknown artist
 extern NSString* const STRING_UNKNOWN_ALBUM;            // String for unknown album
+
+// Undocumented APIs
+extern NSString* const MSPMediaItemPropertySortTitle;
+extern NSString* const MSPMediaPlaylistPropertyIsFolder;
+extern NSString* const MSPMediaPlaylistPropertyParentPersistentID;
