@@ -13,6 +13,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Initialize the global music player
+    [self setSharedPlayer:[MPMusicPlayerController iPodMusicPlayer]];
+    
     return YES;
 }
 							

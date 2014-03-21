@@ -7,6 +7,7 @@
 //
 
 #import "MSPNowPlayingViewController.h"
+#import "MSPAppDelegate.h"
 #import "MSPConstants.h"
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -76,7 +77,7 @@
     // Refresh the media data from iPod player to the view
     
     // Grab necessary information
-    MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     MPMediaItem* nowPlaying = [iPodMusicPlayer nowPlayingItem];
     NSString* title = [nowPlaying valueForProperty:MPMediaItemPropertyTitle];
     NSString* album = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumTitle];

@@ -9,6 +9,7 @@
 #import "MSPSongsTableViewController.h"
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
+#import "MSPAppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPSongsTableViewController ()
@@ -193,7 +194,7 @@
             MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             
             // Ask the iPod to play it
-            MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             [iPodMusicPlayer setNowPlayingItem:song];
             
@@ -211,7 +212,7 @@
             MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             
             // Ask the iPod to play it
-            MPMusicPlayerController* iPodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             
             [iPodMusicPlayer play];
