@@ -23,6 +23,7 @@
 
 @implementation MSPNowPlayingViewController {
     dispatch_queue_t imageBlurringQueue;
+    int blurringQueueCount;
 };
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -155,15 +156,21 @@
     [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
     
     // Apply the heavy task of blurring image in background thread
-    if (!imageBlurringQueue) imageBlurringQueue = dispatch_queue_create("imageBlurringQueue", NULL);    // Initialize Queue if needed
+    if (!imageBlurringQueue){
+        imageBlurringQueue = dispatch_queue_create("imageBlurringQueue", NULL);    // Initialize Queue if needed
+        blurringQueueCount = 0;
+    }
     
+    blurringQueueCount++;
     dispatch_async(imageBlurringQueue, ^{
-        UIImage* blurredArt = [artworkImage applyDarkEffect];
-        
-        // Update UI after finishing (Animated)
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
-        });
+        if (blurringQueueCount == 1){   //Only process image if this is the only item in queue. This skips any image we don't need anymore.
+            UIImage* blurredArt = [artworkImage applyDarkEffect];
+            // Update UI after finishing (Animated)
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
+            });
+        }
+        blurringQueueCount--;
     });
     
     // Also refresh play button to reflect current playing status
