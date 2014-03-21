@@ -153,6 +153,9 @@
                                 <rect key="frame" x="285" y="29" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="buttonUpNext:" destination="kQc-2K-L24" eventType="touchUpInside" id="bfw-hS-7YT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6VG-MS-3pH">
                                 <rect key="frame" x="130" y="381" width="60" height="60"/>
@@ -747,6 +750,6 @@ Icons by
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PDY-od-PhP"/>
+        <segue reference="6N2-QI-RYT"/>
     </inferredMetricsTieBreakers>
 </document>

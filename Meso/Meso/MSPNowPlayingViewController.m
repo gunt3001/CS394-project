@@ -98,6 +98,11 @@
         [iPodMusicPlayer skipToBeginning];
     }
 }
+- (IBAction)buttonUpNext:(id)sender {
+    // Show the up-next menu
+    
+
+}
 
 /*
 #pragma mark - Navigation
