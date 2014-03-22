@@ -23,3 +23,7 @@ NSString* const STRING_UNKNOWN_ALBUM = @"Unknown Album";
 NSString* const MSPMediaItemPropertySortTitle = @"sortTitle";
 NSString* const MSPMediaPlaylistPropertyIsFolder = @"isFolder";
 NSString* const MSPMediaPlaylistPropertyParentPersistentID = @"parentPersistentID";
+
+NSString* const FILENAME_FILLBUTTON_PLAY = @"FillButtonPlay";
+NSString* const FILENAME_FILLBUTTON_PAUSE = @"FillButtonPause";
+

@@ -234,10 +234,10 @@
 
     if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePaused ||
         [iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
-        [_buttonPlayPause setTitle:@"PLAY" forState:UIControlStateNormal];
+        [_buttonPlayPause setImage:[UIImage imageNamed:FILENAME_FILLBUTTON_PLAY] forState:UIControlStateNormal];
     }
     else if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying){
-        [_buttonPlayPause setTitle:@"PAUSE" forState:UIControlStateNormal];
+        [_buttonPlayPause setImage:[UIImage imageNamed:FILENAME_FILLBUTTON_PAUSE] forState:UIControlStateNormal];
     }
     
     // Note that sometimes iPodMusicPlayer will report a wrong state
