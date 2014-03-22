@@ -66,6 +66,12 @@
     [tapToViewAltTitle setNumberOfTapsRequired:1];
     [self.view addGestureRecognizer:tapToViewAltTitle];
     
+    // Add Drop Shadow to Art Image
+    [[_imageArtwork layer] setShadowColor:[UIColor blackColor].CGColor];
+    [[_imageArtwork layer] setShadowOffset:CGSizeMake(0.0, 0.0)];
+    [[_imageArtwork layer] setShadowOpacity:1.0];
+    [[_imageArtwork layer] setShadowRadius:2.0];
+    [_imageArtwork setClipsToBounds:NO];
     
 }
 
