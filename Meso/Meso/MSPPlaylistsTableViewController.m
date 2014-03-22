@@ -68,7 +68,7 @@
         MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
         
         // Return number of songs in this playlist
-        return [[playlist items] count];
+        return [[playlist items] count] + 1;
     }
     // If this table is showing playlists{
     else if (_playlistTree){

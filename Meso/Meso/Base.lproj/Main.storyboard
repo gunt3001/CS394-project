@@ -842,7 +842,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="PDY-od-PhP"/>
         <segue reference="9jl-oT-0y1"/>
-        <segue reference="joX-oa-CAd"/>
     </inferredMetricsTieBreakers>
 </document>
