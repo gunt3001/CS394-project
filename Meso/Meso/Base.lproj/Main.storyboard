@@ -239,20 +239,26 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TIu-1b-qfR">
-                                <rect key="frame" x="15" y="357" width="40" height="30"/>
+                                <rect key="frame" x="14" y="357" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="repeat"/>
+                                <connections>
+                                    <action selector="buttonRepeat:" destination="kQc-2K-L24" eventType="touchUpInside" id="0gQ-Cm-fQR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AIz-9Q-4uF">
-                                <rect key="frame" x="257" y="357" width="40" height="30"/>
+                                <rect key="frame" x="266" y="357" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="shuffle">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonShuffle:" destination="kQc-2K-L24" eventType="touchUpInside" id="24n-Q7-jKP"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIV-Ce-miY">
                                 <rect key="frame" x="48" y="29" width="224" height="21"/>
@@ -313,6 +319,8 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="buttonPlayPause" destination="6VG-MS-3pH" id="vVk-QX-XHn"/>
+                        <outlet property="buttonRepeat" destination="TIu-1b-qfR" id="EHq-ZC-2qm"/>
+                        <outlet property="buttonShuffle" destination="AIz-9Q-4uF" id="kNc-Of-AmK"/>
                         <outlet property="imageArtwork" destination="mmz-iN-Pjz" id="Yhp-Uu-cj9"/>
                         <outlet property="imageArtworkBack" destination="1Gg-2g-VLR" id="HuY-Fq-tIV"/>
                         <outlet property="imageScroller" destination="6Do-Bm-cfQ" id="XRz-sa-Fng"/>

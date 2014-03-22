@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelElapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *labelTotalTime;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
+@property (weak, nonatomic) IBOutlet UIButton *buttonShuffle;
+@property (weak, nonatomic) IBOutlet UIButton *buttonRepeat;
 
 @end
 
@@ -217,19 +219,44 @@
 - (IBAction)buttonUpNext:(id)sender {
     // Show the up-next menu
     
-
+    // Unimplemented
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)buttonShuffle:(id)sender {
+    // Toggle between shuffle states
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicShuffleMode shuffleMode = [iPodMusicPlayer shuffleMode];
+    
+    if (shuffleMode == MPMusicShuffleModeOff){              // Shuffle off
+        [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
+    }
+    else{                                                   // Shuffle on
+        [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
+    }
+    
+    [self updateShuffleRepeatButtonState];
 }
-*/
+
+- (IBAction)buttonRepeat:(id)sender {
+    // Toggle between repeat states
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicRepeatMode repeatMode = [iPodMusicPlayer repeatMode];
+    
+    if (repeatMode == MPMusicRepeatModeOne){            // Repeat one
+        [iPodMusicPlayer setRepeatMode:MPMusicRepeatModeAll];
+    }
+    else if (repeatMode == MPMusicRepeatModeNone){      // Repeat off
+        [iPodMusicPlayer setRepeatMode:MPMusicRepeatModeOne];
+    }
+    else{                                               // Repeat all or default
+        [iPodMusicPlayer setRepeatMode:MPMusicRepeatModeNone];
+    }
+    
+    [self updateShuffleRepeatButtonState];
+}
 
 #pragma mark - View & Orientations
 
@@ -259,8 +286,9 @@
     // Reset flags
     isShowingAltTitle = NO;
     
-    // Refresh play button to reflect current playing status
-    [self updatePlayPauseButtonState];
+    // Update UI Elements that are not affected by now playing status
+    [self updatePlayPauseButtonState];          // Play-pause button
+    [self updateShuffleRepeatButtonState];      // Shuffle and repeat buttons
     
     // Check if we're playing anything at all
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
@@ -290,9 +318,8 @@
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     NSNumber* albumPid = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumPersistentID];
     NSTimeInterval totalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
-    
     NSString* totalString = [MSPStringProcessor getTimeStringFromInterval:totalTime];
-        
+
     // Display them
     [[self labelSongTitle] setText:title];                                          // Title
     [[self labelSongSubtitle] setAttributedText:subtitle];                          // Subtitle
@@ -300,6 +327,7 @@
     [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];             // Background Artwork (nil for now)
     [self updateElapsedTime];                                                       // Elapsed time
     [[self labelTotalTime] setText:totalString];                                    // Total time
+    
     
     // Metadata
     nowPlayingSongTitle = title;                                        // Title, used to switch with alternate title
@@ -321,6 +349,35 @@
     float progress = elapsedTime / nowPlayingSongTotalTime;
     [[self progressBar] setProgress:progress];
 
+}
+
+- (void)updateShuffleRepeatButtonState{
+    // Update button state for shuffle and repeat buttons
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+
+    MPMusicShuffleMode shuffleMode = [iPodMusicPlayer shuffleMode];
+    MPMusicRepeatMode repeatMode = [iPodMusicPlayer repeatMode];
+    
+    if (shuffleMode == MPMusicShuffleModeOff){              // Shuffle off
+        [_buttonShuffle setTintColor:[UIColor blackColor]];
+    }
+    else{                                                   // Shuffle on
+        [_buttonShuffle setTintColor:[UIColor whiteColor]];
+    }
+    
+    if (repeatMode == MPMusicRepeatModeOne){            // Repeat one
+        [_buttonRepeat setImage:[UIImage imageNamed:@"repeatone"] forState:UIControlStateNormal];
+        [_buttonRepeat setTintColor:[UIColor whiteColor]];
+    }
+    else if (repeatMode == MPMusicRepeatModeNone){      // Repeat off
+        [_buttonRepeat setImage:[UIImage imageNamed:@"repeat"] forState:UIControlStateNormal];
+        [_buttonRepeat setTintColor:[UIColor blackColor]];
+    }
+    else{                                               // Repeat all or default
+        [_buttonRepeat setImage:[UIImage imageNamed:@"repeat"] forState:UIControlStateNormal];
+        [_buttonRepeat setTintColor:[UIColor whiteColor]];
+    }
 }
 
 - (void)updatePlayPauseButtonState{

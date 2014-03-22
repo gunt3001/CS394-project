@@ -30,6 +30,9 @@ extern NSString* const MSPMediaPlaylistPropertyParentPersistentID;  // Used to q
 // File Names
 extern NSString* const FILENAME_FILLBUTTON_PLAY;        // File name for play button image
 extern NSString* const FILENAME_FILLBUTTON_PAUSE;       // File name for pause button image
+extern NSString* const FILENAME_BUTTON_REPEAT;          // File name for repeat button image
+extern NSString* const FILENAME_BUTTON_REPEATONE;       // File name for repeat one button image
+
 
 // Other strings
 extern const char* const BLURRING_QUEUE_NAME;           // Queue label for blurring queue sent to GCD

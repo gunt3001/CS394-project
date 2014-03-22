@@ -28,6 +28,8 @@ NSString* const MSPMediaPlaylistPropertyParentPersistentID = @"parentPersistentI
 
 NSString* const FILENAME_FILLBUTTON_PLAY = @"FillButtonPlay";
 NSString* const FILENAME_FILLBUTTON_PAUSE = @"FillButtonPause";
+NSString* const FILENAME_BUTTON_REPEAT = @"repeat";
+NSString* const FILENAME_BUTTON_REPEATONE = @"repeatone";
 
 const char* const BLURRING_QUEUE_NAME = "imageblurringqueue";
 
