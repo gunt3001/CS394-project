@@ -316,8 +316,11 @@
                         <outlet property="imageArtwork" destination="mmz-iN-Pjz" id="Yhp-Uu-cj9"/>
                         <outlet property="imageArtworkBack" destination="1Gg-2g-VLR" id="HuY-Fq-tIV"/>
                         <outlet property="imageScroller" destination="6Do-Bm-cfQ" id="XRz-sa-Fng"/>
+                        <outlet property="labelElapsedTime" destination="9Ly-qQ-e2w" id="qqS-Wj-MGQ"/>
                         <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="MVo-Vl-gzx"/>
                         <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="LA4-GO-r5k"/>
+                        <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="hWc-SL-QYb"/>
+                        <outlet property="progressBar" destination="ybr-wy-wvB" id="e3k-cP-6P0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>

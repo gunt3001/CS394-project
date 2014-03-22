@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScroller;
+@property (weak, nonatomic) IBOutlet UILabel *labelElapsedTime;
+@property (weak, nonatomic) IBOutlet UILabel *labelTotalTime;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 
 @end
 
@@ -27,10 +30,12 @@
     dispatch_queue_t imageBlurringQueue;
     int blurringQueueCount;
     BOOL isShowingAltTitle;
+    NSTimer* elapsedTimer;
     
     // Also store other now playing metadata
     NSString* nowPlayingSongTitle;
     NSString* nowPlayingSongAlternateTitle;
+    NSTimeInterval nowPlayingSongTotalTime;
 };
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,14 +52,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // Setup any UI element not possible in Storyboard
+    // Do any initialization not possible in Storyboard
     [self setupMediaUpdate];                // Subscribe to media status changes
     [self setupSongTitleGesture];           // Enable tapping on song title to show alternate title
     [self setupImageArtworkDropShadow];     // Add Drop Shadow to Art Image
     [self setupImageScroller];              // Use imagescroller to allow song skipping by swiping
+    [self setupTimer];                      // Set up timer to keep track of elapsed time
     
     // Do the initial update of now playing item
-    [self refreshMediaData];
+    [self updateMediaData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +69,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UI Setup
+#pragma mark - Initialization
+
+- (void)setupTimer{
+    // Setup timer to keep track of elapsed time
+    
+    // Update the elapsed tiem every 1 second
+    elapsedTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                             target:self
+                                           selector:@selector(updateElapsedTime)
+                                           userInfo:nil repeats:YES];
+}
 
 - (void)setupMediaUpdate{
     // Subscribe to media status changes
@@ -237,14 +253,14 @@
 
 #pragma mark - Responding to Media Changes
 
-- (void) refreshMediaData{
+- (void) updateMediaData{
     // Refresh the media data from iPod player to the view
     
     // Reset flags
     isShowingAltTitle = NO;
     
     // Refresh play button to reflect current playing status
-    [self refreshPlayPauseButtonState];
+    [self updatePlayPauseButtonState];
     
     // Check if we're playing anything at all
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
@@ -253,6 +269,8 @@
         [[self labelSongSubtitle] setText:@""];
         [self changeImageWithTransitionOn:_imageArtwork withImage:nil];
         [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
+        [[self labelElapsedTime] setText:@"-"];
+        [[self labelTotalTime] setText:@"-"];
         nowPlayingSongTitle = STRING_NOTHING_PLAYING;
         nowPlayingSongAlternateTitle = STRING_NOTHING_PLAYING;
         return;
@@ -271,20 +289,41 @@
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     NSNumber* albumPid = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+    NSTimeInterval totalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
     
+    NSString* totalString = [MSPStringProcessor getTimeStringFromInterval:totalTime];
+        
     // Display them
     [[self labelSongTitle] setText:title];                                          // Title
     [[self labelSongSubtitle] setAttributedText:subtitle];                          // Subtitle
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
     [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];             // Background Artwork (nil for now)
-    nowPlayingSongTitle = title;                                                    // Title metadata
-    nowPlayingSongAlternateTitle = altTitle;                                        // Alternate title metadata
+    [self updateElapsedTime];                                                       // Elapsed time
+    [[self labelTotalTime] setText:totalString];                                    // Total time
+    
+    // Metadata
+    nowPlayingSongTitle = title;                                        // Title, used to switch with alternate title
+    nowPlayingSongAlternateTitle = altTitle;                            // Alternate title
+    nowPlayingSongTotalTime = totalTime;                                // Total time, used to update progress bar
     
     // Apply the heavy task of blurring image in background thread
     [self blurAndSetBackgroundImage:artworkImage PID:albumPid];
 }
 
-- (void)refreshPlayPauseButtonState{
+- (void)updateElapsedTime{
+    // Update the elapsed time label and the progress bar
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    NSTimeInterval elapsedTime = [iPodMusicPlayer currentPlaybackTime];
+    NSString* elapsedString = [MSPStringProcessor getTimeStringFromInterval:elapsedTime];
+    [[self labelElapsedTime] setText:elapsedString];
+    
+    float progress = elapsedTime / nowPlayingSongTotalTime;
+    [[self progressBar] setProgress:progress];
+
+}
+
+- (void)updatePlayPauseButtonState{
     // Refresh play button to reflect current playing status
     
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
@@ -304,11 +343,15 @@
 }
 
 - (void)handleNowPlayingItemChanged:(id)notification {
-    [self refreshMediaData];
+    // When the playing item changed, update the media data
+    [self updateMediaData];
 }
 
 - (void)handlePlaybackStateChanged:(id)notification {
-    [self refreshPlayPauseButtonState];
+    // When playback state changed, update the following
+    
+    [self updatePlayPauseButtonState];      // Play/Pause Button state
+    [self updateElapsedTime];               // Playback Time
 }
 
 #pragma mark - Helper Methods
@@ -350,5 +393,4 @@
         blurringQueueCount--;
     });
 }
-
 @end

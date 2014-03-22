@@ -14,5 +14,6 @@
 @interface MSPStringProcessor : NSObject
 
 + (NSAttributedString *)getAttributedSubtitleFromArtist:(NSString *)artist Album:(NSString *)album WithFontSize:(CGFloat)fontSize Color:(UIColor*)color;
++ (NSString*)getTimeStringFromInterval:(NSTimeInterval) interval;
 
 @end
