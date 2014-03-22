@@ -22,16 +22,19 @@ extern NSString* const STRING_UNKNOWN_ARTIST;           // String for unknown ar
 extern NSString* const STRING_UNKNOWN_ALBUM;            // String for unknown album
 
 // Undocumented API Constants
-extern NSString* const MSPMediaItemPropertySortTitle;
-extern NSString* const MSPMediaPlaylistPropertyIsFolder;
-extern NSString* const MSPMediaPlaylistPropertyParentPersistentID;
+extern NSString* const MSPMediaItemPropertySortTitle;               // Used to query song's alternate title
+extern NSString* const MSPMediaPlaylistPropertyIsFolder;            // Used to query playlist's folder flag
+extern NSString* const MSPMediaPlaylistPropertyParentPersistentID;  // Used to query playlist's PID
 
 // File Names
-extern NSString* const FILENAME_FILLBUTTON_PLAY;
-extern NSString* const FILENAME_FILLBUTTON_PAUSE;
+extern NSString* const FILENAME_FILLBUTTON_PLAY;        // File name for play button image
+extern NSString* const FILENAME_FILLBUTTON_PAUSE;       // File name for pause button image
 
 // Other strings
-extern const char* const BLURRING_QUEUE_NAME;
+extern const char* const BLURRING_QUEUE_NAME;           // Queue label for blurring queue sent to GCD
 
-// Performance Related
-extern NSInteger const BLURRED_IMAGE_CACHE_SIZE;
+// Blurring Performance Related
+extern NSInteger const BLURRED_IMAGE_CACHE_SIZE;        // The cache size for blurred images
+extern NSInteger const BLURRED_IMAGE_DOWNSCALE_WIDTH;   // Album arts will be downscaled to this size before blurring
+extern NSInteger const BLURRED_IMAGE_DOWNSCALE_HEIGHT;  // Album arts will be downscaled to this size before blurring
+extern NSInteger const BLURRED_IMAGE_BLUR_RADIUS;       // The blur effect blur radius

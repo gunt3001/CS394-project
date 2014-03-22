@@ -31,3 +31,6 @@ NSString* const FILENAME_FILLBUTTON_PAUSE = @"FillButtonPause";
 const char* const BLURRING_QUEUE_NAME = "imageblurringqueue";
 
 NSInteger const BLURRED_IMAGE_CACHE_SIZE = 5;
+NSInteger const BLURRED_IMAGE_DOWNSCALE_HEIGHT = 300;
+NSInteger const BLURRED_IMAGE_DOWNSCALE_WIDTH = 300;
+NSInteger const BLURRED_IMAGE_BLUR_RADIUS = 10;
