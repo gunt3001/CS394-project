@@ -141,7 +141,7 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
-				B0E352BD18DBCA2900276682 /* External Library */,
+				B0E352BD18DBCA2900276682 /* Libraries */,
 				B02C433C18DA307800C0390C /* ViewControllers */,
 				B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */,
 				B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */,
@@ -183,13 +183,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B0E352BD18DBCA2900276682 /* External Library */ = {
+		B0E352BD18DBCA2900276682 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */,
 				B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */,
 			);
-			name = "External Library";
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
