@@ -40,6 +40,7 @@ extern NSInteger const BLURRED_IMAGE_DOWNSCALE_WIDTH;   // Album arts will be do
 extern NSInteger const BLURRED_IMAGE_DOWNSCALE_HEIGHT;  // Album arts will be downscaled to this size before blurring
 extern NSInteger const BLURRED_IMAGE_BLUR_RADIUS;       // The blur effect blur radius
 
-// Settings
+// Other Numbers
 extern float const FAST_SEEKING_DELAY;              // Delay in seconds before fast seeking occurs on button held down
 extern float const FAST_SEEKING_RATE;               // The rate of fast seeking
+extern float const MARQUEE_LABEL_RATE;              // Rate at which marquee text moves

@@ -40,3 +40,4 @@ NSInteger const BLURRED_IMAGE_BLUR_RADIUS = 10;
 
 float const FAST_SEEKING_DELAY = 1.0;
 float const FAST_SEEKING_RATE = 2.0;
+float const MARQUEE_LABEL_RATE = 30.0;

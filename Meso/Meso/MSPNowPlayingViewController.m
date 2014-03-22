@@ -11,11 +11,12 @@
 #import "MSPConstants.h"
 #import "MSPStringProcessor.h"
 #import "MSPBlurredImagesWithCache.h"
+#import "MarqueeLabel.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPNowPlayingViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *labelSongTitle;
-@property (weak, nonatomic) IBOutlet UILabel *labelSongSubtitle;
+@property (weak, nonatomic) IBOutlet MarqueeLabel *labelSongTitle;
+@property (weak, nonatomic) IBOutlet MarqueeLabel *labelSongSubtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;
@@ -61,9 +62,18 @@
     [self setupImageArtworkDropShadow];     // Add Drop Shadow to Art Image
     [self setupImageScroller];              // Use imagescroller to allow song skipping by swiping
     [self setupTimer];                      // Set up timer to keep track of elapsed time
+    [self setupMarquee];                    // Set up scrolling text
     
     // Do the initial update of now playing item
     [self updateMediaData];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    // Doing setup when view has already appeared
+    
+    // Call restart to begin marquee animation, only after view has loaded
+    // Otherwise the animation might get cancelled
+    [MarqueeLabel restartLabelsOfController:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,6 +83,26 @@
 }
 
 #pragma mark - Initialization
+
+- (void) setupMarquee{
+    // Set up scrolling text
+    
+    // Set color
+    [_labelSongTitle setTextColor:[UIColor whiteColor]];
+    [_labelSongSubtitle setTextColor:[UIColor whiteColor]];
+    
+    // Set speed
+    [_labelSongTitle setRate:MARQUEE_LABEL_RATE];
+    [_labelSongSubtitle setRate:MARQUEE_LABEL_RATE];
+    
+    // Set fade length
+    [_labelSongTitle setFadeLength:10.0];
+    [_labelSongSubtitle setFadeLength:10.0];
+    
+    // Set a small pause
+    [_labelSongTitle setAnimationDelay:3.0];
+    [_labelSongSubtitle setAnimationDelay:3.0];
+}
 
 - (void)setupTimer{
     // Setup timer to keep track of elapsed time
@@ -444,7 +474,6 @@
     
     float progress = elapsedTime / nowPlayingSongTotalTime;
     [[self progressBar] setProgress:progress];
-
 }
 
 - (void)updateShuffleRepeatButtonState{
