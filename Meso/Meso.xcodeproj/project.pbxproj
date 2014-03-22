@@ -10,6 +10,8 @@
 		B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */; };
 		B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */; };
 		B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */; };
+		B026F23B18DDC54600B61B45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B026F23A18DDC54600B61B45 /* QuartzCore.framework */; };
+		B026F23E18DDC56100B61B45 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23D18DDC56100B61B45 /* MarqueeLabel.m */; };
 		B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */; };
 		B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */; };
 		B0B882D118C69A4E003D37EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D018C69A4E003D37EC /* Foundation.framework */; };
@@ -50,6 +52,9 @@
 		B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPStringProcessor.m; sourceTree = "<group>"; };
 		B026F23718DD895300B61B45 /* MSPBlurredImagesWithCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPBlurredImagesWithCache.h; sourceTree = "<group>"; };
 		B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPBlurredImagesWithCache.m; sourceTree = "<group>"; };
+		B026F23A18DDC54600B61B45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B026F23C18DDC56100B61B45 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
+		B026F23D18DDC56100B61B45 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
 		B0AFAE8C18DD2CB800864EFC /* MSPPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistsTableViewController.h; sourceTree = "<group>"; };
 		B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsTableViewController.m; sourceTree = "<group>"; };
 		B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistNode.h; sourceTree = "<group>"; };
@@ -89,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B026F23B18DDC54600B61B45 /* QuartzCore.framework in Frameworks */,
 				B0BEC4F518DA7142003EAC01 /* MediaPlayer.framework in Frameworks */,
 				B0B882D318C69A4E003D37EC /* CoreGraphics.framework in Frameworks */,
 				B0B882D518C69A4E003D37EC /* UIKit.framework in Frameworks */,
@@ -163,6 +169,7 @@
 		B0B882CF18C69A4E003D37EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B026F23A18DDC54600B61B45 /* QuartzCore.framework */,
 				B0BEC4F418DA7142003EAC01 /* MediaPlayer.framework */,
 				B0B882D018C69A4E003D37EC /* Foundation.framework */,
 				B0B882D218C69A4E003D37EC /* CoreGraphics.framework */,
@@ -219,6 +226,8 @@
 		B0E352BD18DBCA2900276682 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B026F23C18DDC56100B61B45 /* MarqueeLabel.h */,
+				B026F23D18DDC56100B61B45 /* MarqueeLabel.m */,
 				B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */,
 				B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */,
 			);
@@ -329,6 +338,7 @@
 				B0E352C018DBCA3F00276682 /* UIImage+ImageEffects.m in Sources */,
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
 				B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */,
+				B026F23E18DDC56100B61B45 /* MarqueeLabel.m in Sources */,
 				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
 				B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */,
