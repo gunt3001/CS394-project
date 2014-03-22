@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */; };
 		B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */; };
+		B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */; };
 		B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */; };
 		B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */; };
 		B0B882D118C69A4E003D37EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D018C69A4E003D37EC /* Foundation.framework */; };
@@ -47,6 +48,8 @@
 		B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsViewController.m; sourceTree = "<group>"; };
 		B026F23418DD7C5500B61B45 /* MSPStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPStringProcessor.h; sourceTree = "<group>"; };
 		B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPStringProcessor.m; sourceTree = "<group>"; };
+		B026F23718DD895300B61B45 /* MSPBlurredImagesWithCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPBlurredImagesWithCache.h; sourceTree = "<group>"; };
+		B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPBlurredImagesWithCache.m; sourceTree = "<group>"; };
 		B0AFAE8C18DD2CB800864EFC /* MSPPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistsTableViewController.h; sourceTree = "<group>"; };
 		B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsTableViewController.m; sourceTree = "<group>"; };
 		B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistNode.h; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */,
 				B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */,
 				B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */,
+				B026F23718DD895300B61B45 /* MSPBlurredImagesWithCache.h */,
+				B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */,
 				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
+				B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */,
 				B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */,
 				B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */,
 				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,

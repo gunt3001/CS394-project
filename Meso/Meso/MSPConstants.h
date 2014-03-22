@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Napat R. All rights reserved.
 //
 
-// UI Numbers
-
 // Table Views
 extern NSInteger const TABLE_VIEW_ALBUM_ART_WIDTH;      // Width for album art thumbnail in table view
 extern NSInteger const TABLE_VIEW_ALBUM_ART_HEIGHT;     // Height for album art thumbnail in table view
@@ -34,3 +32,6 @@ extern NSString* const FILENAME_FILLBUTTON_PAUSE;
 
 // Other strings
 extern const char* const BLURRING_QUEUE_NAME;
+
+// Performance Related
+extern NSInteger const BLURRED_IMAGE_CACHE_SIZE;

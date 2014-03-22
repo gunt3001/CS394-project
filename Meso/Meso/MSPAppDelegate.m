@@ -19,6 +19,9 @@
     // Tell the iPod to notify of any status changes, which will be handled in appropriate classes
     [_sharedPlayer beginGeneratingPlaybackNotifications];
     
+    // Initialize the blurred image cache
+    _sharedBlurredImageCache = [[MSPBlurredImagesWithCache alloc] init];
+    
     return YES;
 }
 							

@@ -9,8 +9,8 @@
 #import "MSPNowPlayingViewController.h"
 #import "MSPAppDelegate.h"
 #import "MSPConstants.h"
-#import "UIImage+ImageEffects.h"
 #import "MSPStringProcessor.h"
+#import "MSPBlurredImagesWithCache.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPNowPlayingViewController ()
@@ -193,6 +193,7 @@
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
+    NSNumber* pid = [nowPlaying valueForProperty:MPMediaItemPropertyPersistentID];
     
     // Display them
     isShowingAltTitle = NO;
@@ -219,7 +220,10 @@
     blurringQueueCount++;
     dispatch_async(imageBlurringQueue, ^{
         if (blurringQueueCount == 1){   //Only process image if this is the only item in queue. This skips any image we don't need anymore.
-            UIImage* blurredArt = [artworkImage applyDarkEffect];
+            
+            MSPBlurredImagesWithCache* imageProcessor = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedBlurredImageCache];
+            UIImage* blurredArt = [imageProcessor getBlurredImageOfArt:artworkImage WithPID:pid];
+            
             // Update UI after finishing (Animated)
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
