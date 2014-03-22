@@ -214,7 +214,7 @@
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
-    NSNumber* pid = [nowPlaying valueForProperty:MPMediaItemPropertyPersistentID];
+    NSNumber* albumPid = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumPersistentID];
     
     // Display them
     [[self labelSongTitle] setText:title];                                          // Title
@@ -225,7 +225,7 @@
     nowPlayingSongAlternateTitle = altTitle;                                        // Alternate title metadata
     
     // Apply the heavy task of blurring image in background thread
-    [self blurAndSetBackgroundImage:artworkImage PID:pid];
+    [self blurAndSetBackgroundImage:artworkImage PID:albumPid];
 }
 
 - (void)refreshPlayPauseButtonState{
@@ -267,7 +267,7 @@
                     } completion:NULL];
 }
 
-- (void) blurAndSetBackgroundImage:(UIImage*)artworkImage PID:(NSNumber*)pid{
+- (void) blurAndSetBackgroundImage:(UIImage*)artworkImage PID:(NSNumber*)albumPid{
     // Use GCD to blur image in background thread
     // When finished, set background to the blurred image
     
@@ -283,7 +283,7 @@
         if (blurringQueueCount == 1){
             
             MSPBlurredImagesWithCache* imageProcessor = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedBlurredImageCache];
-            UIImage* blurredArt = [imageProcessor getBlurredImageOfArt:artworkImage WithPID:pid];
+            UIImage* blurredArt = [imageProcessor getBlurredImageOfArt:artworkImage WithPID:albumPid];
             
             // Update UI after finishing (Animated)
             dispatch_async(dispatch_get_main_queue(), ^{

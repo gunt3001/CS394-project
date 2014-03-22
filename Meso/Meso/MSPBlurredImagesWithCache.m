@@ -23,14 +23,14 @@
     return self;
 }
 
-- (UIImage *)getBlurredImageOfArt:(UIImage *)art WithPID:(NSNumber *)pid{
+- (UIImage *)getBlurredImageOfArt:(UIImage *)art WithPID:(NSNumber *)albumPid{
     // Return blurred version of the image
     // But tries to look up with PID first
     
-    UIImage* blurredArt = [_cache objectForKey:pid];
+    UIImage* blurredArt = [_cache objectForKey:albumPid];
     // If one exists in the cache
     if (blurredArt){
-        return [_cache objectForKey:pid];
+        return [_cache objectForKey:albumPid];
     }
     // Otherwise create the blurred version of the image
     else{
@@ -50,8 +50,8 @@
         }
         
         // Add the new image into cache
-        [_cache setObject:blurredArt forKey:pid];
-        [_history addObject:pid];
+        [_cache setObject:blurredArt forKey:albumPid];
+        [_history addObject:albumPid];
         
         return blurredArt;
     }
