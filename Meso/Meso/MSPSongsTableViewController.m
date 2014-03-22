@@ -190,9 +190,7 @@
             MPMediaQuery* songQuery = [self getAllSongsWithoutICloudQuery];
             [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
             MPMediaItem* song = [[songQuery items] objectAtIndex:0];
-            
-            NSLog(@"found %d songs, first is %@", [[songQuery items] count], [song valueForProperty:MPMediaItemPropertyTitle]);
-            
+                        
             // Set the playing Queue to be all songs, not including iCloud items
             MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             

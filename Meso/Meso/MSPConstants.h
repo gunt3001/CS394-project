@@ -28,3 +28,6 @@ extern NSString* const MSPMediaPlaylistPropertyParentPersistentID;
 // File Names
 extern NSString* const FILENAME_FILLBUTTON_PLAY;
 extern NSString* const FILENAME_FILLBUTTON_PAUSE;
+
+// Other strings
+extern const char* const BLURRING_QUEUE_NAME;

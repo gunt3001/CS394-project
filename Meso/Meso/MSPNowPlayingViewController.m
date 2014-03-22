@@ -203,7 +203,7 @@
     
     // Apply the heavy task of blurring image in background thread
     if (!imageBlurringQueue){
-        imageBlurringQueue = dispatch_queue_create("imageBlurringQueue", NULL);    // Initialize Queue if needed
+        imageBlurringQueue = dispatch_queue_create(BLURRING_QUEUE_NAME, NULL);    // Initialize Queue if needed
         blurringQueueCount = 0;
     }
     
