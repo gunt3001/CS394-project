@@ -87,9 +87,7 @@
     
     // Set new origins to follow
     [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
-    
-    // Stop clipping the shadow
-    [_imageScroller setClipsToBounds:NO];
+
 }
 
 - (void)didReceiveMemoryWarning
