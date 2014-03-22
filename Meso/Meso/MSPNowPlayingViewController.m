@@ -33,6 +33,7 @@
     int blurringQueueCount;
     BOOL isShowingAltTitle;
     NSTimer* elapsedTimer;
+    NSTimer* fastSeekTimer;
     
     // Also store other now playing metadata
     NSString* nowPlayingSongTitle;
@@ -202,20 +203,82 @@
 }
 
 - (IBAction)buttonForward:(id)sender {
-    // Skip to next song
+    // Skip to next song, or stop fast forwarding
+    
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-    [iPodMusicPlayer skipToNextItem];
+    
+    // Stop timer when we touched down
+    if (fastSeekTimer != nil){
+        [fastSeekTimer invalidate];
+        fastSeekTimer = nil;
+    }
+    
+    // If we're fast forwarding, stop it and don't skip to next song
+    if ([iPodMusicPlayer currentPlaybackRate] != 1.0){
+        [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+    }
+    // Otherwise we're skipping to next song
+    else{
+        [iPodMusicPlayer skipToNextItem];
+    }
+    
 }
 - (IBAction)buttonBackward:(id)sender {
     // Skip to beginning, or to previous song if at less than 0:05
+    
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-    if ([iPodMusicPlayer currentPlaybackTime] <= 5.0){
-        [iPodMusicPlayer skipToPreviousItem];
+    
+    // Stop timer when we touched down
+    if (fastSeekTimer != nil){
+        [fastSeekTimer invalidate];
+        fastSeekTimer = nil;
     }
+    
+    // If we're fast forwarding, stop it and don't skip
+    if ([iPodMusicPlayer currentPlaybackRate] != 1.0){
+        [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+    }
+    // Otherwise we're doing skipping logic
     else{
-        [iPodMusicPlayer skipToBeginning];
+        if ([iPodMusicPlayer currentPlaybackTime] <= 3.0){
+            [iPodMusicPlayer skipToPreviousItem];
+        }
+        else{
+            [iPodMusicPlayer skipToBeginning];
+        }
     }
+    
+    
 }
+- (IBAction)buttonBackwardTouchUpOutside:(id)sender {
+    // When buttton is touched up outside
+    // Invalidate timer when touched down
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+
+    // Stop timer when we touched down
+    if (fastSeekTimer){
+        [fastSeekTimer invalidate];
+        fastSeekTimer = nil;
+    }
+    // Stop any fast forwarding
+    [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+}
+- (IBAction)buttonForwardTouchUpOutside:(id)sender {
+    // When buttton is touched up outside
+    // Invalidate timer when touched down
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+
+    // Stop timer when we touched down
+    if (fastSeekTimer){
+        [fastSeekTimer invalidate];
+        fastSeekTimer = nil;
+    }
+    // Stop any fast forwarding
+    [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+}
+
 - (IBAction)buttonUpNext:(id)sender {
     // Show the up-next menu
     
@@ -257,7 +320,40 @@
     
     [self updateShuffleRepeatButtonState];
 }
+- (IBAction)buttonForwardTouchDown:(id)sender {
+    // When forward button is touched
+    // Start a new timer
+    // If button is not lifted within a certain time, start fast forwarding
+    
+    fastSeekTimer = [NSTimer scheduledTimerWithTimeInterval:FAST_SEEKING_DELAY
+                                                    target:self
+                                                  selector:@selector(fastForward)
+                                                  userInfo:nil repeats:NO];
+}
+- (IBAction)buttonBackwardTouchDown:(id)sender {
+    // When backward button is touched
+    // Start a new timer
+    // If button is not lifted within a certain time, start fast seeking backwards
+    
+    fastSeekTimer = [NSTimer scheduledTimerWithTimeInterval:FAST_SEEKING_DELAY
+                                                     target:self
+                                                   selector:@selector(fastBackward)
+                                                   userInfo:nil repeats:NO];
+}
 
+- (void) fastForward{
+    // Start fast forwarding
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    [iPodMusicPlayer setCurrentPlaybackRate:FAST_SEEKING_RATE];
+}
+
+- (void) fastBackward{
+    // Start fast seeking backwards
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    [iPodMusicPlayer setCurrentPlaybackRate:FAST_SEEKING_RATE * -1];
+}
 #pragma mark - View & Orientations
 
 -(UIStatusBarStyle)preferredStatusBarStyle{

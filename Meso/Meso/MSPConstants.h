@@ -33,12 +33,13 @@ extern NSString* const FILENAME_FILLBUTTON_PAUSE;       // File name for pause b
 extern NSString* const FILENAME_BUTTON_REPEAT;          // File name for repeat button image
 extern NSString* const FILENAME_BUTTON_REPEATONE;       // File name for repeat one button image
 
-
-// Other strings
-extern const char* const BLURRING_QUEUE_NAME;           // Queue label for blurring queue sent to GCD
-
 // Blurring Performance Related
+extern const char* const BLURRING_QUEUE_NAME;           // Queue label for blurring queue sent to GCD
 extern NSInteger const BLURRED_IMAGE_CACHE_SIZE;        // The cache size for blurred images
 extern NSInteger const BLURRED_IMAGE_DOWNSCALE_WIDTH;   // Album arts will be downscaled to this size before blurring
 extern NSInteger const BLURRED_IMAGE_DOWNSCALE_HEIGHT;  // Album arts will be downscaled to this size before blurring
 extern NSInteger const BLURRED_IMAGE_BLUR_RADIUS;       // The blur effect blur radius
+
+// Settings
+extern float const FAST_SEEKING_DELAY;              // Delay in seconds before fast seeking occurs on button held down
+extern float const FAST_SEEKING_RATE;               // The rate of fast seeking

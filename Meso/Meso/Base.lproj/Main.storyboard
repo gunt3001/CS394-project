@@ -224,6 +224,9 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonForward:" destination="kQc-2K-L24" eventType="touchUpInside" id="wBM-mh-d5m"/>
+                                    <action selector="buttonForwardTouchDown:" destination="kQc-2K-L24" eventType="touchDown" id="Ig1-JD-WPv"/>
+                                    <action selector="buttonForwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchDragExit" id="QSX-sw-4OX"/>
+                                    <action selector="buttonForwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchUpInside" id="h8n-x8-y5o"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hoj-SG-Y7q">
@@ -236,6 +239,9 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonBackward:" destination="kQc-2K-L24" eventType="touchUpInside" id="ewr-FH-7DH"/>
+                                    <action selector="buttonBackwardTouchDown:" destination="kQc-2K-L24" eventType="touchDown" id="9qN-Qw-TJB"/>
+                                    <action selector="buttonBackwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchDragExit" id="M7D-Vm-wgb"/>
+                                    <action selector="buttonBackwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchUpOutside" id="TAH-Ad-Y0n"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TIu-1b-qfR">
