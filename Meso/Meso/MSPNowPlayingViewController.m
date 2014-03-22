@@ -76,6 +76,11 @@
     [MarqueeLabel restartLabelsOfController:self];
 }
 
+- (void) viewWillDisappear:(BOOL)animated{
+    // When will is closing, remove registered observers
+    [self unsetMediaUpdate];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -118,6 +123,8 @@
     // Subscribe to media status changes
     MPMusicPlayerController* sharedPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    // Add observers
     [notificationCenter addObserver:self
                            selector:@selector(handleNowPlayingItemChanged:)
                                name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
@@ -126,6 +133,18 @@
                            selector:@selector(handlePlaybackStateChanged:)
                                name:MPMusicPlayerControllerPlaybackStateDidChangeNotification
                              object:sharedPlayer];
+}
+
+- (void)unsetMediaUpdate{
+    // Unsubscribe to media status changes
+    
+    MPMusicPlayerController* sharedPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+
+    // Remove observers
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:sharedPlayer];
+    [notificationCenter removeObserver:self name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:sharedPlayer];
+
 }
 
 - (void)setupSongTitleGesture{
@@ -470,6 +489,8 @@
     
     // Apply the heavy task of blurring image in background thread
     [self blurAndSetBackgroundImage:artworkImage PID:albumPid];
+    
+    NSLog(@"update called for %@", title);
 }
 
 - (void)updateElapsedTime{

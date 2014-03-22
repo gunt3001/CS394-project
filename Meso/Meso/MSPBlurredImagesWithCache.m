@@ -43,7 +43,6 @@
         
         // Check if we've reached the maximum cache size
         if ([_history count] >= BLURRED_IMAGE_CACHE_SIZE){
-            
             // Remove the oldest item in the cache (first item in list)
             [_cache removeObjectForKey:[_history objectAtIndex:0]];
             [_history removeObjectAtIndex:0];
