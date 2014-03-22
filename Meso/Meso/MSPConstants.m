@@ -20,6 +20,7 @@ NSString* const TABLE_VIEW_SUBTITLE_FORMAT = @"%@ - %@";
 NSString* const NOWPLAYING_VIEW_SUBTITLE_FORMAT = @"%@ - %@";
 NSString* const STRING_UNKNOWN_ARTIST = @"Unknown Artist";
 NSString* const STRING_UNKNOWN_ALBUM = @"Unknown Album";
+NSString* const STRING_NOTHING_PLAYING = @"Nothing Playing";
 
 NSString* const MSPMediaItemPropertySortTitle = @"sortTitle";
 NSString* const MSPMediaPlaylistPropertyIsFolder = @"isFolder";

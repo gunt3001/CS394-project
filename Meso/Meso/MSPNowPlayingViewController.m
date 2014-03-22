@@ -184,60 +184,48 @@
 - (void) refreshMediaData{
     // Refresh the media data from iPod player to the view
     
-    // Grab necessary information
+    // Reset flags
+    isShowingAltTitle = NO;
+    
+    // Refresh play button to reflect current playing status
+    [self refreshPlayPauseButtonState];
+    
+    // Check if we're playing anything at all
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
+        [[self labelSongTitle] setText:STRING_NOTHING_PLAYING];
+        [[self labelSongSubtitle] setText:@""];
+        [self changeImageWithTransitionOn:_imageArtwork withImage:nil];
+        [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
+        nowPlayingSongTitle = STRING_NOTHING_PLAYING;
+        nowPlayingSongAlternateTitle = STRING_NOTHING_PLAYING;
+        return;
+    }
+    
+    // Grab necessary information
     MPMediaItem* nowPlaying = [iPodMusicPlayer nowPlayingItem];
     NSString* title = [nowPlaying valueForProperty:MPMediaItemPropertyTitle];
     NSString* album = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumTitle];
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
+    NSAttributedString* subtitle =  [MSPStringProcessor getAttributedSubtitleFromArtist:artist
+                                                                                  Album:album
+                                                                           WithFontSize:[[[self labelSongSubtitle] font] pointSize]
+                                                                                  Color:[[self labelSongSubtitle] textColor]];
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     NSNumber* pid = [nowPlaying valueForProperty:MPMediaItemPropertyPersistentID];
     
     // Display them
-    isShowingAltTitle = NO;
-    [[self labelSongTitle] setText:title];
-    NSAttributedString* subtitle =  [MSPStringProcessor getAttributedSubtitleFromArtist:artist
-                                                                                  Album:album
-                                                                           WithFontSize:[[[self labelSongSubtitle] font] pointSize]
-                                                                                  Color:[[self labelSongSubtitle] textColor]];
-    [[self labelSongSubtitle] setAttributedText:subtitle];
-    
-    // Artwork (Animated)
-    [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];
-    
-    // Background Artwork (Animated)
-    // For now, set it to nil because blurring takes a little while
-    [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
+    [[self labelSongTitle] setText:title];                                          // Title
+    [[self labelSongSubtitle] setAttributedText:subtitle];                          // Subtitle
+    [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
+    [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];             // Background Artwork (nil for now)
+    nowPlayingSongTitle = title;                                                    // Title metadata
+    nowPlayingSongAlternateTitle = altTitle;                                        // Alternate title metadata
     
     // Apply the heavy task of blurring image in background thread
-    if (!imageBlurringQueue){
-        imageBlurringQueue = dispatch_queue_create(BLURRING_QUEUE_NAME, NULL);    // Initialize Queue if needed
-        blurringQueueCount = 0;
-    }
-    
-    blurringQueueCount++;
-    dispatch_async(imageBlurringQueue, ^{
-        if (blurringQueueCount == 1){   //Only process image if this is the only item in queue. This skips any image we don't need anymore.
-            
-            MSPBlurredImagesWithCache* imageProcessor = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedBlurredImageCache];
-            UIImage* blurredArt = [imageProcessor getBlurredImageOfArt:artworkImage WithPID:pid];
-            
-            // Update UI after finishing (Animated)
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
-            });
-        }
-        blurringQueueCount--;
-    });
-    
-    // Set other metadata
-    nowPlayingSongTitle = title;
-    nowPlayingSongAlternateTitle = altTitle;
-    
-    // Also refresh play button to reflect current playing status
-    [self refreshPlayPauseButtonState];
+    [self blurAndSetBackgroundImage:artworkImage PID:pid];
 }
 
 - (void)refreshPlayPauseButtonState{
@@ -277,6 +265,34 @@
                     animations:^{
                         [view setImage:image];
                     } completion:NULL];
+}
+
+- (void) blurAndSetBackgroundImage:(UIImage*)artworkImage PID:(NSNumber*)pid{
+    // Use GCD to blur image in background thread
+    // When finished, set background to the blurred image
+    
+    if (!imageBlurringQueue){
+        imageBlurringQueue = dispatch_queue_create(BLURRING_QUEUE_NAME, NULL);
+        blurringQueueCount = 0;
+    }
+    blurringQueueCount++;
+    dispatch_async(imageBlurringQueue, ^{
+        
+        // Only process image if this is the only item in queue.
+        // This skips any image we don't need anymore.
+        if (blurringQueueCount == 1){
+            
+            MSPBlurredImagesWithCache* imageProcessor = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedBlurredImageCache];
+            UIImage* blurredArt = [imageProcessor getBlurredImageOfArt:artworkImage WithPID:pid];
+            
+            // Update UI after finishing (Animated)
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
+            });
+        }
+        
+        blurringQueueCount--;
+    });
 }
 
 @end
