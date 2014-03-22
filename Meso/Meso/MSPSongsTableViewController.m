@@ -10,6 +10,7 @@
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
 #import "MSPAppDelegate.h"
+#import "MSPStringProcessor.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPSongsTableViewController ()
@@ -30,12 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +72,7 @@
     }
     
     // Songs have regular height
-    else return [tableView rowHeight];
+    else return TABLE_VIEW_SONG_ROW_HEIGHT;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,9 +119,11 @@
         // Title
         [[cell textLabel] setText:songTitle];
         // Subtitle
-        if (songArtist == nil) songArtist = STRING_UNKNOWN_ARTIST;
-        if (songAlbum == nil) songAlbum = STRING_UNKNOWN_ALBUM;
-        [[cell detailTextLabel] setText:[NSString stringWithFormat:TABLE_VIEW_SUBTITLE_FORMAT, songArtist, songAlbum]];
+        NSAttributedString* subtitle = [MSPStringProcessor getAttributedSubtitleFromArtist:songArtist
+                                                                                     Album:songAlbum
+                                                                              WithFontSize:[[[cell detailTextLabel] font] pointSize]
+                                                                                     Color:[[cell detailTextLabel] textColor]];
+        [[cell detailTextLabel] setAttributedText:subtitle];
         // PID
         [cell setPID:songPID];
     }
@@ -198,7 +195,7 @@
             MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
             [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
             
-            // Ask the iPod to play it
+            // Set playing queue and now playing item
             [iPodMusicPlayer setQueueWithQuery:allSongs];
             [iPodMusicPlayer setNowPlayingItem:song];
             
@@ -206,8 +203,6 @@
             if (oldShufMode != MPMusicShuffleModeOff){
                 [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeDefault];
             }
-            
-            
             
             [iPodMusicPlayer play];
         }
@@ -233,7 +228,9 @@
     // Return a MPMediaQuery of all songs in the iPod Library without iCloud music
     
     MPMediaQuery* allSongs = [MPMediaQuery songsQuery];
-    [allSongs addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithBool:NO] forProperty:MPMediaItemPropertyIsCloudItem]];
+    [allSongs addFilterPredicate:[MPMediaPropertyPredicate
+                                  predicateWithValue:[NSNumber numberWithBool:NO]
+                                  forProperty:MPMediaItemPropertyIsCloudItem]];
     
     return allSongs;
 }

@@ -12,6 +12,6 @@
 @interface MSPAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property MPMusicPlayerController* sharedPlayer;
+@property (nonatomic) MPMusicPlayerController* sharedPlayer;        // Application-wide music player
 
 @end

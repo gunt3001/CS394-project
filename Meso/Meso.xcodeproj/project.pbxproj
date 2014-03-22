@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */; };
+		B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */; };
+		B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */; };
+		B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */; };
 		B0B882D118C69A4E003D37EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D018C69A4E003D37EC /* Foundation.framework */; };
 		B0B882D318C69A4E003D37EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D218C69A4E003D37EC /* CoreGraphics.framework */; };
 		B0B882D518C69A4E003D37EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D418C69A4E003D37EC /* UIKit.framework */; };
@@ -39,6 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B026F23118DD562000B61B45 /* MSPPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistsViewController.h; sourceTree = "<group>"; };
+		B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsViewController.m; sourceTree = "<group>"; };
+		B026F23418DD7C5500B61B45 /* MSPStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPStringProcessor.h; sourceTree = "<group>"; };
+		B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPStringProcessor.m; sourceTree = "<group>"; };
+		B0AFAE8C18DD2CB800864EFC /* MSPPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistsTableViewController.h; sourceTree = "<group>"; };
+		B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsTableViewController.m; sourceTree = "<group>"; };
+		B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistNode.h; sourceTree = "<group>"; };
+		B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistNode.m; sourceTree = "<group>"; };
 		B0B882CD18C69A4E003D37EC /* Meso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B882D018C69A4E003D37EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B0B882D218C69A4E003D37EC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,8 +115,25 @@
 				B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */,
 				B0BEC4F118DA6DE0003EAC01 /* MSPSongsTableViewController.h */,
 				B0BEC4F218DA6DE0003EAC01 /* MSPSongsTableViewController.m */,
+				B0AFAE8C18DD2CB800864EFC /* MSPPlaylistsTableViewController.h */,
+				B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */,
+				B026F23118DD562000B61B45 /* MSPPlaylistsViewController.h */,
+				B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B0AFAE8F18DD328000864EFC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
+				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
+				B026F23418DD7C5500B61B45 /* MSPStringProcessor.h */,
+				B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */,
+				B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */,
+				B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		B0B882C418C69A4E003D37EC = {
@@ -141,13 +170,12 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
+				B0AFAE8F18DD328000864EFC /* Models */,
 				B0E352BD18DBCA2900276682 /* Libraries */,
 				B02C433C18DA307800C0390C /* ViewControllers */,
 				B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */,
 				B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */,
 				B0B882E218C69A4E003D37EC /* Main.storyboard */,
-				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
-				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
 				B0B882E818C69A4E003D37EC /* Images.xcassets */,
 				B0B882D718C69A4E003D37EC /* Supporting Files */,
 			);
@@ -290,12 +318,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */,
 				B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */,
 				B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */,
 				B0E352C018DBCA3F00276682 /* UIImage+ImageEffects.m in Sources */,
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
+				B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */,
 				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
+				B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */,
+				B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */,
 				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

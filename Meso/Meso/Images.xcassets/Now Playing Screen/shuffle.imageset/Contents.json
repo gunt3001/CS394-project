@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "shuffle-50.png"
+      "filename" : "shuffle.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "shuffle-100.png"
+      "filename" : "shuffle@2x.png"
     }
   ],
   "info" : {

@@ -10,6 +10,7 @@
 #import "MSPAppDelegate.h"
 #import "MSPConstants.h"
 #import "UIImage+ImageEffects.h"
+#import "MSPStringProcessor.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPNowPlayingViewController ()
@@ -196,9 +197,11 @@
     // Display them
     isShowingAltTitle = NO;
     [[self labelSongTitle] setText:title];
-    if (!album) album = STRING_UNKNOWN_ALBUM;
-    if (!artist) artist = STRING_UNKNOWN_ARTIST;
-    [[self labelSongSubtitle] setText:[NSString stringWithFormat:NOWPLAYING_VIEW_SUBTITLE_FORMAT, artist, album]];
+    NSAttributedString* subtitle =  [MSPStringProcessor getAttributedSubtitleFromArtist:artist
+                                                                                  Album:album
+                                                                           WithFontSize:[[[self labelSongSubtitle] font] pointSize]
+                                                                                  Color:[[self labelSongSubtitle] textColor]];
+    [[self labelSongSubtitle] setAttributedText:subtitle];
     
     // Artwork (Animated)
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];
