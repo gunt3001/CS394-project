@@ -244,7 +244,8 @@
     }
     
     // If we're fast forwarding, stop it and don't skip to next song
-    if ([iPodMusicPlayer currentPlaybackRate] != 1.0){
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying
+        && [iPodMusicPlayer currentPlaybackRate] != 1.0){
         [iPodMusicPlayer setCurrentPlaybackRate:1.0];
     }
     // Otherwise we're skipping to next song
@@ -265,7 +266,8 @@
     }
     
     // If we're fast forwarding, stop it and don't skip
-    if ([iPodMusicPlayer currentPlaybackRate] != 1.0){
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying
+        && [iPodMusicPlayer currentPlaybackRate] != 1.0){
         [iPodMusicPlayer setCurrentPlaybackRate:1.0];
     }
     // Otherwise we're doing skipping logic
@@ -292,7 +294,10 @@
         fastSeekTimer = nil;
     }
     // Stop any fast forwarding
-    [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying
+        && [iPodMusicPlayer currentPlaybackRate] != 1.0){
+        [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+    }
 }
 - (IBAction)buttonForwardTouchUpOutside:(id)sender {
     // When buttton is touched up outside
@@ -306,7 +311,10 @@
         fastSeekTimer = nil;
     }
     // Stop any fast forwarding
-    [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePlaying
+        && [iPodMusicPlayer currentPlaybackRate] != 1.0){
+        [iPodMusicPlayer setCurrentPlaybackRate:1.0];
+    }
 }
 
 - (IBAction)buttonUpNext:(id)sender {
