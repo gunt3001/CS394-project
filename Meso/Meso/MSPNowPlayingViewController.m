@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;
+@property (weak, nonatomic) IBOutlet UIScrollView *imageScroller;
 
 @end
 
@@ -74,6 +75,21 @@
     [[_imageArtwork layer] setShadowRadius:2.0];
     [_imageArtwork setClipsToBounds:NO];
     
+    // Use imagescroller to allow song skipping by swiping
+    // Content is 3x screen size to allow swiping left and right
+    [_imageScroller setContentSize:CGSizeMake([_imageScroller frame].size.width * 3.0,
+                                              [_imageScroller frame].size.height)];
+    // Move the art image to the center
+    [_imageArtwork setFrame:CGRectMake([_imageArtwork frame].origin.x + [_imageScroller frame].size.width,
+                                       [_imageArtwork frame].origin.y,
+                                       [_imageArtwork frame].size.width,
+                                       [_imageArtwork frame].size.height)];
+    
+    // Set new origins to follow
+    [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
+    
+    // Stop clipping the shadow
+    [_imageScroller setClipsToBounds:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,6 +99,33 @@
 }
 
 #pragma mark - Gestures
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // Action when scroller page has changed (user has swiped the album art image)
+    
+    CGFloat pageWidth = scrollView.frame.size.width;
+    float fractionalPage = scrollView.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    // If we swiped right, skip to previous song
+    if (page == 0){
+        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+        [iPodMusicPlayer skipToPreviousItem];
+    }
+    // Swiping left, skip to next song
+    else if (page == 2){
+        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+        [iPodMusicPlayer skipToNextItem];
+    }
+    
+    // If we changed track, smooth the transition to next art
+    if (page == 0 || page == 2){
+        // Hide art
+        [_imageArtwork setImage:nil];
+        
+        // Reset back to page 1
+        [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
+    }
+}
 
 - (void)showAltTitle:(UITapGestureRecognizer*) sender{
     // Show alternate song title
