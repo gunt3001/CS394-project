@@ -47,9 +47,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // Setup any UI element not possible in Storyboard
+    [self setupMediaUpdate];                // Subscribe to media status changes
+    [self setupSongTitleGesture];           // Enable tapping on song title to show alternate title
+    [self setupImageArtworkDropShadow];     // Add Drop Shadow to Art Image
+    [self setupImageScroller];              // Use imagescroller to allow song skipping by swiping
+    
     // Do the initial update of now playing item
     [self refreshMediaData];
-    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UI Setup
+
+- (void)setupMediaUpdate{
     // Subscribe to media status changes
     MPMusicPlayerController* sharedPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -61,20 +77,26 @@
                            selector:@selector(handlePlaybackStateChanged:)
                                name:MPMusicPlayerControllerPlaybackStateDidChangeNotification
                              object:sharedPlayer];
-    
+}
+
+- (void)setupSongTitleGesture{
     // Enable tapping on song title to show alternate title
     isShowingAltTitle = NO;
     UITapGestureRecognizer* tapToViewAltTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAltTitle:)];
     [tapToViewAltTitle setNumberOfTapsRequired:1];
     [self.view addGestureRecognizer:tapToViewAltTitle];
-    
+}
+
+- (void) setupImageArtworkDropShadow{
     // Add Drop Shadow to Art Image
     [[_imageArtwork layer] setShadowColor:[UIColor blackColor].CGColor];
     [[_imageArtwork layer] setShadowOffset:CGSizeMake(0.0, 0.0)];
     [[_imageArtwork layer] setShadowOpacity:1.0];
     [[_imageArtwork layer] setShadowRadius:2.0];
     [_imageArtwork setClipsToBounds:NO];
-    
+}
+
+- (void) setupImageScroller{
     // Use imagescroller to allow song skipping by swiping
     // Content is 3x screen size to allow swiping left and right
     [_imageScroller setContentSize:CGSizeMake([_imageScroller frame].size.width * 3.0,
@@ -87,13 +109,6 @@
     
     // Set new origins to follow
     [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Gestures
