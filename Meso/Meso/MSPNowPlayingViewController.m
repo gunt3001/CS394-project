@@ -72,21 +72,30 @@
 - (void) viewDidAppear:(BOOL)animated{
     // Doing setup when view has already appeared
     
+    // Call restart to begin marquee animation, only after view has loaded
+    // Otherwise the animation might get cancelled
+    [MarqueeLabel restartLabelsOfController:self];
+    
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
     // Recreate marquee & scrollview the first time view appears
     // Fix bug where many ui elements' frame has wrong dimensions when starting orientation is not portrait
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)){
+    if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
         [self recreateMarqueeTexts];
         [self setupImageScroller];
     }
     
-    // Call restart to begin marquee animation, only after view has loaded
-    // Otherwise the animation might get cancelled
-    [MarqueeLabel restartLabelsOfController:self];
+    [super viewWillAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
     // When will is closing, remove registered observers
     [self unsetMediaUpdate];
+    
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -456,6 +465,7 @@
         [_labelSongSubtitle setAlpha:0.0];
     }];
     
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
