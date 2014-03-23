@@ -64,6 +64,7 @@
     [self setupImageScroller];              // Use imagescroller to allow song skipping by swiping
     [self setupTimer];                      // Set up timer to keep track of elapsed time
     [self setupMarquee];                    // Set up scrolling text
+    [self setupProgressSlider];             // Seek bar
     
     // Do the initial update of now playing item
     [self updateMediaData];
@@ -105,6 +106,10 @@
 }
 
 #pragma mark - Initialization
+
+- (void) setupProgressSlider{
+    [_sliderBar setThumbImage:[UIImage imageNamed:@"ProgressSliderThumb"] forState:UIControlStateNormal];
+}
 
 - (void) setupMarquee{
     // Set up scrolling text
