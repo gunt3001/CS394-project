@@ -21,6 +21,7 @@ extern NSString* const NOWPLAYING_VIEW_SUBTITLE_FORMAT; // Format of subtitle in
 extern NSString* const STRING_UNKNOWN_ARTIST;           // String for unknown artist
 extern NSString* const STRING_UNKNOWN_ALBUM;            // String for unknown album
 extern NSString* const STRING_NOTHING_PLAYING;          // String to show when nothing is playing on now playing screen
+extern NSString* const STRING_NOTHING_PLAYING_TIME;     // String to show on timers when nothing is playing
 
 // Undocumented API Constants
 extern NSString* const MSPMediaItemPropertySortTitle;               // Used to query song's alternate title

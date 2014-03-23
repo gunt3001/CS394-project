@@ -39,7 +39,6 @@
     // Also store other now playing metadata
     NSString* nowPlayingSongTitle;
     NSString* nowPlayingSongAlternateTitle;
-    NSTimeInterval nowPlayingSongTotalTime;
 };
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -439,7 +438,7 @@
     // Reset flags
     isShowingAltTitle = NO;
     
-    // Update UI Elements that are not affected by now playing status
+    // Update UI Elements that are not affected by now playing item
     [self updatePlayPauseButtonState];          // Play-pause button
     [self updateShuffleRepeatButtonState];      // Shuffle and repeat buttons
     
@@ -450,7 +449,7 @@
         [[self labelSongSubtitle] setText:@""];
         [self changeImageWithTransitionOn:_imageArtwork withImage:nil];
         [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
-        [[self labelTotalTime] setText:[MSPStringProcessor getTimeStringFromInterval:0]];
+        [[self labelTotalTime] setText:STRING_NOTHING_PLAYING_TIME];
         nowPlayingSongTitle = STRING_NOTHING_PLAYING;
         nowPlayingSongAlternateTitle = STRING_NOTHING_PLAYING;
         return;
@@ -477,14 +476,13 @@
     [[self labelSongSubtitle] setAttributedText:subtitle];                          // Subtitle
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
     [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];             // Background Artwork (nil for now)
-    [self updateElapsedTime];                                                       // Elapsed time
+    [self updateElapsedTime];                                                       // Elapsed time and progress bar
     [[self labelTotalTime] setText:totalString];                                    // Total time
     
     
     // Metadata
     nowPlayingSongTitle = title;                                        // Title, used to switch with alternate title
     nowPlayingSongAlternateTitle = altTitle;                            // Alternate title
-    nowPlayingSongTotalTime = totalTime;                                // Total time, used to update progress bar
     
     // Apply the heavy task of blurring image in background thread
     [self blurAndSetBackgroundImage:artworkImage PID:albumPid];
@@ -495,11 +493,21 @@
     
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     NSTimeInterval elapsedTime = [iPodMusicPlayer currentPlaybackTime];
-    NSString* elapsedString = [MSPStringProcessor getTimeStringFromInterval:elapsedTime];
-    [[self labelElapsedTime] setText:elapsedString];
+    MPMediaItem* nowPlaying = [iPodMusicPlayer nowPlayingItem];
+    NSTimeInterval nowPlayingSongTotalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
     
-    if (nowPlayingSongTotalTime == 0) [[self progressBar] setProgress:0.0];
+    // Check if the music player is stopped
+    if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
+        // Music player stopped, set progress to 0
+        [[self progressBar] setProgress:0.0];
+        
+        // Set elapsed time to nothing
+        [[self labelElapsedTime] setText:STRING_NOTHING_PLAYING_TIME];
+    }
     else{
+        NSString* elapsedString = [MSPStringProcessor getTimeStringFromInterval:elapsedTime];
+        [[self labelElapsedTime] setText:elapsedString];
+        
         float progress = elapsedTime / nowPlayingSongTotalTime;
         [[self progressBar] setProgress:progress];
     }
