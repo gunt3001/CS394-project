@@ -1,48 +1,42 @@
 //
-//  MSPNowPlayingViewController.m
+//  MSPiPadTopMenuViewController.m
 //  Meso
 //
-//  Created by Gun on 20/3/14.
+//  Created by Gun on 23/3/14.
 //  Copyright (c) 2014 Napat R. All rights reserved.
 //
 
-#import "MSPNowPlayingViewController.h"
-#import "MSPAppDelegate.h"
-#import "MSPConstants.h"
-#import "MSPStringProcessor.h"
-#import "MSPBlurredImagesWithCache.h"
+#import "MSPiPadTopMenuViewController.h"
 #import "MarqueeLabel.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "MSPConstants.h"
+#import "MSPAppDelegate.h"
+#import "MSPStringProcessor.h"
 
-@interface MSPNowPlayingViewController ()
+@interface MSPiPadTopMenuViewController ()
+@property (weak, nonatomic) IBOutlet UISlider *sliderBar;
 @property (weak, nonatomic) IBOutlet MarqueeLabel *labelSongTitle;
 @property (weak, nonatomic) IBOutlet MarqueeLabel *labelSongSubtitle;
+@property (weak, nonatomic) IBOutlet UIView *altTitleTapArea;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
-@property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
-@property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;
-@property (weak, nonatomic) IBOutlet UIScrollView *imageScroller;
 @property (weak, nonatomic) IBOutlet UILabel *labelElapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *labelTotalTime;
-@property (weak, nonatomic) IBOutlet UIButton *buttonShuffle;
 @property (weak, nonatomic) IBOutlet UIButton *buttonRepeat;
-@property (weak, nonatomic) IBOutlet UIView *labelSongSubtitleGuide;
+@property (weak, nonatomic) IBOutlet UIButton *buttonShuffle;
+@property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;
 @property (weak, nonatomic) IBOutlet UIView *labelSongTitleGuide;
-@property (weak, nonatomic) IBOutlet UISlider *sliderBar;
-@property (weak, nonatomic) IBOutlet UIView *altTitleTapArea;
+@property (weak, nonatomic) IBOutlet UIView *labelSongSubtitleGuide;
 
 @end
 
-@implementation MSPNowPlayingViewController {
-    dispatch_queue_t imageBlurringQueue;
-    int blurringQueueCount;
-    BOOL isShowingAltTitle;
+@implementation MSPiPadTopMenuViewController{
     NSTimer* elapsedTimer;
+    BOOL isShowingAltTitle;
     NSTimer* fastSeekTimer;
-    
+
     // Song name and its alternate version to use when switching
     NSString* nowPlayingSongTitle;
     NSString* nowPlayingSongAlternateTitle;
-};
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,37 +54,25 @@
     
     // Do any initialization not possible in Storyboard
     [self setupSongTitleGesture];           // Enable tapping on song title to show alternate title
-    [self setupImageArtworkDropShadow];     // Add Drop Shadow to Art Image
-    [self setupImageScroller];              // Use imagescroller to allow song skipping by swiping
     [self setupTimer];                      // Set up timer to keep track of elapsed time
     [self setupMarquee];                    // Set up scrolling text
     [self setupProgressSlider];             // Seek bar
     
     // Do the initial update of now playing item
     [self updateMediaData];
-}
-
-- (void) viewDidAppear:(BOOL)animated{
-    // Doing setup when view has already appeared
-    
-    // Call restart to begin marquee animation, only after view has loaded
-    // Otherwise the animation might get cancelled
-    [MarqueeLabel restartLabelsOfController:self];
-    
-    [super viewDidAppear:animated];
+     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    // Recreate marquee & scrollview the first time view appears
+    // Recreate marquee the first time view appears
     // Fix bug where many ui elements' frame has wrong dimensions when starting orientation is not portrait
     if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
         [self recreateMarqueeTexts];
-        [self setupImageScroller];
     }
     
     [self setupMediaUpdate];                // Subscribe to media status changes
-
+    
     [super viewWillAppear:animated];
 }
 
@@ -125,7 +107,7 @@
     // Set up scrolling text
     
     [label setTextAlignment:NSTextAlignmentCenter]; // Center
-    [label setTextColor:[UIColor whiteColor]];      // Color
+    [label setTextColor:[UIColor blackColor]];      // Color
     [label setRate:MARQUEE_LABEL_RATE];             // Speed
     [label setFadeLength:10.0];                     // Fade size
     [label setAnimationDelay:3.0];                  // Pause
@@ -136,9 +118,9 @@
     
     // Update the elapsed tiem every 1 second
     elapsedTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
-                                             target:self
-                                           selector:@selector(updateElapsedTime)
-                                           userInfo:nil repeats:YES];
+                                                    target:self
+                                                  selector:@selector(updateElapsedTime)
+                                                  userInfo:nil repeats:YES];
 }
 
 - (void)setupMediaUpdate{
@@ -161,12 +143,12 @@
     // Unsubscribe to media status changes
     
     MPMusicPlayerController* sharedPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-
+    
     // Remove observers
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:self name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:sharedPlayer];
     [notificationCenter removeObserver:self name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:sharedPlayer];
-
+    
 }
 
 - (void)setupSongTitleGesture{
@@ -177,59 +159,7 @@
     [self.view addGestureRecognizer:tapToViewAltTitle];
 }
 
-- (void) setupImageArtworkDropShadow{
-    // Add Drop Shadow to Art Image
-    [[_imageArtwork layer] setShadowColor:[UIColor blackColor].CGColor];
-    [[_imageArtwork layer] setShadowOffset:CGSizeMake(0.0, 0.0)];
-    [[_imageArtwork layer] setShadowOpacity:1.0];
-    [[_imageArtwork layer] setShadowRadius:2.0];
-    [_imageArtwork setClipsToBounds:NO];
-}
-
-- (void) setupImageScroller{
-    // Use imagescroller to allow song skipping by swiping
-    // Content is 3x screen size to allow swiping left and right
-    [_imageScroller setContentSize:CGSizeMake([_imageScroller frame].size.width * 3.0,
-                                              [_imageScroller frame].size.height)];
-    // Move the art image to the center
-    CGFloat xOffsetToCenter = ([_imageScroller frame].size.width - [_imageArtwork frame].size.width) / 2;
-    [_imageArtwork setFrame:CGRectMake(xOffsetToCenter + [_imageScroller frame].size.width,
-                                       [_imageArtwork frame].origin.y,
-                                       [_imageArtwork frame].size.width,
-                                       [_imageArtwork frame].size.height)];
-    
-    // Set new origins to follow
-    [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
-}
-
 #pragma mark - Gestures
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    // Action when scroller page has changed (user has swiped the album art image)
-    
-    CGFloat pageWidth = scrollView.frame.size.width;
-    float fractionalPage = scrollView.contentOffset.x / pageWidth;
-    NSInteger page = lround(fractionalPage);
-    // If we swiped right, skip to previous song
-    if (page == 0){
-        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-        [iPodMusicPlayer skipToPreviousItem];
-    }
-    // Swiping left, skip to next song
-    else if (page == 2){
-        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-        [iPodMusicPlayer skipToNextItem];
-    }
-    
-    // If we changed track, smooth the transition to next art
-    if (page == 0 || page == 2){
-        // Hide art
-        [_imageArtwork setImage:nil];
-        
-        // Reset back to page 1
-        [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
-    }
-}
 
 - (void)showAltTitle:(UITapGestureRecognizer*) sender{
     // Show alternate song title
@@ -255,12 +185,7 @@
     
 }
 
-#pragma mark - Buttons Actions
-
-- (IBAction)buttonBack:(id)sender {
-    // Back button action - dismiss current view
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+#pragma mark - Button Actions
 
 - (IBAction)buttonPlayPause:(id)sender {
     // Pause if playing, play if paused
@@ -360,7 +285,7 @@
     // Invalidate timer when touched down
     
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-
+    
     // Stop timer when we touched down
     if (fastSeekTimer){
         [fastSeekTimer invalidate];
@@ -382,13 +307,6 @@
                                                      target:self
                                                    selector:@selector(fastBackward)
                                                    userInfo:nil repeats:NO];
-}
-
-- (IBAction)buttonUpNext:(id)sender {
-    // Show the up-next menu
-    
-    // Unimplemented
-    
 }
 
 - (IBAction)buttonShuffle:(id)sender {
@@ -451,21 +369,6 @@
 
 #pragma mark - View & Orientations
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
-
-- (NSUInteger) supportedInterfaceOrientations {
-    // Return a bitmask of supported orientations. If you need more,
-    // use bitwise or (see the commented return).
-    
-    // iPad supports every orientation
-    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPad"]) return UIInterfaceOrientationMaskAll;
-    
-    // Other devices only support portrait
-    return UIInterfaceOrientationMaskPortrait;
-}
-
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     // Before changing orientation
     
@@ -476,25 +379,11 @@
         [_labelSongSubtitle setAlpha:0.0];
     }];
     
-    // Hide album art image to smooth rotation
-    [UIView animateWithDuration:0.1 animations:^{
-        [_imageArtwork setAlpha:0.0];
-    }];
-    
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     // Detects when orientation changed
-    
-    // Show art again
-    // Hide album art image to smooth rotation
-    [UIView animateWithDuration:0.1 animations:^{
-        [_imageArtwork setAlpha:1.0];
-    }];
-    
-    // Update the image scroller size
-    [self setupImageScroller];
     
     // Set up new marquee text
     [self recreateMarqueeTexts];
@@ -520,7 +409,6 @@
         [[self labelSongTitle] setText:STRING_NOTHING_PLAYING];
         [[self labelSongSubtitle] setText:@""];
         [self changeImageWithTransitionOn:_imageArtwork withImage:nil];
-        [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
         [[self labelTotalTime] setText:STRING_NOTHING_PLAYING_TIME];
         nowPlayingSongTitle = STRING_NOTHING_PLAYING;
         nowPlayingSongAlternateTitle = STRING_NOTHING_PLAYING;
@@ -540,16 +428,14 @@
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     if (!artworkImage) artworkImage = [UIImage imageNamed:@"noartplaceholder"];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
-    NSNumber* albumPid = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumPersistentID];
     NSTimeInterval totalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
     NSString* totalString = [MSPStringProcessor getTimeStringFromInterval:totalTime];
-
+    
     // Display them
     [[self labelSongTitle] setText:title];                                          // Title
     [[self labelSongSubtitle] setAttributedText:subtitle];                          // Subtitle
     [self recreateMarqueeTexts];                                                    // Update bounds for Title/Subtitle
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
-    [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];             // Background Artwork (nil for now)
     [self updateElapsedTime];                                                       // Elapsed time and progress bar
     [[self labelTotalTime] setText:totalString];                                    // Total time
     
@@ -558,8 +444,6 @@
     nowPlayingSongTitle = title;                                        // Title, used to switch with alternate title
     nowPlayingSongAlternateTitle = altTitle;                            // Alternate title
     
-    // Apply the heavy task of blurring image in background thread
-    [self blurAndSetBackgroundImage:artworkImage PID:albumPid];
 }
 
 - (void)updateElapsedTime{
@@ -620,7 +504,7 @@
     // Refresh play button to reflect current playing status
     
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-
+    
     if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStatePaused ||
         [iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
         [_buttonPlayPause setImage:[UIImage imageNamed:FILENAME_FILLBUTTON_PLAY] forState:UIControlStateNormal];
@@ -657,34 +541,6 @@
                     animations:^{
                         [view setImage:image];
                     } completion:NULL];
-}
-
-- (void) blurAndSetBackgroundImage:(UIImage*)artworkImage PID:(NSNumber*)albumPid{
-    // Use GCD to blur image in background thread
-    // When finished, set background to the blurred image
-    
-    if (!imageBlurringQueue){
-        imageBlurringQueue = dispatch_queue_create(BLURRING_QUEUE_NAME, NULL);
-        blurringQueueCount = 0;
-    }
-    blurringQueueCount++;
-    dispatch_async(imageBlurringQueue, ^{
-        
-        // Only process image if this is the only item in queue.
-        // This skips any image we don't need anymore.
-        if (blurringQueueCount == 1){
-            
-            MSPBlurredImagesWithCache* imageProcessor = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedBlurredImageCache];
-            UIImage* blurredArt = [imageProcessor getBlurredImageOfArt:artworkImage WithPID:albumPid];
-            
-            // Update UI after finishing (Animated)
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
-            });
-        }
-        
-        blurringQueueCount--;
-    });
 }
 
 - (void) recreateMarqueeTexts{
@@ -725,4 +581,5 @@
         [_labelSongSubtitle setAlpha:1.0];
     }];
 }
+
 @end
