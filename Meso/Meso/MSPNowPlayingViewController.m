@@ -533,6 +533,7 @@
                                                                                   Color:[[self labelSongSubtitle] textColor]];
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
+    if (!artworkImage) artworkImage = [UIImage imageNamed:@"noartplaceholder"];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     NSNumber* albumPid = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumPersistentID];
     NSTimeInterval totalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
