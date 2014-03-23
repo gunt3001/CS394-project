@@ -182,6 +182,7 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
+				B0C8FEF918DEFD3400D5D107 /* iPad */,
 				B0AFAE8F18DD328000864EFC /* Models */,
 				B0E352BD18DBCA2900276682 /* Libraries */,
 				B02C433C18DA307800C0390C /* ViewControllers */,
@@ -221,6 +222,13 @@
 				B0B882F818C69A4E003D37EC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0C8FEF918DEFD3400D5D107 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 		B0E352BD18DBCA2900276682 /* Libraries */ = {
@@ -472,7 +480,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Meso/Meso-Prefix.pch";
 				INFOPLIST_FILE = "Meso/Meso-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -485,7 +495,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Meso/Meso-Prefix.pch";
 				INFOPLIST_FILE = "Meso/Meso-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
