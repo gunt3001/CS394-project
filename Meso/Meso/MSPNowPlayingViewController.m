@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIView *labelSongSubtitleGuide;
 @property (weak, nonatomic) IBOutlet UIView *labelSongTitleGuide;
 @property (weak, nonatomic) IBOutlet UISlider *sliderBar;
+@property (weak, nonatomic) IBOutlet UIView *altTitleTapArea;
 
 @end
 
@@ -239,7 +240,8 @@
     animation.duration = 0.2;
     [_labelSongTitle.layer addAnimation:animation forKey:@"kCATransitionFade"];
     
-    if (CGRectContainsPoint(_labelSongTitle.frame, [sender locationInView:self.view])){
+    // Check if we're tapping at the title/subtitle area
+    if (CGRectContainsPoint(_altTitleTapArea.frame, [sender locationInView:self.view])){
         if (isShowingAltTitle){
             [_labelSongTitle setText:nowPlayingSongTitle];
             isShowingAltTitle = NO;

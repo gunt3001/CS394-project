@@ -266,13 +266,20 @@
                                     <action selector="buttonShuffle:" destination="kQc-2K-L24" eventType="touchUpInside" id="24n-Q7-jKP"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="PHf-1p-AMk" userLabel="marquee title guide">
+                            <view hidden="YES" contentMode="scaleToFill" id="GcQ-L4-euh" userLabel="Show Alternate Title Tap Area">
+                                <rect key="frame" x="48" y="20" width="224" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0588715764" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="PHf-1p-AMk" userLabel="marquee title guide">
                                 <rect key="frame" x="48" y="29" width="224" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="XCm-De-J1a" userLabel="marquee subtitle guide">
+                            <view hidden="YES" contentMode="scaleToFill" id="XCm-De-J1a" userLabel="marquee subtitle guide">
                                 <rect key="frame" x="20" y="58" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIV-Ce-miY" customClass="MarqueeLabel">
                                 <rect key="frame" x="48" y="29" width="224" height="21"/>
@@ -334,6 +341,7 @@
                     <navigationItem key="navigationItem" id="CFQ-Qg-SRk"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="altTitleTapArea" destination="GcQ-L4-euh" id="eOG-Z3-yAH"/>
                         <outlet property="buttonPlayPause" destination="6VG-MS-3pH" id="vVk-QX-XHn"/>
                         <outlet property="buttonRepeat" destination="TIu-1b-qfR" id="EHq-ZC-2qm"/>
                         <outlet property="buttonShuffle" destination="AIz-9Q-4uF" id="kNc-Of-AmK"/>
