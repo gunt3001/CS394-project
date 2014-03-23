@@ -266,6 +266,14 @@
                                     <action selector="buttonShuffle:" destination="kQc-2K-L24" eventType="touchUpInside" id="24n-Q7-jKP"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="PHf-1p-AMk" userLabel="marquee title guide">
+                                <rect key="frame" x="48" y="29" width="224" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="XCm-De-J1a" userLabel="marquee subtitle guide">
+                                <rect key="frame" x="20" y="58" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIV-Ce-miY" customClass="MarqueeLabel">
                                 <rect key="frame" x="48" y="29" width="224" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -332,14 +340,16 @@
                         <outlet property="imageScroller" destination="6Do-Bm-cfQ" id="XRz-sa-Fng"/>
                         <outlet property="labelElapsedTime" destination="9Ly-qQ-e2w" id="qqS-Wj-MGQ"/>
                         <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="MVo-Vl-gzx"/>
+                        <outlet property="labelSongSubtitleGuide" destination="XCm-De-J1a" id="WPL-9y-XYa"/>
                         <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="LA4-GO-r5k"/>
+                        <outlet property="labelSongTitleGuide" destination="PHf-1p-AMk" id="lBM-JZ-AZx"/>
                         <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="hWc-SL-QYb"/>
                         <outlet property="progressBar" destination="ybr-wy-wvB" id="e3k-cP-6P0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818" y="802"/>
+            <point key="canvasLocation" x="1818" y="806"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="owC-AY-az0">

@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UIButton *buttonShuffle;
 @property (weak, nonatomic) IBOutlet UIButton *buttonRepeat;
+@property (weak, nonatomic) IBOutlet UIView *labelSongSubtitleGuide;
+@property (weak, nonatomic) IBOutlet UIView *labelSongTitleGuide;
 
 @end
 
@@ -70,6 +72,13 @@
 - (void) viewDidAppear:(BOOL)animated{
     // Doing setup when view has already appeared
     
+    // Recreate marquee & scrollview the first time view appears
+    // Fix bug where many ui elements' frame has wrong dimensions when starting orientation is not portrait
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)){
+        [self recreateMarqueeTexts];
+        [self setupImageScroller];
+    }
+    
     // Call restart to begin marquee animation, only after view has loaded
     // Otherwise the animation might get cancelled
     [MarqueeLabel restartLabelsOfController:self];
@@ -91,21 +100,19 @@
 - (void) setupMarquee{
     // Set up scrolling text
     
-    // Set color
-    [_labelSongTitle setTextColor:[UIColor whiteColor]];
-    [_labelSongSubtitle setTextColor:[UIColor whiteColor]];
+    [MSPNowPlayingViewController setupMarquee:_labelSongTitle];
+    [MSPNowPlayingViewController setupMarquee:_labelSongSubtitle];
     
-    // Set speed
-    [_labelSongTitle setRate:MARQUEE_LABEL_RATE];
-    [_labelSongSubtitle setRate:MARQUEE_LABEL_RATE];
+}
+
++ (void) setupMarquee:(MarqueeLabel*)label{
+    // Set up scrolling text
     
-    // Set fade length
-    [_labelSongTitle setFadeLength:10.0];
-    [_labelSongSubtitle setFadeLength:10.0];
-    
-    // Set a small pause
-    [_labelSongTitle setAnimationDelay:3.0];
-    [_labelSongSubtitle setAnimationDelay:3.0];
+    [label setTextAlignment:NSTextAlignmentCenter]; // Center
+    [label setTextColor:[UIColor whiteColor]];      // Color
+    [label setRate:MARQUEE_LABEL_RATE];             // Speed
+    [label setFadeLength:10.0];                     // Fade size
+    [label setAnimationDelay:3.0];                  // Pause
 }
 
 - (void)setupTimer{
@@ -169,7 +176,8 @@
     [_imageScroller setContentSize:CGSizeMake([_imageScroller frame].size.width * 3.0,
                                               [_imageScroller frame].size.height)];
     // Move the art image to the center
-    [_imageArtwork setFrame:CGRectMake([_imageArtwork frame].origin.x + [_imageScroller frame].size.width,
+    CGFloat xOffsetToCenter = ([_imageScroller frame].size.width - [_imageArtwork frame].size.width) / 2;
+    [_imageArtwork setFrame:CGRectMake(xOffsetToCenter + [_imageScroller frame].size.width,
                                        [_imageArtwork frame].origin.y,
                                        [_imageArtwork frame].size.width,
                                        [_imageArtwork frame].size.height)];
@@ -419,15 +427,37 @@
 - (NSUInteger) supportedInterfaceOrientations {
     // Return a bitmask of supported orientations. If you need more,
     // use bitwise or (see the commented return).
+    
+    // iPad supports every orientation
+    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPad"]) return UIInterfaceOrientationMaskAll;
+    
+    // Other devices only support portrait
     return UIInterfaceOrientationMaskPortrait;
-    // return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }
 
-- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
-    // Return the orientation you'd prefer - this is what it launches to. The
-    // user can still rotate. You don't have to implement this method, in which
-    // case it launches in the current orientation
-    return UIInterfaceOrientationPortrait;
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    // Before changing orientation
+    
+    // We're replacing the marquee text with new object
+    // Hide it so the transition is smoother
+    
+    [UIView animateWithDuration:0.1 animations:^{
+        [_labelSongTitle setAlpha:0.0];
+        [_labelSongSubtitle setAlpha:0.0];
+    }];
+    
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    // Detects when orientation changed
+    
+    // Update the image scroller size
+    [self setupImageScroller];
+    
+    // Set up new marquee text
+    [self recreateMarqueeTexts];
+    
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 #pragma mark - Responding to Media Changes
@@ -474,6 +504,7 @@
     // Display them
     [[self labelSongTitle] setText:title];                                          // Title
     [[self labelSongSubtitle] setAttributedText:subtitle];                          // Subtitle
+    [self recreateMarqueeTexts];                                                    // Update bounds for Title/Subtitle
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
     [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];             // Background Artwork (nil for now)
     [self updateElapsedTime];                                                       // Elapsed time and progress bar
@@ -611,5 +642,44 @@
         
         blurringQueueCount--;
     });
+}
+
+- (void) recreateMarqueeTexts{
+    // Update the frame for Song title and subtitle by creating new MarqueeLabel object
+    
+    // Need to add an entirely new object because of bugs in the external library
+    MarqueeLabel* newTitle = [[MarqueeLabel alloc] initWithFrame:_labelSongTitleGuide.frame];
+    MarqueeLabel* newSubtitle = [[MarqueeLabel alloc] initWithFrame:_labelSongSubtitleGuide.frame];
+    
+    // Use original text & styles
+    [newTitle setText:[_labelSongTitle text]];
+    [newTitle setFont:[_labelSongTitle font]];
+    [newSubtitle setAttributedText:[_labelSongSubtitle attributedText]];
+    
+    // Set up the properties
+    [MSPNowPlayingViewController setupMarquee:newTitle];
+    [MSPNowPlayingViewController setupMarquee:newSubtitle];
+    
+    // Remove old label from superview
+    [_labelSongTitle removeFromSuperview];
+    [_labelSongSubtitle removeFromSuperview];
+    
+    // Replace the pointer (outlet) in this controller with the new stuff
+    _labelSongTitle = newTitle;
+    _labelSongSubtitle = newSubtitle;
+    
+    // Hide before adding to view
+    [newTitle setAlpha:0.0];
+    [newSubtitle setAlpha:0.0];
+    
+    // Add to view
+    [[self view] addSubview:newTitle];
+    [[self view] addSubview:newSubtitle];
+    
+    // Show with animation
+    [UIView animateWithDuration:0.1 animations:^{
+        [_labelSongTitle setAlpha:1.0];
+        [_labelSongSubtitle setAlpha:1.0];
+    }];
 }
 @end
