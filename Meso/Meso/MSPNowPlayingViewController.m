@@ -23,11 +23,11 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScroller;
 @property (weak, nonatomic) IBOutlet UILabel *labelElapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *labelTotalTime;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UIButton *buttonShuffle;
 @property (weak, nonatomic) IBOutlet UIButton *buttonRepeat;
 @property (weak, nonatomic) IBOutlet UIView *labelSongSubtitleGuide;
 @property (weak, nonatomic) IBOutlet UIView *labelSongTitleGuide;
+@property (weak, nonatomic) IBOutlet UISlider *sliderBar;
 
 @end
 
@@ -119,7 +119,7 @@
     // Setup timer to keep track of elapsed time
     
     // Update the elapsed tiem every 1 second
-    elapsedTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+    elapsedTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
                                              target:self
                                            selector:@selector(updateElapsedTime)
                                            userInfo:nil repeats:YES];
@@ -418,6 +418,16 @@
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     [iPodMusicPlayer setCurrentPlaybackRate:FAST_SEEKING_RATE * -1];
 }
+
+- (IBAction)progressSliderChanged:(id)sender {
+    
+    if ([_sliderBar isTracking]){
+        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+        NSTimeInterval totalTime = [[[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+        [iPodMusicPlayer setCurrentPlaybackTime:[_sliderBar value] * totalTime];
+    }
+}
+
 #pragma mark - View & Orientations
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -530,7 +540,7 @@
     // Check if the music player is stopped
     if ([iPodMusicPlayer playbackState] == MPMusicPlaybackStateStopped){
         // Music player stopped, set progress to 0
-        [[self progressBar] setProgress:0.0];
+        [[self sliderBar] setValue:0.0];
         
         // Set elapsed time to nothing
         [[self labelElapsedTime] setText:STRING_NOTHING_PLAYING_TIME];
@@ -540,7 +550,7 @@
         [[self labelElapsedTime] setText:elapsedString];
         
         float progress = elapsedTime / nowPlayingSongTotalTime;
-        [[self progressBar] setProgress:progress];
+        [[self sliderBar] setValue:progress];
     }
 }
 

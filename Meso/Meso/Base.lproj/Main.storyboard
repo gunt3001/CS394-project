@@ -302,11 +302,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="ybr-wy-wvB">
-                                <rect key="frame" x="99" y="371" width="122" height="2"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="468-8T-omS">
+                                <rect key="frame" x="97" y="357" width="126" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="progressTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </progressView>
+                                <connections>
+                                    <action selector="progressSliderChanged:" destination="kQc-2K-L24" eventType="valueChanged" id="8HG-WF-ftf"/>
+                                </connections>
+                            </slider>
                             <view contentMode="scaleToFill" id="t3e-kt-Kh8" customClass="MPVolumeView">
                                 <rect key="frame" x="20" y="449" width="280" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -344,7 +346,7 @@
                         <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="LA4-GO-r5k"/>
                         <outlet property="labelSongTitleGuide" destination="PHf-1p-AMk" id="lBM-JZ-AZx"/>
                         <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="hWc-SL-QYb"/>
-                        <outlet property="progressBar" destination="ybr-wy-wvB" id="e3k-cP-6P0"/>
+                        <outlet property="sliderBar" destination="468-8T-omS" id="QB9-Zr-Zw2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
