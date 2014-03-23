@@ -42,6 +42,7 @@
     // Format a given time interval into "minutes:seconds" NSString
     
     NSUInteger seconds = (NSUInteger)round(interval);
-    return [NSString stringWithFormat:@"%02u:%02u", (seconds / 60), seconds % 60];
+    if (seconds == 0) return @"--:--";
+    return [NSString stringWithFormat:@"%02lu:%02lu", (unsigned long) (seconds / 60), (unsigned long) seconds % 60];
 }
 @end

@@ -450,8 +450,7 @@
         [[self labelSongSubtitle] setText:@""];
         [self changeImageWithTransitionOn:_imageArtwork withImage:nil];
         [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
-        [[self labelElapsedTime] setText:@"-"];
-        [[self labelTotalTime] setText:@"-"];
+        [[self labelTotalTime] setText:[MSPStringProcessor getTimeStringFromInterval:0]];
         nowPlayingSongTitle = STRING_NOTHING_PLAYING;
         nowPlayingSongAlternateTitle = STRING_NOTHING_PLAYING;
         return;
@@ -499,8 +498,11 @@
     NSString* elapsedString = [MSPStringProcessor getTimeStringFromInterval:elapsedTime];
     [[self labelElapsedTime] setText:elapsedString];
     
-    float progress = elapsedTime / nowPlayingSongTotalTime;
-    [[self progressBar] setProgress:progress];
+    if (nowPlayingSongTotalTime == 0) [[self progressBar] setProgress:0.0];
+    else{
+        float progress = elapsedTime / nowPlayingSongTotalTime;
+        [[self progressBar] setProgress:progress];
+    }
 }
 
 - (void)updateShuffleRepeatButtonState{
