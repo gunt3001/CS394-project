@@ -464,10 +464,14 @@
     
     // We're replacing the marquee text with new object
     // Hide it so the transition is smoother
-    
     [UIView animateWithDuration:0.1 animations:^{
         [_labelSongTitle setAlpha:0.0];
         [_labelSongSubtitle setAlpha:0.0];
+    }];
+    
+    // Hide album art image to smooth rotation
+    [UIView animateWithDuration:0.1 animations:^{
+        [_imageArtwork setAlpha:0.0];
     }];
     
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
@@ -475,6 +479,12 @@
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     // Detects when orientation changed
+    
+    // Show art again
+    // Hide album art image to smooth rotation
+    [UIView animateWithDuration:0.1 animations:^{
+        [_imageArtwork setAlpha:1.0];
+    }];
     
     // Update the image scroller size
     [self setupImageScroller];
