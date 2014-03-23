@@ -12,6 +12,7 @@
 		B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */; };
 		B026F23B18DDC54600B61B45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B026F23A18DDC54600B61B45 /* QuartzCore.framework */; };
 		B026F23E18DDC56100B61B45 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23D18DDC56100B61B45 /* MarqueeLabel.m */; };
+		B09A0E3B18DF70C500B89816 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */; };
 		B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */; };
 		B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */; };
 		B0B882D118C69A4E003D37EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D018C69A4E003D37EC /* Foundation.framework */; };
@@ -55,6 +56,7 @@
 		B026F23A18DDC54600B61B45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B026F23C18DDC56100B61B45 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
 		B026F23D18DDC56100B61B45 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
+		B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		B0AFAE8C18DD2CB800864EFC /* MSPPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistsTableViewController.h; sourceTree = "<group>"; };
 		B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsTableViewController.m; sourceTree = "<group>"; };
 		B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistNode.h; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		B0C8FEF918DEFD3400D5D107 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				B0B882E918C69A4E003D37EC /* Images.xcassets in Resources */,
 				B0B882DB18C69A4E003D37EC /* InfoPlist.strings in Resources */,
 				B0B882E418C69A4E003D37EC /* Main.storyboard in Resources */,
+				B09A0E3B18DF70C500B89816 /* Main-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
