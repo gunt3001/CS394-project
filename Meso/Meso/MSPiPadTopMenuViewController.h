@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSPiPadTopMenuViewController : UIViewController
+@interface MSPiPadTopMenuViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @end

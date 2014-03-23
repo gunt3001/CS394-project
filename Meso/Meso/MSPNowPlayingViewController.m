@@ -174,6 +174,7 @@
     isShowingAltTitle = NO;
     UITapGestureRecognizer* tapToViewAltTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAltTitle:)];
     [tapToViewAltTitle setNumberOfTapsRequired:1];
+    [tapToViewAltTitle setDelegate:self];
     [self.view addGestureRecognizer:tapToViewAltTitle];
 }
 
@@ -241,18 +242,20 @@
     animation.duration = 0.2;
     [_labelSongTitle.layer addAnimation:animation forKey:@"kCATransitionFade"];
     
-    // Check if we're tapping at the title/subtitle area
-    if (CGRectContainsPoint(_altTitleTapArea.frame, [sender locationInView:self.view])){
-        if (isShowingAltTitle){
-            [_labelSongTitle setText:nowPlayingSongTitle];
-            isShowingAltTitle = NO;
-        }
-        else {
-            [_labelSongTitle setText:nowPlayingSongAlternateTitle];
-            isShowingAltTitle = YES;
-        }
+    if (isShowingAltTitle){
+        [_labelSongTitle setText:nowPlayingSongTitle];
+        isShowingAltTitle = NO;
+    }
+    else {
+        [_labelSongTitle setText:nowPlayingSongAlternateTitle];
+        isShowingAltTitle = YES;
     }
     
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    CGPoint touchLocation = [touch locationInView:self.view];
+    return CGRectContainsPoint(_altTitleTapArea.frame, touchLocation);
 }
 
 #pragma mark - Buttons Actions

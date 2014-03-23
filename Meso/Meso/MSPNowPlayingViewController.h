@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSPNowPlayingViewController : UIViewController
+@interface MSPNowPlayingViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @end
