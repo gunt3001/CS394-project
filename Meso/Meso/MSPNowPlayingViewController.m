@@ -489,8 +489,6 @@
     
     // Apply the heavy task of blurring image in background thread
     [self blurAndSetBackgroundImage:artworkImage PID:albumPid];
-    
-    NSLog(@"update called for %@", title);
 }
 
 - (void)updateElapsedTime{
