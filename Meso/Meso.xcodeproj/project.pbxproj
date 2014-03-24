@@ -189,13 +189,12 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
-				B0C8FEF918DEFD3400D5D107 /* iPad */,
-				B0AFAE8F18DD328000864EFC /* Models */,
 				B0E352BD18DBCA2900276682 /* Libraries */,
+				B0C8FEF918DEFD3400D5D107 /* Storyboards */,
+				B0AFAE8F18DD328000864EFC /* Models */,
 				B02C433C18DA307800C0390C /* ViewControllers */,
 				B0B882DF18C69A4E003D37EC /* MSPAppDelegate.h */,
 				B0B882E018C69A4E003D37EC /* MSPAppDelegate.m */,
-				B0B882E218C69A4E003D37EC /* Main.storyboard */,
 				B0B882E818C69A4E003D37EC /* Images.xcassets */,
 				B0B882D718C69A4E003D37EC /* Supporting Files */,
 			);
@@ -231,12 +230,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B0C8FEF918DEFD3400D5D107 /* iPad */ = {
+		B0C8FEF918DEFD3400D5D107 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				B0B882E218C69A4E003D37EC /* Main.storyboard */,
 				B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */,
 			);
-			name = iPad;
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		B0E352BD18DBCA2900276682 /* Libraries */ = {
