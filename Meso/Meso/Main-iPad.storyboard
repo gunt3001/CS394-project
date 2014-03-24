@@ -139,7 +139,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4mf-e2-zSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1171" y="-2598"/>
+            <point key="canvasLocation" x="2145" y="-2598"/>
         </scene>
         <!--View Controller - Meso-->
         <scene sceneID="eu1-Hx-BKz">
@@ -360,6 +360,38 @@
             </objects>
             <point key="canvasLocation" x="4226" y="774"/>
         </scene>
+        <!--Table View Controller - Up Next-->
+        <scene sceneID="yBJ-Ng-OWO">
+            <objects>
+                <tableViewController id="4ac-yb-F1h" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hwE-7k-kXH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Eay-Lb-eSm">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eay-Lb-eSm" id="xnh-sH-OBc">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4ac-yb-F1h" id="z5o-TA-lvN"/>
+                            <outlet property="delegate" destination="4ac-yb-F1h" id="OHF-W8-d6Y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Up Next" id="iIb-9R-Kdy">
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="NcD-jQ-YCB"/>
+                    </navigationItem>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQ9-gs-VTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1380" y="-2164"/>
+        </scene>
         <!--Pi Pad Top Menu View Controller-->
         <scene sceneID="cLw-8t-tGP">
             <objects>
@@ -493,11 +525,16 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XPN-jP-3WN">
-                                <rect key="frame" x="708" y="36" width="40" height="40"/>
+                                <rect key="frame" x="708" y="26" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="0.0" maxY="5"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" image="FillButtonUpnext"/>
+                                <connections>
+                                    <segue destination="trg-US-dyf" kind="popover" popoverAnchorView="XPN-jP-3WN" id="cZp-Di-Ltq">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -561,7 +598,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9S-Vu-PIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31" y="-2670"/>
+            <point key="canvasLocation" x="1005" y="-2670"/>
         </scene>
         <!--Navigation Controller - Songs-->
         <scene sceneID="dd1-GR-y7v">
@@ -580,7 +617,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xW8-Te-76h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34" y="-1329"/>
+            <point key="canvasLocation" x="940" y="-1329"/>
         </scene>
         <!--Songs Table View Controller - Songs-->
         <scene sceneID="MyC-eP-t04">
@@ -666,7 +703,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRp-0G-Zoj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1179" y="-1311"/>
+            <point key="canvasLocation" x="2153" y="-1311"/>
         </scene>
         <!--View Controller - About-->
         <scene sceneID="3C2-Ij-EbO">
@@ -997,6 +1034,25 @@ https://github.com/cbpowell/MarqueeLabel</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Kb-7A-NOz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-41" y="3980"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8uM-05-KBB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trg-US-dyf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="16f-o5-nZj">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4ac-yb-F1h" kind="relationship" relationship="rootViewController" id="VtP-Lr-mvS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c3D-aV-1k9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1793" y="-2164"/>
         </scene>
     </scenes>
     <resources>
