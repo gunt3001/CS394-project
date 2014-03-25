@@ -99,33 +99,9 @@
         NSInteger sectionOffset = [thisSection range].location;
         MPMediaItem* song = [[allSongsQuery items] objectAtIndex:(sectionOffset + row)];
         
-        // Grab song data
-        // Title
-        NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
-        // Artist
-        NSString* songArtist = [song valueForProperty:MPMediaItemPropertyArtist];
-        // Album
-        NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
-        // Artwork
-        MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
-        // Unique Persistent ID for the song
-        NSNumber* songPID = [song valueForProperty:MPMediaItemPropertyPersistentID];
-        
         // Set cell data
         cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
-        // Artwork
-        [cell addThumbnailWithMediaItemArtwork:songArt];
-        [cell setIndentationWidth:(TABLE_VIEW_ALBUM_ART_WIDTH)];
-        // Title
-        [[cell textLabel] setText:songTitle];
-        // Subtitle
-        NSAttributedString* subtitle = [MSPStringProcessor getAttributedSubtitleFromArtist:songArtist
-                                                                                     Album:songAlbum
-                                                                              WithFontSize:[[[cell detailTextLabel] font] pointSize]
-                                                                                     Color:[[cell detailTextLabel] textColor]];
-        [[cell detailTextLabel] setAttributedText:subtitle];
-        // PID
-        [cell setPID:songPID];
+        [cell setSongInfo:song];
     }
     
     return cell;

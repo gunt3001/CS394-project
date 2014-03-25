@@ -8,6 +8,7 @@
 
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
+#import "MSPStringProcessor.h"
 
 @implementation MSPTableViewCell{
     BOOL hasThumb;
@@ -68,6 +69,40 @@
     
     UIImage* artworkImage = [artwork imageWithSize:CGSizeMake(TABLE_VIEW_ALBUM_ART_WIDTH, TABLE_VIEW_ALBUM_ART_HEIGHT)];
     [self addThumbnailWithImage:artworkImage];
+}
+
+- (void)setSongInfo:(MPMediaItem*)song{
+    // Use the given song as the data for the cell
+    // Assuming the cell has appropriate styles
+    
+    // Grab song data
+    // Title
+    NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
+    // Artist
+    NSString* songArtist = [song valueForProperty:MPMediaItemPropertyArtist];
+    // Album
+    NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
+    // Artwork
+    MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
+    // Unique Persistent ID for the song
+    NSNumber* songPID = [song valueForProperty:MPMediaItemPropertyPersistentID];
+    
+    // Set cell data
+    // Artwork
+    [self addThumbnailWithMediaItemArtwork:songArt];
+    [self setIndentationWidth:(TABLE_VIEW_ALBUM_ART_WIDTH)];
+    // Title
+    [[self textLabel] setText:songTitle];
+    // Subtitle
+    NSAttributedString* subtitle = [MSPStringProcessor getAttributedSubtitleFromArtist:songArtist
+                                                                                 Album:songAlbum
+                                                                          WithFontSize:[[[self detailTextLabel] font] pointSize]
+                                                                                 Color:[[self detailTextLabel] textColor]];
+    [[self detailTextLabel] setAttributedText:subtitle];
+    // PID
+    [self setPID:songPID];
+
+
 }
 
 @end

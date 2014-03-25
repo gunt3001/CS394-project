@@ -11,6 +11,7 @@
 #import "MSPAppDelegate.h"
 #import "MSPConstants.h"
 #import "MSPTableViewCell.h"
+#import "MSPStringProcessor.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPPlaylistsTableViewController ()
@@ -111,24 +112,7 @@
             MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
             MPMediaItem* song = [[playlist items] objectAtIndex:[indexPath row] - 1];           // Offset by 1 for shuffle button
             
-            // Get song info
-            // Title
-            NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
-            // Artist
-            NSString* songArtist = [song valueForProperty:MPMediaItemPropertyArtist];
-            // Album
-            NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
-            // Artwork
-            MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
-            
-            // Set cell data
-            [[cell textLabel] setText:songTitle];
-            if (songArtist == nil) songArtist = STRING_UNKNOWN_ARTIST;
-            if (songAlbum == nil) songAlbum = STRING_UNKNOWN_ALBUM;
-            [[cell detailTextLabel] setText:[NSString stringWithFormat:TABLE_VIEW_SUBTITLE_FORMAT, songArtist, songAlbum]];
-            // Artwork
-            [cell addThumbnailWithMediaItemArtwork:songArt];
-            [cell setIndentationWidth:(TABLE_VIEW_ALBUM_ART_WIDTH)];
+            [cell setSongInfo:song];
         }
         
         return cell;
