@@ -61,7 +61,7 @@
                                                        Textcolor:[UIColor blackColor]
                                                  AltTitleTapArea:_altTitleTapArea
                                                     ArtworkImage:_imageArtwork
-                                                  WithDropShadow:YES
+                                                  WithDropShadow:NO
                                                  BackgroundImage:nil
                                                       ScrollView:nil
                                                          Seekbar:_sliderBar
