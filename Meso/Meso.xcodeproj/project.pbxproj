@@ -12,6 +12,7 @@
 		B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */; };
 		B026F23B18DDC54600B61B45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B026F23A18DDC54600B61B45 /* QuartzCore.framework */; };
 		B026F23E18DDC56100B61B45 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23D18DDC56100B61B45 /* MarqueeLabel.m */; };
+		B03972DD18E0C6D700E9C890 /* MSPPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03972DC18E0C6D700E9C890 /* MSPPlayerController.m */; };
 		B09A0E3B18DF70C500B89816 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */; };
 		B09A0E3E18DF7D8700B89816 /* MSPiPadTopMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09A0E3D18DF7D8700B89816 /* MSPiPadTopMenuViewController.m */; };
 		B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */; };
@@ -57,6 +58,8 @@
 		B026F23A18DDC54600B61B45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B026F23C18DDC56100B61B45 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
 		B026F23D18DDC56100B61B45 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
+		B03972DB18E0C6D700E9C890 /* MSPPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlayerController.h; sourceTree = "<group>"; };
+		B03972DC18E0C6D700E9C890 /* MSPPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlayerController.m; sourceTree = "<group>"; };
 		B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		B09A0E3C18DF7D8700B89816 /* MSPiPadTopMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPiPadTopMenuViewController.h; sourceTree = "<group>"; };
 		B09A0E3D18DF7D8700B89816 /* MSPiPadTopMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPiPadTopMenuViewController.m; sourceTree = "<group>"; };
@@ -142,8 +145,8 @@
 		B0AFAE8F18DD328000864EFC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
-				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
+				B03972DB18E0C6D700E9C890 /* MSPPlayerController.h */,
+				B03972DC18E0C6D700E9C890 /* MSPPlayerController.m */,
 				B026F23418DD7C5500B61B45 /* MSPStringProcessor.h */,
 				B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */,
 				B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */,
@@ -189,6 +192,8 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
+				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
+				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
 				B0E352BD18DBCA2900276682 /* Libraries */,
 				B0C8FEF918DEFD3400D5D107 /* Storyboards */,
 				B0AFAE8F18DD328000864EFC /* Models */,
@@ -360,6 +365,7 @@
 				B09A0E3E18DF7D8700B89816 /* MSPiPadTopMenuViewController.m in Sources */,
 				B0B882E118C69A4E003D37EC /* MSPAppDelegate.m in Sources */,
 				B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */,
+				B03972DD18E0C6D700E9C890 /* MSPPlayerController.m in Sources */,
 				B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */,
 				B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */,
 				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,

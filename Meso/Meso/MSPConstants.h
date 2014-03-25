@@ -42,6 +42,7 @@ extern NSInteger const BLURRED_IMAGE_DOWNSCALE_HEIGHT;  // Album arts will be do
 extern NSInteger const BLURRED_IMAGE_BLUR_RADIUS;       // The blur effect blur radius
 
 // Other Numbers
-extern float const FAST_SEEKING_DELAY;              // Delay in seconds before fast seeking occurs on button held down
-extern float const FAST_SEEKING_RATE;               // The rate of fast seeking
-extern float const MARQUEE_LABEL_RATE;              // Rate at which marquee text moves
+extern float const FAST_SEEKING_DELAY;                  // Delay in seconds before fast seeking occurs on button held down
+extern float const FAST_SEEKING_RATE;                   // The rate of fast seeking
+extern float const MARQUEE_LABEL_RATE;                  // Rate at which marquee text moves
+extern NSTimeInterval const NOWPLAYING_UPDATE_INTERVAL; // Rate at which elapsed time and progress bar updates
