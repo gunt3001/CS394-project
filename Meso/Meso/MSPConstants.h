@@ -16,8 +16,6 @@ extern NSInteger const TABLE_VIEW_SONG_ROW_HEIGHT;      // Row height for songs 
 
 // UI Strings
 extern NSString* const TABLE_VIEW_SONG_COUNT_FORMAT;    // Format of number of songs (eg. 9999 Songs)
-extern NSString* const TABLE_VIEW_SUBTITLE_FORMAT;      // Format of subtitle in table view (eg. Artist - Album)
-extern NSString* const NOWPLAYING_VIEW_SUBTITLE_FORMAT; // Format of subtitle in the now playing view
 extern NSString* const STRING_UNKNOWN_ARTIST;           // String for unknown artist
 extern NSString* const STRING_UNKNOWN_ALBUM;            // String for unknown album
 extern NSString* const STRING_NOTHING_PLAYING;          // String to show when nothing is playing on now playing screen
