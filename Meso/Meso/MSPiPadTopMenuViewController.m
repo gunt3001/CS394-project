@@ -65,7 +65,7 @@
                                                  BackgroundImage:nil
                                                       ScrollView:nil
                                                          Seekbar:_sliderBar
-                                                      ThumbImage:[UIImage imageNamed:@"ProgressSliderThumb"]
+                                                      ThumbImage:[UIImage imageNamed:@"ProgressSliderThumbBlack"]
                                                  PlayPauseButton:_buttonPlayPause
                                                    ForwardButton:_buttonForward
                                                   BackwardButton:_buttonBackward
