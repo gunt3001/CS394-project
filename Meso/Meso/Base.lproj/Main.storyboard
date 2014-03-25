@@ -189,7 +189,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonBack:" destination="kQc-2K-L24" eventType="touchUpInside" id="Sas-Rb-Kg1"/>
+                                    <action selector="backButton:" destination="kQc-2K-L24" eventType="touchUpInside" id="Z2P-nw-Sa3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BEV-xd-pua" userLabel="Up Next Button">
@@ -198,9 +198,6 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="FillButtonUpnext"/>
-                                <connections>
-                                    <action selector="buttonUpNext:" destination="kQc-2K-L24" eventType="touchUpInside" id="bfw-hS-7YT"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6VG-MS-3pH" userLabel="Play Button">
                                 <rect key="frame" x="130" y="381" width="60" height="60"/>
@@ -210,9 +207,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="buttonPlayPause:" destination="kQc-2K-L24" eventType="touchUpInside" id="Fam-d9-qE8"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="v2w-cs-8yR" userLabel="Skip Forward Button">
                                 <rect key="frame" x="229" y="381" width="60" height="60"/>
@@ -222,12 +216,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="buttonForward:" destination="kQc-2K-L24" eventType="touchUpInside" id="wBM-mh-d5m"/>
-                                    <action selector="buttonForwardTouchDown:" destination="kQc-2K-L24" eventType="touchDown" id="Ig1-JD-WPv"/>
-                                    <action selector="buttonForwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchDragExit" id="QSX-sw-4OX"/>
-                                    <action selector="buttonForwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchUpInside" id="h8n-x8-y5o"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hoj-SG-Y7q" userLabel="Skip Backward Button">
                                 <rect key="frame" x="31" y="381" width="60" height="60"/>
@@ -237,12 +225,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="buttonBackward:" destination="kQc-2K-L24" eventType="touchUpInside" id="ewr-FH-7DH"/>
-                                    <action selector="buttonBackwardTouchDown:" destination="kQc-2K-L24" eventType="touchDown" id="9qN-Qw-TJB"/>
-                                    <action selector="buttonBackwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchDragExit" id="M7D-Vm-wgb"/>
-                                    <action selector="buttonBackwardTouchUpOutside:" destination="kQc-2K-L24" eventType="touchUpOutside" id="TAH-Ad-Y0n"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TIu-1b-qfR" userLabel="Repeat Button">
                                 <rect key="frame" x="14" y="357" width="40" height="30"/>
@@ -250,9 +232,6 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="repeat"/>
-                                <connections>
-                                    <action selector="buttonRepeat:" destination="kQc-2K-L24" eventType="touchUpInside" id="0gQ-Cm-fQR"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AIz-9Q-4uF" userLabel="Shuffle Button">
                                 <rect key="frame" x="266" y="357" width="40" height="30"/>
@@ -262,24 +241,11 @@
                                 <state key="normal" image="shuffle">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="buttonShuffle:" destination="kQc-2K-L24" eventType="touchUpInside" id="24n-Q7-jKP"/>
-                                </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" id="GcQ-L4-euh" userLabel="Show Alternate Title Tap Area" colorLabel="IBBuiltInLabel-Red">
                                 <rect key="frame" x="48" y="20" width="224" height="59"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.0588715764" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="PHf-1p-AMk" userLabel="marquee title guide" colorLabel="IBBuiltInLabel-Red">
-                                <rect key="frame" x="48" y="29" width="224" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="XCm-De-J1a" userLabel="marquee subtitle guide" colorLabel="IBBuiltInLabel-Red">
-                                <rect key="frame" x="20" y="58" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIV-Ce-miY" customClass="MarqueeLabel">
                                 <rect key="frame" x="48" y="29" width="224" height="21"/>
@@ -312,9 +278,6 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="468-8T-omS" userLabel="Seek Bar Slider">
                                 <rect key="frame" x="97" y="357" width="126" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <action selector="progressSliderChanged:" destination="kQc-2K-L24" eventType="valueChanged" id="8HG-WF-ftf"/>
-                                </connections>
                             </slider>
                             <view contentMode="scaleToFill" id="t3e-kt-Kh8" customClass="MPVolumeView">
                                 <rect key="frame" x="20" y="449" width="280" height="31"/>
@@ -330,9 +293,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
-                                <connections>
-                                    <outlet property="delegate" destination="kQc-2K-L24" id="vYh-we-GbG"/>
-                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -341,19 +301,20 @@
                     <navigationItem key="navigationItem" id="CFQ-Qg-SRk"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="buttonPlayPause" destination="6VG-MS-3pH" id="vVk-QX-XHn"/>
-                        <outlet property="buttonRepeat" destination="TIu-1b-qfR" id="EHq-ZC-2qm"/>
-                        <outlet property="buttonShuffle" destination="AIz-9Q-4uF" id="kNc-Of-AmK"/>
-                        <outlet property="imageArtwork" destination="mmz-iN-Pjz" id="Yhp-Uu-cj9"/>
-                        <outlet property="imageArtworkBack" destination="1Gg-2g-VLR" id="HuY-Fq-tIV"/>
-                        <outlet property="imageScroller" destination="6Do-Bm-cfQ" id="XRz-sa-Fng"/>
-                        <outlet property="labelElapsedTime" destination="9Ly-qQ-e2w" id="qqS-Wj-MGQ"/>
-                        <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="MVo-Vl-gzx"/>
-                        <outlet property="labelSongSubtitleGuide" destination="XCm-De-J1a" id="WPL-9y-XYa"/>
-                        <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="LA4-GO-r5k"/>
-                        <outlet property="labelSongTitleGuide" destination="PHf-1p-AMk" id="lBM-JZ-AZx"/>
-                        <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="hWc-SL-QYb"/>
-                        <outlet property="sliderBar" destination="468-8T-omS" id="QB9-Zr-Zw2"/>
+                        <outlet property="altTitleTapArea" destination="GcQ-L4-euh" id="YZs-Ar-Gkv"/>
+                        <outlet property="buttonBackward" destination="hoj-SG-Y7q" id="8Wg-Nh-1rk"/>
+                        <outlet property="buttonForward" destination="v2w-cs-8yR" id="ZcO-Kk-Sjq"/>
+                        <outlet property="buttonPlayPause" destination="6VG-MS-3pH" id="IP4-CX-Dmi"/>
+                        <outlet property="buttonRepeat" destination="TIu-1b-qfR" id="HRe-lo-BlC"/>
+                        <outlet property="buttonShuffle" destination="AIz-9Q-4uF" id="v7e-K8-QoV"/>
+                        <outlet property="imageArtwork" destination="mmz-iN-Pjz" id="ubk-Xd-dl5"/>
+                        <outlet property="imageArtworkBack" destination="1Gg-2g-VLR" id="zeM-r2-yP9"/>
+                        <outlet property="imageScroller" destination="6Do-Bm-cfQ" id="AFL-fG-qv4"/>
+                        <outlet property="labelElapsedTime" destination="9Ly-qQ-e2w" id="SfJ-Bv-j64"/>
+                        <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="mQN-gu-6Km"/>
+                        <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="ft5-fq-OT0"/>
+                        <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="7Iy-WZ-Jqf"/>
+                        <outlet property="sliderBar" destination="468-8T-omS" id="u5v-9s-b5e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -862,6 +823,6 @@ https://github.com/cbpowell/MarqueeLabel</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="9jl-oT-0y1"/>
-        <segue reference="kSn-WJ-ndQ"/>
+        <segue reference="PDY-od-PhP"/>
     </inferredMetricsTieBreakers>
 </document>
