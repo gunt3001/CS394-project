@@ -330,7 +330,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Eay-Lb-eSm">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eay-Lb-eSm" id="xnh-sH-OBc">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -346,11 +346,13 @@
                     <navigationItem key="navigationItem" title="Up Next" id="iIb-9R-Kdy">
                         <barButtonItem key="rightBarButtonItem" title="Clear" id="NcD-jQ-YCB"/>
                     </navigationItem>
-                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="500"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQ9-gs-VTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2076" y="604"/>
+            <point key="canvasLocation" x="-2791" y="410"/>
         </scene>
         <!--Pi Pad Top Menu View Controller-->
         <scene sceneID="cLw-8t-tGP">
@@ -973,6 +975,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trg-US-dyf" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="16f-o5-nZj">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -985,7 +988,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c3D-aV-1k9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2737" y="508"/>
+            <point key="canvasLocation" x="-3199" y="410"/>
         </scene>
     </scenes>
     <resources>
