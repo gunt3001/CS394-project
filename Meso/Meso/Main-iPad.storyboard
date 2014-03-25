@@ -383,12 +383,6 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="FillButtonBackSkip"/>
-                                <connections>
-                                    <action selector="buttonBackward:" destination="Vs7-YN-FKT" eventType="touchUpInside" id="gzS-cS-jDP"/>
-                                    <action selector="buttonBackwardTouchDown:" destination="Vs7-YN-FKT" eventType="touchDown" id="re8-VU-1uR"/>
-                                    <action selector="buttonBackwardTouchUpOutside:" destination="Vs7-YN-FKT" eventType="touchDragExit" id="Htm-22-NIo"/>
-                                    <action selector="buttonBackwardTouchUpOutside:" destination="Vs7-YN-FKT" eventType="touchUpOutside" id="QLP-Vb-x4f"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="73p-KK-QFm">
                                 <rect key="frame" x="607" y="26" width="40" height="40"/>
@@ -396,9 +390,6 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="FillButtonPlay"/>
-                                <connections>
-                                    <action selector="buttonPlayPause:" destination="Vs7-YN-FKT" eventType="touchUpInside" id="kBl-te-0Ib"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yuO-ge-VTR">
                                 <rect key="frame" x="660" y="26" width="40" height="40"/>
@@ -406,18 +397,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="FillButtonForeSkip"/>
-                                <connections>
-                                    <action selector="buttonForward:" destination="Vs7-YN-FKT" eventType="touchUpInside" id="Y5k-ds-FlO"/>
-                                    <action selector="buttonForwardTouchDown:" destination="Vs7-YN-FKT" eventType="touchDown" id="R60-qT-W0T"/>
-                                    <action selector="buttonForwardTouchUpOutside:" destination="Vs7-YN-FKT" eventType="touchUpOutside" id="1xo-Dn-bs2"/>
-                                    <action selector="buttonForwardTouchUpOutside:" destination="Vs7-YN-FKT" eventType="touchDragExit" id="Z3q-9v-Moc"/>
-                                </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" id="ANy-N2-ch3" userLabel="marquee title guide" colorLabel="IBBuiltInLabel-Red">
-                                <rect key="frame" x="100" y="26" width="444" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="705-66-jP5" customClass="MarqueeLabel">
                                 <rect key="frame" x="100" y="26" width="444" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -425,11 +405,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" id="TYw-oC-gkv" userLabel="marquee subtitle guide" colorLabel="IBBuiltInLabel-Red">
-                                <rect key="frame" x="100" y="45" width="444" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Album" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fdi-yb-QHc" customClass="MarqueeLabel">
                                 <rect key="frame" x="100" y="45" width="444" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -446,9 +421,6 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="repeat"/>
-                                <connections>
-                                    <action selector="buttonRepeat:" destination="Vs7-YN-FKT" eventType="touchUpInside" id="XXm-9l-VDY"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gm2-VR-cjz" userLabel="Shuffle Button">
                                 <rect key="frame" x="504" y="61" width="40" height="30"/>
@@ -458,9 +430,6 @@
                                 <state key="normal" image="shuffle">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="buttonShuffle:" destination="Vs7-YN-FKT" eventType="touchUpInside" id="gng-vQ-3cU"/>
-                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o6w-TE-FEk" userLabel="Elapsed Time Label">
                                 <rect key="frame" x="148" y="70" width="29" height="14"/>
@@ -477,9 +446,6 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="qqW-TZ-Kvx" userLabel="Seek Bar Slider">
                                 <rect key="frame" x="183" y="61" width="278" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="progressSliderChanged:" destination="Vs7-YN-FKT" eventType="valueChanged" id="obl-s4-xPD"/>
-                                </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XPN-jP-3WN">
                                 <rect key="frame" x="708" y="26" width="60" height="60"/>
@@ -498,15 +464,15 @@
                     </view>
                     <connections>
                         <outlet property="altTitleTapArea" destination="A3m-OZ-vI8" id="gXg-MM-WBt"/>
+                        <outlet property="buttonBackward" destination="QsO-8Y-7iT" id="M0K-fo-1QN"/>
+                        <outlet property="buttonForward" destination="yuO-ge-VTR" id="sHP-oV-ykp"/>
                         <outlet property="buttonPlayPause" destination="73p-KK-QFm" id="I0Y-mA-rfe"/>
                         <outlet property="buttonRepeat" destination="Y94-36-Txw" id="bag-YC-wwW"/>
                         <outlet property="buttonShuffle" destination="gm2-VR-cjz" id="VgD-7v-oja"/>
                         <outlet property="imageArtwork" destination="7d3-MA-4Jc" id="sfB-9O-8qa"/>
                         <outlet property="labelElapsedTime" destination="o6w-TE-FEk" id="n2p-aK-kOp"/>
                         <outlet property="labelSongSubtitle" destination="Fdi-yb-QHc" id="cvW-bC-wm8"/>
-                        <outlet property="labelSongSubtitleGuide" destination="TYw-oC-gkv" id="8rk-VW-oTg"/>
                         <outlet property="labelSongTitle" destination="705-66-jP5" id="Nmn-PM-xvP"/>
-                        <outlet property="labelSongTitleGuide" destination="ANy-N2-ch3" id="Rh6-CI-Fz9"/>
                         <outlet property="labelTotalTime" destination="PCN-TY-R90" id="0Rq-Vc-wAA"/>
                         <outlet property="sliderBar" destination="qqW-TZ-Kvx" id="UON-Ae-h5F"/>
                     </connections>
