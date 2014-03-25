@@ -174,11 +174,11 @@
             <objects>
                 <viewController title="Player" hidesBottomBarWhenPushed="YES" id="hf3-gL-8Hr" customClass="MSPNowPlayingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Ya-mB-cES">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="924"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="UNa-Lf-jRh" userLabel="Background Blurred Image">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="924"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NLb-7A-Sxl" userLabel="Back Button">
@@ -200,7 +200,7 @@
                                 <state key="normal" image="FillButtonUpnext"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tv8-8u-4ch" userLabel="Play Button">
-                                <rect key="frame" x="354" y="805" width="60" height="60"/>
+                                <rect key="frame" x="354" y="905" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonPlay">
@@ -209,7 +209,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="u05-fD-HAP" userLabel="Skip Forward Button">
-                                <rect key="frame" x="586" y="805" width="60" height="60"/>
+                                <rect key="frame" x="586" y="905" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonForeSkip">
@@ -218,7 +218,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RxV-ky-tY8" userLabel="Skip Backward Button">
-                                <rect key="frame" x="121" y="805" width="60" height="60"/>
+                                <rect key="frame" x="121" y="905" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonBackSkip">
@@ -227,14 +227,14 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cVx-LK-jMX" userLabel="Repeat Button">
-                                <rect key="frame" x="48" y="781" width="40" height="30"/>
+                                <rect key="frame" x="48" y="881" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="repeat"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jIo-2v-jRi" userLabel="Shuffle Button">
-                                <rect key="frame" x="680" y="781" width="40" height="30"/>
+                                <rect key="frame" x="680" y="881" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
@@ -262,34 +262,34 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u5X-rh-hbs" userLabel="Elapsed Time Label">
-                                <rect key="frame" x="84" y="789" width="29" height="14"/>
+                                <rect key="frame" x="84" y="889" width="29" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eiu-ek-75K" userLabel="Total Time Label">
-                                <rect key="frame" x="654" y="789" width="29" height="14"/>
+                                <rect key="frame" x="654" y="889" width="29" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="QVq-dz-sKr" userLabel="Seek Bar Slider">
-                                <rect key="frame" x="119" y="781" width="529" height="31"/>
+                                <rect key="frame" x="119" y="881" width="529" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </slider>
                             <view contentMode="scaleToFill" id="BEv-m4-PRI" customClass="MPVolumeView">
-                                <rect key="frame" x="48" y="873" width="672" height="31"/>
+                                <rect key="frame" x="48" y="973" width="672" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="13U-e9-HDh">
-                                <rect key="frame" x="0.0" y="91" width="768" height="672"/>
+                                <rect key="frame" x="0.0" y="91" width="768" height="772"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uv4-bq-KVn" userLabel="Album Art">
-                                        <rect key="frame" x="48" y="0.0" width="672" height="672"/>
+                                        <rect key="frame" x="48" y="0.0" width="672" height="772"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
@@ -318,7 +318,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2LL-lV-S5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3621" y="739"/>
+            <point key="canvasLocation" x="3749" y="-565"/>
         </scene>
         <!--Table View Controller - Up Next-->
         <scene sceneID="yBJ-Ng-OWO">
@@ -350,7 +350,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQ9-gs-VTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1380" y="-2164"/>
+            <point key="canvasLocation" x="-2076" y="604"/>
         </scene>
         <!--Pi Pad Top Menu View Controller-->
         <scene sceneID="cLw-8t-tGP">
@@ -459,6 +459,16 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0rJ-sR-SyX">
+                                <rect key="frame" x="20" y="17" width="72" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hf3-gL-8Hr" kind="modal" modalTransitionStyle="crossDissolve" id="uA3-ss-MzX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -479,7 +489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kst-AG-D07" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2153" y="-913"/>
+            <point key="canvasLocation" x="-3921" y="-881"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TEj-Sz-av1">
@@ -502,7 +512,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1F-X3-GMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1128" y="-902"/>
+            <point key="canvasLocation" x="-1608" y="-1710"/>
         </scene>
         <!--Playlists View Controller - Playlists-->
         <scene sceneID="G3v-V8-Ncf">
@@ -975,7 +985,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c3D-aV-1k9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1793" y="-2164"/>
+            <point key="canvasLocation" x="-2737" y="508"/>
         </scene>
     </scenes>
     <resources>
@@ -1002,7 +1012,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="uA3-ss-MzX"/>
         <segue reference="spT-9J-Aq0"/>
-        <segue reference="kvR-ot-Wzz"/>
     </inferredMetricsTieBreakers>
 </document>
