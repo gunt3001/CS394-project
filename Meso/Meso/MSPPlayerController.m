@@ -111,7 +111,6 @@
         [self setupGuides];                               // Add dummy UIView as guides for frame of Marquee Text Labels
         [self setupActions];                              // Add actions for buttons
         [self setupSongTitleGesture];                     // Enable tapping on song title to show alternate title
-        [self setupTimer];                                // Set up timer to keep track of elapsed time
         [self setupMarquee];                              // Set up scrolling text
         [self setupProgressSliderWithThumb:thumbImage];   // Seek bar
         [self setupImageScroller];                        // Use imagescroller to allow song skipping by swiping
@@ -215,15 +214,6 @@
     
 }
 
-- (void)setupTimer{
-    
-    // Update at a constant time
-    _elapsedTimer = [NSTimer scheduledTimerWithTimeInterval:NOWPLAYING_UPDATE_INTERVAL
-                                                    target:self
-                                                  selector:@selector(updateElapsedTime)
-                                                  userInfo:nil repeats:YES];
-}
-
 #pragma mark - View Changes
 
 // View Will Appear
@@ -239,6 +229,8 @@
     
     [self setupMediaUpdate];                // Subscribe to media status changes
     [self updateMediaData];                 // Update now playing item
+    [self setupTimer];                      // Set up timer to keep track of elapsed time
+
 }
 
 // View Did Appear
@@ -258,6 +250,9 @@
     
     // Unsubscribe to media status changes
     [self unsetMediaUpdate];
+    
+    // Unset timer
+    [_elapsedTimer invalidate];
 }
 
 // Do some preparartion for screen rotation
@@ -299,6 +294,15 @@
 }
 
 #pragma mark Related Methods
+
+- (void)setupTimer{
+    
+    // Update at a constant time
+    _elapsedTimer = [NSTimer scheduledTimerWithTimeInterval:NOWPLAYING_UPDATE_INTERVAL
+                                                     target:self
+                                                   selector:@selector(updateElapsedTime)
+                                                   userInfo:nil repeats:YES];
+}
 
 - (void)setupMediaUpdate{
     
