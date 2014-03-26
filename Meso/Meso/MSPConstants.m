@@ -18,7 +18,7 @@ NSInteger const TABLE_VIEW_CELL_THUMBNAIL_TAG = 100;
 NSString* const TABLE_VIEW_SONG_COUNT_FORMAT = @"%ld Songs";
 NSString* const STRING_UNKNOWN_ARTIST = @"Unknown Artist";
 NSString* const STRING_UNKNOWN_ALBUM = @"Unknown Album";
-NSString* const STRING_NOTHING_PLAYING = @"Nothing Playing";
+NSString* const STRING_NOTHING_PLAYING = @"";
 NSString* const STRING_NOTHING_PLAYING_TIME = @"--:--";
 
 NSString* const MSPMediaItemPropertySortTitle = @"sortTitle";
