@@ -19,7 +19,7 @@
     __weak UIView*         _view;                         // The View
     __weak MarqueeLabel*   _labelSongTitle;               // Song Title Label
     __weak MarqueeLabel*   _labelSongSubtitle;            // Song Subtitle Label
-    __weak UIImageView*    _imageArtwork;                 // Song Artwork
+    __weak id              _imageArtwork;                 // Song Artwork
     __weak UIImageView*    _imageArtworkBack;             // Song Artwork as Background Image
     __weak UISlider*       _sliderBar;                    // Seek Bar
     __weak UIScrollView*   _imageScroller;                // Scrollview containing artwork
@@ -67,7 +67,7 @@
           Subtitle:(MarqueeLabel*)labelSongSubtitle
          Textcolor:(UIColor*)textColor
    AltTitleTapArea:(UIView*)altTitleTapArea
-      ArtworkImage:(UIImageView*)imageArtwork
+      ArtworkImage:(id)imageArtwork
     WithDropShadow:(BOOL)withDropShadow
    BackgroundImage:(UIImageView*)imageArtworkBack
         ScrollView:(UIScrollView*)imageScroller
@@ -687,14 +687,22 @@
 }
 
 #pragma mark - Helper Methods
-- (void) changeImageWithTransitionOn:(UIImageView*)view withImage:(UIImage*)image{
+- (void) changeImageWithTransitionOn:(id)view withImage:(UIImage*)image{
     // Change image in the given uiimageview with fading animation
     
     [UIView transitionWithView:view
                       duration:0.2f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-                        [view setImage:image];
+                        // Check the type of the target view
+                        // Only supports UIButton or UIImageView
+                        if ([view isKindOfClass:[UIButton class]]){
+                            [(UIButton*)view setImage:image forState:UIControlStateNormal];
+                        }
+                        else if ([view isKindOfClass:[UIImageView class]]){
+                            [(UIImageView*)view setImage:image];
+                        }
+                        
                     } completion:NULL];
 }
 

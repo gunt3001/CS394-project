@@ -14,12 +14,16 @@
 
 @interface MSPPlayerController : NSObject <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
+/**
+ Initialize with the given UI Elements and Properties
+ imageArtwork only supports UIButton or UIImageView.
+ */
 - (id)initWithView:(UIView*)view
              Title:(MarqueeLabel*)labelSongTitle
           Subtitle:(MarqueeLabel*)labelSongSubtitle
          Textcolor:(UIColor*)textColor
    AltTitleTapArea:(UIView*)altTitleTapArea
-      ArtworkImage:(UIImageView*)imageArtwork
+      ArtworkImage:(id)imageArtwork
     WithDropShadow:(BOOL)withDropShadow
    BackgroundImage:(UIImageView*)imageArtworkBack
         ScrollView:(UIScrollView*)imageScroller

@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet MarqueeLabel *labelSongTitle;
 @property (weak, nonatomic) IBOutlet MarqueeLabel *labelSongSubtitle;
-@property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
+@property (weak, nonatomic) IBOutlet UIButton *imageArtworkBtn;
 @property (weak, nonatomic) IBOutlet UISlider *sliderBar;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;
 @property (weak, nonatomic) IBOutlet UIButton *buttonForward;
@@ -60,7 +60,7 @@
                                                         Subtitle:_labelSongSubtitle
                                                        Textcolor:[UIColor blackColor]
                                                  AltTitleTapArea:_altTitleTapArea
-                                                    ArtworkImage:_imageArtwork
+                                                    ArtworkImage:_imageArtworkBtn
                                                   WithDropShadow:NO
                                                  BackgroundImage:nil
                                                       ScrollView:nil
@@ -75,7 +75,6 @@
                                                      ElapsedTime:_labelElapsedTime
                                                        TotalTime:_labelTotalTime
                                                        TintColor:[[self view] tintColor]];
-    
 }
 
 #pragma mark - View Changes
