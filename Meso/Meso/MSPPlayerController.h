@@ -22,6 +22,7 @@
              Title:(MarqueeLabel*)labelSongTitle
           Subtitle:(MarqueeLabel*)labelSongSubtitle
          Textcolor:(UIColor*)textColor
+  SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
       ArtworkImage:(id)imageArtwork
     WithDropShadow:(BOOL)withDropShadow

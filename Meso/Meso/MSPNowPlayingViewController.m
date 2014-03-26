@@ -61,6 +61,7 @@
                                                            Title:_labelSongTitle
                                                         Subtitle:_labelSongSubtitle
                                                        Textcolor:[UIColor whiteColor]
+                                                SubtitleFontSize:[[_labelSongSubtitle font] pointSize]
                                                  AltTitleTapArea:_altTitleTapArea
                                                     ArtworkImage:_imageArtwork
                                                   WithDropShadow:YES

@@ -31,10 +31,11 @@
     __weak UILabel*        _labelElapsedTime;             // Elapsed Time Label
     __weak UILabel*        _labelTotalTime;               // Total Time Label
     
-    // Colors
+    // Colors & Fonts
     UIColor*        _textColor;                    // Text color
     UIColor*        _offColor;                     // Off color for shuffle and repeat buttons
     UIColor*        _tintColor;                    // The view's tint color
+    CGFloat         _subtitleFontSize;             // Subtitle font size
 
     // Dummy UI Elements
     __weak UIView*  _altTitleTapArea;              // Tap area for showing alternate title
@@ -67,6 +68,7 @@
              Title:(MarqueeLabel*)labelSongTitle
           Subtitle:(MarqueeLabel*)labelSongSubtitle
          Textcolor:(UIColor*)textColor
+  SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
       ArtworkImage:(id)imageArtwork
     WithDropShadow:(BOOL)withDropShadow
@@ -93,6 +95,7 @@
         _labelSongTitle    = labelSongTitle;
         _labelSongSubtitle = labelSongSubtitle;
         _textColor         = textColor;
+        _subtitleFontSize  = subtitleFontSize;
         _sliderBar         = sliderBar;
         _imageArtwork      = imageArtwork;
         _imageScroller     = imageScroller;
@@ -595,7 +598,7 @@
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
     NSAttributedString* subtitle =  [MSPStringProcessor getAttributedSubtitleFromArtist:artist
                                                                                   Album:album
-                                                                           WithFontSize:[[_labelSongSubtitle font] pointSize]
+                                                                           WithFontSize:_subtitleFontSize
                                                                                   Color:[_labelSongSubtitle textColor]];
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
