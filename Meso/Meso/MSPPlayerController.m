@@ -43,6 +43,7 @@
     
     // Flags
     BOOL            _isShowingAltTitle;            // Whether the song name shown is the alternate title
+    BOOL            _isButtonImageArtwork;         // Whether imageArtwork is a UIButton. UIImageView otherwise.
     
     // Other objects
     MPMusicPlayerController* _musicPlayer;         // The iPod music player
@@ -108,6 +109,7 @@
         _tintColor         = tintColor;
         
         // Do One-time setup of UI Elements
+        [self setupArtworkType];                          // Determine the type of imageArtwork
         [self setupGuides];                               // Add dummy UIView as guides for frame of Marquee Text Labels
         [self setupActions];                              // Add actions for buttons
         [self setupSongTitleGesture];                     // Enable tapping on song title to show alternate title
@@ -124,6 +126,19 @@
 }
 
 #pragma mark Related Methods
+
+- (void) setupArtworkType{
+    // Check the type of the target view
+    
+    // Check if it's UIButton.
+    // Assume UIImageView otherwise.
+    _isButtonImageArtwork = [_imageArtwork isKindOfClass:[UIButton class]];
+    
+    // Set image as fit mode
+    if (_isButtonImageArtwork) {
+        [[(UIButton*)_imageArtwork imageView] setContentMode: UIViewContentModeScaleAspectFit];
+    }
+}
 
 - (void) setupGuides{
     
@@ -694,15 +709,12 @@
                       duration:0.2f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-                        // Check the type of the target view
-                        // Only supports UIButton or UIImageView
-                        if ([view isKindOfClass:[UIButton class]]){
+                        if (_isButtonImageArtwork){
                             [(UIButton*)view setImage:image forState:UIControlStateNormal];
                         }
-                        else if ([view isKindOfClass:[UIImageView class]]){
+                        else{
                             [(UIImageView*)view setImage:image];
                         }
-                        
                     } completion:NULL];
 }
 
