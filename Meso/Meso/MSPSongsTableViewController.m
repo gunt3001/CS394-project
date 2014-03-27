@@ -177,7 +177,7 @@
             
             // Turn shuffle back on, if it was on
             if (oldShufMode != MPMusicShuffleModeOff){
-                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeDefault];
+                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
             }
             
             [iPodMusicPlayer play];
