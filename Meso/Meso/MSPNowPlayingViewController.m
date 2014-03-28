@@ -8,7 +8,7 @@
 
 #import "MSPNowPlayingViewController.h"
 #import "MarqueeLabel.h"
-#import "MSPPlayerController.h"
+#import "MSPMediaPlayerViewHelper.h"
 
 @interface MSPNowPlayingViewController ()
 
@@ -30,7 +30,7 @@
 @end
 
 @implementation MSPNowPlayingViewController{
-    MSPPlayerController*    playerController;
+    MSPMediaPlayerViewHelper*    playerController;
 }
 
 #pragma mark - Xcode Generated
@@ -57,7 +57,7 @@
     // Do any additional setup after loading the view.
     
     // Initialize the player controller object
-    playerController = [[MSPPlayerController alloc] initWithView:[self view]
+    playerController = [[MSPMediaPlayerViewHelper alloc] initWithView:[self view]
                                                            Title:_labelSongTitle
                                                         Subtitle:_labelSongSubtitle
                                                        Textcolor:[UIColor whiteColor]

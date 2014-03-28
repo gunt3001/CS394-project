@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Napat R. All rights reserved.
 //
 
-#import "MSPPlayerController.h"
+#import "MSPMediaPlayerViewHelper.h"
 #import "MSPConstants.h"
 #import "MSPAppDelegate.h"
 #import "MSPStringProcessor.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@implementation MSPPlayerController{
+@implementation MSPMediaPlayerViewHelper{
     // Private variables
     
     // UI Elements

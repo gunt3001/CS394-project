@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "MarqueeLabel.h"
 
-@interface MSPPlayerController : NSObject <UIGestureRecognizerDelegate, UIScrollViewDelegate>
+@interface MSPMediaPlayerViewHelper : NSObject <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
 /**
  Initialize with the given UI Elements and Properties
