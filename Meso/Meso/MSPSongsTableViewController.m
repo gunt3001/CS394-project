@@ -167,7 +167,7 @@
             // Set the playing Queue to be all songs, not including iCloud items
             MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
             
-            // Temporarily turn off shuffle to prevent race condition
+            // Temporarily turn off shuffle
             MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
             [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
             
