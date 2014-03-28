@@ -239,12 +239,23 @@
 // Things to do every time the view with the controls appear on the screen
 - (void) viewWillAppear{
     
-    // Recreate marquee & scrollview the first time view appears
-    // Fix bug where many ui elements' frame has wrong dimensions when starting orientation is not portrait
-    if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
-        [self recreateMarqueeTexts];
-        [self setupImageScroller];
+    // Force the update of view's bounds
+    // A bug in iOS causes it not to be updated the first time app starts up
+    // check if bounds is currently in portrait mode, but the view is in landscape
+    if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)
+        && _view.bounds.size.width < _view.bounds.size.height){
+        
+        // Swap height and width
+        CGRect originalBounds = _view.bounds;
+        [_view setBounds:CGRectMake(originalBounds.origin.x,
+                                    originalBounds.origin.y,
+                                    originalBounds.size.height,
+                                    originalBounds.size.width)];
     }
+    
+    // Recreate views that are affected by this bug
+    [self recreateMarqueeTexts];
+    [self setupImageScroller];
     
     [self setupMediaUpdate];                // Subscribe to media status changes
     [self updateMediaData];                 // Update now playing item
