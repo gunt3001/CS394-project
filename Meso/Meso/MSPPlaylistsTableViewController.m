@@ -12,6 +12,7 @@
 #import "MSPConstants.h"
 #import "MSPTableViewCell.h"
 #import "MSPStringProcessor.h"
+#import "MSPMediaPlayerHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPPlaylistsTableViewController ()
@@ -62,11 +63,7 @@
     if (_playlistPID){
         
         // Query the songs from this playlist from the music library
-        MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-        [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                            predicateWithValue:_playlistPID
-                                            forProperty:MPMediaPlaylistPropertyPersistentID]];
-        MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
+        MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
         
         // Return number of songs in this playlist
         return [[playlist items] count] + 1;
@@ -105,11 +102,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
             
             // Query the songs from this playlist from the music library
-            MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-            [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                                predicateWithValue:_playlistPID
-                                                forProperty:MPMediaPlaylistPropertyPersistentID]];
-            MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
+            MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
             MPMediaItem* song = [[playlist items] objectAtIndex:[indexPath row] - 1];           // Offset by 1 for shuffle button
             
             [cell setSongInfo:song];
@@ -198,50 +191,23 @@
         // If it's a song
         else if ([[senderCell reuseIdentifier] isEqualToString:@"idsongitem"]){
             
-            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-            
-            // Query the song
-            MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-            [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                                predicateWithValue:_playlistPID
-                                                forProperty:MPMediaPlaylistPropertyPersistentID]];
-            MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
+            // Get the song
+            MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
             NSIndexPath* indexPath = [[self tableView] indexPathForCell:senderCell];
             MPMediaItem* song = [[playlist items] objectAtIndex:[indexPath row] - 1];       // Offset by 1 for shuffle button
             
-            // Temporarily turn off shuffle
-            MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
-            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
-            
-            // Set playing queue and now playing item
-            [iPodMusicPlayer setQueueWithQuery:playlistsQuery];
-            [iPodMusicPlayer setNowPlayingItem:song];
-            
-            // Turn shuffle back on, if it was on
-            if (oldShufMode != MPMusicShuffleModeOff){
-                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
-            }
-            
-            [iPodMusicPlayer play];
+            // Play the song
+            [MSPMediaPlayerHelper playSong:song QueueCollection:playlist];
             
         }
         // If it's a shuffle button
         else if ([[senderCell reuseIdentifier] isEqualToString:@"idshuffleitem"]){
             
-            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-            
             // Query Playlist
-            MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-            [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                                predicateWithValue:_playlistPID
-                                                forProperty:MPMediaPlaylistPropertyPersistentID]];
-            // Set playing queue
-            [iPodMusicPlayer setQueueWithQuery:playlistsQuery];
+            MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
             
-            // Turn on shuffle
-            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
-            
-            [iPodMusicPlayer play];
+            // Play playlist
+            [MSPMediaPlayerHelper playCollection:playlist ForceShuffle:YES];
         }
     }
 }

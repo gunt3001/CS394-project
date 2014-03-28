@@ -11,6 +11,7 @@
 #import "MSPConstants.h"
 #import "MSPAppDelegate.h"
 #import "MSPStringProcessor.h"
+#import "MSPMediaPlayerHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPSongsTableViewController ()
@@ -46,7 +47,7 @@
     // Return the number of sections
     
     // 1 for Shuffle + Whatever number of sections is returned by the MediaQuery object
-    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
+    MPMediaQuery* allSongsQuery = [MSPMediaPlayerHelper allSongsWithoutICloud];
     return 1 + [[allSongsQuery itemSections] count];
 }
 
@@ -57,7 +58,7 @@
     // 1 row for the shuffle section
     if (section == 0) return 1;
     
-    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
+    MPMediaQuery* allSongsQuery = [MSPMediaPlayerHelper allSongsWithoutICloud];
     MPMediaQuerySection* thisSection = [[allSongsQuery collectionSections] objectAtIndex:(section - 1)];
     return [thisSection range].length;
 }
@@ -80,7 +81,7 @@
     // Return the cell for the table
     
     MSPTableViewCell* cell;
-    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
+    MPMediaQuery* allSongsQuery = [MSPMediaPlayerHelper allSongsWithoutICloud];
     
     // First section is always the shuffle item
     if ([indexPath section] == 0){
@@ -115,7 +116,7 @@
     // First section (shuffle) does not have title
     if (section == 0) return nil;
     
-    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
+    MPMediaQuery* allSongsQuery = [MSPMediaPlayerHelper allSongsWithoutICloud];
     return [[[allSongsQuery collectionSections] objectAtIndex:(section - 1)] title];
 }
 
@@ -127,7 +128,7 @@
     // The first section (shuffle) don't need indexing
 
     // Add the rest from library
-    MPMediaQuery* allSongsQuery = [self getAllSongsWithoutICloudQuery];
+    MPMediaQuery* allSongsQuery = [MSPMediaPlayerHelper allSongsWithoutICloud];
     for (MPMediaQuerySection* eachSection in [allSongsQuery itemSections]){
         [indexes addObject:[eachSection title]];
     }
@@ -155,61 +156,27 @@
     // Start playing selected music
     if ([sender isKindOfClass:[MSPTableViewCell class]]){
         MSPTableViewCell* selectedCell = (MSPTableViewCell*) sender;
-        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
         
         // If it's a song
         if ([selectedCell PID]){
             // Query the song object from the stored PID
-            MPMediaQuery* songQuery = [self getAllSongsWithoutICloudQuery];
-            [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];
-            MPMediaItem* song = [[songQuery items] objectAtIndex:0];
+            MPMediaItem* song = [MSPMediaPlayerHelper songFromPID:[selectedCell PID]];
                         
             // Set the playing Queue to be all songs, not including iCloud items
-            MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
+            MPMediaQuery* allSongs = [MSPMediaPlayerHelper allSongsWithoutICloud];
             
-            // Temporarily turn off shuffle
-            MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
-            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
-            
-            // Set playing queue and now playing item
-            [iPodMusicPlayer setQueueWithQuery:allSongs];
-            [iPodMusicPlayer setNowPlayingItem:song];
-            
-            // Turn shuffle back on, if it was on
-            if (oldShufMode != MPMusicShuffleModeOff){
-                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
-            }
-            
-            [iPodMusicPlayer play];
+            // Play
+            [MSPMediaPlayerHelper playSong:song QueueQuery:allSongs];
         }
         // If it's the shuffle button
         else{
             // Set the playing Queue to be all songs, not including iCloud items
-            MPMediaQuery* allSongs = [self getAllSongsWithoutICloudQuery];
+            MPMediaQuery* allSongs = [MSPMediaPlayerHelper allSongsWithoutICloud];
             
             // Ask the iPod to play it
-            [iPodMusicPlayer setQueueWithQuery:allSongs];
-            
-            // Turn on shuffle
-            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
-            
-            [iPodMusicPlayer play];
+            [MSPMediaPlayerHelper playQuery:allSongs ForceShuffle:YES];
         }
     }
 }
-
-#pragma mark - Helper Methods
-
-- (MPMediaQuery*) getAllSongsWithoutICloudQuery{
-    // Return a MPMediaQuery of all songs in the iPod Library without iCloud music
-    
-    MPMediaQuery* allSongs = [MPMediaQuery songsQuery];
-    [allSongs addFilterPredicate:[MPMediaPropertyPredicate
-                                  predicateWithValue:[NSNumber numberWithBool:NO]
-                                  forProperty:MPMediaItemPropertyIsCloudItem]];
-    
-    return allSongs;
-}
-
 
 @end
