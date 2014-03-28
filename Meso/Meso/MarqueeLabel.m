@@ -256,7 +256,7 @@ typedef void (^animationCompletionBlock)(void);
 }
 
 - (void)minimizeLabelFrameWithMaximumSize:(CGSize)maxSize adjustHeight:(BOOL)adjustHeight {
-    if (self.subLabel.text != nil) {
+    if (self.subLabel.text) {
         // Calculate text size
         if (CGSizeEqualToSize(maxSize, CGSizeZero)) {
             maxSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
@@ -1010,7 +1010,7 @@ typedef void (^animationCompletionBlock)(void);
     
     _labelize = labelize;
     
-    if (labelize && self.subLabel != nil) {
+    if (labelize && self.subLabel) {
         [self returnLabelToOriginImmediately];
     }
     

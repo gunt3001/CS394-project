@@ -158,7 +158,7 @@
         MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
         
         // If it's a song
-        if ([selectedCell PID] != nil){
+        if ([selectedCell PID]){
             // Query the song object from the stored PID
             MPMediaQuery* songQuery = [self getAllSongsWithoutICloudQuery];
             [songQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[selectedCell PID] forProperty:MPMediaItemPropertyPersistentID]];

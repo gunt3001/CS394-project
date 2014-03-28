@@ -420,7 +420,7 @@
     // Skip to next song, or stop fast forwarding
     
     // Stop timer when we touched down
-    if (_fastSeekTimer != nil){
+    if (_fastSeekTimer){
         [_fastSeekTimer invalidate];
         _fastSeekTimer = nil;
     }
@@ -468,7 +468,7 @@
     // Skip to beginning, or to previous song if at less than certain seconds
     
     // Stop timer when we touched down
-    if (_fastSeekTimer != nil){
+    if (_fastSeekTimer){
         [_fastSeekTimer invalidate];
         _fastSeekTimer = nil;
     }
