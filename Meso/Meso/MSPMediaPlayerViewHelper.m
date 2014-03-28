@@ -48,8 +48,9 @@
     
     // Other objects
     MPMusicPlayerController* _musicPlayer;         // The iPod music player
-    NSString*       _nowPlayingSongTitle;          // Title of currently playing song
-    NSString*       _nowPlayingSongAltTitle;       // Alternate title of currently playing song
+    NSString*       _displayedSongTitle;           // Title of song on display
+    NSString*       _displayedSongAltTitle;        // Alternate title of song on display
+    NSNumber*       _displayedSongPID;             // PID of song on display
     
     // Background Processing
     dispatch_queue_t    _imageBlurringQueue;       // GCD Queue for iamge blurring
@@ -391,11 +392,11 @@
     [_labelSongTitle.layer addAnimation:animation forKey:@"kCATransitionFade"];
     
     if (_isShowingAltTitle){
-        [_labelSongTitle setText:_nowPlayingSongTitle];
+        [_labelSongTitle setText:_displayedSongTitle];
         _isShowingAltTitle = NO;
     }
     else {
-        [_labelSongTitle setText:_nowPlayingSongAltTitle];
+        [_labelSongTitle setText:_displayedSongAltTitle];
         _isShowingAltTitle = YES;
     }
     
@@ -585,14 +586,24 @@
         if (_imageArtworkBack)
             [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
         [_labelTotalTime setText:STRING_NOTHING_PLAYING_TIME];
-        _nowPlayingSongTitle = STRING_NOTHING_PLAYING;
-        _nowPlayingSongAltTitle = STRING_NOTHING_PLAYING;
+        _displayedSongTitle = STRING_NOTHING_PLAYING;
+        _displayedSongAltTitle = STRING_NOTHING_PLAYING;
+        _displayedSongPID = nil;
         [self updateButtonsState];
         return;
     }
     
-    // Grab necessary information
+    // Get the playing song's PID
     MPMediaItem* nowPlaying = [_musicPlayer nowPlayingItem];
+    NSNumber* songPid = [nowPlaying valueForProperty:MPMediaItemPropertyPersistentID];
+    
+    // Check if we're playing the same song
+    // Skip the update to improve performance
+    if (_displayedSongPID && [_displayedSongPID isEqualToNumber:songPid]){
+        return;
+    }
+    
+    // Otherwise grab necessary information
     NSString* title = [nowPlaying valueForProperty:MPMediaItemPropertyTitle];
     NSString* album = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumTitle];
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
@@ -600,6 +611,7 @@
                                                                                   Album:album
                                                                            WithFontSize:_subtitleFontSize
                                                                                   Color:[_labelSongSubtitle textColor]];
+    
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     if (!artworkImage) artworkImage = [UIImage imageNamed:@"noartplaceholder"];
@@ -620,8 +632,9 @@
     [self updateButtonsState];                                                      // Play-Pause-Shuffle-Repeat buttons
     
     // Metadata
-    _nowPlayingSongTitle = title;                                        // Title, used to switch with alternate title
-    _nowPlayingSongAltTitle = altTitle;                            // Alternate title
+    _displayedSongTitle = title;                                        // Title, used to switch with alternate title
+    _displayedSongAltTitle = altTitle;                                  // Alternate title
+    _displayedSongPID = songPid;                                        // Persistent ID
     
     // Apply the heavy task of blurring image in background thread
     if (_imageArtworkBack)
