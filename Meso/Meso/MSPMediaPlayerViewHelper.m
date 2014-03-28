@@ -577,19 +577,30 @@
     
     // Reset flags
     _isShowingAltTitle = NO;
+
+    // Update UI Elements that are independent of now playing song
+    [self updateButtonsState];
+    [self updateElapsedTime];
     
     // Check if we're playing anything at all
     if ([_musicPlayer playbackState] == MPMusicPlaybackStateStopped){
+        
+        // Title & Subtitle
         [_labelSongTitle setText:STRING_NOTHING_PLAYING];
         [_labelSongSubtitle setText:@""];
+        
+        // Artworks
         [self changeImageWithTransitionOn:_imageArtwork withImage:nil];
         if (_imageArtworkBack)
             [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
+        
+        // Timers
         [_labelTotalTime setText:STRING_NOTHING_PLAYING_TIME];
+        
+        // Metadata
         _displayedSongTitle = STRING_NOTHING_PLAYING;
         _displayedSongAltTitle = STRING_NOTHING_PLAYING;
         _displayedSongPID = nil;
-        [self updateButtonsState];
         return;
     }
     
@@ -626,10 +637,8 @@
     [self recreateMarqueeTexts];                                                    // Update bounds for Title/Subtitle
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
     if (_imageArtworkBack)
-        [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];         // Background Artwork (nil for now)
-    [self updateElapsedTime];                                                       // Elapsed time and progress bar
+        [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];         // Background Artwork (Hide, show later in separate thread)
     [_labelTotalTime setText:totalString];                                          // Total time
-    [self updateButtonsState];                                                      // Play-Pause-Shuffle-Repeat buttons
     
     // Metadata
     _displayedSongTitle = title;                                        // Title, used to switch with alternate title
