@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface MSPMesoTableViewController : UITableViewController <CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate>
+@interface MSPMesoTableViewController : UITableViewController
 
 @end
