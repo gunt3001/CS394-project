@@ -141,34 +141,6 @@
             </objects>
             <point key="canvasLocation" x="1051" y="-950"/>
         </scene>
-        <!--View Controller - Meso-->
-        <scene sceneID="oWk-gt-Riz">
-            <objects>
-                <viewController title="Meso" id="Fqs-xx-ewx" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="T6H-rr-Z3Z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar" id="IXJ-ie-bcC">
-                                <rect key="frame" x="0.0" y="66" width="320" height="363"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Meso" id="AsQ-Nf-k87">
-                        <barButtonItem key="rightBarButtonItem" title="Now Playing" id="wo8-vN-SVb">
-                            <connections>
-                                <segue destination="kQc-2K-L24" kind="modal" modalTransitionStyle="crossDissolve" id="kSn-WJ-ndQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xvT-85-Sdt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1051" y="456"/>
-        </scene>
         <!--Now Playing View Controller - Player-->
         <scene sceneID="r8l-0Q-BSX">
             <objects>
@@ -518,12 +490,41 @@ https://github.com/cbpowell/MarqueeLabel</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Fqs-xx-ewx" kind="relationship" relationship="rootViewController" id="mDR-w9-FS4"/>
+                        <segue destination="Gga-bY-8Na" kind="relationship" relationship="rootViewController" id="RBa-3v-DRS"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qiu-4H-ais" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="540" y="464"/>
+        </scene>
+        <!--Meso Table View Controller-->
+        <scene sceneID="bdp-jd-Jga">
+            <objects>
+                <tableViewController id="Gga-bY-8Na" customClass="MSPMesoTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="w5Y-om-8FJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sKD-dT-CFK">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sKD-dT-CFK" id="PCk-cq-hkr">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Gga-bY-8Na" id="qR3-X8-vut"/>
+                            <outlet property="delegate" destination="Gga-bY-8Na" id="CSe-ad-ndd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="cmZ-My-BxW"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTY-jV-0xL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986" y="464"/>
         </scene>
         <!--Navigation Controller - Artists-->
         <scene sceneID="ZxS-hW-U08">
@@ -811,7 +812,6 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="TabBarPlaylists" width="30" height="30"/>
         <image name="TabBarSongs" width="30" height="30"/>
         <image name="arrowback" width="128" height="128"/>
-        <image name="radar" width="600" height="600"/>
         <image name="repeat" width="32" height="32"/>
         <image name="shuffle" width="32" height="32"/>
         <image name="shuffleicon" width="600" height="600"/>
@@ -822,7 +822,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9jl-oT-0y1"/>
         <segue reference="PDY-od-PhP"/>
+        <segue reference="9jl-oT-0y1"/>
     </inferredMetricsTieBreakers>
 </document>
