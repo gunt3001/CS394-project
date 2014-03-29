@@ -720,6 +720,9 @@ https://github.com/cbpowell/MarqueeLabel</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="deviceTable" destination="88S-od-pfZ" id="aRN-Tf-2jS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ulk-7x-2AH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

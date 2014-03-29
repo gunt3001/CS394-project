@@ -543,6 +543,9 @@ https://github.com/cbpowell/MarqueeLabel</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="deviceTable" destination="w5Y-om-8FJ" id="rsS-gT-Y8B"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTY-jV-0xL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
