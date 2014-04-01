@@ -274,9 +274,9 @@
 				B026F23C18DDC56100B61B45 /* MarqueeLabel.h */,
 				B026F23D18DDC56100B61B45 /* MarqueeLabel.m */,
 				B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */,
+				B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */,
 				B0A2681418EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.h */,
 				B0A2681518EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.m */,
-				B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";

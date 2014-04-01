@@ -25,6 +25,17 @@
 /// Return a query of all songs on the local device
 + (MPMediaQuery*) allSongsWithoutICloud;
 
+#pragma mark - Currently Playing Queue
+
+/// Return an MPMediaItem in playing queue with specified index
++ (MPMediaItem*) nowPlayingItemAtIndex:(NSInteger)index;
+
+/// Return an MPMediaItem in playing queue with offset from now playing item
++ (MPMediaItem*) nowPlayingItemFromCurrentOffset:(NSInteger)offset;
+
+/// Return the number of items left in the currently playing queue
++ (NSInteger) itemsLeftInPlayingQueue;
+
 #pragma mark - Playing Collections & Queries
 
 /// Play a song with given collection as the queue

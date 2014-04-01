@@ -8,6 +8,7 @@
 
 #import "MSPMediaPlayerHelper.h"
 #import "MSPAppDelegate.h"
+#import "MPMusicPlayerController+CurrentQueue.h"
 
 @implementation MSPMediaPlayerHelper
 
@@ -39,6 +40,29 @@
                                   forProperty:MPMediaItemPropertyIsCloudItem]];
     
     return allSongs;
+}
+
+#pragma mark - Currently Playing Queue
+
+/// Return an MPMediaItem in playing queue with specified index
++ (MPMediaItem *)nowPlayingItemAtIndex:(NSInteger)index{
+    
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    return [iPodMusicPlayer nowPlayingItemAtIndex:(unsigned)index];
+}
+
+/// Return an MPMediaItem in playing queue with offset from now playing item
+/// Exmaple- An offset of 0 means the next song in queue
++ (MPMediaItem *)nowPlayingItemFromCurrentOffset:(NSInteger)offset{
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1 + offset;
+    return [iPodMusicPlayer nowPlayingItemAtIndex:(unsigned)nextItemIndex];
+}
+
+/// Return the number of items left in the currently playing queue
++ (NSInteger)itemsLeftInPlayingQueue{
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    return [iPodMusicPlayer numberOfItems] - ([iPodMusicPlayer indexOfNowPlayingItem] + 1);
 }
 
 #pragma mark - Playing Collections & Queries

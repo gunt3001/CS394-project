@@ -11,6 +11,7 @@
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
 #import "MPMusicPlayerController+CurrentQueue.h"
+#import "MSPMediaPlayerHelper.h"
 
 @interface MSPUpNextViewController ()
 
@@ -56,20 +57,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-
-    // Get the upcoming songs
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-    NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1;
-    MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:nextItemIndex];
-    NSInteger upcomingCount = 0;
     
     // As long as we still have upcoming songs, we show them
     // with a limit of: UPNEXT_COUNT
-    while (next && upcomingCount < UPNEXT_COUNT){
-        upcomingCount++;
-        nextItemIndex++;
-        next = [iPodMusicPlayer nowPlayingItemAtIndex:nextItemIndex];
-    }
+    NSInteger upcomingCount = [MSPMediaPlayerHelper itemsLeftInPlayingQueue];
+    if (upcomingCount < UPNEXT_COUNT) return upcomingCount;
+    else return UPNEXT_COUNT;
     
     return upcomingCount;
 }
@@ -80,9 +73,7 @@
     MSPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
     
     // Get the upcoming media item
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-    NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1 + indexPath.row;
-    MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:nextItemIndex];
+    MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[indexPath row]];
     // Set its info
     [cell setSongInfo:next];
     
@@ -109,9 +100,8 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         // If we still have an upcoming song, add it to table
-        MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-        NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1 + indexPath.row;
-        MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:nextItemIndex];
+        NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:0] - 1) inSection:0];
+        MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[lastIndex row]];
         if (next){
             NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:0] - 1) inSection:0];
             [tableView insertRowsAtIndexPaths:@[lastIndex] withRowAnimation:UITableViewRowAnimationFade];
