@@ -18,6 +18,8 @@
 		B04F4EA018E69080000C5193 /* MSPMesoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */; };
 		B09A0E3B18DF70C500B89816 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */; };
 		B09A0E3E18DF7D8700B89816 /* MSPiPadTopMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09A0E3D18DF7D8700B89816 /* MSPiPadTopMenuViewController.m */; };
+		B0A2681318EACA5200D60128 /* MSPUpNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A2681218EACA5200D60128 /* MSPUpNextViewController.m */; };
+		B0A2681618EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A2681518EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.m */; };
 		B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */; };
 		B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */; };
 		B0B882D118C69A4E003D37EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B882D018C69A4E003D37EC /* Foundation.framework */; };
@@ -72,6 +74,10 @@
 		B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		B09A0E3C18DF7D8700B89816 /* MSPiPadTopMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPiPadTopMenuViewController.h; sourceTree = "<group>"; };
 		B09A0E3D18DF7D8700B89816 /* MSPiPadTopMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPiPadTopMenuViewController.m; sourceTree = "<group>"; };
+		B0A2681118EACA5200D60128 /* MSPUpNextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPUpNextViewController.h; sourceTree = "<group>"; };
+		B0A2681218EACA5200D60128 /* MSPUpNextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPUpNextViewController.m; sourceTree = "<group>"; };
+		B0A2681418EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMusicPlayerController+CurrentQueue.h"; sourceTree = "<group>"; };
+		B0A2681518EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMusicPlayerController+CurrentQueue.m"; sourceTree = "<group>"; };
 		B0AFAE8C18DD2CB800864EFC /* MSPPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistsTableViewController.h; sourceTree = "<group>"; };
 		B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsTableViewController.m; sourceTree = "<group>"; };
 		B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistNode.h; sourceTree = "<group>"; };
@@ -136,6 +142,8 @@
 		B02C433C18DA307800C0390C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B0A2681118EACA5200D60128 /* MSPUpNextViewController.h */,
+				B0A2681218EACA5200D60128 /* MSPUpNextViewController.m */,
 				B04F4E9E18E69080000C5193 /* MSPMesoTableViewController.h */,
 				B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */,
 				B0BEC4FC18DACCC4003EAC01 /* MSPNowPlayingViewController.h */,
@@ -266,6 +274,8 @@
 				B026F23C18DDC56100B61B45 /* MarqueeLabel.h */,
 				B026F23D18DDC56100B61B45 /* MarqueeLabel.m */,
 				B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */,
+				B0A2681418EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.h */,
+				B0A2681518EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.m */,
 				B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */,
 			);
 			name = Libraries;
@@ -414,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0AFAE8E18DD2CB800864EFC /* MSPPlaylistsTableViewController.m in Sources */,
+				B0A2681618EACD9700D60128 /* MPMusicPlayerController+CurrentQueue.m in Sources */,
 				B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */,
 				B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */,
 				B0E352C018DBCA3F00276682 /* UIImage+ImageEffects.m in Sources */,
@@ -428,6 +439,7 @@
 				B03972DD18E0C6D700E9C890 /* MSPMediaPlayerViewHelper.m in Sources */,
 				B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */,
 				B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */,
+				B0A2681318EACA5200D60128 /* MSPUpNextViewController.m in Sources */,
 				B04F4EA018E69080000C5193 /* MSPMesoTableViewController.m in Sources */,
 				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,
 			);

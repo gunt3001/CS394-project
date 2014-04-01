@@ -170,6 +170,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="FillButtonUpnext"/>
+                                <connections>
+                                    <segue destination="La7-4o-Pia" kind="modal" modalTransitionStyle="coverVertical" id="Csf-ep-iz7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6VG-MS-3pH" userLabel="Play Button">
                                 <rect key="frame" x="130" y="381" width="60" height="60"/>
@@ -292,6 +295,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1818" y="806"/>
+        </scene>
+        <!--Up Next View Controller - Up Next-->
+        <scene sceneID="Q7f-W8-Lzs">
+            <objects>
+                <tableViewController title="Up Next" id="bLR-zq-nDi" customClass="MSPUpNextViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fci-oK-NSP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitem" id="EYg-Yv-R5X">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EYg-Yv-R5X" id="ZwZ-GO-5Iw">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bLR-zq-nDi" id="uyY-iO-uDe"/>
+                            <outlet property="delegate" destination="bLR-zq-nDi" id="36r-YI-qOM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Up Next" id="t82-ge-2ks">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="LV3-NS-OdZ">
+                            <connections>
+                                <action selector="doneButton:" destination="bLR-zq-nDi" id="09y-n8-thY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A0d-JG-GlH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="Qy7-03-4ZU">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="tfE-hM-2zG"/>
+                    </items>
+                </navigationBar>
+            </objects>
+            <point key="canvasLocation" x="2656" y="806"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="owC-AY-az0">
@@ -824,6 +869,24 @@ https://github.com/cbpowell/MarqueeLabel</string>
             </objects>
             <point key="canvasLocation" x="511" y="2716"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yd1-R3-9Zz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="La7-4o-Pia" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wxa-yn-7fh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bLR-zq-nDi" kind="relationship" relationship="rootViewController" id="Ui4-oV-p6y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H7g-0N-aDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2283" y="806"/>
+        </scene>
     </scenes>
     <resources>
         <image name="FillButtonBackSkip" width="60" height="60"/>
@@ -847,7 +910,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PDY-od-PhP"/>
         <segue reference="9jl-oT-0y1"/>
+        <segue reference="XKf-fF-THG"/>
     </inferredMetricsTieBreakers>
 </document>
