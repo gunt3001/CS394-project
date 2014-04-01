@@ -57,7 +57,7 @@
         [customView setClipsToBounds:YES];
         [customView setTag:TABLE_VIEW_CELL_THUMBNAIL_TAG];
         
-        [self addSubview:customView];
+        [self.contentView addSubview:customView];
         hasThumb = YES;
     }
     
