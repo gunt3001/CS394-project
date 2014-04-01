@@ -336,7 +336,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Up Next" id="t82-ge-2ks">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="LV3-NS-OdZ">
+                        <barButtonItem key="rightBarButtonItem" title="Close" style="done" id="LV3-NS-OdZ">
                             <connections>
                                 <action selector="doneButton:" destination="bLR-zq-nDi" id="09y-n8-thY"/>
                             </connections>
