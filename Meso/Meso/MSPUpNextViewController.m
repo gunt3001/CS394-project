@@ -8,6 +8,8 @@
 
 #import "MSPUpNextViewController.h"
 #import "MSPAppDelegate.h"
+#import "MSPTableViewCell.h"
+#import "MSPConstants.h"
 #import "MPMusicPlayerController+CurrentQueue.h"
 
 @interface MSPUpNextViewController ()
@@ -54,28 +56,34 @@
 {
     // Return the number of rows in the section.
 
+    // Get the upcoming songs
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1;
     MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:nextItemIndex];
     NSInteger upcomingCount = 0;
-    while (next != nil && upcomingCount <= 10){
+    
+    // As long as we still have upcoming songs, we show them
+    // with a limit of: UPNEXT_COUNT
+    while (next != nil && upcomingCount <= UPNEXT_COUNT){
         upcomingCount++;
         nextItemIndex++;
         next = [iPodMusicPlayer nowPlayingItemAtIndex:nextItemIndex];
     }
+    
     return upcomingCount;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (MSPTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
+    MSPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Get the upcoming media item
     MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
     NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1 + indexPath.row;
     MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:nextItemIndex];
-    [[cell textLabel] setText:[next valueForProperty:MPMediaItemPropertyTitle]];
+    // Set its info
+    [cell setSongInfo:next];
     
     return cell;
 }

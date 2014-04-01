@@ -44,3 +44,4 @@ extern float const FAST_SEEKING_DELAY;                  // Delay in seconds befo
 extern float const FAST_SEEKING_RATE;                   // The rate of fast seeking
 extern float const MARQUEE_LABEL_RATE;                  // Rate at which marquee text moves
 extern NSTimeInterval const NOWPLAYING_UPDATE_INTERVAL; // Rate at which elapsed time and progress bar updates
+extern NSInteger const UPNEXT_COUNT;                    // Number of songs to show in up next view
