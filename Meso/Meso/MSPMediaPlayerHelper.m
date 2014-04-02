@@ -97,30 +97,31 @@
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     
     // Get the current playback state to be restored later
+    NSInteger playbackIndex = [iPodMusicPlayer indexOfNowPlayingItem];
     MPMusicPlaybackState playbackState = [iPodMusicPlayer playbackState];
     NSTimeInterval playbackTime = [iPodMusicPlayer currentPlaybackTime];
     
-    // Rebuild the upcoming items as an array of media items
-    NSMutableArray* upcomingItems = [[NSMutableArray alloc] init];
+    // Rebuild the current queue items as an array of media items
+    NSMutableArray* newQueueArray = [[NSMutableArray alloc] init];
     // Loop through the upcoming items until none exists
     // Add the items to an array
-    unsigned int i = [iPodMusicPlayer indexOfNowPlayingItem];
+    unsigned int i = 0;
     MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
     while (next){
-        [upcomingItems addObject:next];
+        [newQueueArray addObject:next];
         i++;
         next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
     }
     
     // Remove unwanted object
-    [upcomingItems removeObjectAtIndex:(offset + 1)];
+    [newQueueArray removeObjectAtIndex:(playbackIndex + 1 + offset)];
     
     // Set the new queue as playing queue
-    MPMediaItemCollection* newQueue = [[MPMediaItemCollection alloc] initWithItems:upcomingItems];
+    MPMediaItemCollection* newQueue = [[MPMediaItemCollection alloc] initWithItems:newQueueArray];
     [iPodMusicPlayer setQueueWithItemCollection:newQueue];
-    [iPodMusicPlayer setNowPlayingItem:[newQueue items][0]];
     
     // Restore playback state
+    [iPodMusicPlayer setNowPlayingItem:[newQueue items][playbackIndex]];
     if (playbackState == MPMusicPlaybackStatePlaying) [iPodMusicPlayer play];
     [iPodMusicPlayer setCurrentPlaybackTime:playbackTime];
 }
