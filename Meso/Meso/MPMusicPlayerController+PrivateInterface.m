@@ -8,6 +8,8 @@
 
 #import "MPMusicPlayerController+PrivateInterface.h"
 
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
 @implementation MPMusicPlayerController (PrivateInterface)
 
 @end
