@@ -10,6 +10,7 @@
 #import "MSPConstants.h"
 #import "MSPAppDelegate.h"
 #import "MSPStringProcessor.h"
+#import "MSPMediaPlayerHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @implementation MSPMediaPlayerViewHelper{
@@ -124,7 +125,7 @@
             [self setupImageArtworkDropShadow];           // Add Drop Shadow to Art Image
         
         // Get reference to the music player
-        _musicPlayer   = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+        _musicPlayer   = [MSPMediaPlayerHelper sharedPlayer];
     }
     return self;
 }

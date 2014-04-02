@@ -19,6 +19,9 @@
 /// Return the pre-configured iPod music player
 + (MPMusicPlayerController*)iPodMusicPlayer;
 
+/// Return the shared music player inside this app's AppDelegate
++ (MPMusicPlayerController*)sharedPlayer;
+
 #pragma mark - Getting Media Entities
 
 /// Return MPMediaPlaylist* of playlist with given pid

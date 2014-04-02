@@ -31,6 +31,11 @@
     return iPod;
 }
 
+/// Return the shared music player inside this app's AppDelegate
++ (MPMusicPlayerController*)sharedPlayer{
+    return [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+}
+
 #pragma mark - Getting Media Entities
 
 /// Return MPMediaPlaylist* of playlist with given pid
@@ -66,36 +71,38 @@
 /// Return an MPMediaItem in playing queue with specified index
 + (MPMediaItem *)nowPlayingItemAtIndex:(NSInteger)index{
     
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     return [iPodMusicPlayer nowPlayingItemAtIndex:(unsigned)index];
 }
 
 /// Return an MPMediaItem in playing queue with offset from now playing item
 /// Exmaple- An offset of 0 means the next song in queue
 + (MPMediaItem *)nowPlayingItemFromCurrentOffset:(NSInteger)offset{
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1 + offset;
     return [iPodMusicPlayer nowPlayingItemAtIndex:(unsigned)nextItemIndex];
 }
 
 /// Return the number of items left in the currently playing queue
 + (NSInteger)itemsLeftInPlayingQueue{
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     return [iPodMusicPlayer numberOfItems] - ([iPodMusicPlayer indexOfNowPlayingItem] + 1);
 }
 
 /// Remove the given item from the currently playing them
 + (void) removeNowPlayingItemAtIndex:(NSInteger)index{
     
-    // Rebuild the current playlist as array
+    // Rebuild the current playlist as array of media items
 #warning will add to a separate method
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     NSMutableArray* nowPlayingItems = [[NSMutableArray alloc] init];
-    unsigned int i = 0;
     
+    unsigned int i = 0;
     MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
     while (next){
         [nowPlayingItems addObject:next];
+        i++;
+        next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
     }
     
     // Remove the item
@@ -109,7 +116,7 @@
 /// Play a song with given collection as the queue
 + (void) playSong:(MPMediaItem*)song QueueCollection:(MPMediaItemCollection*)collection{
     
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     
     // Temporarily turn off shuffle
     MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
@@ -131,7 +138,7 @@
 /// Play a song with given query as the queue
 + (void) playSong:(MPMediaItem*)song QueueQuery:(MPMediaQuery*)query{
     
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     
     // Temporarily turn off shuffle
     MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
@@ -153,7 +160,7 @@
 /// Play the given collection as queue
 + (void) playCollection:(MPMediaItemCollection*)collection ForceShuffle:(BOOL)shuffle{
     
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     
     // Set playing queue
     [iPodMusicPlayer setQueueWithItemCollection:collection];
@@ -167,7 +174,7 @@
 /// Play the given query as queue
 + (void) playQuery:(MPMediaQuery*)query ForceShuffle:(BOOL)shuffle{
     
-    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     
     // Set playing queue
     [iPodMusicPlayer setQueueWithQuery:query];
