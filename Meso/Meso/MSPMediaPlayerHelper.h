@@ -14,6 +14,11 @@
 
 @interface MSPMediaPlayerHelper : NSObject
 
+#pragma mark - Initialization
+
+/// Return the pre-configured iPod music player
++ (MPMusicPlayerController*)iPodMusicPlayer;
+
 #pragma mark - Getting Media Entities
 
 /// Return MPMediaPlaylist* of playlist with given pid

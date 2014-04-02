@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Napat R. All rights reserved.
 //
 
-#import "MPMusicPlayerController+CurrentQueue.h"
+#import "MPMusicPlayerController+PrivateInterface.h"
 
-@implementation MPMusicPlayerController (CurrentQueue)
+@implementation MPMusicPlayerController (PrivateInterface)
 
 @end

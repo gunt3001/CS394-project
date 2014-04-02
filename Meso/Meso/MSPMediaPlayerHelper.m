@@ -8,9 +8,28 @@
 
 #import "MSPMediaPlayerHelper.h"
 #import "MSPAppDelegate.h"
-#import "MPMusicPlayerController+CurrentQueue.h"
+#import "MPMusicPlayerController+PrivateInterface.h"
 
 @implementation MSPMediaPlayerHelper
+
+#pragma mark - Initialization
+
+/// Return the pre-configured iPod music player
++ (MPMusicPlayerController*)iPodMusicPlayer{
+    
+    // Get the default iPod player
+    MPMusicPlayerController* iPod = [MPMusicPlayerController iPodMusicPlayer];
+    
+    // Tell the iPod to notify of any status changes, which will be handled in appropriate classes
+    [iPod beginGeneratingPlaybackNotifications];
+    
+    // Disable the playbackstate cache as workaround for playbackstate bug
+    // See: http://stackoverflow.com/questions/10118726/getting-wrong-playback-state-in-mp-music-player-controller-in-ios-5
+    // For more information
+    [iPod setUseCachedPlaybackState:NO];
+    
+    return iPod;
+}
 
 #pragma mark - Getting Media Entities
 

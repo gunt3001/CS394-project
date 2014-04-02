@@ -11,12 +11,15 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface MPMusicPlayerController (CurrentQueue)
+@interface MPMusicPlayerController (PrivateInterface)
 
 /// Return the MPMediaItem* in current playing queue at specified index
 -(id)nowPlayingItemAtIndex:(unsigned)index;
 
 /// Return the number of items in current playing queue
 - (unsigned int)numberOfItems;
+
+/// Set whether to use cache for playback state
+- (void)setUseCachedPlaybackState:(BOOL)arg1;
 
 @end

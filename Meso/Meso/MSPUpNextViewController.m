@@ -10,7 +10,7 @@
 #import "MSPAppDelegate.h"
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
-#import "MPMusicPlayerController+CurrentQueue.h"
+#import "MPMusicPlayerController+PrivateInterface.h"
 #import "MSPMediaPlayerHelper.h"
 
 @interface MSPUpNextViewController ()

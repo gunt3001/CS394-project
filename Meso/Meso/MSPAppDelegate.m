@@ -7,6 +7,7 @@
 //
 
 #import "MSPAppDelegate.h"
+#import "MSPMediaPlayerHelper.h"
 
 @implementation MSPAppDelegate
 
@@ -15,9 +16,7 @@
     // Override point for customization after application launch.
     
     // Initialize the global music player
-    _sharedPlayer = [MPMusicPlayerController iPodMusicPlayer];
-    // Tell the iPod to notify of any status changes, which will be handled in appropriate classes
-    [_sharedPlayer beginGeneratingPlaybackNotifications];
+    _sharedPlayer = [MSPMediaPlayerHelper iPodMusicPlayer];
     
     // Initialize the blurred image cache
     _sharedBlurredImageCache = [[MSPBlurredImagesWithCache alloc] init];
