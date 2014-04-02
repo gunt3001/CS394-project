@@ -32,12 +32,8 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
+    // Hide Footer
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,31 +47,108 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 3;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    switch (section) {
+        
+        // Menu & Up Next
+        case 0:
+            return nil;
+        
+        // Up Next Mini Menu
+        case 1:
+            return @"Up Next";
+        
+        // Up Next list
+        case 2:
+            return nil;
+            
+        default:
+            return nil;
+            break;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     
-    // As long as we still have upcoming songs, we show them
-    // with a limit of: UPNEXT_COUNT
-    NSInteger upcomingCount = [MSPMediaPlayerHelper itemsLeftInPlayingQueue];
-    if (upcomingCount < UPNEXT_COUNT) return upcomingCount;
-    else return UPNEXT_COUNT;
     
-    return upcomingCount;
+    switch (section) {
+            
+        // Menus have only 1 row
+        case 0:
+        case 1:
+            return 1;
+            break;
+            
+        // Up next
+        case 2: {
+            // As long as we still have upcoming songs, we show them
+            // with a limit of: UPNEXT_COUNT
+            NSInteger upcomingCount = [MSPMediaPlayerHelper itemsLeftInPlayingQueue];
+            if (upcomingCount < UPNEXT_COUNT) return upcomingCount;
+            else return UPNEXT_COUNT;
+        }
+            
+        default:
+            break;
+    }
+    return 0;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section) {
+        
+        // Menu have extra large row
+        case 0:
+            return 100;
+        
+        // Mini menu has extra small row
+        case 1:
+            return 30;
+            
+        // Upnext items has the default row height
+        case 2:
+            return TABLE_VIEW_SONG_ROW_HEIGHT;
+            
+        default:
+            // Fallback to default
+            return TABLE_VIEW_SONG_ROW_HEIGHT;
+    }
+}
 
 - (MSPTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
+    MSPTableViewCell* cell;
     
-    // Get the upcoming media item
-    MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[indexPath row]];
-    // Set its info
-    [cell setSongInfo:next];
+    switch (indexPath.section) {
+        // Menu
+        case 0:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idmenuitem" forIndexPath:indexPath];
+            break;
+            
+        // Mini Menu
+        case 1:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem" forIndexPath:indexPath];
+            break;
+            
+        // Song List
+        case 2: {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
+            // Get the upcoming media item
+            MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[indexPath row]];
+            // Set its info
+            [cell setSongInfo:next];
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
     
     return cell;
 }
@@ -86,7 +159,15 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    switch (indexPath.section) {
+        case 0: // Menu
+        case 1: // Mini Menu
+            return NO;
+        case 2: // Songs
+            return YES;
+        default:
+            return NO;
+    }
 }
 
 // Override to support editing the table view.
@@ -100,10 +181,10 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         // If we still have an upcoming song, add it to table
-        NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:0] - 1) inSection:0];
+        NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:2] - 1) inSection:2];
         MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[lastIndex row]];
         if (next){
-            NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:0] - 1) inSection:0];
+            NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:2] - 1) inSection:2];
             [tableView insertRowsAtIndexPaths:@[lastIndex] withRowAnimation:UITableViewRowAnimationFade];
         }
         [tableView endUpdates];
@@ -127,9 +208,23 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    if (indexPath.section == 2) return YES;
+    return NO;
 }
 
+// Limit rearrange to within its own section
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
+        NSInteger row = 0;
+        if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+            row = [tableView numberOfRowsInSection:sourceIndexPath.section] - 1;
+        }
+        return [NSIndexPath indexPathForRow:row inSection:sourceIndexPath.section];
+    }
+    
+    return proposedDestinationIndexPath;
+}
 
 /*
 #pragma mark - Navigation
@@ -145,6 +240,22 @@
 - (IBAction)doneButton:(id)sender {
     // Close upnext view
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)buttonShareMeso:(id)sender {
+}
+
+- (IBAction)buttonEdit:(UIButton*)sender {
+    // Toggle the editing status
+    
+    if (self.editing){
+        [self setEditing:NO animated:YES];
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+    }
+    else{
+        [self setEditing:YES animated:YES];
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+    }
 }
 
 @end
