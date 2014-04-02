@@ -97,6 +97,7 @@
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     
     // Get the current playback state to be restored later
+#warning bug when shuffle is on
     NSInteger playbackIndex = [iPodMusicPlayer indexOfNowPlayingItem];
     MPMusicPlaybackState playbackState = [iPodMusicPlayer playbackState];
     NSTimeInterval playbackTime = [iPodMusicPlayer currentPlaybackTime];
@@ -106,6 +107,7 @@
     NSMutableArray* newQueueArray = [[NSMutableArray alloc] initWithCapacity:numItems];
     // Loop through the upcoming items
     // Add the items to an array
+#warning mad slow
     for (NSUInteger i = 0; i < numItems; i++) {
         [newQueueArray addObject:[iPodMusicPlayer nowPlayingItemAtIndex:i]];
     }
