@@ -102,15 +102,12 @@
     NSTimeInterval playbackTime = [iPodMusicPlayer currentPlaybackTime];
     
     // Rebuild the current queue items as an array of media items
-    NSMutableArray* newQueueArray = [[NSMutableArray alloc] init];
-    // Loop through the upcoming items until none exists
+    NSUInteger numItems = [iPodMusicPlayer numberOfItems];
+    NSMutableArray* newQueueArray = [[NSMutableArray alloc] initWithCapacity:numItems];
+    // Loop through the upcoming items
     // Add the items to an array
-    unsigned int i = 0;
-    MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
-    while (next){
-        [newQueueArray addObject:next];
-        i++;
-        next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
+    for (NSUInteger i = 0; i < numItems; i++) {
+        [newQueueArray addObject:[iPodMusicPlayer nowPlayingItemAtIndex:i]];
     }
     
     // Remove unwanted object
