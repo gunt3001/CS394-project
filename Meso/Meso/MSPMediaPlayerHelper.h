@@ -36,6 +36,9 @@
 /// Return the number of items left in the currently playing queue
 + (NSInteger) itemsLeftInPlayingQueue;
 
+/// Remove the given item from the currently playing them
++ (void) removeNowPlayingItemAtIndex:(NSInteger)index;
+
 #pragma mark - Playing Collections & Queries
 
 /// Play a song with given collection as the queue

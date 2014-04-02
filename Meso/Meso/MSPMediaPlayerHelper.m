@@ -65,6 +65,26 @@
     return [iPodMusicPlayer numberOfItems] - ([iPodMusicPlayer indexOfNowPlayingItem] + 1);
 }
 
+/// Remove the given item from the currently playing them
++ (void) removeNowPlayingItemAtIndex:(NSInteger)index{
+    
+    // Rebuild the current playlist as array
+#warning will add to a separate method
+    MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
+    NSMutableArray* nowPlayingItems = [[NSMutableArray alloc] init];
+    unsigned int i = 0;
+    
+    MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
+    while (next){
+        [nowPlayingItems addObject:next];
+    }
+    
+    // Remove the item
+    [nowPlayingItems removeObjectAtIndex:index];
+    
+#warning incomplete method implementation
+}
+
 #pragma mark - Playing Collections & Queries
 
 /// Play a song with given collection as the queue
@@ -138,5 +158,6 @@
     
     [iPodMusicPlayer play];
 }
+
 
 @end
