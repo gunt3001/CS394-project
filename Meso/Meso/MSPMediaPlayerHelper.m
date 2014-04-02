@@ -97,7 +97,6 @@
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     
     // Get the current playback state to be restored later
-#warning bug when shuffle is on
     NSInteger playbackIndex = [iPodMusicPlayer indexOfNowPlayingItem];
     MPMusicPlaybackState playbackState = [iPodMusicPlayer playbackState];
     NSTimeInterval playbackTime = [iPodMusicPlayer currentPlaybackTime];
@@ -116,6 +115,9 @@
     [newQueueArray removeObjectAtIndex:(playbackIndex + 1 + offset)];
     
     // Set the new queue as playing queue
+#warning bug when shuffle is on. turn off for now
+    [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
+    
     MPMediaItemCollection* newQueue = [[MPMediaItemCollection alloc] initWithItems:newQueueArray];
     [iPodMusicPlayer setQueueWithItemCollection:newQueue];
     
