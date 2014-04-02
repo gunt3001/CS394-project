@@ -356,6 +356,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NZA-27-3XJ">
                                             <rect key="frame" x="262" y="11" width="46" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Done"/>
                                             <connections>
                                                 <action selector="doneButton:" destination="cHL-nJ-16B" eventType="touchUpInside" id="pqI-AH-9Gm"/>
