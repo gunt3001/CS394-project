@@ -161,6 +161,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [MSPMediaPlayerHelper removeUpcomingItemAtOffset:indexPath.row];
         
         // Modify Table
         [tableView beginUpdates];

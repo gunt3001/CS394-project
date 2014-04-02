@@ -89,26 +89,40 @@
     return [iPodMusicPlayer numberOfItems] - ([iPodMusicPlayer indexOfNowPlayingItem] + 1);
 }
 
-/// Remove the given item from the currently playing them
-+ (void) removeNowPlayingItemAtIndex:(NSInteger)index{
+/// Remove the item with given offset from now playing item from now playing queue
+/// Offset of 0 means the next item in queue
+/// Also maintains the playback state of the music player
++ (void) removeUpcomingItemAtOffset:(NSInteger)offset{
     
-    // Rebuild the current playlist as array of media items
-#warning will add to a separate method
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
-    NSMutableArray* nowPlayingItems = [[NSMutableArray alloc] init];
     
-    unsigned int i = 0;
+    // Get the current playback state to be restored later
+    MPMusicPlaybackState playbackState = [iPodMusicPlayer playbackState];
+    NSTimeInterval playbackTime = [iPodMusicPlayer currentPlaybackTime];
+    
+    // Rebuild the upcoming items as an array of media items
+    NSMutableArray* upcomingItems = [[NSMutableArray alloc] init];
+    // Loop through the upcoming items until none exists
+    // Add the items to an array
+    unsigned int i = [iPodMusicPlayer indexOfNowPlayingItem];
     MPMediaItem* next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
     while (next){
-        [nowPlayingItems addObject:next];
+        [upcomingItems addObject:next];
         i++;
         next = [iPodMusicPlayer nowPlayingItemAtIndex:i];
     }
     
-    // Remove the item
-    [nowPlayingItems removeObjectAtIndex:index];
+    // Remove unwanted object
+    [upcomingItems removeObjectAtIndex:(offset + 1)];
     
-#warning incomplete method implementation
+    // Set the new queue as playing queue
+    MPMediaItemCollection* newQueue = [[MPMediaItemCollection alloc] initWithItems:upcomingItems];
+    [iPodMusicPlayer setQueueWithItemCollection:newQueue];
+    [iPodMusicPlayer setNowPlayingItem:[newQueue items][0]];
+    
+    // Restore playback state
+    if (playbackState == MPMusicPlaybackStatePlaying) [iPodMusicPlayer play];
+    [iPodMusicPlayer setCurrentPlaybackTime:playbackTime];
 }
 
 #pragma mark - Playing Collections & Queries

@@ -44,8 +44,9 @@
 /// Return the number of items left in the currently playing queue
 + (NSInteger) itemsLeftInPlayingQueue;
 
-/// Remove the given item from the currently playing them
-+ (void) removeNowPlayingItemAtIndex:(NSInteger)index;
+/// Remove the item with given offset from now playing item from now playing queue
+/// Also maintains the playback state of the music player
++ (void) removeUpcomingItemAtOffset:(NSInteger)offset;
 
 #pragma mark - Playing Collections & Queries
 
