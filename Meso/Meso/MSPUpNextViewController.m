@@ -14,14 +14,15 @@
 #import "MSPMediaPlayerHelper.h"
 
 @interface MSPUpNextViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation MSPUpNextViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -33,7 +34,7 @@
     [super viewDidLoad];
     
     // Hide Footer
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,22 +48,18 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         
-        // Menu & Up Next
-        case 0:
-            return nil;
-        
         // Up Next Mini Menu
-        case 1:
+        case 0:
             return @"Up Next";
         
         // Up Next list
-        case 2:
+        case 1:
             return nil;
             
         default:
@@ -80,12 +77,11 @@
             
         // Menus have only 1 row
         case 0:
-        case 1:
             return 1;
             break;
             
         // Up next
-        case 2: {
+        case 1: {
             // As long as we still have upcoming songs, we show them
             // with a limit of: UPNEXT_COUNT
             NSInteger upcomingCount = [MSPMediaPlayerHelper itemsLeftInPlayingQueue];
@@ -102,16 +98,12 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
         
-        // Menu have extra large row
-        case 0:
-            return 100;
-        
         // Mini menu has extra small row
-        case 1:
+        case 0:
             return 30;
             
         // Upnext items has the default row height
-        case 2:
+        case 1:
             return TABLE_VIEW_SONG_ROW_HEIGHT;
             
         default:
@@ -125,18 +117,13 @@
     MSPTableViewCell* cell;
     
     switch (indexPath.section) {
-        // Menu
-        case 0:
-            cell = [tableView dequeueReusableCellWithIdentifier:@"idmenuitem" forIndexPath:indexPath];
-            break;
-            
         // Mini Menu
-        case 1:
+        case 0:
             cell = [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem" forIndexPath:indexPath];
             break;
             
         // Song List
-        case 2: {
+        case 1: {
             cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
             // Get the upcoming media item
             MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[indexPath row]];
@@ -160,10 +147,9 @@
 {
     // Return NO if you do not want the specified item to be editable.
     switch (indexPath.section) {
-        case 0: // Menu
-        case 1: // Mini Menu
+        case 0: // Mini Menu
             return NO;
-        case 2: // Songs
+        case 1: // Songs
             return YES;
         default:
             return NO;
@@ -181,10 +167,10 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         // If we still have an upcoming song, add it to table
-        NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:2] - 1) inSection:2];
+        NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:1] - 1) inSection:1];
         MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[lastIndex row]];
         if (next){
-            NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:2] - 1) inSection:2];
+            NSIndexPath* lastIndex = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:1] - 1) inSection:1];
             [tableView insertRowsAtIndexPaths:@[lastIndex] withRowAnimation:UITableViewRowAnimationFade];
         }
         [tableView endUpdates];
@@ -208,7 +194,7 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
-    if (indexPath.section == 2) return YES;
+    if (indexPath.section == 1) return YES;
     return NO;
 }
 
@@ -237,6 +223,8 @@
 }
 */
 
+#pragma mark - Button Actions
+
 - (IBAction)doneButton:(id)sender {
     // Close upnext view
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -248,12 +236,12 @@
 - (IBAction)buttonEdit:(UIButton*)sender {
     // Toggle the editing status
     
-    if (self.editing){
-        [self setEditing:NO animated:YES];
+    if (_tableView.editing){
+        [_tableView setEditing:NO animated:YES];
         [sender setTitle:@"Edit" forState:UIControlStateNormal];
     }
     else{
-        [self setEditing:YES animated:YES];
+        [_tableView setEditing:YES animated:YES];
         [sender setTitle:@"Done" forState:UIControlStateNormal];
     }
 }

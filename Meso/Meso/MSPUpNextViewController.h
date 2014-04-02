@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSPUpNextViewController : UITableViewController
+@interface MSPUpNextViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
