@@ -412,6 +412,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Usk-V4-9ZL">
+                        <barButtonItem key="leftBarButtonItem" title="Rating" id="hFK-Z8-3Jj"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="VsJ-hL-Xl3">
                             <connections>
                                 <action selector="doneButton:" destination="cHL-nJ-16B" id="zRW-bC-9xD"/>
