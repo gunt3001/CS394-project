@@ -78,7 +78,7 @@
         case 0:
             switch (section) {
                 // Upcoming Songs
-                case 0:
+                case 1:
                 {
                     // As long as we still have upcoming songs, we show them
                     // with a limit of: UPNEXT_COUNT
@@ -88,7 +88,7 @@
                 }
                     
                 // Upcoming Menu
-                case 1:
+                case 0:
                     return 1;
             }
         
@@ -119,11 +119,11 @@
         case 0:
             switch (indexPath.section) {
                 // Upnext items has the default row height
-                case 0:
+                case 1:
                     return TABLE_VIEW_SONG_ROW_HEIGHT;
                     
                 // Menu has extra small row
-                case 1:
+                case 0:
                     return 33;
             }
             
@@ -148,7 +148,7 @@
         // Upcoming
         case 0:
             switch (indexPath.section) {
-                case 0:
+                case 1:
                 {
                     cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
                     // Get the upcoming media item
@@ -158,7 +158,7 @@
                     break;
                 }
                     
-                case 1:
+                case 0:
                 {
                     cell = [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem" forIndexPath:indexPath];
                     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);    // Remove separator line
