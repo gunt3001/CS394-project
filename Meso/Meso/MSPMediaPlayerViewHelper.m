@@ -788,16 +788,16 @@
     // Use original text & styles
     [newTitle setText:[_labelSongTitle text]];
     [newTitle setFont:[_labelSongTitle font]];
+    [newTitle setTextAlignment:[_labelSongTitle textAlignment]];
+    [newSubtitle setTextAlignment:[_labelSongSubtitle textAlignment]];
     [newSubtitle setAttributedText:[_labelSongSubtitle attributedText]];
     
     // Set up the properties
-    [newTitle setTextAlignment:NSTextAlignmentCenter]; // Center
     [newTitle setTextColor:_textColor];                // Color
     [newTitle setRate:MARQUEE_LABEL_RATE];             // Speed
     [newTitle setFadeLength:10.0];                     // Fade size
     [newTitle setAnimationDelay:3.0];                  // Pause
     
-    [newSubtitle setTextAlignment:NSTextAlignmentCenter]; // Center
     [newSubtitle setTextColor:_textColor];                // Color
     [newSubtitle setRate:MARQUEE_LABEL_RATE];             // Speed
     [newSubtitle setFadeLength:10.0];                     // Fade size

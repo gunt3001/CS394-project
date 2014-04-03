@@ -89,44 +89,6 @@
     return [iPodMusicPlayer numberOfItems] - ([iPodMusicPlayer indexOfNowPlayingItem] + 1);
 }
 
-/// Remove the item with given offset from now playing item from now playing queue
-/// Offset of 0 means the next item in queue
-/// Also maintains the playback state of the music player
-+ (void) removeUpcomingItemAtOffset:(NSInteger)offset{
-    
-    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
-    
-    // Get the current playback state to be restored later
-    NSInteger playbackIndex = [iPodMusicPlayer indexOfNowPlayingItem];
-    MPMusicPlaybackState playbackState = [iPodMusicPlayer playbackState];
-    NSTimeInterval playbackTime = [iPodMusicPlayer currentPlaybackTime];
-    
-    // Rebuild the current queue items as an array of media items
-    NSUInteger numItems = [iPodMusicPlayer numberOfItems];
-    NSMutableArray* newQueueArray = [[NSMutableArray alloc] initWithCapacity:numItems];
-    // Loop through the upcoming items
-    // Add the items to an array
-#warning mad slow
-    for (NSUInteger i = 0; i < numItems; i++) {
-        [newQueueArray addObject:[iPodMusicPlayer nowPlayingItemAtIndex:i]];
-    }
-    
-    // Remove unwanted object
-    [newQueueArray removeObjectAtIndex:(playbackIndex + 1 + offset)];
-    
-    // Set the new queue as playing queue
-#warning bug when shuffle is on. turn off for now
-    [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
-    
-    MPMediaItemCollection* newQueue = [[MPMediaItemCollection alloc] initWithItems:newQueueArray];
-    [iPodMusicPlayer setQueueWithItemCollection:newQueue];
-    
-    // Restore playback state
-    [iPodMusicPlayer setNowPlayingItem:[newQueue items][playbackIndex]];
-    if (playbackState == MPMusicPlaybackStatePlaying) [iPodMusicPlayer play];
-    [iPodMusicPlayer setCurrentPlaybackTime:playbackTime];
-}
-
 #pragma mark - Playing Collections & Queries
 
 /// Play a song with given collection as the queue
