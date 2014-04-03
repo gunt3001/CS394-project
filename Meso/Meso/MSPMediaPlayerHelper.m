@@ -77,10 +77,18 @@
 
 /// Return an MPMediaItem in playing queue with offset from now playing item
 /// Exmaple- An offset of 0 means the next song in queue
-+ (MPMediaItem *)nowPlayingItemFromCurrentOffset:(NSInteger)offset{
++ (MPMediaItem *)nowPlayingItemAfterCurrentWithOffset:(NSInteger)offset{
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     NSInteger nextItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] + 1 + offset;
     return [iPodMusicPlayer nowPlayingItemAtIndex:(unsigned)nextItemIndex];
+}
+
+/// Return an MPMediaItem in playing queue with offset from now playing item
+/// Exmaple- An offset of 0 means the previous song in queue
++ (MPMediaItem *)nowPlayingItemBeforeCurrentWithOffset:(NSInteger)offset{
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
+    NSInteger prevItemIndex = [iPodMusicPlayer indexOfNowPlayingItem] - 1 - offset;
+    return [iPodMusicPlayer nowPlayingItemAtIndex:(unsigned)prevItemIndex];
 }
 
 /// Return the number of items left in the currently playing queue

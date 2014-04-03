@@ -94,8 +94,13 @@
         
         // Previous
         case 1:
-            return 0;
-#warning incomplete
+        {
+            // As long as we have previous songs, we show them
+            // with a limit of: UPNEXT_COUNT
+            NSInteger previousCount = [[MSPMediaPlayerHelper iPodMusicPlayer] indexOfNowPlayingItem];
+            if (previousCount < UPNEXT_COUNT) return previousCount;
+            else return UPNEXT_COUNT;
+        }
 
         // Album - show songs in the album
         case 2:
@@ -147,7 +152,7 @@
                 {
                     cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
                     // Get the upcoming media item
-                    MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemFromCurrentOffset:[indexPath row]];
+                    MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemAfterCurrentWithOffset:[indexPath row]];
                     // Set its info
                     [cell setSongInfo:next];
                     break;
@@ -160,10 +165,19 @@
                     break;
                 }
             }
+            break;
             
         // Previous
-        case 1:
+        case 1:{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
+            // Get the upcoming media item
+            MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemBeforeCurrentWithOffset:[indexPath row]];
+            // Set its info
+            [cell setSongInfo:next];
+
             break;
+        }
+            
             
         // Album
         case 2:

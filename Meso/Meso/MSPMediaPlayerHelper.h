@@ -39,14 +39,11 @@
 + (MPMediaItem*) nowPlayingItemAtIndex:(NSInteger)index;
 
 /// Return an MPMediaItem in playing queue with offset from now playing item
-+ (MPMediaItem*) nowPlayingItemFromCurrentOffset:(NSInteger)offset;
++ (MPMediaItem*) nowPlayingItemAfterCurrentWithOffset:(NSInteger)offset;
++ (MPMediaItem*) nowPlayingItemBeforeCurrentWithOffset:(NSInteger)offset;
 
 /// Return the number of items left in the currently playing queue
 + (NSInteger) itemsLeftInPlayingQueue;
-
-/// Remove the item with given offset from now playing item from now playing queue
-/// Also maintains the playback state of the music player
-+ (void) removeUpcomingItemAtOffset:(NSInteger)offset;
 
 #pragma mark - Playing Collections & Queries
 
