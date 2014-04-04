@@ -7,25 +7,20 @@
 //
 
 #import "MSPUpNextViewController.h"
-#import "MSPAppDelegate.h"
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
-#import "MPMusicPlayerController+PrivateInterface.h"
 #import "MSPMediaPlayerHelper.h"
-#import "MSPMediaPlayerViewHelper.h"
 #import "MSPNowPlayingViewController.h"
 
 @interface MSPUpNextViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tableTabSegment;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbarBackground;
 
 @end
 
 @implementation MSPUpNextViewController{
-    MSPMediaPlayerViewHelper*    playerController;
+    BOOL                         editMode;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    editMode = NO;
     
     // Hide Footer
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -96,20 +93,9 @@
                 case 0:
                     return 1;
             }
-        
-        // Previous
-        case 1:
-        {
-            // As long as we have previous songs, we show them
-            // with a limit of: UPNEXT_COUNT
-            NSInteger previousCount = [[MSPMediaPlayerHelper iPodMusicPlayer] indexOfNowPlayingItem];
-            return previousCount;
-        }
-
         // Album - show songs in the album
-        case 2:
+        case 1:
             return 0;
-#warning incomplete
             
         default:
             return 0;
@@ -131,12 +117,8 @@
                     return 33;
             }
             
-        // Previous
-        case 1:
-            return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
-            
         // Album
-        case 2:
+        case 1:
             return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
             
         default:
@@ -158,7 +140,8 @@
                     // Get the upcoming media item
                     MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemAfterCurrentWithOffset:[indexPath row]];
                     // Set its info
-                    [cell setSongInfo:next WithString:[NSString stringWithFormat:@"%d", [indexPath row]]];
+                    NSInteger queueIndex = [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem] + 1 + [indexPath row];
+                    [cell setSongInfo:next WithString:[NSString stringWithFormat:@"%d", queueIndex]];
                     break;
                 }
                     
@@ -169,27 +152,65 @@
                 }
             }
             break;
-            
-        // Previous
-        case 1:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
-            // Get the upcoming media item
-            MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemBeforeCurrentWithOffset:[indexPath row]];
-            // Set its info
-            [cell setSongInfo:next WithString:nil];
 
-            break;
-        }
-            
-            
         // Album
-        case 2:
+        case 1:
             break;
             
         default:
             break;
     }
+    
+    if (editMode && [[tableView indexPathsForSelectedRows] containsObject:indexPath]){
+        // Re-apply checkmark accessory on selected items
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Can't select the menu cell
+    if (indexPath.section == 0){
+        [_tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
+    }
+    
+    if (editMode){
+        // Add Checkmark
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        
+        // Enable Queue button
+        UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
+        [buttonQueue setEnabled:YES];
+    }
+    else{
+        // If not in edit mode, start playing selected song
+        [MSPMediaPlayerHelper playItemAfterCurrentWithOffset:[indexPath row]];
+        [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [_tableView reloadData];
+        [_tableView setContentOffset:CGPointZero animated:NO];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editMode){
+        // Remove Checkmark
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        // If there's no more selected, disable the queue button
+        if (![_tableView indexPathsForSelectedRows]){
+            UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
+            [buttonQueue setEnabled:NO];
+            
+        }
+    }
 }
 
 /*
@@ -210,8 +231,32 @@
     [(MSPNowPlayingViewController*)self.parentViewController hideMenu];
 }
 
-- (IBAction)buttonClear:(id)sender {
+- (IBAction)editButton:(UIButton*)sender {
+    // Enable queue editing
+    
+    if (editMode){
+        editMode = NO;
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        sender.titleLabel.font = [UIFont systemFontOfSize:sender.titleLabel.font.pointSize];
+        [_tableView setAllowsMultipleSelection:NO];
+        [_tableView reloadData];
+        
+        // Disable queue button
+        UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
+        [buttonQueue setEnabled:NO];
+    }
+    else{
+        editMode = YES;
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        sender.titleLabel.font = [UIFont boldSystemFontOfSize:sender.titleLabel.font.pointSize];
+        
+        // Deselect any previously selected rows
+        [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
+        [_tableView setAllowsMultipleSelection:YES];
+    }
 }
+
+
 - (IBAction)tableTabSegmentChanged:(id)sender {
     // Update table data on tab segment change
     
