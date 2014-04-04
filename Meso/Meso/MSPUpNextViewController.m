@@ -266,6 +266,19 @@
     }
 }
 
+- (IBAction)buttonQueueSelected:(id)sender {
+    NSMutableArray* selectedIndexes = [[NSMutableArray alloc] init];
+    for (NSIndexPath* eachSelectedPath in [_tableView indexPathsForSelectedRows]) {
+        [selectedIndexes addObject:[NSNumber numberWithInt:[eachSelectedPath row]]];
+    }
+    
+    [MSPMediaPlayerHelper setQueueWithSubsetIndexes:selectedIndexes];
+    [_tableView reloadData];
+    
+    // Scroll to top
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
+}
 
 - (IBAction)tableTabSegmentChanged:(UISegmentedControl*)sender {
     // Update table data on tab segment change

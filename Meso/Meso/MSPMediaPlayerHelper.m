@@ -105,6 +105,36 @@
     [iPodMusicPlayer play];
 }
 
+/// Replace current queue with a subset of it using specified indexes
+/// Indexes given are in NSNumber*
++ (void)setQueueWithSubsetIndexes:(NSArray*)indexes{
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
+    MPMusicPlaybackState originalPlaybackState = [iPodMusicPlayer playbackState];
+    NSTimeInterval originalPlaybackTime = [iPodMusicPlayer currentPlaybackTime];
+
+    // Make a new queue
+    NSMutableArray* newQueue = [[NSMutableArray alloc] init];
+    
+    // Add currently playing item
+    [newQueue addObject:[iPodMusicPlayer nowPlayingItem]];
+    
+    // Plus the items at specified indexes
+    for (NSNumber* index in indexes) {
+        [newQueue addObject:[iPodMusicPlayer nowPlayingItemAtIndex:index.integerValue]];
+    }
+    
+    // Set the new queue as playing queue
+    // Turn off shuffle
+    [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
+    
+    MPMediaItemCollection* newQueueCollection = [[MPMediaItemCollection alloc] initWithItems:newQueue];
+    
+    // Restore playback state
+    [iPodMusicPlayer setNowPlayingItem:[newQueueCollection items][0]];
+    if (originalPlaybackState == MPMusicPlaybackStatePlaying) [iPodMusicPlayer play];
+    [iPodMusicPlayer setCurrentPlaybackTime:originalPlaybackTime];
+}
+
 #pragma mark - Playing Collections & Queries
 
 /// Play a song with given collection as the queue

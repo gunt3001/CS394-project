@@ -48,6 +48,10 @@
 /// Play the song at specified index in queue
 + (void)playItemAtIndex:(NSInteger)index;
 
+/// Replace current queue with a subset of it using specified indexes
+/// Indexes given are in NSNumber*
++ (void)setQueueWithSubsetIndexes:(NSArray*)indexes;
+
 #pragma mark - Playing Collections & Queries
 
 /// Play a song with given collection as the queue

@@ -348,6 +348,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Queue Selected"/>
+                                                    <connections>
+                                                        <action selector="buttonQueueSelected:" destination="cHL-nJ-16B" eventType="touchUpInside" id="wC9-FI-8a1"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
