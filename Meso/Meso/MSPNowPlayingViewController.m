@@ -171,7 +171,7 @@
     [self.view addSubview:menuViewController.view];
     
     // Transition it up
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [menuViewController.view setFrame:self.view.frame];
     } completion:^(BOOL finished) {
         if (finished){
@@ -191,7 +191,7 @@
     // Transition away
     CGRect newFrame = menuViewControllerTemp.view.frame;
     newFrame.origin.y = newFrame.size.height;
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [menuViewControllerTemp.view setFrame:newFrame];
     } completion:^(BOOL finished) {
         if (finished){

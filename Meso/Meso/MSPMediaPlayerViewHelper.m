@@ -718,10 +718,10 @@
     
     if ([_musicPlayer playbackState] == MPMusicPlaybackStatePaused ||
         [_musicPlayer playbackState] == MPMusicPlaybackStateStopped){
-        [_buttonPlayPause setImage:[UIImage imageNamed:FILENAME_FILLBUTTON_PLAY] forState:UIControlStateNormal];
+        [_buttonPlayPause setImage:[UIImage imageNamed:@"FillButtonPlay"] forState:UIControlStateNormal];
     }
     else if ([_musicPlayer playbackState] == MPMusicPlaybackStatePlaying){
-        [_buttonPlayPause setImage:[UIImage imageNamed:FILENAME_FILLBUTTON_PAUSE] forState:UIControlStateNormal];
+        [_buttonPlayPause setImage:[UIImage imageNamed:@"FillButtonPause"] forState:UIControlStateNormal];
     }
 }
 

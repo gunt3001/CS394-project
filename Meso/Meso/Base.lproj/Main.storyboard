@@ -322,7 +322,7 @@
                                     </segmentedControl>
                                 </subviews>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="5w2-XZ-YXZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="5w2-XZ-YXZ">
                                 <rect key="frame" x="0.0" y="109" width="320" height="371"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -334,20 +334,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yen-XP-rIb">
-                                                    <rect key="frame" x="41" y="0.0" width="100" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="Leave One"/>
-                                                    <connections>
-                                                        <action selector="buttonLeaveOne:" destination="cHL-nJ-16B" eventType="touchUpInside" id="85f-sw-FCO"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dSQ-Se-Cwa">
-                                                    <rect key="frame" x="180" y="0.0" width="100" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="Clear"/>
+                                                    <state key="normal" title="Stop Playing After This Song"/>
                                                     <connections>
                                                         <action selector="buttonClear:" destination="cHL-nJ-16B" eventType="touchUpInside" id="UWD-eN-c9G"/>
                                                     </connections>
@@ -358,22 +349,22 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemcompact" textLabel="iJ6-e9-85y" detailTextLabel="4zG-CA-b8N" style="IBUITableViewCellStyleSubtitle" id="330-d2-ULc" customClass="MSPTableViewCell">
-                                        <rect key="frame" x="0.0" y="52" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="52" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="330-d2-ULc" id="JCd-5f-SIJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iJ6-e9-85y">
-                                                    <rect key="frame" x="15" y="11" width="36" height="22"/>
+                                                    <rect key="frame" x="15" y="9" width="29" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4zG-CA-b8N">
-                                                    <rect key="frame" x="15" y="33" width="43" height="15"/>
+                                                    <rect key="frame" x="15" y="26" width="40" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -978,6 +969,6 @@ https://github.com/cbpowell/MarqueeLabel</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="9jl-oT-0y1"/>
-        <segue reference="6N2-QI-RYT"/>
+        <segue reference="joX-oa-CAd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -126,7 +126,7 @@
             switch (indexPath.section) {
                 // Upnext items has the default row height
                 case 1:
-                    return TABLE_VIEW_SONG_ROW_HEIGHT;
+                    return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
                     
                 // Menu has extra small row
                 case 0:
@@ -135,14 +135,14 @@
             
         // Previous
         case 1:
-            return TABLE_VIEW_SONG_ROW_HEIGHT;
+            return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
             
         // Album
         case 2:
-            return TABLE_VIEW_SONG_ROW_HEIGHT;
+            return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
             
         default:
-            return TABLE_VIEW_SONG_ROW_HEIGHT;
+            return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
     }
 }
 
@@ -160,7 +160,7 @@
                     // Get the upcoming media item
                     MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemAfterCurrentWithOffset:[indexPath row]];
                     // Set its info
-                    [cell setSongInfo:next];
+                    [cell setSongInfo:next WithString:[NSString stringWithFormat:@"%d", [indexPath row]]];
                     break;
                 }
                     
@@ -178,7 +178,7 @@
             // Get the upcoming media item
             MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemBeforeCurrentWithOffset:[indexPath row]];
             // Set its info
-            [cell setSongInfo:next];
+            [cell setSongInfo:next WithString:nil];
 
             break;
         }
@@ -210,9 +210,6 @@
 - (IBAction)doneButton:(id)sender {
     // Close upnext view
     [(MSPNowPlayingViewController*)self.parentViewController hideMenu];
-}
-
-- (IBAction)buttonLeaveOne:(id)sender {
 }
 
 - (IBAction)buttonClear:(id)sender {

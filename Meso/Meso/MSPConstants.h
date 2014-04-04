@@ -11,8 +11,15 @@ extern NSInteger const TABLE_VIEW_ALBUM_ART_WIDTH;      // Width for album art t
 extern NSInteger const TABLE_VIEW_ALBUM_ART_HEIGHT;     // Height for album art thumbnail in table view
 extern NSInteger const TABLE_VIEW_ALBUM_ART_PADDING;    // Padding for album art thumbnail in table view
 extern NSInteger const TABLE_VIEW_CELL_THUMBNAIL_TAG;   // Tag for album art custom view in table view cell
-extern NSInteger const TABLE_VIEW_SHUFFLE_ROW_HEIGHT;   // Row height for shuffle button in table view
 extern NSInteger const TABLE_VIEW_SONG_ROW_HEIGHT;      // Row height for songs in table view
+// Compact Version
+extern NSInteger const TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;      // Row height for songs in table view
+extern NSInteger const TABLE_VIEW_COMPACT_ALBUM_ART_WIDTH;      // Width for album art thumbnail in table view
+extern NSInteger const TABLE_VIEW_COMPACT_ALBUM_ART_HEIGHT;     // Height for album art thumbnail in table view
+extern NSInteger const TABLE_VIEW_COMPACT_ALBUM_ART_PADDING;    // Padding for album art thumbnail in table view
+extern NSInteger const TABLE_VIEW_CELL_STRING_TAG;              // Tag for optional string in compact cell
+extern NSInteger const TABLE_VIEW_COMPACT_STRING_WIDTH;         // Width of optional string label in compact cell
+extern CGFloat const TABLE_VIEW_COMPACT_STRING_FONT_SIZE;       // Font size of optional string label in compact cell
 
 // UI Strings
 extern NSString* const TABLE_VIEW_SONG_COUNT_FORMAT;    // Format of number of songs (eg. 9999 Songs)
@@ -25,12 +32,6 @@ extern NSString* const STRING_NOTHING_PLAYING_TIME;     // String to show on tim
 extern NSString* const MSPMediaItemPropertySortTitle;               // Used to query song's alternate title
 extern NSString* const MSPMediaPlaylistPropertyIsFolder;            // Used to query playlist's folder flag
 extern NSString* const MSPMediaPlaylistPropertyParentPersistentID;  // Used to query playlist's PID
-
-// File Names
-extern NSString* const FILENAME_FILLBUTTON_PLAY;        // File name for play button image
-extern NSString* const FILENAME_FILLBUTTON_PAUSE;       // File name for pause button image
-extern NSString* const FILENAME_BUTTON_REPEAT;          // File name for repeat button image
-extern NSString* const FILENAME_BUTTON_REPEATONE;       // File name for repeat one button image
 
 // Blurring Performance Related
 extern const char* const BLURRING_QUEUE_NAME;           // Queue label for blurring queue sent to GCD

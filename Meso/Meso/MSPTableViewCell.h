@@ -13,7 +13,6 @@
 
 @property (nonatomic) NSNumber* PID;        // Media library PID
 
-- (void)addThumbnailWithMediaItemArtwork:(MPMediaItemArtwork*)artwork;
-- (void)setSongInfo:(MPMediaItem*)song;
+- (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string;
 
 @end

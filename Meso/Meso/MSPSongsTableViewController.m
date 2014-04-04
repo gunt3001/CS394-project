@@ -69,7 +69,7 @@
     
     // Shuffle button have reduced height
     if ([indexPath section] == 0){
-        return TABLE_VIEW_SHUFFLE_ROW_HEIGHT;
+        return 45;
     }
     
     // Songs have regular height
@@ -102,7 +102,7 @@
         
         // Set cell data
         cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
-        [cell setSongInfo:song];
+        [cell setSongInfo:song WithString:nil];
     }
     
     return cell;
