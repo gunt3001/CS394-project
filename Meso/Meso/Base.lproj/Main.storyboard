@@ -21,14 +21,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sample Playlist Folder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rv0-gI-buZ">
-                                            <rect key="frame" x="60" y="0.0" width="225" height="43"/>
+                                            <rect key="frame" x="62" y="0.0" width="223" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="TabBarAlbums" id="ABT-ed-d9g">
-                                            <rect key="frame" x="15" y="6" width="30" height="30"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="PlaylistFolder" id="ABT-ed-d9g">
+                                            <rect key="frame" x="15" y="5" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -45,14 +45,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sample Playlist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xiC-be-DrG">
-                                            <rect key="frame" x="60" y="0.0" width="225" height="43"/>
+                                            <rect key="frame" x="62" y="0.0" width="223" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="TabBarPlaylists" id="EKH-bz-iQ5">
-                                            <rect key="frame" x="15" y="6" width="30" height="30"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="PlaylistItem" id="EKH-bz-iQ5">
+                                            <rect key="frame" x="15" y="5" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -985,10 +985,12 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="FillButtonForeSkip" width="60" height="60"/>
         <image name="FillButtonPlay" width="60" height="60"/>
         <image name="FillButtonUpnext" width="60" height="60"/>
+        <image name="PlaylistFolder" width="32" height="32"/>
+        <image name="PlaylistItem" width="32" height="32"/>
         <image name="TabBarAbout" width="30" height="30"/>
         <image name="TabBarAlbums" width="30" height="30"/>
         <image name="TabBarArtists" width="30" height="30"/>
-        <image name="TabBarMeso" width="40" height="40"/>
+        <image name="TabBarMeso" width="30" height="30"/>
         <image name="TabBarPlaylists" width="30" height="30"/>
         <image name="TabBarSongs" width="30" height="30"/>
         <image name="arrowback" width="128" height="128"/>
@@ -1003,7 +1005,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="joX-oa-CAd"/>
         <segue reference="9jl-oT-0y1"/>
-        <segue reference="XKf-fF-THG"/>
     </inferredMetricsTieBreakers>
 </document>
