@@ -161,7 +161,6 @@
                 case 0:
                 {
                     cell = [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem" forIndexPath:indexPath];
-                    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);    // Remove separator line
                     break;
                 }
             }
