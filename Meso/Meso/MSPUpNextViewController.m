@@ -140,8 +140,8 @@
                     // Get the upcoming media item
                     MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemAfterCurrentWithOffset:[indexPath row]];
                     // Set its info
-                    NSInteger queueIndex = [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem] + 1 + [indexPath row];
-                    [cell setSongInfo:next WithString:[NSString stringWithFormat:@"%d", queueIndex]];
+                    NSInteger numInQueue = [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem] + [indexPath row] + 2;
+                    [cell setSongInfo:next WithString:[NSString stringWithFormat:@"%d", numInQueue]];
                     break;
                 }
                     
