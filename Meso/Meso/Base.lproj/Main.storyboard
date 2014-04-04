@@ -450,7 +450,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8v-OZ-Yhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-546" y="-968"/>
+            <point key="canvasLocation" x="-550" y="-936"/>
         </scene>
         <!--Playlists View Controller - Playlists-->
         <scene sceneID="4l3-4Y-HpZ">
@@ -995,6 +995,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="shuffle" width="32" height="32"/>
         <image name="shuffleicon" width="600" height="600"/>
     </resources>
+    <color key="tintColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
