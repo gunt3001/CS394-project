@@ -654,11 +654,11 @@ https://github.com/cbpowell/MarqueeLabel</string>
             </objects>
             <point key="canvasLocation" x="987" y="3948"/>
         </scene>
-        <!--Navigation Controller - Meso-->
+        <!--Navigation Controller - Profile-->
         <scene sceneID="kRg-jK-r7c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7zL-nH-Nnr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Meso" image="TabBarMeso" id="KsH-m5-7Ly"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="TabBarMeso" id="KsH-m5-7Ly"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Ay-JP-KgV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1032,7 +1032,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="TabBarAbout" width="30" height="30"/>
         <image name="TabBarAlbums" width="30" height="30"/>
         <image name="TabBarArtists" width="30" height="30"/>
-        <image name="TabBarMeso" width="30" height="30"/>
+        <image name="TabBarMeso" width="40" height="40"/>
         <image name="TabBarPlaylists" width="30" height="30"/>
         <image name="TabBarSongs" width="30" height="30"/>
         <image name="arrowback" width="128" height="128"/>

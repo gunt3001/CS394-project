@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "TabBarMeso.png"
+      "filename" : "ios7-contact-outline.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "TabBarMeso@2x.png"
+      "filename" : "ios7-contact-outline@2x.png"
     }
   ],
   "info" : {
