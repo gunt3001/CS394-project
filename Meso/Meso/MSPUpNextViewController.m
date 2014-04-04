@@ -89,8 +89,7 @@
                     // As long as we still have upcoming songs, we show them
                     // with a limit of: UPNEXT_COUNT
                     NSInteger upcomingCount = [MSPMediaPlayerHelper itemsLeftInPlayingQueue];
-                    if (upcomingCount < UPNEXT_COUNT) return upcomingCount;
-                    else return UPNEXT_COUNT;
+                    return upcomingCount;
                 }
                     
                 // Upcoming Menu
@@ -104,8 +103,7 @@
             // As long as we have previous songs, we show them
             // with a limit of: UPNEXT_COUNT
             NSInteger previousCount = [[MSPMediaPlayerHelper iPodMusicPlayer] indexOfNowPlayingItem];
-            if (previousCount < UPNEXT_COUNT) return previousCount;
-            else return UPNEXT_COUNT;
+            return previousCount;
         }
 
         // Album - show songs in the album
