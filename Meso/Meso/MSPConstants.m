@@ -41,4 +41,4 @@ float const FAST_SEEKING_DELAY = 1.0;
 float const FAST_SEEKING_RATE = 2.0;
 float const MARQUEE_LABEL_RATE = 30.0;
 NSTimeInterval const NOWPLAYING_UPDATE_INTERVAL = 0.5;
-NSInteger const UPNEXT_COUNT = 5;
+NSInteger const UPNEXT_COUNT = 100;
