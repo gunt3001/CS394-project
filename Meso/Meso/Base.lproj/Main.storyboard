@@ -171,7 +171,7 @@
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="FillButtonUpnext"/>
                                 <connections>
-                                    <segue destination="jKv-4B-dxo" kind="modal" modalTransitionStyle="coverVertical" id="OoU-gf-xLY"/>
+                                    <action selector="menuButton:" destination="kQc-2K-L24" eventType="touchUpInside" id="wqX-Ln-iey"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6VG-MS-3pH" userLabel="Play Button">
@@ -300,45 +300,20 @@
         <!--Up Next View Controller-->
         <scene sceneID="8ez-8i-5ei">
             <objects>
-                <viewController id="cHL-nJ-16B" customClass="MSPUpNextViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="idupnextview" id="cHL-nJ-16B" customClass="MSPUpNextViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f8j-0h-tJf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="VpR-cU-cTc">
-                                <rect key="frame" x="0.0" y="61" width="320" height="89"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="37"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="16h-TP-R7o">
-                                        <rect key="frame" x="182" y="13" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="T">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fom-hW-0fZ">
-                                        <rect key="frame" x="144" y="13" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="F">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="17u-6K-ArG">
-                                        <rect key="frame" x="20" y="13" width="116" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Share with Meso">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonShareMeso:" destination="cHL-nJ-16B" eventType="touchUpInside" id="rCN-YM-XwO"/>
-                                        </connections>
-                                    </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="ItZ-B9-Y7Z">
-                                        <rect key="frame" x="20" y="60" width="280" height="29"/>
+                                        <rect key="frame" x="70" y="8" width="180" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
-                                            <segment title="Upcoming"/>
-                                            <segment title="Previous"/>
+                                            <segment title="Queue"/>
                                             <segment title="Album"/>
                                         </segments>
                                         <connections>
@@ -348,7 +323,7 @@
                                 </subviews>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="5w2-XZ-YXZ">
-                                <rect key="frame" x="0.0" y="158" width="320" height="322"/>
+                                <rect key="frame" x="0.0" y="109" width="320" height="371"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -379,9 +354,10 @@
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitem" textLabel="iJ6-e9-85y" detailTextLabel="4zG-CA-b8N" style="IBUITableViewCellStyleSubtitle" id="330-d2-ULc" customClass="MSPTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemcompact" textLabel="iJ6-e9-85y" detailTextLabel="4zG-CA-b8N" style="IBUITableViewCellStyleSubtitle" id="330-d2-ULc" customClass="MSPTableViewCell">
                                         <rect key="frame" x="0.0" y="52" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="330-d2-ULc" id="JCd-5f-SIJ">
@@ -402,6 +378,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -409,18 +386,31 @@
                                     <outlet property="delegate" destination="cHL-nJ-16B" id="Jt7-Ce-hrj"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pk9-Xy-Paq">
+                                <rect key="frame" x="260" y="20" width="60" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButton:" destination="cHL-nJ-16B" eventType="touchUpInside" id="n3q-PL-gfj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ONd-0P-Nga">
+                                <rect key="frame" x="0.0" y="20" width="60" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Usk-V4-9ZL">
-                        <barButtonItem key="leftBarButtonItem" title="Rating" id="hFK-Z8-3Jj"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="VsJ-hL-Xl3">
-                            <connections>
-                                <action selector="doneButton:" destination="cHL-nJ-16B" id="zRW-bC-9xD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableTabSegment" destination="ItZ-B9-Y7Z" id="TU7-mB-0Av"/>
                         <outlet property="tableView" destination="5w2-XZ-YXZ" id="w2P-54-W1M"/>
@@ -428,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9P-t3-D8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2856" y="806"/>
+            <point key="canvasLocation" x="2296" y="806"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="owC-AY-az0">
@@ -961,24 +951,6 @@ https://github.com/cbpowell/MarqueeLabel</string>
             </objects>
             <point key="canvasLocation" x="511" y="2716"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="F42-ot-MQZ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jKv-4B-dxo" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ch2-Ql-JeT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cHL-nJ-16B" kind="relationship" relationship="rootViewController" id="nhS-tf-49c"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aOo-Mb-uOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2330" y="806"/>
-        </scene>
     </scenes>
     <resources>
         <image name="FillButtonBackSkip" width="60" height="60"/>
@@ -1005,7 +977,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="joX-oa-CAd"/>
         <segue reference="9jl-oT-0y1"/>
+        <segue reference="6N2-QI-RYT"/>
     </inferredMetricsTieBreakers>
 </document>

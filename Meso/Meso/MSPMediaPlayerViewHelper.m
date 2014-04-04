@@ -191,6 +191,10 @@
     // Set delegate
     [_imageScroller setDelegate:self];
     
+    // Disable tap to go to top, since there's nothing to go up anyway
+    // This is to enable the functionality in any subview that needs it
+    [_imageScroller setScrollsToTop:NO];
+    
     // Content is 3x screen size to allow swiping left and right
     [_imageScroller setContentSize:CGSizeMake([_imageScroller frame].size.width * 3.0,
                                               [_imageScroller frame].size.height)];
@@ -818,8 +822,8 @@
     [newSubtitle setAlpha:0.0];
     
     // Add to view
-    [_view addSubview:newTitle];
-    [_view addSubview:newSubtitle];
+    [_view insertSubview:newTitle aboveSubview:_imageArtworkBack];
+    [_view insertSubview:newSubtitle aboveSubview:_imageArtworkBack];
     
     // Show with animation
     [UIView animateWithDuration:0.1 animations:^{

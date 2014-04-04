@@ -13,12 +13,14 @@
 #import "MPMusicPlayerController+PrivateInterface.h"
 #import "MSPMediaPlayerHelper.h"
 #import "MSPMediaPlayerViewHelper.h"
+#import "MSPNowPlayingViewController.h"
 
 @interface MSPUpNextViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tableTabSegment;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbarBackground;
 
 @end
 
@@ -41,7 +43,11 @@
     
     // Hide Footer
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-
+    
+    // Use toolbar trick to blur background
+    UIToolbar *toolBar = [[UIToolbar alloc] init];
+    [toolBar setFrame:[self view].frame];
+    [self.view insertSubview:toolBar atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,7 +156,7 @@
             switch (indexPath.section) {
                 case 1:
                 {
-                    cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
+                    cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
                     // Get the upcoming media item
                     MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemAfterCurrentWithOffset:[indexPath row]];
                     // Set its info
@@ -168,7 +174,7 @@
             
         // Previous
         case 1:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
             // Get the upcoming media item
             MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemBeforeCurrentWithOffset:[indexPath row]];
             // Set its info
@@ -203,10 +209,7 @@
 
 - (IBAction)doneButton:(id)sender {
     // Close upnext view
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)buttonShareMeso:(id)sender {
+    [(MSPNowPlayingViewController*)self.parentViewController hideMenu];
 }
 
 - (IBAction)buttonLeaveOne:(id)sender {

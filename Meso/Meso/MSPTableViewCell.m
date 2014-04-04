@@ -75,33 +75,39 @@
     // Use the given song as the data for the cell
     // Assuming the cell has appropriate styles
     
-    // Grab song data
-    // Title
-    NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
-    // Artist
-    NSString* songArtist = [song valueForProperty:MPMediaItemPropertyArtist];
-    // Album
-    NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
-    // Artwork
-    MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
-    // Unique Persistent ID for the song
-    NSNumber* songPID = [song valueForProperty:MPMediaItemPropertyPersistentID];
+    NSString* cellID = [self reuseIdentifier];
     
-    // Set cell data
-    // Artwork
-    [self addThumbnailWithMediaItemArtwork:songArt];
-    [self setIndentationWidth:(TABLE_VIEW_ALBUM_ART_WIDTH)];
-    // Title
-    [[self textLabel] setText:songTitle];
-    // Subtitle
-    NSAttributedString* subtitle = [MSPStringProcessor getAttributedSubtitleFromArtist:songArtist
-                                                                                 Album:songAlbum
-                                                                          WithFontSize:[[[self detailTextLabel] font] pointSize]
-                                                                                 Color:[[self detailTextLabel] textColor]];
-    [[self detailTextLabel] setAttributedText:subtitle];
-    // PID
-    [self setPID:songPID];
-
+    // Standard cell style
+    // As seen in "Songs" or "Playlists" Tab
+    // Has Artwork, bold title, and an attributed subtitle
+    if ([cellID isEqualToString:@"idsongitem"]){
+        // Grab song data
+        // Title
+        NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
+        // Artist
+        NSString* songArtist = [song valueForProperty:MPMediaItemPropertyArtist];
+        // Album
+        NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
+        // Artwork
+        MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
+        // Unique Persistent ID for the song
+        NSNumber* songPID = [song valueForProperty:MPMediaItemPropertyPersistentID];
+        
+        // Set cell data
+        // Artwork
+        [self addThumbnailWithMediaItemArtwork:songArt];
+        [self setIndentationWidth:(TABLE_VIEW_ALBUM_ART_WIDTH)];
+        // Title
+        [[self textLabel] setText:songTitle];
+        // Subtitle
+        NSAttributedString* subtitle = [MSPStringProcessor getAttributedSubtitleFromArtist:songArtist
+                                                                                     Album:songAlbum
+                                                                              WithFontSize:[[[self detailTextLabel] font] pointSize]
+                                                                                     Color:[[self detailTextLabel] textColor]];
+        [[self detailTextLabel] setAttributedText:subtitle];
+        // PID
+        [self setPID:songPID];
+    }
 
 }
 

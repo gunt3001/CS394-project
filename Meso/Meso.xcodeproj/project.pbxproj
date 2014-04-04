@@ -142,6 +142,8 @@
 		B02C433C18DA307800C0390C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B03972DB18E0C6D700E9C890 /* MSPMediaPlayerViewHelper.h */,
+				B03972DC18E0C6D700E9C890 /* MSPMediaPlayerViewHelper.m */,
 				B0A2681118EACA5200D60128 /* MSPUpNextViewController.h */,
 				B0A2681218EACA5200D60128 /* MSPUpNextViewController.m */,
 				B04F4E9E18E69080000C5193 /* MSPMesoTableViewController.h */,
@@ -165,8 +167,6 @@
 		B0AFAE8F18DD328000864EFC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B03972DB18E0C6D700E9C890 /* MSPMediaPlayerViewHelper.h */,
-				B03972DC18E0C6D700E9C890 /* MSPMediaPlayerViewHelper.m */,
 				B00E734E18E6098B00662BAA /* MSPMediaPlayerHelper.h */,
 				B00E734F18E6098B00662BAA /* MSPMediaPlayerHelper.m */,
 				B026F23418DD7C5500B61B45 /* MSPStringProcessor.h */,

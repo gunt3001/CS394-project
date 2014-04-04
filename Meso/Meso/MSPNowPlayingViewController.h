@@ -10,4 +10,6 @@
 
 @interface MSPNowPlayingViewController : UIViewController <UIGestureRecognizerDelegate>
 
+-(void) hideMenu;
+
 @end
