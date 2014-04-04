@@ -45,8 +45,8 @@
 /// Return the number of items left in the currently playing queue
 + (NSInteger) itemsLeftInPlayingQueue;
 
-/// Skip song to the item with given offset in current queue
-+ (void)playItemAfterCurrentWithOffset:(NSInteger)offset;
+/// Play the song at specified index in queue
++ (void)playItemAtIndex:(NSInteger)index;
 
 #pragma mark - Playing Collections & Queries
 

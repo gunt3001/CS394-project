@@ -97,11 +97,10 @@
     return [iPodMusicPlayer numberOfItems] - ([iPodMusicPlayer indexOfNowPlayingItem] + 1);
 }
 
-/// Skip song to the item with given offset in current queue
-+ (void)playItemAfterCurrentWithOffset:(NSInteger)offset{
+/// Play the song at specified index in queue
++ (void)playItemAtIndex:(NSInteger)index{
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
-    NSInteger indexOfTarget = [iPodMusicPlayer indexOfNowPlayingItem] + 1 + offset;
-    MPMediaItem* target = [iPodMusicPlayer nowPlayingItemAtIndex:indexOfTarget];
+    MPMediaItem* target = [iPodMusicPlayer nowPlayingItemAtIndex:index];
     [iPodMusicPlayer setNowPlayingItem:target];
     [iPodMusicPlayer play];
 }

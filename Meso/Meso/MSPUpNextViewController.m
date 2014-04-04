@@ -10,6 +10,7 @@
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
 #import "MSPMediaPlayerHelper.h"
+#import "MPMusicPlayerController+PrivateInterface.h"
 #import "MSPNowPlayingViewController.h"
 
 @interface MSPUpNextViewController ()
@@ -53,19 +54,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    // Scroll to now playing item
+    NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper iPodMusicPlayer] indexOfNowPlayingItem]
+                                                     inSection:1];
+    [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
     switch ([_tableTabSegment selectedSegmentIndex]) {
-        // Upcoming
+        // Queue
         case 0:
             return 2;
         
-        // Previous and Album
+        // Album
         case 1:
-        case 2:
             return 1;
             
         default:
@@ -77,22 +84,18 @@
 {
     // Return the number of rows in the section.
     switch ([_tableTabSegment selectedSegmentIndex]) {
-        // Upcoming
+        // Queue
         case 0:
             switch (section) {
-                // Upcoming Songs
+                // Songs in current Queue
                 case 1:
-                {
-                    // As long as we still have upcoming songs, we show them
-                    // with a limit of: UPNEXT_COUNT
-                    NSInteger upcomingCount = [MSPMediaPlayerHelper itemsLeftInPlayingQueue];
-                    return upcomingCount;
-                }
+                    return [[MSPMediaPlayerHelper sharedPlayer] numberOfItems];
                     
-                // Upcoming Menu
+                // Mini Menu
                 case 0:
                     return 1;
             }
+            
         // Album - show songs in the album
         case 1:
             return 0;
@@ -108,7 +111,7 @@
         // Upcoming
         case 0:
             switch (indexPath.section) {
-                // Upnext items has the default row height
+                // Queue items has the default row height
                 case 1:
                     return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
                     
@@ -137,11 +140,17 @@
                 case 1:
                 {
                     cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
-                    // Get the upcoming media item
-                    MPMediaItem* next = [MSPMediaPlayerHelper nowPlayingItemAfterCurrentWithOffset:[indexPath row]];
+                    
+                    // Get the corresponding media item
+                    MPMediaItem* item = [[MSPMediaPlayerHelper iPodMusicPlayer] nowPlayingItemAtIndex:[indexPath row]];
                     // Set its info
-                    NSInteger numInQueue = [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem] + [indexPath row] + 2;
-                    [cell setSongInfo:next WithString:[NSString stringWithFormat:@"%d", numInQueue]];
+                    NSString* optionalString;
+                    // If it's the currently playing song, show play icon
+                    if ([indexPath row] == [[MSPMediaPlayerHelper iPodMusicPlayer] indexOfNowPlayingItem])
+                        optionalString = @"\U000025B6\U0000FE0E";
+                    else
+                        optionalString = [NSString stringWithFormat:@"%d", [indexPath row] + 1];
+                    [cell setSongInfo:item WithString:optionalString];
                     break;
                 }
                     
@@ -190,10 +199,11 @@
     }
     else{
         // If not in edit mode, start playing selected song
-        [MSPMediaPlayerHelper playItemAfterCurrentWithOffset:[indexPath row]];
-        [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [MSPMediaPlayerHelper playItemAtIndex:[indexPath row]];
         [_tableView reloadData];
-        [_tableView setContentOffset:CGPointZero animated:NO];
+
+        // Scroll to selected item
+        [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 
@@ -257,10 +267,17 @@
 }
 
 
-- (IBAction)tableTabSegmentChanged:(id)sender {
+- (IBAction)tableTabSegmentChanged:(UISegmentedControl*)sender {
     // Update table data on tab segment change
-    
     [_tableView reloadData];
+    
+    // Show/hide header
+    if ([sender selectedSegmentIndex] == 0){
+        
+    }
+    else{
+        
+    }
 }
 
 @end
