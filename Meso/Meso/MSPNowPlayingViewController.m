@@ -9,6 +9,7 @@
 #import "MSPNowPlayingViewController.h"
 #import "MarqueeLabel.h"
 #import "MSPMediaPlayerViewHelper.h"
+#import <MediaPlayer/MediaPlayer.h>         // For VolumeView
 
 @interface MSPNowPlayingViewController ()
 
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelElapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *labelTotalTime;
 @property (weak, nonatomic) IBOutlet UIView *altTitleTapArea;
+@property (weak, nonatomic) IBOutlet MPVolumeView *volumeView;
 
 @end
 
@@ -79,6 +81,9 @@
                                                        TotalTime:_labelTotalTime
                                                        TintColor:[UIColor whiteColor]];
     
+    // Remove the route button to follow design style of built-in music player
+    // To change route, use iOS' control center
+    [_volumeView setShowsRouteButton:NO];
 }
 
 #pragma mark - View Changes

@@ -290,6 +290,7 @@
                         <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="ft5-fq-OT0"/>
                         <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="7Iy-WZ-Jqf"/>
                         <outlet property="sliderBar" destination="468-8T-omS" id="u5v-9s-b5e"/>
+                        <outlet property="volumeView" destination="t3e-kt-Kh8" id="Xmh-7N-bTx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
