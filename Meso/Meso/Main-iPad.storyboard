@@ -1039,6 +1039,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="shuffle" width="18" height="15"/>
         <image name="shuffleicon" width="30" height="30"/>
     </resources>
+    <color key="tintColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
