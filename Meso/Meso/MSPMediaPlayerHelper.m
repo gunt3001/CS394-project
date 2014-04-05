@@ -15,7 +15,7 @@
 #pragma mark - Initialization
 
 /// Return the pre-configured iPod music player
-+ (MPMusicPlayerController*)iPodMusicPlayer{
++ (MPMusicPlayerController*)initiPodMusicPlayer{
     
     // Get the default iPod player
     MPMusicPlayerController* iPod = [MPMusicPlayerController iPodMusicPlayer];
@@ -109,8 +109,6 @@
 /// Indexes given are in NSNumber*
 + (void)setQueueWithSubsetIndexes:(NSArray*)indexes{
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
-    MPMusicPlaybackState originalPlaybackState = [iPodMusicPlayer playbackState];
-    NSTimeInterval originalPlaybackTime = [iPodMusicPlayer currentPlaybackTime];
 
     // Make a new queue
     NSMutableArray* newQueue = [[NSMutableArray alloc] init];
@@ -120,14 +118,20 @@
     
     // Plus the items at specified indexes
     for (NSNumber* index in indexes) {
+        // Excluding now playing item
+        if (index.integerValue == [iPodMusicPlayer indexOfNowPlayingItem]) continue;
+        
         [newQueue addObject:[iPodMusicPlayer nowPlayingItemAtIndex:index.integerValue]];
     }
     
     // Set the new queue as playing queue
     // Turn off shuffle
+    MPMusicPlaybackState originalPlaybackState = [iPodMusicPlayer playbackState];
+    NSTimeInterval originalPlaybackTime = [iPodMusicPlayer currentPlaybackTime];
     [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
     
     MPMediaItemCollection* newQueueCollection = [[MPMediaItemCollection alloc] initWithItems:newQueue];
+    [iPodMusicPlayer setQueueWithItemCollection:newQueueCollection];
     
     // Restore playback state
     [iPodMusicPlayer setNowPlayingItem:[newQueueCollection items][0]];

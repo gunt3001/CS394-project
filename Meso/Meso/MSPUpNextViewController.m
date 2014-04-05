@@ -55,10 +55,48 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // Setup media updates
+    [self setupMediaUpdate];
+    
     // Scroll to now playing item
-    NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper iPodMusicPlayer] indexOfNowPlayingItem]
+    NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem]
                                                      inSection:1];
     [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    // Unset media updates
+    [self unsetMediaUpdate];
+}
+
+#pragma mark Related Methods
+
+- (void)setupMediaUpdate{
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    // Add observers
+    [notificationCenter addObserver:self
+                           selector:@selector(handleNowPlayingItemChanged:)
+                               name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                             object:[MSPMediaPlayerHelper sharedPlayer]];
+}
+
+- (void)unsetMediaUpdate{
+    
+    // Remove observers
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:[MSPMediaPlayerHelper sharedPlayer]];
+   
+}
+
+- (void)handleNowPlayingItemChanged:(id)notification {
+    // When the playing item changed, update the table
+    [self refreshTable];
 }
 
 #pragma mark - Table view data source
@@ -142,11 +180,11 @@
                     cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
                     
                     // Get the corresponding media item
-                    MPMediaItem* item = [[MSPMediaPlayerHelper iPodMusicPlayer] nowPlayingItemAtIndex:[indexPath row]];
+                    MPMediaItem* item = [[MSPMediaPlayerHelper sharedPlayer] nowPlayingItemAtIndex:[indexPath row]];
                     // Set its info
                     NSString* optionalString;
                     // If it's the currently playing song, show play icon
-                    if ([indexPath row] == [[MSPMediaPlayerHelper iPodMusicPlayer] indexOfNowPlayingItem])
+                    if ([indexPath row] == [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem])
                         optionalString = @"\U000025B6\U0000FE0E";
                     else
                         optionalString = [NSString stringWithFormat:@"%d", [indexPath row] + 1];
@@ -200,7 +238,7 @@
     else{
         // If not in edit mode, start playing selected song
         [MSPMediaPlayerHelper playItemAtIndex:[indexPath row]];
-        [_tableView reloadData];
+        [self refreshTable];
 
         // Scroll to selected item
         [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -249,11 +287,7 @@
         [sender setTitle:@"Edit" forState:UIControlStateNormal];
         sender.titleLabel.font = [UIFont systemFontOfSize:sender.titleLabel.font.pointSize];
         [_tableView setAllowsMultipleSelection:NO];
-        [_tableView reloadData];
-        
-        // Disable queue button
-        UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
-        [buttonQueue setEnabled:NO];
+        [self refreshTable];
     }
     else{
         editMode = YES;
@@ -266,14 +300,14 @@
     }
 }
 
-- (IBAction)buttonQueueSelected:(id)sender {
+- (IBAction)buttonQueueSelected:(UIButton*)sender {
     NSMutableArray* selectedIndexes = [[NSMutableArray alloc] init];
     for (NSIndexPath* eachSelectedPath in [_tableView indexPathsForSelectedRows]) {
         [selectedIndexes addObject:[NSNumber numberWithInt:[eachSelectedPath row]]];
     }
     
     [MSPMediaPlayerHelper setQueueWithSubsetIndexes:selectedIndexes];
-    [_tableView reloadData];
+    [self refreshTable];
     
     // Scroll to top
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -289,6 +323,20 @@
         
     }
     else{
+        
+    }
+}
+
+#pragma mark - Other helper methods
+- (void) refreshTable{
+    // Reload data
+    [_tableView reloadData];
+    
+    // Refresh buttton states
+    // If there's no more selected, disable the queue button
+    if (![_tableView indexPathsForSelectedRows]){
+        UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
+        [buttonQueue setEnabled:NO];
         
     }
 }

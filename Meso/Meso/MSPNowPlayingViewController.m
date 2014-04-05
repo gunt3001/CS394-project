@@ -152,6 +152,8 @@
 
 - (IBAction)menuButton:(id)sender {
     // Show menu as a subview
+    // Don't show if already shown
+    if (menuViewController) return;
     [self showMenu];
 }
 

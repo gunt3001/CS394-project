@@ -17,7 +17,7 @@
 #pragma mark - Initialization
 
 /// Return the pre-configured iPod music player
-+ (MPMusicPlayerController*)iPodMusicPlayer;
++ (MPMusicPlayerController*)initiPodMusicPlayer;
 
 /// Return the shared music player inside this app's AppDelegate
 + (MPMusicPlayerController*)sharedPlayer;

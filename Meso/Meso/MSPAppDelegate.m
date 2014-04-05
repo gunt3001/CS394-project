@@ -16,7 +16,7 @@
     // Override point for customization after application launch.
     
     // Initialize the global music player
-    _sharedPlayer = [MSPMediaPlayerHelper iPodMusicPlayer];
+    _sharedPlayer = [MSPMediaPlayerHelper initiPodMusicPlayer];
     
     // Initialize the blurred image cache
     _sharedBlurredImageCache = [[MSPBlurredImagesWithCache alloc] init];
