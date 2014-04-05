@@ -100,7 +100,7 @@
 /// Play the song at specified index in queue
 + (void)playItemAtIndex:(NSInteger)index{
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
-    MPMediaItem* target = [iPodMusicPlayer nowPlayingItemAtIndex:index];
+    MPMediaItem* target = [iPodMusicPlayer nowPlayingItemAtIndex:(unsigned int)index];
     [iPodMusicPlayer setNowPlayingItem:target];
     [iPodMusicPlayer play];
 }
@@ -121,7 +121,7 @@
         // Excluding now playing item
         if (index.integerValue == [iPodMusicPlayer indexOfNowPlayingItem]) continue;
         
-        [newQueue addObject:[iPodMusicPlayer nowPlayingItemAtIndex:index.integerValue]];
+        [newQueue addObject:[iPodMusicPlayer nowPlayingItemAtIndex:index.unsignedIntValue]];
     }
     
     // Set the new queue as playing queue
