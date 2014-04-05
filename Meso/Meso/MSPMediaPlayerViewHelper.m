@@ -822,8 +822,14 @@
     [newSubtitle setAlpha:0.0];
     
     // Add to view
-    [_view insertSubview:newTitle aboveSubview:_imageArtworkBack];
-    [_view insertSubview:newSubtitle aboveSubview:_imageArtworkBack];
+    if (_imageArtworkBack){
+        [_view insertSubview:newTitle aboveSubview:_imageArtworkBack];
+        [_view insertSubview:newSubtitle aboveSubview:_imageArtworkBack];
+    }
+    else{
+        [_view addSubview:newTitle];
+        [_view addSubview:newSubtitle];
+    }
     
     // Show with animation
     [UIView animateWithDuration:0.1 animations:^{
