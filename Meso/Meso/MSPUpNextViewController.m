@@ -180,14 +180,14 @@
                     cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
                     
                     // Get the corresponding media item
-                    MPMediaItem* item = [[MSPMediaPlayerHelper sharedPlayer] nowPlayingItemAtIndex:[indexPath row]];
+                    MPMediaItem* item = [[MSPMediaPlayerHelper sharedPlayer] nowPlayingItemAtIndex:(unsigned int)[indexPath row]];
                     // Set its info
                     NSString* optionalString;
                     // If it's the currently playing song, show play icon
                     if ([indexPath row] == [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem])
                         optionalString = @"\U000025B6\U0000FE0E";
                     else
-                        optionalString = [NSString stringWithFormat:@"%d", [indexPath row] + 1];
+                        optionalString = [NSString stringWithFormat:@"%ld", (long)[indexPath row] + 1];
                     [cell setSongInfo:item WithString:optionalString];
                     break;
                 }
@@ -303,7 +303,7 @@
 - (IBAction)buttonQueueSelected:(UIButton*)sender {
     NSMutableArray* selectedIndexes = [[NSMutableArray alloc] init];
     for (NSIndexPath* eachSelectedPath in [_tableView indexPathsForSelectedRows]) {
-        [selectedIndexes addObject:[NSNumber numberWithInt:[eachSelectedPath row]]];
+        [selectedIndexes addObject:[NSNumber numberWithLong:[eachSelectedPath row]]];
     }
     
     [MSPMediaPlayerHelper setQueueWithSubsetIndexes:selectedIndexes];
