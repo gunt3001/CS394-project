@@ -103,6 +103,36 @@
             
         }
     }
+    
+    // Recursively sort and put folders up top
+    [self sort];
+}
+
+/// Recursively sort the node's children to put folders up top, playlists at bottom
+-(void) sort{
+    
+    // Base Case: This is a playlist (no children)
+    if (![self isFolder]) return;
+    
+    NSMutableArray* nonFolders = [[NSMutableArray alloc] init];
+    for (MSPPlaylistNode* eachChild in _children) {
+        if ([eachChild isFolder]){
+            // Recursively sort subfolder
+            [eachChild sort];
+        }
+        else{
+            // Otherwise, it's a playlist not a folder
+            // Put it in a temporary array to add to the end of original later
+            [nonFolders addObject:eachChild];
+        }
+
+    }
+    
+    // Add back to end of original
+    for (MSPPlaylistNode* eachNonFolderNode in nonFolders) {
+        [_children removeObject:eachNonFolderNode];
+        [_children addObject:eachNonFolderNode];
+    }
 }
 
 @end
