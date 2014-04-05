@@ -316,7 +316,7 @@
 
 - (IBAction)tableTabSegmentChanged:(UISegmentedControl*)sender {
     // Update table data on tab segment change
-    [_tableView reloadData];
+    [self refreshTable];
     
     // Show/hide header
     if ([sender selectedSegmentIndex] == 0){
