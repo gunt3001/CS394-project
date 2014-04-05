@@ -134,16 +134,6 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (NSUInteger) supportedInterfaceOrientations {
-    // Return a bitmask of supported orientations.
-    
-    // iPad supports every orientation
-    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPad"]) return UIInterfaceOrientationMaskAll;
-    
-    // Other devices only support portrait
-    return UIInterfaceOrientationMaskPortrait;
-}
-
 #pragma mark - Button Actions
 - (IBAction)backButton:(id)sender {
     // Close nowplaying view
