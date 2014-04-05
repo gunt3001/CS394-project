@@ -21,14 +21,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sample Playlist Folder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rv0-gI-buZ">
-                                            <rect key="frame" x="62" y="0.0" width="223" height="43"/>
+                                            <rect key="frame" x="60" y="0.0" width="225" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="PlaylistFolder" id="ABT-ed-d9g">
-                                            <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                            <rect key="frame" x="15" y="6" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -45,14 +45,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sample Playlist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xiC-be-DrG">
-                                            <rect key="frame" x="62" y="0.0" width="223" height="43"/>
+                                            <rect key="frame" x="60" y="0.0" width="225" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="PlaylistItem" id="EKH-bz-iQ5">
-                                            <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                            <rect key="frame" x="15" y="6" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -69,7 +69,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Shuffle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sc5-VR-uIn">
-                                            <rect key="frame" x="62" y="19" width="53" height="21"/>
+                                            <rect key="frame" x="48" y="19" width="53" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -83,7 +83,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="shuffle" id="bOz-Se-vD6">
-                                            <rect key="frame" x="15" y="13" width="32" height="32"/>
+                                            <rect key="frame" x="15" y="22" width="18" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -205,14 +205,12 @@
                                 <rect key="frame" x="14" y="357" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="repeat"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AIz-9Q-4uF" userLabel="Shuffle Button">
                                 <rect key="frame" x="266" y="357" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="shuffle">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -498,7 +496,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Shuffle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dzK-1h-FZR">
-                                            <rect key="frame" x="62" y="19" width="53" height="21"/>
+                                            <rect key="frame" x="48" y="19" width="53" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -512,7 +510,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="shuffle" id="vcR-u1-lXQ">
-                                            <rect key="frame" x="15" y="13" width="32" height="32"/>
+                                            <rect key="frame" x="15" y="22" width="18" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -957,17 +955,17 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="FillButtonForeSkip" width="60" height="60"/>
         <image name="FillButtonPlay" width="60" height="60"/>
         <image name="FillButtonUpnext" width="60" height="60"/>
-        <image name="PlaylistFolder" width="32" height="32"/>
-        <image name="PlaylistItem" width="32" height="32"/>
+        <image name="PlaylistFolder" width="30" height="30"/>
+        <image name="PlaylistItem" width="30" height="30"/>
         <image name="TabBarAbout" width="30" height="30"/>
-        <image name="TabBarAlbums" width="30" height="30"/>
-        <image name="TabBarArtists" width="30" height="30"/>
+        <image name="TabBarAlbums" width="20" height="23"/>
+        <image name="TabBarArtists" width="32" height="24"/>
         <image name="TabBarMeso" width="30" height="30"/>
-        <image name="TabBarPlaylists" width="30" height="30"/>
-        <image name="TabBarSongs" width="30" height="30"/>
+        <image name="TabBarPlaylists" width="23" height="23"/>
+        <image name="TabBarSongs" width="15" height="23"/>
         <image name="arrowback" width="128" height="128"/>
-        <image name="repeat" width="32" height="32"/>
-        <image name="shuffle" width="32" height="32"/>
+        <image name="repeat" width="25" height="25"/>
+        <image name="shuffle" width="18" height="15"/>
         <image name="shuffleicon" width="600" height="600"/>
     </resources>
     <color key="tintColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>

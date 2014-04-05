@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "shuffle.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "shuffle@2x.png"
+      "filename" : "NowPlayingShuffleControl@2x.png"
     }
   ],
   "info" : {

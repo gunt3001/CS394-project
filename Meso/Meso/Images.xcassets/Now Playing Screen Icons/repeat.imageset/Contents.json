@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "repeat.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "repeat@2x.png"
+      "filename" : "NowPlayingRepeatControl@2x.png"
     }
   ],
   "info" : {

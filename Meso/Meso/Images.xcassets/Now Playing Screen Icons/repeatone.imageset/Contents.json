@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "repeatone.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "repeatone@2x.png"
+      "filename" : "NowPlayingRepeatControlOne@2x.png"
     }
   ],
   "info" : {
