@@ -22,14 +22,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sample Playlist Folder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WLb-o2-BWP">
-                                            <rect key="frame" x="62" y="0.0" width="927" height="43"/>
+                                            <rect key="frame" x="60" y="0.0" width="929" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="PlaylistFolder" id="jHf-Y0-R35">
-                                            <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                            <rect key="frame" x="15" y="6" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -46,14 +46,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sample Playlist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CG0-uC-ACC">
-                                            <rect key="frame" x="62" y="0.0" width="927" height="43"/>
+                                            <rect key="frame" x="60" y="0.0" width="929" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="PlaylistItem" id="neY-CF-TXu">
-                                            <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                            <rect key="frame" x="15" y="6" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -70,7 +70,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Shuffle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ozP-n7-l9n">
-                                            <rect key="frame" x="62" y="19" width="53" height="21"/>
+                                            <rect key="frame" x="48" y="19" width="53" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -84,7 +84,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="shuffle" id="BC2-hG-5Xf">
-                                            <rect key="frame" x="15" y="13" width="32" height="32"/>
+                                            <rect key="frame" x="15" y="22" width="18" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -147,11 +147,11 @@
             <objects>
                 <viewController title="Player" hidesBottomBarWhenPushed="YES" id="hf3-gL-8Hr" customClass="MSPNowPlayingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Ya-mB-cES">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="668"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="UNa-Lf-jRh" userLabel="Background Blurred Image">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="668"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NLb-7A-Sxl" userLabel="Back Button">
@@ -173,7 +173,7 @@
                                 <state key="normal" image="FillButtonUpnext"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tv8-8u-4ch" userLabel="Play Button">
-                                <rect key="frame" x="482" y="549" width="60" height="60"/>
+                                <rect key="frame" x="482" y="649" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonPlay">
@@ -182,7 +182,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="u05-fD-HAP" userLabel="Skip Forward Button">
-                                <rect key="frame" x="798" y="549" width="60" height="60"/>
+                                <rect key="frame" x="798" y="649" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonForeSkip">
@@ -191,7 +191,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RxV-ky-tY8" userLabel="Skip Backward Button">
-                                <rect key="frame" x="165" y="549" width="60" height="60"/>
+                                <rect key="frame" x="165" y="649" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonBackSkip">
@@ -200,17 +200,15 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cVx-LK-jMX" userLabel="Repeat Button">
-                                <rect key="frame" x="65" y="525" width="40" height="30"/>
+                                <rect key="frame" x="65" y="625" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="repeat"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jIo-2v-jRi" userLabel="Shuffle Button">
-                                <rect key="frame" x="919" y="525" width="40" height="30"/>
+                                <rect key="frame" x="919" y="625" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="shuffle">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -235,34 +233,34 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u5X-rh-hbs" userLabel="Elapsed Time Label">
-                                <rect key="frame" x="113" y="533" width="29" height="14"/>
+                                <rect key="frame" x="113" y="633" width="29" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eiu-ek-75K" userLabel="Total Time Label">
-                                <rect key="frame" x="881" y="533" width="29" height="14"/>
+                                <rect key="frame" x="881" y="633" width="29" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="QVq-dz-sKr" userLabel="Seek Bar Slider">
-                                <rect key="frame" x="159" y="525" width="705" height="31"/>
+                                <rect key="frame" x="159" y="625" width="705" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </slider>
                             <view contentMode="scaleToFill" id="BEv-m4-PRI" customClass="MPVolumeView">
-                                <rect key="frame" x="161" y="617" width="701" height="31"/>
+                                <rect key="frame" x="161" y="717" width="701" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="13U-e9-HDh">
-                                <rect key="frame" x="0.0" y="91" width="1024" height="416"/>
+                                <rect key="frame" x="0.0" y="91" width="1024" height="516"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uv4-bq-KVn" userLabel="Album Art">
-                                        <rect key="frame" x="64" y="0.0" width="896" height="416"/>
+                                        <rect key="frame" x="64" y="0.0" width="896" height="516"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
@@ -399,14 +397,12 @@
                                 <rect key="frame" x="265" y="60" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="repeat"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gm2-VR-cjz" userLabel="Shuffle Button">
                                 <rect key="frame" x="717" y="60" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                 <state key="normal" image="shuffle">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1029,18 +1025,18 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="FillButtonForeSkip" width="60" height="60"/>
         <image name="FillButtonPlay" width="60" height="60"/>
         <image name="FillButtonUpnext" width="60" height="60"/>
-        <image name="PlaylistFolder" width="32" height="32"/>
-        <image name="PlaylistItem" width="32" height="32"/>
+        <image name="PlaylistFolder" width="30" height="30"/>
+        <image name="PlaylistItem" width="30" height="30"/>
         <image name="TabBarAbout" width="30" height="30"/>
-        <image name="TabBarAlbums" width="30" height="30"/>
-        <image name="TabBarArtists" width="30" height="30"/>
+        <image name="TabBarAlbums" width="20" height="23"/>
+        <image name="TabBarArtists" width="32" height="24"/>
         <image name="TabBarMeso" width="30" height="30"/>
-        <image name="TabBarPlaylists" width="30" height="30"/>
-        <image name="TabBarSongs" width="30" height="30"/>
+        <image name="TabBarPlaylists" width="23" height="23"/>
+        <image name="TabBarSongs" width="15" height="23"/>
         <image name="arrowback" width="128" height="128"/>
-        <image name="noartplaceholder" width="320" height="320"/>
-        <image name="repeat" width="32" height="32"/>
-        <image name="shuffle" width="32" height="32"/>
+        <image name="noartplaceholder" width="256" height="256"/>
+        <image name="repeat" width="25" height="25"/>
+        <image name="shuffle" width="18" height="15"/>
         <image name="shuffleicon" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1049,7 +1045,7 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="uA3-ss-MzX"/>
         <segue reference="spT-9J-Aq0"/>
-        <segue reference="jda-4G-w08"/>
     </inferredMetricsTieBreakers>
 </document>
