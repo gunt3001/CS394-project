@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		198E59C605C343B0A979022C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7939459BD4D74DBBAA2C3E11 /* libPods.a */; };
 		B00E735018E6098B00662BAA /* MSPMediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B00E734F18E6098B00662BAA /* MSPMediaPlayerHelper.m */; };
+		B018762618F0C9D800148EF2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B018762518F0C9D800148EF2 /* Settings.bundle */; };
 		B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */; };
 		B026F23618DD7C5500B61B45 /* MSPStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23518DD7C5500B61B45 /* MSPStringProcessor.m */; };
 		B026F23918DD895300B61B45 /* MSPBlurredImagesWithCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23818DD895300B61B45 /* MSPBlurredImagesWithCache.m */; };
@@ -58,6 +59,7 @@
 		7939459BD4D74DBBAA2C3E11 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00E734E18E6098B00662BAA /* MSPMediaPlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPMediaPlayerHelper.h; sourceTree = "<group>"; };
 		B00E734F18E6098B00662BAA /* MSPMediaPlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPMediaPlayerHelper.m; sourceTree = "<group>"; };
+		B018762518F0C9D800148EF2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B026F23118DD562000B61B45 /* MSPPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlaylistsViewController.h; sourceTree = "<group>"; };
 		B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlaylistsViewController.m; sourceTree = "<group>"; };
 		B026F23418DD7C5500B61B45 /* MSPStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPStringProcessor.h; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		B0B882D618C69A4E003D37EC /* Meso */ = {
 			isa = PBXGroup;
 			children = (
+				B018762518F0C9D800148EF2 /* Settings.bundle */,
 				B0BEC4F918DAB4C6003EAC01 /* MSPConstants.h */,
 				B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */,
 				B0E352BD18DBCA2900276682 /* Libraries */,
@@ -370,6 +373,7 @@
 			files = (
 				B0B882E918C69A4E003D37EC /* Images.xcassets in Resources */,
 				B0B882DB18C69A4E003D37EC /* InfoPlist.strings in Resources */,
+				B018762618F0C9D800148EF2 /* Settings.bundle in Resources */,
 				B0B882E418C69A4E003D37EC /* Main.storyboard in Resources */,
 				B09A0E3B18DF70C500B89816 /* Main-iPad.storyboard in Resources */,
 			);

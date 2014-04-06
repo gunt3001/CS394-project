@@ -434,7 +434,6 @@
                         <segue destination="t5u-Sp-CBY" kind="relationship" relationship="viewControllers" id="iAc-ft-acG"/>
                         <segue destination="0Y2-gp-dbw" kind="relationship" relationship="viewControllers" id="XcR-3Q-njH"/>
                         <segue destination="UhY-Dk-Wue" kind="relationship" relationship="viewControllers" id="GqC-RB-m5r"/>
-                        <segue destination="ybv-CI-YbO" kind="relationship" relationship="viewControllers" id="x8B-qP-NG7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8v-OZ-Yhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -564,44 +563,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ip2-Ea-gv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1051" y="-271"/>
-        </scene>
-        <!--View Controller - About-->
-        <scene sceneID="WGr-wZ-nju">
-            <objects>
-                <viewController id="6yu-cs-rav" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="x4y-pv-fn1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="3f5-AN-5Ew">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Meso - Melody Social
-by Napat Ratanakul and Jacky Guo
-
-Icons Provided By
-- Apple
-- Pixeden.com
-- icons8.com
-- ionicons.com
-
-Libraries Used:
-- UIImage+ImageEffects by Apple
-- MarqueeLabel by cbpowell
-https://github.com/cbpowell/MarqueeLabel</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="About" id="rho-dm-okw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="evg-4Q-0Xl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1051" y="2748"/>
         </scene>
         <!--Navigation Controller - Profile-->
         <scene sceneID="Zhe-6t-XMH">
@@ -930,25 +891,6 @@ https://github.com/cbpowell/MarqueeLabel</string>
             </objects>
             <point key="canvasLocation" x="1051" y="1909"/>
         </scene>
-        <!--Navigation Controller - About-->
-        <scene sceneID="GaL-bO-ZCc">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ybv-CI-YbO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="About" image="TabBarAbout" id="5TS-xl-ns2"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hpU-vW-I2y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="6yu-cs-rav" kind="relationship" relationship="rootViewController" id="Tl0-IE-CF8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6va-I2-Mas" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="511" y="2716"/>
-        </scene>
     </scenes>
     <resources>
         <image name="FillButtonBackSkip" width="60" height="60"/>
@@ -957,7 +899,6 @@ https://github.com/cbpowell/MarqueeLabel</string>
         <image name="FillButtonUpnext" width="60" height="60"/>
         <image name="PlaylistFolder" width="30" height="30"/>
         <image name="PlaylistItem" width="30" height="30"/>
-        <image name="TabBarAbout" width="30" height="30"/>
         <image name="TabBarAlbums" width="20" height="23"/>
         <image name="TabBarArtists" width="32" height="24"/>
         <image name="TabBarMeso" width="30" height="30"/>
