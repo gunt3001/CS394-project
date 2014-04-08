@@ -10,6 +10,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "MarqueeLabel.h"
 
 @interface MSPMediaPlayerViewHelper : NSObject <UIGestureRecognizerDelegate, UIScrollViewDelegate>
@@ -38,7 +39,8 @@
           OffColor:(UIColor*)offColor
        ElapsedTime:(UILabel*)labelElapsedTime
          TotalTime:(UILabel*)labelTotalTime
-         TintColor:(UIColor*)tintColor;
+         TintColor:(UIColor*)tintColor
+      VolumeSlider:(MPVolumeView*)sliderVolume;
 
 /// Things to do every time the view with the controls appear on the screen
 - (void) viewWillAppear;

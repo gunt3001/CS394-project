@@ -80,7 +80,8 @@
                                                         OffColor:[UIColor blackColor]
                                                      ElapsedTime:_labelElapsedTime
                                                        TotalTime:_labelTotalTime
-                                                       TintColor:[UIColor whiteColor]];
+                                                       TintColor:[UIColor whiteColor]
+                                                    VolumeSlider:_volumeView];
     
     // Remove the route button to follow design style of built-in music player
     // To change route, use iOS' control center
