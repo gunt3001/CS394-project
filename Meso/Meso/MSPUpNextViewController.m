@@ -57,7 +57,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    // Setup media updates
+    // Do Initial Table Update
+    [self refreshTable];
+    
+    // Setup further media updates
     [self setupMediaUpdate];
     
     // Scroll to now playing item
