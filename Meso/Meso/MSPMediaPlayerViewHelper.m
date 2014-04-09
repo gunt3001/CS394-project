@@ -114,7 +114,6 @@
         [self setupGuides];                               // Add dummy UIView as guides for frame of Marquee Text Labels
         [self setupActions];                              // Add actions for buttons
         [self setupSongTitleGesture];                     // Enable tapping on song title to show alternate title
-        [self setupMarquee];                              // Set up scrolling text
         [self setupProgressSliderWithThumb:thumbImage];   // Seek bar
         [self setupImageScroller];                        // Use imagescroller to allow song skipping by swiping
         if (withDropShadow)
@@ -225,13 +224,6 @@
 
 - (void) setupProgressSliderWithThumb:(UIImage*)image{
     [_sliderBar setThumbImage:image forState:UIControlStateNormal];
-}
-
-- (void) setupMarquee{
-    
-    // Change the regular label into a marquee one
-    [self recreateMarqueeTexts];
-    
 }
 
 #pragma mark - View Changes
