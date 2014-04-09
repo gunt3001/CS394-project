@@ -40,7 +40,6 @@
 		B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4F718DAA718003EAC01 /* MSPTableViewCell.m */; };
 		B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */; };
 		B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */; };
-		B0E352C018DBCA3F00276682 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +106,6 @@
 		B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPConstants.m; sourceTree = "<group>"; };
 		B0BEC4FC18DACCC4003EAC01 /* MSPNowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPNowPlayingViewController.h; sourceTree = "<group>"; };
 		B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPNowPlayingViewController.m; sourceTree = "<group>"; };
-		B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,8 +268,6 @@
 			children = (
 				B026F23C18DDC56100B61B45 /* MarqueeLabel.h */,
 				B026F23D18DDC56100B61B45 /* MarqueeLabel.m */,
-				B0E352BE18DBCA3F00276682 /* UIImage+ImageEffects.h */,
-				B0E352BF18DBCA3F00276682 /* UIImage+ImageEffects.m */,
 				B0A2681418EACD9700D60128 /* MPMusicPlayerController+PrivateInterface.h */,
 				B0A2681518EACD9700D60128 /* MPMusicPlayerController+PrivateInterface.m */,
 			);
@@ -426,7 +421,6 @@
 				B0A2681618EACD9700D60128 /* MPMusicPlayerController+PrivateInterface.m in Sources */,
 				B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */,
 				B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */,
-				B0E352C018DBCA3F00276682 /* UIImage+ImageEffects.m in Sources */,
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
 				B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */,
 				B00E735018E6098B00662BAA /* MSPMediaPlayerHelper.m in Sources */,
