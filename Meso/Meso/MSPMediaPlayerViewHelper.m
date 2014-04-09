@@ -53,10 +53,6 @@
     NSString*       _displayedSongAltTitle;        // Alternate title of song on display
     NSNumber*       _displayedSongPID;             // PID of song on display
     
-    // Background Processing
-    dispatch_queue_t    _imageBlurringQueue;       // GCD Queue for iamge blurring
-    NSInteger       _blurringQueueCount;           // Counter for things in queue
-    
     // Timers
     NSTimer*        _elapsedTimer;                 // Timer used to update elapsed time and progress bars
     NSTimer*        _fastSeekTimer;                // Timer to use for delay before fast seeking
@@ -643,7 +639,6 @@
     UIImage* artworkImage = [art imageWithSize:[_imageArtwork frame].size];
     if (!artworkImage) artworkImage = [UIImage imageNamed:@"noartplaceholder"];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
-    NSNumber* albumPid = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumPersistentID];
     NSTimeInterval totalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
     NSString* totalString = [MSPStringProcessor getTimeStringFromInterval:totalTime];
     
@@ -653,17 +648,13 @@
     [self recreateMarqueeTexts];                                                    // Update bounds for Title/Subtitle
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
     if (_imageArtworkBack)
-        [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];         // Background Artwork (Hide, show later in separate thread)
+        [self changeImageWithTransitionOn:_imageArtworkBack withImage:artworkImage];// Background Artwork
     [_labelTotalTime setText:totalString];                                          // Total time
     
     // Metadata
     _displayedSongTitle = title;                                        // Title, used to switch with alternate title
     _displayedSongAltTitle = altTitle;                                  // Alternate title
     _displayedSongPID = songPid;                                        // Persistent ID
-    
-    // Apply the heavy task of blurring image in background thread
-    if (_imageArtworkBack)
-        [self blurAndSetBackgroundImage:artworkImage PID:albumPid];
 }
 
 // Update the elapsed time label and the progress bar
@@ -754,38 +745,9 @@
                     } completion:NULL];
 }
 
-- (void) blurAndSetBackgroundImage:(UIImage*)artworkImage PID:(NSNumber*)albumPid{
-    // Use GCD to blur image in background thread
-    // When finished, set background to the blurred image
-    
-    if (!_imageBlurringQueue){
-        _imageBlurringQueue = dispatch_queue_create(BLURRING_QUEUE_NAME, NULL);
-        _blurringQueueCount = 0;
-    }
-    _blurringQueueCount++;
-    dispatch_async(_imageBlurringQueue, ^{
-        
-        // Only process image if this is the only item in queue.
-        // This skips any image we don't need anymore.
-        if (_blurringQueueCount == 1){
-            
-            MSPBlurredImagesWithCache* imageProcessor = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedBlurredImageCache];
-            UIImage* blurredArt = [imageProcessor getBlurredImageOfArt:artworkImage WithPID:albumPid];
-            
-            // Update UI after finishing (Animated)
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self changeImageWithTransitionOn:_imageArtworkBack withImage:blurredArt];
-            });
-        }
-        
-        _blurringQueueCount--;
-    });
-}
-
 - (void) recreateMarqueeTexts{
     // Update the frame for Song title and subtitle by creating new MarqueeLabel object
     
-    // Need to add an entirely new object because of bugs in the library
     MarqueeLabel* newTitle = [[MarqueeLabel alloc] initWithFrame:_labelSongTitleGuide.frame];
     MarqueeLabel* newSubtitle = [[MarqueeLabel alloc] initWithFrame:_labelSongSubtitleGuide.frame];
     
@@ -795,6 +757,7 @@
     [newTitle setTextAlignment:[_labelSongTitle textAlignment]];
     [newSubtitle setTextAlignment:[_labelSongSubtitle textAlignment]];
     [newSubtitle setAttributedText:[_labelSongSubtitle attributedText]];
+    NSInteger titleIndex = [[_view subviews] indexOfObject:_labelSongTitle];
     
     // Set up the properties
     [newTitle setTextColor:_textColor];                // Color
@@ -822,14 +785,9 @@
     [newSubtitle setAlpha:0.0];
     
     // Add to view
-    if (_imageArtworkBack){
-        [_view insertSubview:newTitle aboveSubview:_imageArtworkBack];
-        [_view insertSubview:newSubtitle aboveSubview:_imageArtworkBack];
-    }
-    else{
-        [_view addSubview:newTitle];
-        [_view addSubview:newSubtitle];
-    }
+
+    [_view insertSubview:newTitle atIndex:titleIndex];
+    [_view insertSubview:newSubtitle atIndex:titleIndex];
     
     // Show with animation
     [UIView animateWithDuration:0.1 animations:^{

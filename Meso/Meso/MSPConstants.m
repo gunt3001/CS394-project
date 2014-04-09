@@ -32,13 +32,6 @@ NSString* const MSPMediaItemPropertySortTitle = @"sortTitle";
 NSString* const MSPMediaPlaylistPropertyIsFolder = @"isFolder";
 NSString* const MSPMediaPlaylistPropertyParentPersistentID = @"parentPersistentID";
 
-const char* const BLURRING_QUEUE_NAME = "imageblurringqueue";
-
-NSInteger const BLURRED_IMAGE_CACHE_SIZE = 5;
-NSInteger const BLURRED_IMAGE_DOWNSCALE_HEIGHT = 300;
-NSInteger const BLURRED_IMAGE_DOWNSCALE_WIDTH = 300;
-NSInteger const BLURRED_IMAGE_BLUR_RADIUS = 10;
-
 float const FAST_SEEKING_DELAY = 1.0;
 float const FAST_SEEKING_RATE = 2.0;
 float const MARQUEE_LABEL_RATE = 30.0;

@@ -59,6 +59,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // Use toolbar trick to blur background
+    UIToolbar *toolBar = [[UIToolbar alloc] init];
+    [toolBar setBarStyle:UIBarStyleBlack];
+    [toolBar setFrame:self.view.frame];
+    [self.view insertSubview:toolBar aboveSubview:_imageArtworkBack];
+    
     // Initialize the player controller object
     playerController = [[MSPMediaPlayerViewHelper alloc] initWithView:[self view]
                                                            Title:_labelSongTitle

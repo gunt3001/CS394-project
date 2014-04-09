@@ -18,9 +18,6 @@
     // Initialize the global music player
     _sharedPlayer = [MSPMediaPlayerHelper initiPodMusicPlayer];
     
-    // Initialize the blurred image cache
-    _sharedBlurredImageCache = [[MSPBlurredImagesWithCache alloc] init];
-    
     // Re-set global tint color as a workaround for iOS 7.1 bug
     // where global tint is not applied correctly when using storyboard
     // Please see https://devforums.apple.com/message/949636 for more information
