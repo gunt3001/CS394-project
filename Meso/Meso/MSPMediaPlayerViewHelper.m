@@ -42,6 +42,7 @@
     __weak UIView*  _altTitleTapArea;              // Tap area for showing alternate title
     UIView*         _labelSongTitleGuide;          // Display area of Song Title Label
     UIView*         _labelSongSubtitleGuide;       // Display area of Song Subtitle Label
+    UIToolbar*      _toolbarBackground;            // Toolbar to blur background image
     
     // Flags
     BOOL            _isShowingAltTitle;            // Whether the song name shown is the alternate title
@@ -121,6 +122,15 @@
         
         // Get reference to the music player
         _musicPlayer   = [MSPMediaPlayerHelper sharedPlayer];
+        
+        // Use toolbar trick to blur background
+        if (!_toolbarBackground){
+            _toolbarBackground = [[UIToolbar alloc] init];
+            [_toolbarBackground setBarStyle:UIBarStyleBlack];
+            [_view insertSubview:_toolbarBackground aboveSubview:_imageArtworkBack];
+            [_toolbarBackground setFrame:_view.frame];
+            [_toolbarBackground setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
+        }
     }
     return self;
 }
@@ -253,7 +263,6 @@
     [self setupMediaUpdate];                // Subscribe to media status changes
     [self updateMediaData];                 // Update now playing item
     [self setupTimer];                      // Set up timer to keep track of elapsed time
-
 }
 
 // View Did Appear
@@ -313,7 +322,6 @@
     
     // Set up new marquee text
     [self recreateMarqueeTexts];
-    
 }
 
 #pragma mark Related Methods
