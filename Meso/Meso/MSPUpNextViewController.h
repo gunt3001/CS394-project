@@ -10,4 +10,6 @@
 
 @interface MSPUpNextViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
+@property (weak, nonatomic) UIPopoverController* parentPopover;
+
 @end

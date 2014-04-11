@@ -310,7 +310,14 @@
 
 - (IBAction)doneButton:(id)sender {
     // Close upnext view
-    [(MSPNowPlayingViewController*)self.parentViewController hideMenu];
+    if (_parentPopover){
+        // iPad Popover
+        [_parentPopover dismissPopoverAnimated:YES];
+    }
+    else{
+        // iPhone subview
+        [(MSPNowPlayingViewController*)self.parentViewController hideMenu];
+    }
 }
 
 - (IBAction)editButton:(UIButton*)sender {

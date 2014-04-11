@@ -7,6 +7,7 @@
 //
 
 #import "MSPiPadTopMenuViewController.h"
+#import "MSPUpNextViewController.h"
 
 @interface MSPiPadTopMenuViewController ()
 
@@ -22,6 +23,15 @@
     [self setColorScheme:MSPColorSchemeDefault];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"idupnextpopover"]){
+        UIPopoverController* popOverController = [(UIStoryboardPopoverSegue *)segue popoverController];
+        [(MSPUpNextViewController*)[segue destinationViewController] setParentPopover:popOverController];
+    }
+    
 }
 
 @end

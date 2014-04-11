@@ -44,6 +44,9 @@
 
 - (IBAction)menuButton:(id)sender {
     // Show menu as a subview
+    // Warning: Only link this to the iPhone storyboard
+    // Use normal popover for iPad Storyboard
+    
     // Don't show if already shown
     if (menuViewController) return;
     [self showMenu];
