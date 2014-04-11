@@ -19,6 +19,7 @@
     __weak UIView*         _view;                         // The View
     __weak MarqueeLabel*   _labelSongTitle;               // Song Title Label
     __weak MarqueeLabel*   _labelSongSubtitle;            // Song Subtitle Label
+    __weak UIView*         _altTitleTapArea;              // Tap area for showing alternate title
     __weak UIImageView*    _imageArtwork;                 // Song Artwork
     __weak UIImageView*    _imageArtworkBack;             // Song Artwork as Background Image
     __weak UIButton*       _imageArtworkButton;           // Song Artwork as a Button
@@ -32,12 +33,11 @@
     __weak UILabel*        _labelElapsedTime;             // Elapsed Time Label
     __weak UILabel*        _labelTotalTime;               // Total Time Label
     __weak MPVolumeView*   _sliderVolume;                 // Volume Slider
-    
-    // Colors & Fonts
-    MSPColorScheme  _colorScheme;                   // Color scheme
+
+    // Colors
+    MSPColorScheme  _colorScheme;                  // Color scheme
 
     // Dummy UI Elements
-    __weak UIView*  _altTitleTapArea;              // Tap area for showing alternate title
     UIView*         _labelSongTitleGuide;          // Display area of Song Title Label
     UIView*         _labelSongSubtitleGuide;       // Display area of Song Subtitle Label
     UIToolbar*      _toolbarBackground;            // Toolbar to blur background image
@@ -117,8 +117,6 @@
 }
 
 #pragma mark Related Methods
-
-
 
 - (void) setupLabels{
     
