@@ -51,8 +51,8 @@
                                                 SubtitleFontSize:[[_labelSongSubtitle font] pointSize]
                                                  AltTitleTapArea:_altTitleTapArea
                                                     ArtworkImage:_imageArtwork
-                                                  WithDropShadow:YES
                                                  BackgroundImage:_imageArtworkBack
+                                                   ArtworkButton:nil
                                                       ScrollView:_imageScroller
                                                          Seekbar:_sliderBar
                                                       ThumbImage:[UIImage imageNamed:@"ProgressSliderThumb"]

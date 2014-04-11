@@ -19,8 +19,9 @@
     __weak UIView*         _view;                         // The View
     __weak MarqueeLabel*   _labelSongTitle;               // Song Title Label
     __weak MarqueeLabel*   _labelSongSubtitle;            // Song Subtitle Label
-    __weak id              _imageArtwork;                 // Song Artwork
+    __weak UIImageView*    _imageArtwork;                 // Song Artwork
     __weak UIImageView*    _imageArtworkBack;             // Song Artwork as Background Image
+    __weak UIButton*       _imageArtworkButton;           // Song Artwork as a Button
     __weak UISlider*       _sliderBar;                    // Seek Bar
     __weak UIScrollView*   _imageScroller;                // Scrollview containing artwork
     __weak UIButton*       _buttonPlayPause;              // Play-Pause button
@@ -46,7 +47,6 @@
     
     // Flags
     BOOL            _isShowingAltTitle;            // Whether the song name shown is the alternate title
-    BOOL            _isButtonImageArtwork;         // Whether imageArtwork is a UIButton. UIImageView otherwise.
     
     // Other objects
     MPMusicPlayerController* _musicPlayer;         // The iPod music player
@@ -69,9 +69,9 @@
          Textcolor:(UIColor*)textColor
   SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
-      ArtworkImage:(id)imageArtwork
-    WithDropShadow:(BOOL)withDropShadow
+      ArtworkImage:(UIImageView*)imageArtwork
    BackgroundImage:(UIImageView*)imageArtworkBack
+     ArtworkButton:(UIButton*)imageArtworkButton
         ScrollView:(UIScrollView*)imageScroller
            Seekbar:(UISlider*)sliderBar
         ThumbImage:(UIImage*)thumbImage
@@ -98,6 +98,7 @@
         _subtitleFontSize  = subtitleFontSize;
         _sliderBar         = sliderBar;
         _imageArtwork      = imageArtwork;
+        _imageArtworkButton = imageArtworkButton;
         _imageScroller     = imageScroller;
         _altTitleTapArea   = altTitleTapArea;
         _buttonPlayPause   = buttonPlayPause;
@@ -113,14 +114,12 @@
         _sliderVolume      = sliderVolume;
         
         // Do One-time setup of UI Elements
-        [self setupArtworkType];                          // Determine the type of imageArtwork
         [self setupGuides];                               // Add dummy UIView as guides for frame of Marquee Text Labels
         [self setupActions];                              // Add actions for buttons
         [self setupSongTitleGesture];                     // Enable tapping on song title to show alternate title
         [self setupProgressSliderWithThumb:thumbImage];   // Seek bar
         [self setupImageScroller];                        // Use imagescroller to allow song skipping by swiping
-        if (withDropShadow)
-            [self setupImageArtworkDropShadow];           // Add Drop Shadow to Art Image
+        [self setupImageArtworkDropShadow];               // Add Drop Shadow to Art Image
         [self setupVolumeSlider];                         // Setup the volume slider
         
         // Get reference to the music player
@@ -134,6 +133,9 @@
             [_toolbarBackground setFrame:_view.frame];
             [_toolbarBackground setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
         }
+        
+        //Set proper resizing mode for button artwork
+        [[_imageArtworkButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
     }
     return self;
 }
@@ -143,19 +145,6 @@
 - (void) setupVolumeSlider{
     // Change thumb image
     [_sliderVolume setVolumeThumbImage:[UIImage imageNamed:@"VolumeSliderThumb"] forState:UIControlStateNormal];
-}
-
-- (void) setupArtworkType{
-    // Check the type of the target view
-    
-    // Check if it's UIButton.
-    // Assume UIImageView otherwise.
-    _isButtonImageArtwork = [_imageArtwork isKindOfClass:[UIButton class]];
-    
-    // Set image as fit mode
-    if (_isButtonImageArtwork) {
-        [[(UIButton*)_imageArtwork imageView] setContentMode: UIViewContentModeScaleAspectFit];
-    }
 }
 
 - (void) setupGuides{
@@ -611,6 +600,7 @@
         
         // Artworks
         [self changeImageWithTransitionOn:_imageArtwork withImage:nil];
+        [self changeImageWithTransitionOn:_imageArtworkButton withImage:nil];
         if (_imageArtworkBack)
             [self changeImageWithTransitionOn:_imageArtworkBack withImage:nil];
         
@@ -655,6 +645,7 @@
     [_labelSongSubtitle setAttributedText:subtitle];                                // Subtitle
     [self recreateMarqueeTexts];                                                    // Update bounds for Title/Subtitle
     [self changeImageWithTransitionOn:_imageArtwork withImage:artworkImage];        // Artwork
+    [self changeImageWithTransitionOn:_imageArtworkButton withImage:artworkImage];  // Artwork Button
     if (_imageArtworkBack)
         [self changeImageWithTransitionOn:_imageArtworkBack withImage:artworkImage];// Background Artwork
     [_labelTotalTime setText:totalString];                                          // Total time
@@ -737,18 +728,24 @@
 }
 
 #pragma mark - Helper Methods
-- (void) changeImageWithTransitionOn:(id)view withImage:(UIImage*)image{
-    // Change image in the given uiimageview with fading animation
+- (void) changeImageWithTransitionOn:(UIView*)view withImage:(UIImage*)image{
+    // Change image in the given view with fading animation
+    // Supports UIImageView* and UIButton*
+    
+    if (!view) return;
     
     [UIView transitionWithView:view
                       duration:0.2f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-                        if (_isButtonImageArtwork){
+                        if ([view isKindOfClass:[UIButton class]]){
                             [(UIButton*)view setImage:image forState:UIControlStateNormal];
                         }
-                        else{
+                        else if ([view isKindOfClass:[UIImageView class]]){
                             [(UIImageView*)view setImage:image];
+                        }
+                        else{
+                            NSLog(@"WARNING: Changing image on incompatible view");
                         }
                     } completion:NULL];
 }

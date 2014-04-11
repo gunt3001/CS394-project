@@ -25,9 +25,9 @@
          Textcolor:(UIColor*)textColor
   SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
-      ArtworkImage:(id)imageArtwork
-    WithDropShadow:(BOOL)withDropShadow
+      ArtworkImage:(UIImageView*)imageArtwork
    BackgroundImage:(UIImageView*)imageArtworkBack
+     ArtworkButton:(UIButton*)imageArtworkButton
         ScrollView:(UIScrollView*)imageScroller
            Seekbar:(UISlider*)sliderBar
         ThumbImage:(UIImage*)thumbImage

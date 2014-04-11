@@ -62,9 +62,9 @@
                                                        Textcolor:[UIColor blackColor]
                                                 SubtitleFontSize:[[_labelSongSubtitle font] pointSize]
                                                  AltTitleTapArea:_altTitleTapArea
-                                                    ArtworkImage:_imageArtworkBtn
-                                                  WithDropShadow:NO
+                                                    ArtworkImage:nil
                                                  BackgroundImage:nil
+                                                   ArtworkButton:_imageArtworkBtn
                                                       ScrollView:nil
                                                          Seekbar:_sliderBar
                                                       ThumbImage:[UIImage imageNamed:@"ProgressSliderThumbBlack"]
