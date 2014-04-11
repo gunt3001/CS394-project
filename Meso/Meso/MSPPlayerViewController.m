@@ -12,7 +12,7 @@
 #import "MSPPlayerViewController.h"
 #import "MSPMediaPlayerHelper.h"
 #import "MSPConstants.h"
-#import "MSPStringProcessor.h"
+#import "MSPStringHelper.h"
 #import "MarqueeLabel.h"
 
 
@@ -580,7 +580,7 @@
     NSString* title = [nowPlaying valueForProperty:MPMediaItemPropertyTitle];
     NSString* album = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumTitle];
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
-    NSAttributedString* subtitle =  [MSPStringProcessor getAttributedSubtitleFromArtist:artist
+    NSAttributedString* subtitle =  [MSPStringHelper getAttributedSubtitleFromArtist:artist
                                                                                   Album:album
                                                                            WithFontSize:[[_labelSongSubtitle font] pointSize]
                                                                                   Color:[_labelSongSubtitle textColor]];
@@ -590,7 +590,7 @@
     if (!artworkImage) artworkImage = [UIImage imageNamed:@"noartplaceholder"];
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     NSTimeInterval totalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
-    NSString* totalString = [MSPStringProcessor getTimeStringFromInterval:totalTime];
+    NSString* totalString = [MSPStringHelper getTimeStringFromInterval:totalTime];
     
     // Display them
     [_labelSongTitle setText:title];                                                // Title
@@ -624,7 +624,7 @@
         [_sliderProgress setValue:0.0];
     }
     else{
-        NSString* elapsedString = [MSPStringProcessor getTimeStringFromInterval:elapsedTime];
+        NSString* elapsedString = [MSPStringHelper getTimeStringFromInterval:elapsedTime];
         [_labelElapsedTime setText:elapsedString];
         
         float progress = elapsedTime / nowPlayingSongTotalTime;

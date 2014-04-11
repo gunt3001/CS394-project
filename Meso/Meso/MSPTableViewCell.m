@@ -8,7 +8,7 @@
 
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
-#import "MSPStringProcessor.h"
+#import "MSPStringHelper.h"
 
 @implementation MSPTableViewCell{
     BOOL hasThumb;
@@ -109,7 +109,7 @@
     // Title
     [[self textLabel] setText:songTitle];
     // Subtitle
-    NSAttributedString* subtitle = [MSPStringProcessor getAttributedSubtitleFromArtist:songArtist
+    NSAttributedString* subtitle = [MSPStringHelper getAttributedSubtitleFromArtist:songArtist
                                                                                  Album:songAlbum
                                                                           WithFontSize:[[[self detailTextLabel] font] pointSize]
                                                                                  Color:[[self detailTextLabel] textColor]];

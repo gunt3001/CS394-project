@@ -11,7 +11,7 @@
 #import "MSPAppDelegate.h"
 #import "MSPConstants.h"
 #import "MSPTableViewCell.h"
-#import "MSPStringProcessor.h"
+#import "MSPStringHelper.h"
 #import "MSPMediaPlayerHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
 

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Napat R. All rights reserved.
 //
 
-#import "MSPStringProcessor.h"
+#import "MSPStringHelper.h"
 #import "MSPConstants.h"
 
-@implementation MSPStringProcessor
+@implementation MSPStringHelper
 
 + (NSAttributedString *)getAttributedSubtitleFromArtist:(NSString *)artist Album:(NSString *)album WithFontSize:(CGFloat)fontSize Color:(UIColor*)color{
     // Create an attributed string of format "Artist Album" with Artist bolded

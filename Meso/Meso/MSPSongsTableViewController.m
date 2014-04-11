@@ -10,7 +10,7 @@
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
 #import "MSPAppDelegate.h"
-#import "MSPStringProcessor.h"
+#import "MSPStringHelper.h"
 #import "MSPMediaPlayerHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
 
