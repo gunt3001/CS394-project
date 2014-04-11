@@ -15,7 +15,4 @@
 
 - (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string ShowAlbum:(BOOL)showAlbum;
 
-#pragma mark - Cell Masks
-- (void)maskCellFromTop:(CGFloat)margin;
-
 @end

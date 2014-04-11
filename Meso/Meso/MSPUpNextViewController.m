@@ -41,11 +41,6 @@
     
     // Hide Footer
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    
-    // Use toolbar trick to blur background
-    UIToolbar *toolBar = [[UIToolbar alloc] init];
-    [toolBar setFrame:[self view].frame];
-    [self.view insertSubview:toolBar atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -290,11 +285,6 @@
     }
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // Hide cells under header menu
-    [self updateCellMask];
-}
-
 /*
 #pragma mark - Navigation
 
@@ -315,8 +305,8 @@
         [_parentPopover dismissPopoverAnimated:YES];
     }
     else{
-        // iPhone subview
-        [(MSPNowPlayingViewController*)self.parentViewController hideMenu];
+        // iPhone modal segue
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -389,20 +379,6 @@
         UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
         [buttonQueue setEnabled:NO];
         
-    }
-    
-    // Update Cell Masks
-    [self updateCellMask];
-}
-
-- (void) updateCellMask{
-    if (_tableTabSegment.selectedSegmentIndex == 0){
-        for (MSPTableViewCell *cell in _tableView.visibleCells) {
-            CGFloat hiddenFrameHeight = self.tableView.contentOffset.y + 30 - cell.frame.origin.y;  // 30 is header height
-            if (hiddenFrameHeight >= 0 || hiddenFrameHeight <= cell.frame.size.height) {
-                [cell maskCellFromTop:hiddenFrameHeight];
-            }
-        }
     }
 }
 
