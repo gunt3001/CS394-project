@@ -57,7 +57,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    // Setup media updates
+    // Do Initial Table Update
+    [self refreshTable];
+    
+    // Setup further media updates
     [self setupMediaUpdate];
     
     // Scroll to now playing item
@@ -318,12 +321,11 @@
     // Update table data on tab segment change
     [self refreshTable];
     
-    // Show/hide header
+    // Scroll back to now playing item
     if ([sender selectedSegmentIndex] == 0){
-        
-    }
-    else{
-        
+        NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem]
+                                                         inSection:1];
+        [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
 }
 

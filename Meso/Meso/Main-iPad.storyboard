@@ -458,6 +458,7 @@
                         <outlet property="labelSongTitle" destination="705-66-jP5" id="Nmn-PM-xvP"/>
                         <outlet property="labelTotalTime" destination="PCN-TY-R90" id="0Rq-Vc-wAA"/>
                         <outlet property="sliderBar" destination="qqW-TZ-Kvx" id="UON-Ae-h5F"/>
+                        <outlet property="volumeView" destination="0yK-2S-BBH" id="oS0-g9-jZG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kst-AG-D07" userLabel="First Responder" sceneMemberID="firstResponder"/>

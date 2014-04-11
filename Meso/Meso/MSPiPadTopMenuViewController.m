@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelElapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *labelTotalTime;
 @property (weak, nonatomic) IBOutlet UIView *altTitleTapArea;
+@property (weak, nonatomic) IBOutlet MPVolumeView *volumeView;
 
 @end
 
@@ -75,7 +76,8 @@
                                                         OffColor:[UIColor blackColor]
                                                      ElapsedTime:_labelElapsedTime
                                                        TotalTime:_labelTotalTime
-                                                       TintColor:[[self view] tintColor]];
+                                                       TintColor:[[self view] tintColor]
+                                                    VolumeSlider:_volumeView];
 }
 
 #pragma mark - View Changes

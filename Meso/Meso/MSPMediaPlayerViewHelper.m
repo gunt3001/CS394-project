@@ -11,7 +11,6 @@
 #import "MSPAppDelegate.h"
 #import "MSPStringProcessor.h"
 #import "MSPMediaPlayerHelper.h"
-#import <MediaPlayer/MediaPlayer.h>
 
 @implementation MSPMediaPlayerViewHelper{
     // Private variables
@@ -31,6 +30,7 @@
     __weak UIButton*       _buttonRepeat;                 // Repeat Button
     __weak UILabel*        _labelElapsedTime;             // Elapsed Time Label
     __weak UILabel*        _labelTotalTime;               // Total Time Label
+    __weak MPVolumeView*   _sliderVolume;                 // Volume Slider
     
     // Colors & Fonts
     UIColor*        _textColor;                    // Text color
@@ -84,6 +84,7 @@
        ElapsedTime:(UILabel*)labelElapsedTime
          TotalTime:(UILabel*)labelTotalTime
          TintColor:(UIColor*)tintColor
+      VolumeSlider:(MPVolumeView*)sliderVolume
 {
     self = [super init];
     if (self){
@@ -109,6 +110,7 @@
         _labelElapsedTime  = labelElapsedTime;
         _labelTotalTime    = labelTotalTime;
         _tintColor         = tintColor;
+        _sliderVolume      = sliderVolume;
         
         // Do One-time setup of UI Elements
         [self setupArtworkType];                          // Determine the type of imageArtwork
@@ -119,6 +121,7 @@
         [self setupImageScroller];                        // Use imagescroller to allow song skipping by swiping
         if (withDropShadow)
             [self setupImageArtworkDropShadow];           // Add Drop Shadow to Art Image
+        [self setupVolumeSlider];                         // Setup the volume slider
         
         // Get reference to the music player
         _musicPlayer   = [MSPMediaPlayerHelper sharedPlayer];
@@ -136,6 +139,11 @@
 }
 
 #pragma mark Related Methods
+
+- (void) setupVolumeSlider{
+    // Change thumb image
+    [_sliderVolume setVolumeThumbImage:[UIImage imageNamed:@"VolumeSliderThumb"] forState:UIControlStateNormal];
+}
 
 - (void) setupArtworkType{
     // Check the type of the target view
