@@ -59,7 +59,6 @@
     playerController = [[MSPMediaPlayerViewHelper alloc] initWithView:[self view]
                                                            Title:_labelSongTitle
                                                         Subtitle:_labelSongSubtitle
-                                                       Textcolor:[UIColor blackColor]
                                                 SubtitleFontSize:[[_labelSongSubtitle font] pointSize]
                                                  AltTitleTapArea:_altTitleTapArea
                                                     ArtworkImage:nil
@@ -67,17 +66,15 @@
                                                    ArtworkButton:_imageArtworkBtn
                                                       ScrollView:nil
                                                          Seekbar:_sliderBar
-                                                      ThumbImage:[UIImage imageNamed:@"ProgressSliderThumbBlack"]
                                                  PlayPauseButton:_buttonPlayPause
                                                    ForwardButton:_buttonForward
                                                   BackwardButton:_buttonBackward
                                                    ShuffleButton:_buttonShuffle
                                                     RepeatButton:_buttonRepeat
-                                                        OffColor:[UIColor blackColor]
                                                      ElapsedTime:_labelElapsedTime
                                                        TotalTime:_labelTotalTime
-                                                       TintColor:[[self view] tintColor]
-                                                    VolumeSlider:_volumeView];
+                                                         VolumeSlider:_volumeView
+                                                          ColorScheme:MSPColorSchemeDefault];
 }
 
 #pragma mark - View Changes

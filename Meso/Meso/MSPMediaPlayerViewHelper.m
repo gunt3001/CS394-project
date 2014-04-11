@@ -34,9 +34,7 @@
     __weak MPVolumeView*   _sliderVolume;                 // Volume Slider
     
     // Colors & Fonts
-    UIColor*        _textColor;                    // Text color
-    UIColor*        _offColor;                     // Off color for shuffle and repeat buttons
-    UIColor*        _tintColor;                    // The view's tint color
+    MSPColorScheme  _colorScheme;                   // Color scheme
     CGFloat         _subtitleFontSize;             // Subtitle font size
 
     // Dummy UI Elements
@@ -66,7 +64,6 @@
 - (id)initWithView:(UIView*)view
              Title:(MarqueeLabel*)labelSongTitle
           Subtitle:(MarqueeLabel*)labelSongSubtitle
-         Textcolor:(UIColor*)textColor
   SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
       ArtworkImage:(UIImageView*)imageArtwork
@@ -74,17 +71,15 @@
      ArtworkButton:(UIButton*)imageArtworkButton
         ScrollView:(UIScrollView*)imageScroller
            Seekbar:(UISlider*)sliderBar
-        ThumbImage:(UIImage*)thumbImage
    PlayPauseButton:(UIButton*)buttonPlayPause
      ForwardButton:(UIButton*)buttonForward
     BackwardButton:(UIButton*)buttonBackward
      ShuffleButton:(UIButton*)buttonShuffle
       RepeatButton:(UIButton*)buttonRepeat
-          OffColor:(UIColor*)offColor
        ElapsedTime:(UILabel*)labelElapsedTime
          TotalTime:(UILabel*)labelTotalTime
-         TintColor:(UIColor*)tintColor
       VolumeSlider:(MPVolumeView*)sliderVolume
+       ColorScheme:(MSPColorScheme)colorScheme
 {
     self = [super init];
     if (self){
@@ -94,7 +89,6 @@
         _view              = view;
         _labelSongTitle    = labelSongTitle;
         _labelSongSubtitle = labelSongSubtitle;
-        _textColor         = textColor;
         _subtitleFontSize  = subtitleFontSize;
         _sliderBar         = sliderBar;
         _imageArtwork      = imageArtwork;
@@ -106,18 +100,17 @@
         _buttonBackward    = buttonBackward;
         _buttonShuffle     = buttonShuffle;
         _buttonRepeat      = buttonRepeat;
-        _offColor          = offColor;
         _imageArtworkBack  = imageArtworkBack;
         _labelElapsedTime  = labelElapsedTime;
         _labelTotalTime    = labelTotalTime;
-        _tintColor         = tintColor;
         _sliderVolume      = sliderVolume;
+        _colorScheme       = colorScheme;
         
         // Do One-time setup of UI Elements
         [self setupGuides];                               // Add dummy UIView as guides for frame of Marquee Text Labels
         [self setupActions];                              // Add actions for buttons
         [self setupSongTitleGesture];                     // Enable tapping on song title to show alternate title
-        [self setupProgressSliderWithThumb:thumbImage];   // Seek bar
+        [self setupProgressSlider];                  // Seek bar
         [self setupImageScroller];                        // Use imagescroller to allow song skipping by swiping
         [self setupImageArtworkDropShadow];               // Add Drop Shadow to Art Image
         [self setupVolumeSlider];                         // Setup the volume slider
@@ -229,8 +222,19 @@
     [_view addGestureRecognizer:tapToViewAltTitle];
 }
 
-- (void) setupProgressSliderWithThumb:(UIImage*)image{
-    [_sliderBar setThumbImage:image forState:UIControlStateNormal];
+- (void) setupProgressSlider{
+    switch (_colorScheme) {
+            
+        case MSPColorSchemeWhiteOnBlack:
+            [_sliderBar setThumbImage:[UIImage imageNamed:@"ProgressSliderThumb"] forState:UIControlStateNormal];
+            break;
+        
+        case MSPColorSchemeDefault:
+        default:
+            [_sliderBar setThumbImage:[UIImage imageNamed:@"ProgressSliderThumbBlack"] forState:UIControlStateNormal];
+            break;
+    }
+    
 }
 
 #pragma mark - View Changes
@@ -686,24 +690,40 @@
     MPMusicShuffleMode shuffleMode = [_musicPlayer shuffleMode];
     MPMusicRepeatMode repeatMode = [_musicPlayer repeatMode];
     
+    UIColor* offColor;
+    UIColor* onColor;
+    
+    switch (_colorScheme) {
+        case MSPColorSchemeWhiteOnBlack:
+            offColor = [UIColor blackColor];
+            onColor = [UIColor whiteColor];
+            break;
+            
+        case MSPColorSchemeDefault:
+        default:
+            offColor = [UIColor blackColor];
+            onColor = [_view tintColor];
+            break;
+    }
+    
     if (shuffleMode == MPMusicShuffleModeOff){              // Shuffle off
-        [_buttonShuffle setTintColor:_offColor];
+        [_buttonShuffle setTintColor:offColor];
     }
     else{                                                   // Shuffle on
-        [_buttonShuffle setTintColor:_tintColor];
+        [_buttonShuffle setTintColor:onColor];
     }
     
     if (repeatMode == MPMusicRepeatModeOne){            // Repeat one
         [_buttonRepeat setImage:[UIImage imageNamed:@"repeatone"] forState:UIControlStateNormal];
-        [_buttonRepeat setTintColor:_tintColor];
+        [_buttonRepeat setTintColor:onColor];
     }
     else if (repeatMode == MPMusicRepeatModeNone){      // Repeat off
         [_buttonRepeat setImage:[UIImage imageNamed:@"repeat"] forState:UIControlStateNormal];
-        [_buttonRepeat setTintColor:_offColor];
+        [_buttonRepeat setTintColor:offColor];
     }
     else{                                               // Repeat all or default
         [_buttonRepeat setImage:[UIImage imageNamed:@"repeat"] forState:UIControlStateNormal];
-        [_buttonRepeat setTintColor:_tintColor];
+        [_buttonRepeat setTintColor:onColor];
     }
     
     if ([_musicPlayer playbackState] == MPMusicPlaybackStatePaused ||
@@ -764,13 +784,25 @@
     [newSubtitle setAttributedText:[_labelSongSubtitle attributedText]];
     NSInteger titleIndex = [[_view subviews] indexOfObject:_labelSongTitle];
     
+    UIColor* textColor;
+    switch (_colorScheme) {
+        case MSPColorSchemeWhiteOnBlack:
+            textColor = [UIColor whiteColor];
+            break;
+        
+        case MSPColorSchemeDefault:
+        default:
+            textColor = [UIColor blackColor];
+            break;
+    }
+    
     // Set up the properties
-    [newTitle setTextColor:_textColor];                // Color
+    [newTitle setTextColor:textColor];                 // Color
     [newTitle setRate:MARQUEE_LABEL_RATE];             // Speed
     [newTitle setFadeLength:10.0];                     // Fade size
     [newTitle setAnimationDelay:3.0];                  // Pause
     
-    [newSubtitle setTextColor:_textColor];                // Color
+    [newSubtitle setTextColor:textColor];                 // Color
     [newSubtitle setRate:MARQUEE_LABEL_RATE];             // Speed
     [newSubtitle setFadeLength:10.0];                     // Fade size
     [newSubtitle setAnimationDelay:3.0];                  // Pause

@@ -13,6 +13,11 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "MarqueeLabel.h"
 
+typedef NS_ENUM(NSInteger, MSPColorScheme) {
+    MSPColorSchemeDefault,
+    MSPColorSchemeWhiteOnBlack
+};
+
 @interface MSPMediaPlayerViewHelper : NSObject <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
 /**
@@ -22,7 +27,6 @@
 - (id)initWithView:(UIView*)view
              Title:(MarqueeLabel*)labelSongTitle
           Subtitle:(MarqueeLabel*)labelSongSubtitle
-         Textcolor:(UIColor*)textColor
   SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
       ArtworkImage:(UIImageView*)imageArtwork
@@ -30,17 +34,15 @@
      ArtworkButton:(UIButton*)imageArtworkButton
         ScrollView:(UIScrollView*)imageScroller
            Seekbar:(UISlider*)sliderBar
-        ThumbImage:(UIImage*)thumbImage
    PlayPauseButton:(UIButton*)buttonPlayPause
      ForwardButton:(UIButton*)buttonForward
     BackwardButton:(UIButton*)buttonBackward
      ShuffleButton:(UIButton*)buttonShuffle
       RepeatButton:(UIButton*)buttonRepeat
-          OffColor:(UIColor*)offColor
        ElapsedTime:(UILabel*)labelElapsedTime
          TotalTime:(UILabel*)labelTotalTime
-         TintColor:(UIColor*)tintColor
-      VolumeSlider:(MPVolumeView*)sliderVolume;
+      VolumeSlider:(MPVolumeView*)sliderVolume
+       ColorScheme:(MSPColorScheme)colorScheme;
 
 /// Things to do every time the view with the controls appear on the screen
 - (void) viewWillAppear;

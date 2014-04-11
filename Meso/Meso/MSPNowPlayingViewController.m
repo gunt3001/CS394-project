@@ -47,7 +47,6 @@
     playerController = [[MSPMediaPlayerViewHelper alloc] initWithView:[self view]
                                                            Title:_labelSongTitle
                                                         Subtitle:_labelSongSubtitle
-                                                       Textcolor:[UIColor whiteColor]
                                                 SubtitleFontSize:[[_labelSongSubtitle font] pointSize]
                                                  AltTitleTapArea:_altTitleTapArea
                                                     ArtworkImage:_imageArtwork
@@ -55,17 +54,15 @@
                                                    ArtworkButton:nil
                                                       ScrollView:_imageScroller
                                                          Seekbar:_sliderBar
-                                                      ThumbImage:[UIImage imageNamed:@"ProgressSliderThumb"]
                                                  PlayPauseButton:_buttonPlayPause
                                                    ForwardButton:_buttonForward
                                                   BackwardButton:_buttonBackward
                                                    ShuffleButton:_buttonShuffle
                                                     RepeatButton:_buttonRepeat
-                                                        OffColor:[UIColor blackColor]
                                                      ElapsedTime:_labelElapsedTime
                                                        TotalTime:_labelTotalTime
-                                                       TintColor:[UIColor whiteColor]
-                                                    VolumeSlider:_volumeView];
+                                                    VolumeSlider:_volumeView
+                                                     ColorScheme:MSPColorSchemeWhiteOnBlack];
     
     // Remove the route button to follow design style of built-in music player
     // To change route, use iOS' control center
