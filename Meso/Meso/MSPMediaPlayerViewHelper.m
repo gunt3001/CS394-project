@@ -126,7 +126,7 @@
         _musicPlayer   = [MSPMediaPlayerHelper sharedPlayer];
         
         // Use toolbar trick to blur background
-        if (!_toolbarBackground){
+        if (imageArtworkBack && !_toolbarBackground){
             _toolbarBackground = [[UIToolbar alloc] init];
             [_toolbarBackground setBarStyle:UIBarStyleBlack];
             [_view insertSubview:_toolbarBackground aboveSubview:_imageArtworkBack];
