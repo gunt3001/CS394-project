@@ -65,7 +65,7 @@
     
     // Scroll to now playing item
     NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem]
-                                                     inSection:1];
+                                                     inSection:0];
     [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
@@ -102,7 +102,7 @@
     [self refreshTable];
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source & Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -110,7 +110,7 @@
     switch ([_tableTabSegment selectedSegmentIndex]) {
         // Queue
         case 0:
-            return 2;
+            return 1;
         
         // Album
         case 1:
@@ -127,15 +127,8 @@
     switch ([_tableTabSegment selectedSegmentIndex]) {
         // Queue
         case 0:
-            switch (section) {
-                // Songs in current Queue
-                case 1:
-                    return [[MSPMediaPlayerHelper sharedPlayer] numberOfItems];
-                    
-                // Mini Menu
-                case 0:
-                    return 1;
-            }
+            // Songs in current Queue
+            return [[MSPMediaPlayerHelper sharedPlayer] numberOfItems];
             
         // Album - show songs in the album
         case 1:
@@ -146,30 +139,6 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    switch ([_tableTabSegment selectedSegmentIndex]) {
-        // Upcoming
-        case 0:
-            switch (indexPath.section) {
-                // Queue items has the default row height
-                case 1:
-                    return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
-                    
-                // Menu has extra small row
-                case 0:
-                    return 33;
-            }
-            
-        // Album
-        case 1:
-            return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
-            
-        default:
-            return TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;
-    }
-}
-
 - (MSPTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MSPTableViewCell* cell;
@@ -177,31 +146,21 @@
     switch ([_tableTabSegment selectedSegmentIndex]) {
         // Upcoming
         case 0:
-            switch (indexPath.section) {
-                case 1:
-                {
-                    cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
-                    
-                    // Get the corresponding media item
-                    MPMediaItem* item = [[MSPMediaPlayerHelper sharedPlayer] nowPlayingItemAtIndex:(unsigned int)[indexPath row]];
-                    // Set its info
-                    NSString* optionalString;
-                    // If it's the currently playing song, show play icon
-                    if ([indexPath row] == [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem])
-                        optionalString = @"\U000025B6\U0000FE0E";
-                    else
-                        optionalString = [NSString stringWithFormat:@"%ld", (long)[indexPath row] + 1];
-                    [cell setSongInfo:item WithString:optionalString];
-                    break;
-                }
-                    
-                case 0:
-                {
-                    cell = [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem" forIndexPath:indexPath];
-                    break;
-                }
-            }
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompact" forIndexPath:indexPath];
+            
+            // Get the corresponding media item
+            MPMediaItem* item = [[MSPMediaPlayerHelper sharedPlayer] nowPlayingItemAtIndex:(unsigned int)[indexPath row]];
+            // Set its info
+            NSString* optionalString;
+            // If it's the currently playing song, show play icon
+            if ([indexPath row] == [[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem])
+                optionalString = @"\U000025B6\U0000FE0E";
+            else
+                optionalString = [NSString stringWithFormat:@"%ld", (long)[indexPath row] + 1];
+            [cell setSongInfo:item WithString:optionalString];
             break;
+        }
 
         // Album
         case 1:
@@ -223,11 +182,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Can't select the menu cell
-    if (indexPath.section == 0){
-        [_tableView deselectRowAtIndexPath:indexPath animated:NO];
-        return;
-    }
     
     if (editMode){
         // Add Checkmark
@@ -262,6 +216,19 @@
             
         }
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    // Show menu as header on up next tab
+    if (_tableTabSegment.selectedSegmentIndex == 0){
+        return [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem"];
+    }
+    return nil;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // Hide cells under header menu
+    [self updateCellMask];
 }
 
 /*
@@ -313,7 +280,7 @@
     [self refreshTable];
     
     // Scroll to top
-    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 
 }
 
@@ -324,7 +291,7 @@
     // Scroll back to now playing item
     if ([sender selectedSegmentIndex] == 0){
         NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem]
-                                                         inSection:1];
+                                                         inSection:0];
         [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
 }
@@ -340,6 +307,20 @@
         UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
         [buttonQueue setEnabled:NO];
         
+    }
+    
+    // Update Cell Masks
+    [self updateCellMask];
+}
+
+- (void) updateCellMask{
+    if (_tableTabSegment.selectedSegmentIndex == 0){
+        for (MSPTableViewCell *cell in _tableView.visibleCells) {
+            CGFloat hiddenFrameHeight = self.tableView.contentOffset.y + 30 - cell.frame.origin.y;  // 30 is header height
+            if (hiddenFrameHeight >= 0 || hiddenFrameHeight <= cell.frame.size.height) {
+                [cell maskCellFromTop:hiddenFrameHeight];
+            }
+        }
     }
 }
 

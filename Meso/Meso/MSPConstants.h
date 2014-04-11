@@ -13,7 +13,6 @@ extern NSInteger const TABLE_VIEW_ALBUM_ART_PADDING;    // Padding for album art
 extern NSInteger const TABLE_VIEW_CELL_THUMBNAIL_TAG;   // Tag for album art custom view in table view cell
 extern NSInteger const TABLE_VIEW_SONG_ROW_HEIGHT;      // Row height for songs in table view
 // Compact Version
-extern NSInteger const TABLE_VIEW_COMPACT_SONG_ROW_HEIGHT;      // Row height for songs in table view
 extern NSInteger const TABLE_VIEW_COMPACT_ALBUM_ART_WIDTH;      // Width for album art thumbnail in table view
 extern NSInteger const TABLE_VIEW_COMPACT_ALBUM_ART_HEIGHT;     // Height for album art thumbnail in table view
 extern NSInteger const TABLE_VIEW_COMPACT_ALBUM_ART_PADDING;    // Padding for album art thumbnail in table view

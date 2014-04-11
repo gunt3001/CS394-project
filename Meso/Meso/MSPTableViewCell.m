@@ -154,4 +154,23 @@
 
 }
 
+#pragma mark - Cell Masks
+
+// Methods used to hide cells under table header
+// Used in Up Next View
+// Source: http://stackoverflow.com/questions/12127138/how-to-mask-uitableviewcells-underneath-a-uitableview-transparent-header
+
+- (void)maskCellFromTop:(CGFloat)margin {
+    self.layer.mask = [self visibilityMaskWithLocation:margin/self.frame.size.height];
+    self.layer.masksToBounds = YES;
+}
+
+- (CAGradientLayer *)visibilityMaskWithLocation:(CGFloat)location {
+    CAGradientLayer *mask = [CAGradientLayer layer];
+    mask.frame = self.bounds;
+    mask.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithWhite:1 alpha:0] CGColor], (id)[[UIColor colorWithWhite:1 alpha:1] CGColor], nil];
+    mask.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:location], [NSNumber numberWithFloat:location], nil];
+    return mask;
+}
+
 @end
