@@ -135,6 +135,10 @@
 - (void) setupVolumeSlider{
     // Change thumb image
     [_sliderVolume setVolumeThumbImage:[UIImage imageNamed:@"VolumeSliderThumb"] forState:UIControlStateNormal];
+    
+    // Remove the route button to follow design style of built-in music player
+    // To change route, use iOS' control center
+    [_sliderVolume setShowsRouteButton:NO];
 }
 
 - (void) setupGuides{

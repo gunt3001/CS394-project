@@ -63,10 +63,6 @@
                                                     VolumeSlider:_volumeView
                                                      ColorScheme:MSPColorSchemeWhiteOnBlack];
     
-    // Remove the route button to follow design style of built-in music player
-    // To change route, use iOS' control center
-    [_volumeView setShowsRouteButton:NO];
-    
     // Initialize the menu view controller to nil
     menuViewController = nil;
 }
