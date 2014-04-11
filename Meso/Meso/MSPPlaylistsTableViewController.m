@@ -105,7 +105,7 @@
             MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
             MPMediaItem* song = [[playlist items] objectAtIndex:[indexPath row] - 1];           // Offset by 1 for shuffle button
             
-            [cell setSongInfo:song WithString:nil];
+            [cell setSongInfo:song WithString:nil ShowAlbum:YES];
         }
         
         return cell;

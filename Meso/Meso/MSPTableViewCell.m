@@ -87,7 +87,7 @@
     [self addThumbnailWithImage:artworkImage];
 }
 
-- (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string{
+- (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string ShowAlbum:(BOOL)showAlbum{
     // Use the given song as the data for the cell
     // Assuming the cell has appropriate styles
     
@@ -105,15 +105,20 @@
     
     // Set cell data
     // Artwork
-    [self addThumbnailWithMediaItemArtwork:songArt];
+    if (showAlbum) [self addThumbnailWithMediaItemArtwork:songArt];
     // Title
     [[self textLabel] setText:songTitle];
     // Subtitle
-    NSAttributedString* subtitle = [MSPStringHelper getAttributedSubtitleFromArtist:songArtist
-                                                                                 Album:songAlbum
-                                                                          WithFontSize:[[[self detailTextLabel] font] pointSize]
-                                                                                 Color:[[self detailTextLabel] textColor]];
-    [[self detailTextLabel] setAttributedText:subtitle];
+    if (showAlbum){
+        NSAttributedString* subtitle = [MSPStringHelper getAttributedSubtitleFromArtist:songArtist
+                                                                                  Album:songAlbum
+                                                                           WithFontSize:[[[self detailTextLabel] font] pointSize]
+                                                                                  Color:[[self detailTextLabel] textColor]];
+        [[self detailTextLabel] setAttributedText:subtitle];
+    }
+    else{
+        [[self detailTextLabel] setText:songArtist];
+    }
     
     // Optional string to set
     if (string){

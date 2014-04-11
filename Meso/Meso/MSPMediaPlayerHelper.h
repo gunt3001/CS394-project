@@ -45,6 +45,9 @@
 /// Return the number of items left in the currently playing queue
 + (NSInteger) itemsLeftInPlayingQueue;
 
+/// Return the items in currently playing song's album as Query
++ (MPMediaQuery*)itemsInCurrentSongAlbum;
+
 /// Play the song at specified index in queue
 + (void)playItemAtIndex:(NSInteger)index;
 

@@ -13,7 +13,7 @@
 
 @property (nonatomic) NSNumber* PID;        // Media library PID
 
-- (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string;
+- (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string ShowAlbum:(BOOL)showAlbum;
 
 #pragma mark - Cell Masks
 - (void)maskCellFromTop:(CGFloat)margin;

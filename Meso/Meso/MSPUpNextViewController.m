@@ -132,7 +132,7 @@
             
         // Album - show songs in the album
         case 1:
-            return 0;
+            return [MSPMediaPlayerHelper itemsInCurrentSongAlbum].items.count;
             
         default:
             return 0;
@@ -158,13 +158,31 @@
                 optionalString = @"\U000025B6\U0000FE0E";
             else
                 optionalString = [NSString stringWithFormat:@"%ld", (long)[indexPath row] + 1];
-            [cell setSongInfo:item WithString:optionalString];
+            [cell setSongInfo:item WithString:optionalString ShowAlbum:YES];
             break;
         }
 
         // Album
         case 1:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitemcompactnoalbum" forIndexPath:indexPath];
+            
+            // Get the corresponding media item
+            NSArray* itemsInAlbum = [MSPMediaPlayerHelper itemsInCurrentSongAlbum].items;
+            MPMediaItem* item = itemsInAlbum[indexPath.row];
+            NSUInteger trackNo = [[item valueForProperty:MPMediaItemPropertyAlbumTrackNumber] unsignedIntegerValue];
+            
+            // Set its info
+            NSString* optionalString;
+            // If it's the currently playing song, show play icon
+            if (item == [[MSPMediaPlayerHelper sharedPlayer] nowPlayingItem])
+                optionalString = @"\U000025B6\U0000FE0E";
+            else
+                optionalString = [NSString stringWithFormat:@"%lu", (unsigned long)trackNo];
+            
+            [cell setSongInfo:item WithString:optionalString ShowAlbum:NO];
             break;
+        }
             
         default:
             break;
@@ -182,40 +200,74 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    switch ([_tableTabSegment selectedSegmentIndex]) {
+        case 0:
+            if (editMode){
+                // Add Checkmark
+                UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                
+                // Enable Queue button
+                UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
+                [buttonQueue setEnabled:YES];
+            }
+            else{
+                // If not in edit mode, start playing selected song
+                [MSPMediaPlayerHelper playItemAtIndex:[indexPath row]];
+                [self refreshTable];
+                
+                // Scroll to selected item
+                [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                // Deselect
+                [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+            }
+            break;
+            
+        case 1:
+        {
+            // Start playing selected song with album as queue
+            MPMediaQuery* itemsInAlbum = [MSPMediaPlayerHelper itemsInCurrentSongAlbum];
+            MPMediaItem* item = itemsInAlbum.items[indexPath.row];
+            [MSPMediaPlayerHelper playSong:item QueueQuery:itemsInAlbum];
+            
+            // Scroll to selected item
+            [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            // Deselect
+            [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+            break;
+        }
+            
+        default:
+            break;
+    }
     
-    if (editMode){
-        // Add Checkmark
-        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        
-        // Enable Queue button
-        UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
-        [buttonQueue setEnabled:YES];
-    }
-    else{
-        // If not in edit mode, start playing selected song
-        [MSPMediaPlayerHelper playItemAtIndex:[indexPath row]];
-        [self refreshTable];
-
-        // Scroll to selected item
-        [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
+    
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editMode){
-        // Remove Checkmark
-        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        // If there's no more selected, disable the queue button
-        if (![_tableView indexPathsForSelectedRows]){
-            UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
-            [buttonQueue setEnabled:NO];
+    switch ([_tableTabSegment selectedSegmentIndex]) {
+        case 0:
+            if (editMode){
+                // Remove Checkmark
+                UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                
+                // If there's no more selected, disable the queue button
+                if (![_tableView indexPathsForSelectedRows]){
+                    UIButton* buttonQueue = (UIButton*)[_tableView viewWithTag:102];
+                    [buttonQueue setEnabled:NO];
+                    
+                }
+            }
+            return;
             
-        }
+        case 1:
+        default:
+            return;
+            
     }
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -224,6 +276,18 @@
         return [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem"];
     }
     return nil;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    switch (_tableTabSegment.selectedSegmentIndex){
+        case 0:
+            return 30;
+        case 1:
+            return 0;
+        default:
+            return 0;
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -294,6 +358,10 @@
                                                          inSection:0];
         [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
+    
+    // Reset Edit Mode
+    editMode = NO;
+    [_tableView setAllowsMultipleSelection:NO];
 }
 - (IBAction)shareButton:(id)sender {
     // Have user select what service to share to

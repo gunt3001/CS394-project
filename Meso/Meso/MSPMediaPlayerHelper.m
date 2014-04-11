@@ -97,6 +97,15 @@
     return [iPodMusicPlayer numberOfItems] - ([iPodMusicPlayer indexOfNowPlayingItem] + 1);
 }
 
+/// Return the items in currently playing song's album as Query
++ (MPMediaQuery*)itemsInCurrentSongAlbum{
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
+    NSNumber* albumPID = [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+    MPMediaQuery* albumQuery = [MPMediaQuery albumsQuery];
+    [albumQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:albumPID forProperty:MPMediaItemPropertyAlbumPersistentID]];
+    return albumQuery;
+}
+
 /// Play the song at specified index in queue
 + (void)playItemAtIndex:(NSInteger)index{
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];

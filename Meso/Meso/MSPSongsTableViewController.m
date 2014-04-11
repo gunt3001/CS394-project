@@ -102,7 +102,7 @@
         
         // Set cell data
         cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
-        [cell setSongInfo:song WithString:nil];
+        [cell setSongInfo:song WithString:nil ShowAlbum:YES];
     }
     
     return cell;
