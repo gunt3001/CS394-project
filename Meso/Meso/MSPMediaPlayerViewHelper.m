@@ -245,13 +245,10 @@
                                     originalBounds.size.width)];
     }
     
-    // Recreate views that are affected by this bug
-    [self recreateMarqueeTexts];
-    [self updateImageScroller];
-    
     [self setupMediaUpdate];                // Subscribe to media status changes
     [self updateMediaData];                 // Update now playing item
     [self setupTimer];                      // Set up timer to keep track of elapsed time
+    [self updateImageScroller];             // Update scrollview bounds
 }
 
 // View Did Appear
