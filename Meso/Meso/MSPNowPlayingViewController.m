@@ -7,6 +7,7 @@
 //
 
 #import "MSPNowPlayingViewController.h"
+#import "MSPUpNextViewController.h"
 
 @interface MSPNowPlayingViewController ()
 
@@ -98,6 +99,15 @@
             
         }
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"idupnextpopover"]){
+        UIPopoverController* popOverController = [(UIStoryboardPopoverSegue *)segue popoverController];
+        [(MSPUpNextViewController*)[segue destinationViewController] setParentPopover:popOverController];
+    }
+    
 }
 
 @end

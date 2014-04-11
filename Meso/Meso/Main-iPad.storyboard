@@ -172,6 +172,11 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" image="FillButtonUpnext"/>
+                                <connections>
+                                    <segue destination="SPB-mc-DcC" kind="popover" identifier="idupnextpopover" popoverAnchorView="UDD-nU-7M4" id="3GU-ad-NUp">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tv8-8u-4ch" userLabel="Play Button">
                                 <rect key="frame" x="482" y="649" width="60" height="60"/>
@@ -1061,7 +1066,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oqj-on-NSz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2769" y="-93"/>
+            <point key="canvasLocation" x="5367" y="-557"/>
         </scene>
     </scenes>
     <resources>
@@ -1090,6 +1095,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uA3-ss-MzX"/>
+        <segue reference="3GU-ad-NUp"/>
         <segue reference="spT-9J-Aq0"/>
     </inferredMetricsTieBreakers>
 </document>
