@@ -767,6 +767,7 @@
     [newSubtitle setTextAlignment:[_labelSongSubtitle textAlignment]];
     [newSubtitle setAttributedText:[_labelSongSubtitle attributedText]];
     NSInteger titleIndex = [[_view subviews] indexOfObject:_labelSongTitle];
+    NSInteger subtitleIndex = [[_view subviews] indexOfObject:_labelSongSubtitle];
     
     UIColor* textColor;
     switch (_colorScheme) {
@@ -806,9 +807,8 @@
     [newSubtitle setAlpha:0.0];
     
     // Add to view
-
     [_view insertSubview:newTitle atIndex:titleIndex];
-    [_view insertSubview:newSubtitle atIndex:titleIndex];
+    [_view insertSubview:newSubtitle atIndex:subtitleIndex];
     
     // Show with animation
     [UIView animateWithDuration:0.1 animations:^{
