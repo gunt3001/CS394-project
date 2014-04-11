@@ -59,7 +59,6 @@
     playerController = [[MSPMediaPlayerViewHelper alloc] initWithView:[self view]
                                                            Title:_labelSongTitle
                                                         Subtitle:_labelSongSubtitle
-                                                SubtitleFontSize:[[_labelSongSubtitle font] pointSize]
                                                  AltTitleTapArea:_altTitleTapArea
                                                     ArtworkImage:nil
                                                  BackgroundImage:nil

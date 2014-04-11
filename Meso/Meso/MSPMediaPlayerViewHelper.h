@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, MSPColorScheme) {
 - (id)initWithView:(UIView*)view
              Title:(MarqueeLabel*)labelSongTitle
           Subtitle:(MarqueeLabel*)labelSongSubtitle
-  SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
       ArtworkImage:(UIImageView*)imageArtwork
    BackgroundImage:(UIImageView*)imageArtworkBack

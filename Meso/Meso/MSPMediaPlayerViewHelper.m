@@ -35,7 +35,6 @@
     
     // Colors & Fonts
     MSPColorScheme  _colorScheme;                   // Color scheme
-    CGFloat         _subtitleFontSize;             // Subtitle font size
 
     // Dummy UI Elements
     __weak UIView*  _altTitleTapArea;              // Tap area for showing alternate title
@@ -64,7 +63,6 @@
 - (id)initWithView:(UIView*)view
              Title:(MarqueeLabel*)labelSongTitle
           Subtitle:(MarqueeLabel*)labelSongSubtitle
-  SubtitleFontSize:(CGFloat)subtitleFontSize
    AltTitleTapArea:(UIView*)altTitleTapArea
       ArtworkImage:(UIImageView*)imageArtwork
    BackgroundImage:(UIImageView*)imageArtworkBack
@@ -89,7 +87,6 @@
         _view              = view;
         _labelSongTitle    = labelSongTitle;
         _labelSongSubtitle = labelSongSubtitle;
-        _subtitleFontSize  = subtitleFontSize;
         _sliderBar         = sliderBar;
         _imageArtwork      = imageArtwork;
         _imageArtworkButton = imageArtworkButton;
@@ -634,7 +631,7 @@
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
     NSAttributedString* subtitle =  [MSPStringProcessor getAttributedSubtitleFromArtist:artist
                                                                                   Album:album
-                                                                           WithFontSize:_subtitleFontSize
+                                                                           WithFontSize:[[_labelSongSubtitle font] pointSize]
                                                                                   Color:[_labelSongSubtitle textColor]];
     
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];
