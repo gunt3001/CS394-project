@@ -295,6 +295,13 @@
         [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
 }
+- (IBAction)shareButton:(id)sender {
+    // Have user select what service to share to
+    // Meso, Twitter, or FB
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share with Meso", @"Share to Twitter", @"Share to Facebook", nil];
+    [actionSheet showInView:self.view];
+    
+}
 
 #pragma mark - Other helper methods
 - (void) refreshTable{
