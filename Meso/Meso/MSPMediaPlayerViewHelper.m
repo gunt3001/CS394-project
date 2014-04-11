@@ -104,59 +104,82 @@
         _colorScheme       = colorScheme;
         
         // Do One-time setup of UI Elements
-        [self setupGuides];                               // Add dummy UIView as guides for frame of Marquee Text Labels
-        [self setupActions];                              // Add actions for buttons
-        [self setupSongTitleGesture];                     // Enable tapping on song title to show alternate title
-        [self setupProgressSlider];                  // Seek bar
-        [self setupImageScroller];                        // Use imagescroller to allow song skipping by swiping
-        [self setupImageArtworkDropShadow];               // Add Drop Shadow to Art Image
-        [self setupVolumeSlider];                         // Setup the volume slider
+        
+        [self setupLabels];                               // Title and Subtitle Related
+        [self setupArtwork];                              // Artwork Related
+        [self setupButtons];                              // Buttons Related
+        [self setupSliders];                              // Sliders Related
         
         // Get reference to the music player
         _musicPlayer   = [MSPMediaPlayerHelper sharedPlayer];
-        
-        // Use toolbar trick to blur background
-        if (imageArtworkBack && !_toolbarBackground){
-            _toolbarBackground = [[UIToolbar alloc] init];
-            [_toolbarBackground setBarStyle:UIBarStyleBlack];
-            [_view insertSubview:_toolbarBackground aboveSubview:_imageArtworkBack];
-            [_toolbarBackground setFrame:_view.frame];
-            [_toolbarBackground setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
-        }
-        
-        //Set proper resizing mode for button artwork
-        [[_imageArtworkButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
     }
     return self;
 }
 
 #pragma mark Related Methods
 
-- (void) setupVolumeSlider{
-    // Change thumb image
-    [_sliderVolume setVolumeThumbImage:[UIImage imageNamed:@"VolumeSliderThumb"] forState:UIControlStateNormal];
-    
-    // Remove the route button to follow design style of built-in music player
-    // To change route, use iOS' control center
-    [_sliderVolume setShowsRouteButton:NO];
-}
 
-- (void) setupGuides{
+
+- (void) setupLabels{
     
-    // Create dummy UIViews with same frame as the text labels
+    // Create dummy UIViews to guide frames of MarqueeLabel
+    //
+    // same frame as the text labels
     _labelSongTitleGuide = [[UIView alloc] initWithFrame:[_labelSongTitle frame]];
     _labelSongSubtitleGuide = [[UIView alloc] initWithFrame:[_labelSongSubtitle frame]];
-    
+    //
     // and same resizing method
     [_labelSongTitleGuide setAutoresizingMask:[_labelSongSubtitle autoresizingMask]];
     [_labelSongSubtitleGuide setAutoresizingMask:[_labelSongSubtitle autoresizingMask]];
-    
+    //
     // Insert them to view
     [_view addSubview:_labelSongTitleGuide];
     [_view addSubview:_labelSongSubtitleGuide];
+    
+    // Setup "tap to show alternate title" gesture
+    _isShowingAltTitle = NO;
+    UITapGestureRecognizer* tapToViewAltTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAltTitle:)];
+    [tapToViewAltTitle setNumberOfTapsRequired:1];
+    [tapToViewAltTitle setDelegate:self];
+    [_view addGestureRecognizer:tapToViewAltTitle];
 }
 
-- (void) setupActions{
+- (void) setupArtwork{
+    
+    // Add Drop Shadow to Artwork Image
+    [[_imageArtwork layer] setShadowColor:[UIColor blackColor].CGColor];
+    [[_imageArtwork layer] setShadowOffset:CGSizeMake(0.0, 0.0)];
+    [[_imageArtwork layer] setShadowOpacity:1.0];
+    [[_imageArtwork layer] setShadowRadius:2.0];
+    [_imageArtwork setClipsToBounds:NO];
+    
+    // Use imagescroller to allow song skipping by swiping
+    // If one doesn't exist, don't do the setup
+    if (_imageScroller) {
+        // Set delegate
+        [_imageScroller setDelegate:self];
+        
+        // Disable tap to go to top, since there's nothing to go up anyway
+        // This is to enable the functionality in any subview that needs it
+        [_imageScroller setScrollsToTop:NO];
+        
+        [self updateImageScroller];
+    }
+    
+    // Use toolbar trick to blur background
+    if (_imageArtworkBack && !_toolbarBackground){
+        _toolbarBackground = [[UIToolbar alloc] init];
+        [_toolbarBackground setBarStyle:UIBarStyleBlack];
+        [_view insertSubview:_toolbarBackground aboveSubview:_imageArtworkBack];
+        [_toolbarBackground setFrame:_view.frame];
+        [_toolbarBackground setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
+    }
+    
+    //Set proper resizing mode for button artwork
+    [[_imageArtworkButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
+}
+
+- (void) setupButtons{
     
     // Play-Pause button
     [_buttonPlayPause addTarget:self action:@selector(buttonPlayPause:) forControlEvents:UIControlEventTouchUpInside];
@@ -179,53 +202,10 @@
     [_sliderBar addTarget:self action:@selector(sliderBarValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void) setupImageScroller{
+- (void) setupSliders{
     
-    // If one doesn't exist, don't do the setup
-    if (!_imageScroller) return;
-    
-    // Set delegate
-    [_imageScroller setDelegate:self];
-    
-    // Disable tap to go to top, since there's nothing to go up anyway
-    // This is to enable the functionality in any subview that needs it
-    [_imageScroller setScrollsToTop:NO];
-    
-    // Content is 3x screen size to allow swiping left and right
-    [_imageScroller setContentSize:CGSizeMake([_imageScroller frame].size.width * 3.0,
-                                              [_imageScroller frame].size.height)];
-    // Move the art image to the center
-    CGFloat xOffsetToCenter = ([_imageScroller frame].size.width - [_imageArtwork frame].size.width) / 2;
-    [_imageArtwork setFrame:CGRectMake(xOffsetToCenter + [_imageScroller frame].size.width,
-                                       [_imageArtwork frame].origin.y,
-                                       [_imageArtwork frame].size.width,
-                                       [_imageArtwork frame].size.height)];
-    
-    // Set new origins to follow
-    [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
-}
-
-- (void) setupImageArtworkDropShadow{
-
-    [[_imageArtwork layer] setShadowColor:[UIColor blackColor].CGColor];
-    [[_imageArtwork layer] setShadowOffset:CGSizeMake(0.0, 0.0)];
-    [[_imageArtwork layer] setShadowOpacity:1.0];
-    [[_imageArtwork layer] setShadowRadius:2.0];
-    [_imageArtwork setClipsToBounds:NO];
-}
-
-- (void)setupSongTitleGesture{
-
-    _isShowingAltTitle = NO;
-    UITapGestureRecognizer* tapToViewAltTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAltTitle:)];
-    [tapToViewAltTitle setNumberOfTapsRequired:1];
-    [tapToViewAltTitle setDelegate:self];
-    [_view addGestureRecognizer:tapToViewAltTitle];
-}
-
-- (void) setupProgressSlider{
+    // Change colors for progress bar
     switch (_colorScheme) {
-            
         case MSPColorSchemeWhiteOnBlack:
             [_sliderBar setThumbImage:[UIImage imageNamed:@"ProgressSliderThumb"] forState:UIControlStateNormal];
             break;
@@ -235,6 +215,13 @@
             [_sliderBar setThumbImage:[UIImage imageNamed:@"ProgressSliderThumbBlack"] forState:UIControlStateNormal];
             break;
     }
+    
+    // Configure VolumeView styles
+    // Change thumb image
+    [_sliderVolume setVolumeThumbImage:[UIImage imageNamed:@"VolumeSliderThumb"] forState:UIControlStateNormal];
+    // Remove the route button to follow design style of built-in music player
+    // To change route, use iOS' control center
+    [_sliderVolume setShowsRouteButton:NO];
     
 }
 
@@ -260,7 +247,7 @@
     
     // Recreate views that are affected by this bug
     [self recreateMarqueeTexts];
-    [self setupImageScroller];
+    [self updateImageScroller];
     
     [self setupMediaUpdate];                // Subscribe to media status changes
     [self updateMediaData];                 // Update now playing item
@@ -320,7 +307,7 @@
     }
     
     // Update the image scroller size
-    [self setupImageScroller];
+    [self updateImageScroller];
     
     // Set up new marquee text
     [self recreateMarqueeTexts];
@@ -748,7 +735,6 @@
     [self updateElapsedTime];               // Playback Time
 }
 
-#pragma mark - Helper Methods
 - (void) changeImageWithTransitionOn:(UIView*)view withImage:(UIImage*)image{
     // Change image in the given view with fading animation
     // Supports UIImageView* and UIButton*
@@ -832,6 +818,27 @@
         [_labelSongTitle setAlpha:1.0];
         [_labelSongSubtitle setAlpha:1.0];
     }];
+}
+
+- (void) updateImageScroller{
+    // Update the bounds of album art scroller
+    
+    // If one doesn't exist, don't do the update
+    if (_imageScroller) {
+        
+        // Content is 3x screen size to allow swiping left and right
+        [_imageScroller setContentSize:CGSizeMake([_imageScroller frame].size.width * 3.0,
+                                                  [_imageScroller frame].size.height)];
+        // Move the art image to the center
+        CGFloat xOffsetToCenter = ([_imageScroller frame].size.width - [_imageArtwork frame].size.width) / 2;
+        [_imageArtwork setFrame:CGRectMake(xOffsetToCenter + [_imageScroller frame].size.width,
+                                           [_imageArtwork frame].origin.y,
+                                           [_imageArtwork frame].size.width,
+                                           [_imageArtwork frame].size.height)];
+        
+        // Set new origins to follow
+        [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
+    }
 }
 
 
