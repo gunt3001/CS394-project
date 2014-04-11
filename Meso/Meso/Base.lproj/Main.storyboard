@@ -274,21 +274,21 @@
                     <navigationItem key="navigationItem" id="CFQ-Qg-SRk"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="altTitleTapArea" destination="GcQ-L4-euh" id="YZs-Ar-Gkv"/>
-                        <outlet property="buttonBackward" destination="hoj-SG-Y7q" id="8Wg-Nh-1rk"/>
-                        <outlet property="buttonForward" destination="v2w-cs-8yR" id="ZcO-Kk-Sjq"/>
-                        <outlet property="buttonPlayPause" destination="6VG-MS-3pH" id="IP4-CX-Dmi"/>
-                        <outlet property="buttonRepeat" destination="TIu-1b-qfR" id="HRe-lo-BlC"/>
-                        <outlet property="buttonShuffle" destination="AIz-9Q-4uF" id="v7e-K8-QoV"/>
-                        <outlet property="imageArtwork" destination="mmz-iN-Pjz" id="ubk-Xd-dl5"/>
-                        <outlet property="imageArtworkBack" destination="1Gg-2g-VLR" id="zeM-r2-yP9"/>
-                        <outlet property="imageScroller" destination="6Do-Bm-cfQ" id="AFL-fG-qv4"/>
-                        <outlet property="labelElapsedTime" destination="9Ly-qQ-e2w" id="SfJ-Bv-j64"/>
-                        <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="mQN-gu-6Km"/>
-                        <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="ft5-fq-OT0"/>
-                        <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="7Iy-WZ-Jqf"/>
-                        <outlet property="sliderBar" destination="468-8T-omS" id="u5v-9s-b5e"/>
-                        <outlet property="volumeView" destination="t3e-kt-Kh8" id="Xmh-7N-bTx"/>
+                        <outlet property="altTitleTapArea" destination="GcQ-L4-euh" id="ziF-yK-OMa"/>
+                        <outlet property="buttonBackward" destination="hoj-SG-Y7q" id="s5l-Od-rCJ"/>
+                        <outlet property="buttonForward" destination="v2w-cs-8yR" id="Mwg-1g-ItK"/>
+                        <outlet property="buttonPlayPause" destination="6VG-MS-3pH" id="ESY-xm-Gcb"/>
+                        <outlet property="buttonRepeat" destination="TIu-1b-qfR" id="CNy-2w-0Lp"/>
+                        <outlet property="buttonShuffle" destination="AIz-9Q-4uF" id="azv-8w-Vta"/>
+                        <outlet property="imageArtwork" destination="mmz-iN-Pjz" id="K20-Ig-46J"/>
+                        <outlet property="imageArtworkBack" destination="1Gg-2g-VLR" id="2uZ-NF-XVO"/>
+                        <outlet property="imageScroller" destination="6Do-Bm-cfQ" id="Wnu-aW-y6z"/>
+                        <outlet property="labelElapsedTime" destination="9Ly-qQ-e2w" id="bw7-sx-JNm"/>
+                        <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="cRD-Dj-Okv"/>
+                        <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="HIp-vI-4VX"/>
+                        <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="Fer-ly-fWe"/>
+                        <outlet property="sliderProgress" destination="468-8T-omS" id="zNy-JK-Cmw"/>
+                        <outlet property="sliderVolume" destination="t3e-kt-Kh8" id="1aH-6V-PQ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mko-K5-VRh" userLabel="First Responder" sceneMemberID="firstResponder"/>

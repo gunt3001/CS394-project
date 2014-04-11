@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSPPlayerViewController.h"
 
-@interface MSPiPadTopMenuViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface MSPiPadTopMenuViewController : MSPPlayerViewController
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSPPlayerViewController.h"
 
-@interface MSPNowPlayingViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface MSPNowPlayingViewController : MSPPlayerViewController
 
 -(void) hideMenu;
 

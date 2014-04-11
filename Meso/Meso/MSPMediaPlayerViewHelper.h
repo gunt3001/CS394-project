@@ -13,11 +13,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "MarqueeLabel.h"
 
-typedef NS_ENUM(NSInteger, MSPColorScheme) {
-    MSPColorSchemeDefault,
-    MSPColorSchemeWhiteOnBlack
-};
-
 @interface MSPMediaPlayerViewHelper : NSObject <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
 /**
