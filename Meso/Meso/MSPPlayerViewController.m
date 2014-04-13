@@ -208,6 +208,7 @@
     [self updateMediaData];                 // Update now playing item
     [self setupTimer];                      // Set up timer to keep track of elapsed time
     [self updateImageScroller];             // Update scrollview bounds
+    [self recreateMarqueeTexts];            // Update labels' bounds
 }
 
 // View Did Appear
