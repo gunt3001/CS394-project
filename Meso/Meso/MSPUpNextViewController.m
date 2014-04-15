@@ -370,9 +370,21 @@
 - (IBAction)shareButton:(id)sender {
     // Have user select what service to share to
     // Meso, Twitter, or FB
-    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share with Meso", @"Share to Twitter", @"Share to Facebook", nil];
-    [actionSheet showInView:self.view.window];
     
+    // String to share
+    MPMediaItem* nowPlayingItem =[[MSPMediaPlayerHelper sharedPlayer] nowPlayingItem];
+    NSString* songTitle = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
+    NSString* songArtist = [nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
+    NSString* shareString = [NSString stringWithFormat:@"#NowPlaying %@ - %@ ♫", songTitle, songArtist];
+    
+    // Image to share
+    MPMediaItemArtwork* art = [[[MSPMediaPlayerHelper sharedPlayer] nowPlayingItem] valueForProperty:MPMediaItemPropertyArtwork];
+    UIImage* artAsImage = [art imageWithSize:CGSizeMake(500, 500)];
+    
+    UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString] applicationActivities:nil];
+    
+    [self presentViewController:activity animated:YES completion:nil];
+
 }
 
 #pragma mark - Other helper methods
