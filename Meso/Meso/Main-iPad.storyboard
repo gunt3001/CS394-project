@@ -1035,12 +1035,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="6K0-BY-Jnz">
-                                        <barButtonItem key="leftBarButtonItem" title="Share" id="ifh-aj-cey">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ifh-aj-cey">
                                             <connections>
                                                 <action selector="shareButton:" destination="SPB-mc-DcC" id="Hoi-tB-Qz0"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="f2c-Ix-A6d">
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="f2c-Ix-A6d">
                                             <connections>
                                                 <action selector="doneButton:" destination="SPB-mc-DcC" id="zFw-Ju-FHF"/>
                                             </connections>

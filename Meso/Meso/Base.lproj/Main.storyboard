@@ -417,12 +417,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="yHL-qQ-luR">
-                                        <barButtonItem key="leftBarButtonItem" title="Share" id="orv-he-M2W">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="orv-he-M2W">
                                             <connections>
                                                 <action selector="shareButton:" destination="cHL-nJ-16B" id="4hM-yk-mlU"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="KW2-nC-4Oz">
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="KW2-nC-4Oz">
                                             <connections>
                                                 <action selector="doneButton:" destination="cHL-nJ-16B" id="VSm-Un-MX9"/>
                                             </connections>
