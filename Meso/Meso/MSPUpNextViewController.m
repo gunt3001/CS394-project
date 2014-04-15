@@ -12,6 +12,7 @@
 #import "MSPMediaPlayerHelper.h"
 #import "MPMusicPlayerController+PrivateInterface.h"
 #import "MSPNowPlayingViewController.h"
+#import "MSPShareMesoActivity.h"
 
 @interface MSPUpNextViewController ()
 
@@ -392,11 +393,17 @@
     UIGraphicsEndImageContext();
     */
     
-    // Prepare custom activity
-#warning TBD
-    // Subclass UIActivity
+    // Prepare activity view
+    UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString]
+                                                                           applicationActivities:@[[MSPShareMesoActivity sharedActivity]]];
     
-    UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString] applicationActivities:nil];
+    // Remove unneeded activities
+    [activity setExcludedActivityTypes:@[UIActivityTypeAssignToContact,
+                                         UIActivityTypeCopyToPasteboard,
+                                         UIActivityTypePrint,
+                                         UIActivityTypeMessage,
+                                         UIActivityTypeMail,
+                                         UIActivityTypeSaveToCameraRoll]];
     
     [self presentViewController:activity animated:YES completion:nil];
 
