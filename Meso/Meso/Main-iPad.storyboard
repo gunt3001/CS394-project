@@ -1030,7 +1030,7 @@
                                     <outlet property="delegate" destination="SPB-mc-DcC" id="cTl-6F-dQj"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" id="0Yc-mZ-wVn">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" id="0Yc-mZ-wVn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
