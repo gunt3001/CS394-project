@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tableTabSegment;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 
 @end
 
@@ -54,6 +55,9 @@
     
     // Do Initial Table Update
     [self refreshTable];
+    
+    // Set status bar title to now playing song
+    [self refreshTitle];
     
     // Setup further media updates
     [self setupMediaUpdate];
@@ -95,6 +99,9 @@
 - (void)handleNowPlayingItemChanged:(id)notification {
     // When the playing item changed, update the table
     [self refreshTable];
+    
+    // Set status bar title to now playing song
+    [self refreshTitle];
 }
 
 #pragma mark - Table view data source & Delegate
@@ -380,6 +387,12 @@
         [buttonQueue setEnabled:NO];
         
     }
+}
+
+- (void) refreshTitle{
+    // Set status bar title to now playing song
+    NSString* songTitle = [[[MSPMediaPlayerHelper sharedPlayer] nowPlayingItem] valueForProperty:MPMediaItemPropertyTitle];
+    [_navItem setTitle:songTitle];
 }
 
 @end

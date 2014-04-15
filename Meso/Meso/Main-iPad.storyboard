@@ -1059,6 +1059,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="navItem" destination="6K0-BY-Jnz" id="2Zr-CG-Znd"/>
                         <outlet property="tableTabSegment" destination="bSP-Pu-KAe" id="H1l-o7-yBC"/>
                         <outlet property="tableView" destination="rmw-7n-uw2" id="eoM-dP-pxa"/>
                     </connections>

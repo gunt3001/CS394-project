@@ -437,6 +437,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="navItem" destination="yHL-qQ-luR" id="3RO-DZ-iEx"/>
                         <outlet property="tableTabSegment" destination="ItZ-B9-Y7Z" id="TU7-mB-0Av"/>
                         <outlet property="tableView" destination="5w2-XZ-YXZ" id="w2P-54-W1M"/>
                     </connections>
