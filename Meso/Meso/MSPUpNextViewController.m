@@ -378,8 +378,23 @@
     NSString* shareString = [NSString stringWithFormat:@"#NowPlaying %@ - %@ ♫", songTitle, songArtist];
     
     // Image to share
+    
     MPMediaItemArtwork* art = [[[MSPMediaPlayerHelper sharedPlayer] nowPlayingItem] valueForProperty:MPMediaItemPropertyArtwork];
     UIImage* artAsImage = [art imageWithSize:CGSizeMake(500, 500)];
+
+#warning TBD
+    // Use Image Context to write song info onto artwork
+    /*
+    UIViewController* screenshotController = self.presentingViewController;
+    UIGraphicsBeginImageContextWithOptions(screenshotController.view.bounds.size, NO, [UIScreen mainScreen].scale);
+    [screenshotController.view drawViewHierarchyInRect:screenshotController.view.bounds afterScreenUpdates:YES];
+    UIImage *artAsImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    */
+    
+    // Prepare custom activity
+#warning TBD
+    // Subclass UIActivity
     
     UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString] applicationActivities:nil];
     
