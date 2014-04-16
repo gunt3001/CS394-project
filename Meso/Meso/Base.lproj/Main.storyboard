@@ -391,7 +391,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noartplaceholder" id="YXh-I3-Xag">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noartplaceholder" id="YXh-I3-Xag">
                                                     <rect key="frame" x="20" y="10" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
@@ -418,6 +418,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="cellAlbumLargeArt" destination="YXh-I3-Xag" id="cch-VR-pmf"/>
+                                            <outlet property="cellAlbumLargeSubtitle" destination="Ufq-La-M8q" id="1UG-2Q-TfE"/>
+                                            <outlet property="cellAlbumLargeTitle" destination="Hiu-UP-NqW" id="uPJ-pd-3AJ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemcompactnoalbum" textLabel="XFW-D7-iyV" detailTextLabel="Yqt-7M-QWV" style="IBUITableViewCellStyleSubtitle" id="Y0t-Am-fYg" customClass="MSPTableViewCell">
                                         <rect key="frame" x="0.0" y="210" width="320" height="50"/>
@@ -949,7 +954,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noartplaceholder" id="t4d-hX-dZ1">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noartplaceholder" id="t4d-hX-dZ1">
                                             <rect key="frame" x="20" y="10" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -1057,7 +1062,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noartplaceholder" id="RXr-hU-5hV">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noartplaceholder" id="RXr-hU-5hV">
                                             <rect key="frame" x="20" y="10" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -1151,7 +1156,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PDY-od-PhP"/>
+        <segue reference="6N2-QI-RYT"/>
         <segue reference="9jl-oT-0y1"/>
     </inferredMetricsTieBreakers>
 </document>

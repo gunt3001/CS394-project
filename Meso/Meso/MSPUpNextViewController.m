@@ -284,6 +284,7 @@
         {
             // Show current album as header on album tab
             MSPTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"idalbumlargeitem"];
+            [cell setAlbumInfo:[MSPMediaPlayerHelper sharedPlayer].nowPlayingItem];
             
             return cell;
         }

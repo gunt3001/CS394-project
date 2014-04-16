@@ -14,5 +14,6 @@
 @property (nonatomic) NSNumber* PID;        // Media library PID
 
 - (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string ShowAlbum:(BOOL)showAlbum;
+- (void)setAlbumInfo:(MPMediaItem*)representativeItem;
 
 @end
