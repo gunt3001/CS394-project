@@ -379,7 +379,7 @@
     }
     else if ([sender selectedSegmentIndex] == 1){
         // Scroll to top
-        [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
     
     // Reset Edit Mode
