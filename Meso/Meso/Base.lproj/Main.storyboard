@@ -417,6 +417,7 @@
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemcompactnoalbum" textLabel="XFW-D7-iyV" detailTextLabel="Yqt-7M-QWV" style="IBUITableViewCellStyleSubtitle" id="Y0t-Am-fYg" customClass="MSPTableViewCell">
                                         <rect key="frame" x="0.0" y="210" width="320" height="50"/>
