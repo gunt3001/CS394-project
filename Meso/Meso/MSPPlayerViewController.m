@@ -247,25 +247,22 @@
         [_labelSongSubtitle setAlpha:0.0];
     }];
     
-    // Hide album art image to smooth rotation
-    // Only if we're using imagescroller
+    // Change imagescroller to one page when rotating to smooth rotation
     if (_imageScroller) {
-        [UIView animateWithDuration:0.1 animations:^{
-            [_imageArtwork setAlpha:0.0];
-        }];
+        // Set content size to one page
+        [_imageScroller setContentSize:_imageScroller.bounds.size];
+        
+        // Move the artwork to that page
+        CGFloat width = _imageScroller.bounds.size.width;
+        CGRect rect = _imageArtwork.frame;
+        rect.origin.x -= width;
+        [_imageArtwork setFrame:rect];
     }
 }
 
 // Things to do after rotation
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    
-    // Show art again
-    if (_imageScroller){
-        [UIView animateWithDuration:0.1 animations:^{
-            [_imageArtwork setAlpha:1.0];
-        }];
-    }
     
     // Update the image scroller size
     [self updateImageScroller];
