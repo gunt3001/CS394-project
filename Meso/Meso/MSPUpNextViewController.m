@@ -422,6 +422,7 @@
                                          UIActivityTypePrint,
                                          UIActivityTypeMessage,
                                          UIActivityTypeMail,
+                                         UIActivityTypeAirDrop,
                                          UIActivityTypeSaveToCameraRoll]];
     
     [self presentViewController:activity animated:YES completion:nil];
