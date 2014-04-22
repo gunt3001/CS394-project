@@ -175,7 +175,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6VG-MS-3pH" userLabel="Play Button">
-                                <rect key="frame" x="130" y="381" width="60" height="60"/>
+                                <rect key="frame" x="133" y="386" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonPlay">
@@ -184,7 +184,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="v2w-cs-8yR" userLabel="Skip Forward Button">
-                                <rect key="frame" x="229" y="381" width="60" height="60"/>
+                                <rect key="frame" x="217" y="386" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonForeSkip">
@@ -193,7 +193,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hoj-SG-Y7q" userLabel="Skip Backward Button">
-                                <rect key="frame" x="31" y="381" width="60" height="60"/>
+                                <rect key="frame" x="48" y="386" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="FillButtonBackSkip">
@@ -221,7 +221,7 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <view contentMode="scaleToFill" id="t3e-kt-Kh8" customClass="MPVolumeView">
-                                <rect key="frame" x="39" y="449" width="240" height="31"/>
+                                <rect key="frame" x="48" y="449" width="224" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -302,6 +302,7 @@
                         <outlet property="labelSongSubtitle" destination="K0i-Mq-War" id="cRD-Dj-Okv"/>
                         <outlet property="labelSongTitle" destination="xIV-Ce-miY" id="HIp-vI-4VX"/>
                         <outlet property="labelTotalTime" destination="Eun-l4-RPJ" id="Fer-ly-fWe"/>
+                        <outlet property="lyricsTextView" destination="80U-7e-kpE" id="Gmm-mV-4bf"/>
                         <outlet property="lyricsView" destination="efx-2H-0FL" id="TBG-xw-BD1"/>
                         <outlet property="sliderProgress" destination="468-8T-omS" id="zNy-JK-Cmw"/>
                         <outlet property="sliderVolume" destination="t3e-kt-Kh8" id="1aH-6V-PQ0"/>

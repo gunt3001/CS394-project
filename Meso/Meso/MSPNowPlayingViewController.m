@@ -11,6 +11,7 @@
 
 @interface MSPNowPlayingViewController ()
 @property (weak, nonatomic) IBOutlet UIView *lyricsView;
+@property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
 
 @end
 
@@ -39,8 +40,8 @@
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     // If we're detecting lyrics gesture
     if (gestureRecognizer == _tapToShowLyrics){
-        CGPoint touchLocation = [touch locationInView:[gestureRecognizer view]];
-        return CGRectContainsPoint(_lyricsView.frame, touchLocation);
+        CGPoint touchLocation = [touch locationInView:_lyricsView];
+        return CGRectContainsPoint(_lyricsTextView.frame, touchLocation);
     }
     // Or we're detecting alt title gesture
     else return [super gestureRecognizer:gestureRecognizer shouldReceiveTouch:touch];
