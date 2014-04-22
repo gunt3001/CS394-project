@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.    
     
-    // Setup "tap to show additional controls" gesture
+    // Setup "tap to show lyrics" gesture
     _isShowingLyrics = NO;
     _tapToShowLyrics = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLyrics:)];
     [_tapToShowLyrics setNumberOfTapsRequired:1];
