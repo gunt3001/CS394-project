@@ -87,15 +87,6 @@
 
 - (void) setupArtwork{
     
-    // Add Drop Shadow to Artwork Image
-    /*
-    [[_imageArtwork layer] setShadowColor:[UIColor blackColor].CGColor];
-    [[_imageArtwork layer] setShadowOffset:CGSizeMake(0.0, 0.0)];
-    [[_imageArtwork layer] setShadowOpacity:1.0];
-    [[_imageArtwork layer] setShadowRadius:2.0];
-    [_imageArtwork setClipsToBounds:NO];
-     */
-    
     // Use imagescroller to allow song skipping by swiping
     // If one doesn't exist, don't do the setup
     if (_imageScroller) {
