@@ -10,7 +10,4 @@
 #import "MSPPlayerViewController.h"
 
 @interface MSPNowPlayingViewController : MSPPlayerViewController
-
--(void) hideMenu;
-
 @end

@@ -12,6 +12,7 @@
 #import "MSPMediaPlayerHelper.h"
 #import "MPMusicPlayerController+PrivateInterface.h"
 #import "MSPNowPlayingViewController.h"
+#import "MSPShareMesoActivity.h"
 
 @interface MSPUpNextViewController ()
 
@@ -273,20 +274,35 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    // Show menu as header on up next tab
-    if (_tableTabSegment.selectedSegmentIndex == 0){
-        return [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem"];
+    switch (_tableTabSegment.selectedSegmentIndex) {
+        case 0:
+            // Show menu as header on up next tab
+            return [tableView dequeueReusableCellWithIdentifier:@"idminimenuitem"];
+            break;
+        
+        case 1:
+        {
+            // Show current album as header on album tab
+            MSPTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"idalbumlargeitem"];
+            [cell setAlbumInfo:[MSPMediaPlayerHelper sharedPlayer].nowPlayingItem];
+            
+            return cell;
+        }
+            
+        default:
+            return nil;
     }
-    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     switch (_tableTabSegment.selectedSegmentIndex){
         case 0:
+            // Mini menu height
             return 30;
         case 1:
-            return 0;
+            // Current album header height
+            return 100;
         default:
             return 0;
     }
@@ -356,11 +372,15 @@
     // Update table data on tab segment change
     [self refreshTable];
     
-    // Scroll back to now playing item
     if ([sender selectedSegmentIndex] == 0){
+        // Scroll back to now playing item
         NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem]
                                                          inSection:0];
         [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
+    else if ([sender selectedSegmentIndex] == 1){
+        // Scroll to top
+        [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
     
     // Reset Edit Mode
@@ -392,11 +412,17 @@
     UIGraphicsEndImageContext();
     */
     
-    // Prepare custom activity
-#warning TBD
-    // Subclass UIActivity
+    // Prepare activity view
+    UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString]
+                                                                           applicationActivities:@[[MSPShareMesoActivity sharedActivity]]];
     
-    UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString] applicationActivities:nil];
+    // Remove unneeded activities
+    [activity setExcludedActivityTypes:@[UIActivityTypeAssignToContact,
+                                         UIActivityTypeCopyToPasteboard,
+                                         UIActivityTypePrint,
+                                         UIActivityTypeMessage,
+                                         UIActivityTypeMail,
+                                         UIActivityTypeSaveToCameraRoll]];
     
     [self presentViewController:activity animated:YES completion:nil];
 

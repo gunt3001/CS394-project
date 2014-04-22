@@ -10,6 +10,13 @@
 #import "MSPConstants.h"
 #import "MSPStringHelper.h"
 
+@interface MSPTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *cellAlbumLargeArt;
+@property (weak, nonatomic) IBOutlet UILabel *cellAlbumLargeTitle;
+@property (weak, nonatomic) IBOutlet UILabel *cellAlbumLargeSubtitle;
+
+@end
+
 @implementation MSPTableViewCell{
     BOOL hasThumb;
     BOOL hasString;
@@ -87,6 +94,9 @@
     [self addThumbnailWithImage:artworkImage];
 }
 
+#pragma mark - Setting Cell Data
+
+// Cell showing song
 - (void)setSongInfo:(MPMediaItem*)song WithString:(NSString*)string ShowAlbum:(BOOL)showAlbum{
     // Use the given song as the data for the cell
     // Assuming the cell has appropriate styles
@@ -157,6 +167,23 @@
     // Metdata - PID
     [self setPID:songPID];
 
+}
+
+// Cell showing album header
+- (void)setAlbumInfo:(MPMediaItem *)representativeItem{
+    
+    // Artwork
+    CGSize imageSize = _cellAlbumLargeArt.bounds.size;
+    UIImage* artwork = [[representativeItem valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:imageSize];
+    [_cellAlbumLargeArt setImage:artwork];
+    
+    // Album Title
+    NSString* albumName = [representativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];
+    [_cellAlbumLargeTitle setText:albumName];
+    
+    // Album Artist
+    NSString *albumArtist = [representativeItem valueForProperty:MPMediaItemPropertyAlbumArtist];
+    [_cellAlbumLargeSubtitle setText:albumArtist];
 }
 
 @end
