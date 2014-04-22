@@ -1081,6 +1081,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="cellAlbumLargeArt" destination="DVA-Gk-cBJ" id="zGM-5F-d3g"/>
+                                            <outlet property="cellAlbumLargeSubtitle" destination="ch2-i9-7rd" id="lVd-7j-zyB"/>
+                                            <outlet property="cellAlbumLargeTitle" destination="kjr-ic-eMR" id="Avg-Q7-1eg"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitemcompactnoalbum" textLabel="KXR-TW-o2M" detailTextLabel="rhH-PN-69c" style="IBUITableViewCellStyleSubtitle" id="z4h-eI-F3E" customClass="MSPTableViewCell">
                                         <rect key="frame" x="0.0" y="210" width="320" height="50"/>
