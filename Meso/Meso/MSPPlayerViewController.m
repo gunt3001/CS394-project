@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet MarqueeLabel *labelSongSubtitle;
 @property (weak, nonatomic) IBOutlet UIView *altTitleTapArea;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtwork;
-@property (weak, nonatomic) IBOutlet UIScrollView *imageScroller;
 @property (weak, nonatomic) IBOutlet UIImageView *imageArtworkBack;
 @property (weak, nonatomic) IBOutlet UIButton *imageArtworkButton;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlayPause;

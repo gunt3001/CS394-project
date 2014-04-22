@@ -15,6 +15,8 @@ typedef NS_ENUM(NSInteger, MSPColorScheme) {
 
 @interface MSPPlayerViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *imageScroller;
+
 @property (nonatomic) MSPColorScheme colorScheme;
 
 @end
