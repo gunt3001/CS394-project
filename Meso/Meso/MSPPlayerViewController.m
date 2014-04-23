@@ -12,7 +12,7 @@
 #import "MSPMediaPlayerHelper.h"
 #import "MSPConstants.h"
 #import "MSPStringHelper.h"
-
+#import <AVFoundation/AVFoundation.h>
 
 @interface MSPPlayerViewController ()
 
@@ -638,6 +638,11 @@
     NSString* altTitle = [nowPlaying valueForProperty:MSPMediaItemPropertySortTitle];
     NSTimeInterval totalTime = [[nowPlaying valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
     NSString* totalString = [MSPStringHelper getTimeStringFromInterval:totalTime];
+    // A bug in API causes Lyrics to not load properly using regular methods
+    // Following is a workaround
+    NSURL* songURL = [nowPlaying valueForProperty:MPMediaItemPropertyAssetURL];
+    AVAsset* songAsset = [AVURLAsset URLAssetWithURL:songURL options:nil];
+    NSString* lyrics = [songAsset lyrics];
     
     // Display them
     [_labelSongTitle setText:title];                                                // Title
@@ -648,6 +653,7 @@
     if (_imageArtworkBack)
         [self changeImageWithTransitionOn:_imageArtworkBack withImage:artworkImage];// Background Artwork
     [_labelTotalTime setText:totalString];                                          // Total time
+    [self setLyricsText:lyrics];                                                    // Lyrics
     
     // Metadata
     _displayedSongTitle = title;                                        // Title, used to switch with alternate title
@@ -846,6 +852,20 @@
         // Set new origins to follow
         [_imageScroller setContentOffset:CGPointMake([_imageScroller frame].size.width, 0.0)];
     }
+}
+
+- (void) setLyricsText:(NSString*) lyrics{
+    
+    if (!lyrics) lyrics = @"No Lyrics";
+    
+    // A Bug (sigh... Apple!!!) causes text attributes to be reset every text change
+    // Workaround by setting selectable to NO
+    
+    [_lyricsTextView setSelectable:YES];
+    
+    [_lyricsTextView setText:lyrics];
+    
+    [_lyricsTextView setSelectable:NO];
 }
 
 @end
