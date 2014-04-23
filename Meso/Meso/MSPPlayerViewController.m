@@ -28,7 +28,8 @@
     
     // Flags
     BOOL            _isShowingAltTitle;            // Whether the song name shown is the alternate title
-    
+    BOOL            _isShowingLyrics;              // Whether the lyrics is currently shown
+
     // Other objects
     MPMusicPlayerController* _musicPlayer;         // The iPod music player
     NSString*       _displayedSongTitle;           // Title of song on display
@@ -38,6 +39,11 @@
     // Timers
     NSTimer*        _elapsedTimer;                 // Timer used to update elapsed time and progress bars
     NSTimer*        _fastSeekTimer;                // Timer to use for delay before fast seeking
+    
+    // Gesture Recognizers
+    UITapGestureRecognizer* _tapToViewAltTitle;     // Tap on title area to reveal alternate song title
+    UITapGestureRecognizer* _tapToShowLyrics;       // Tap on lyrics (artwork) area to toggle lyrics
+
 }
 
 #pragma mark - Initialization
@@ -51,6 +57,7 @@
     
     [self setupLabels];                               // Title and Subtitle Related
     [self setupArtwork];                              // Artwork Related
+    [self setupLyrics];                               // Lyrics Related
     [self setupButtons];                              // Buttons Related
     [self setupSliders];                              // Sliders Related
     
@@ -79,10 +86,10 @@
     
     // Setup "tap to show alternate title" gesture
     _isShowingAltTitle = NO;
-    UITapGestureRecognizer* tapToViewAltTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAltTitle:)];
-    [tapToViewAltTitle setNumberOfTapsRequired:1];
-    [tapToViewAltTitle setDelegate:self];
-    [self.view addGestureRecognizer:tapToViewAltTitle];
+    _tapToViewAltTitle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAltTitle:)];
+    [_tapToViewAltTitle setNumberOfTapsRequired:1];
+    [_tapToViewAltTitle setDelegate:self];
+    [self.view addGestureRecognizer:_tapToViewAltTitle];
 }
 
 - (void) setupArtwork{
@@ -111,6 +118,17 @@
     
     //Set proper resizing mode for button artwork
     [[_imageArtworkButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
+}
+
+- (void) setupLyrics{
+    
+    // Setup "tap to show lyrics" gesture
+    _isShowingLyrics = NO;
+    _tapToShowLyrics = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLyrics:)];
+    [_tapToShowLyrics setNumberOfTapsRequired:1];
+    [_tapToShowLyrics setDelegate:self];
+    [self.view addGestureRecognizer:_tapToShowLyrics];
+
 }
 
 - (void) setupButtons{
@@ -312,8 +330,19 @@
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    CGPoint touchLocation = [touch locationInView:[gestureRecognizer view]];
-    return CGRectContainsPoint(_altTitleTapArea.frame, touchLocation);
+    
+    // Check what gesture are we detecting
+    if (gestureRecognizer == _tapToShowLyrics){
+        CGPoint touchLocation = [touch locationInView:_lyricsView];
+        return CGRectContainsPoint(_lyricsTextView.frame, touchLocation);
+    }
+    else if (gestureRecognizer == _tapToViewAltTitle){
+        CGPoint touchLocation = [touch locationInView:[gestureRecognizer view]];
+        return CGRectContainsPoint(_altTitleTapArea.frame, touchLocation);
+    }
+    
+    // Otherwise
+    return NO;    
 }
 
 - (void)showAltTitle:(UITapGestureRecognizer*) sender{
@@ -333,6 +362,50 @@
     else {
         [_labelSongTitle setText:_displayedSongAltTitle];
         _isShowingAltTitle = YES;
+    }
+    
+}
+
+- (void)showLyrics:(UITapGestureRecognizer*) sender{
+    // Show additional controls and lyrics
+    
+    if (_isShowingLyrics){
+        [UIView transitionWithView:_lyricsView
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [_lyricsView setHidden:YES];
+                        }
+                        completion:NULL];
+        
+        [UIView transitionWithView:self.imageScroller
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self.imageScroller setHidden:NO];
+                        }
+                        completion:NULL];
+        
+        _isShowingLyrics = NO;
+    }
+    else {
+        [UIView transitionWithView:_lyricsView
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [_lyricsView setHidden:NO];
+                        }
+                        completion:NULL];
+        
+        [UIView transitionWithView:self.imageScroller
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self.imageScroller setHidden:YES];
+                        }
+                        completion:NULL];
+        
+        _isShowingLyrics = YES;
     }
     
 }

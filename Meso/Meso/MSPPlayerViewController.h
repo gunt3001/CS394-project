@@ -33,6 +33,8 @@ typedef NS_ENUM(NSInteger, MSPColorScheme) {
 @property (weak, nonatomic) IBOutlet UILabel *labelTotalTime;
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScroller;
 @property (weak, nonatomic) IBOutlet UISlider *sliderProgress;
+@property (weak, nonatomic) IBOutlet UIView *lyricsView;
+@property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
 
 @property (nonatomic) MSPColorScheme colorScheme;
 
