@@ -24,6 +24,7 @@
     // Dummy UI Elements
     UIView*         _labelSongTitleGuide;          // Display area of Song Title Label
     UIView*         _labelSongSubtitleGuide;       // Display area of Song Subtitle Label
+    CGFloat         _labelSongSubtitleFontSize;    // Font size for subtitle label
     UIToolbar*      _toolbarBackground;            // Toolbar to blur background image
     
     // Flags
@@ -83,6 +84,8 @@
     // Insert them to view
     [self.view addSubview:_labelSongTitleGuide];
     [self.view addSubview:_labelSongSubtitleGuide];
+    
+    _labelSongSubtitleFontSize = _labelSongSubtitle.font.pointSize;
     
     // Setup "tap to show alternate title" gesture
     _isShowingAltTitle = NO;
@@ -629,7 +632,7 @@
     NSString* artist = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
     NSAttributedString* subtitle =  [MSPStringHelper getAttributedSubtitleFromArtist:artist
                                                                                   Album:album
-                                                                           WithFontSize:[[_labelSongSubtitle font] pointSize]
+                                                                           WithFontSize:_labelSongSubtitleFontSize
                                                                                   Color:[_labelSongSubtitle textColor]];
     
     MPMediaItemArtwork* art = [nowPlaying valueForProperty:MPMediaItemPropertyArtwork];

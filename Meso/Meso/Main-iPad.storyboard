@@ -1112,7 +1112,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem id="6K0-BY-Jnz">
+                                    <navigationItem title="Song Name" id="6K0-BY-Jnz">
                                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="ifh-aj-cey">
                                             <connections>
                                                 <action selector="shareButton:" destination="SPB-mc-DcC" id="Hoi-tB-Qz0"/>
