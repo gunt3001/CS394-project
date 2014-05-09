@@ -8,6 +8,7 @@
 
 #import "MSPAppDelegate.h"
 #import "MSPMediaPlayerHelper.h"
+#include "TargetConditionals.h"
 
 @implementation MSPAppDelegate
 
@@ -22,6 +23,17 @@
     // where global tint is not applied correctly when using storyboard
     // Please see https://devforums.apple.com/message/949636 for more information
     [[self window] setTintColor:[UIColor brownColor]];
+    
+    
+    // Warn when running in simulator
+    if (TARGET_IPHONE_SIMULATOR){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Simulator Unsupported"
+                                                        message:@"This app is designed to run on a real device with media library. It won't function inside a simulator."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Got it."
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     
     return YES;
 }
