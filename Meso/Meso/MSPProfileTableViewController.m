@@ -9,6 +9,7 @@
 #import "MSPProfileTableViewController.h"
 #import "UIImage+Resize.h"
 #import "MSPProfileViewController.h"
+#import "MSPSharingManager.h"
 
 @interface MSPProfileTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *fieldDisplayName;
@@ -33,12 +34,12 @@
     [super viewDidLoad];
     
     // Load existing profile if there is one
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]){
-        [_fieldDisplayName setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]];
-        [_fieldPersonalMessage setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileMessage"]];
-        NSString* imagePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileAvatar"];
-        if (imagePath){
-            [_buttonAvatar setImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]] forState:UIControlStateNormal];
+    if (![MSPSharingManager profileIsSet]){
+        [_fieldDisplayName setText:[MSPSharingManager userProfileName]];
+        [_fieldPersonalMessage setText:[MSPSharingManager userProfileMessage]];
+        UIImage* image = [MSPSharingManager userProfileAvatar];
+        if (image){
+            [_buttonAvatar setImage:image forState:UIControlStateNormal];
         }
     }
     
@@ -67,21 +68,10 @@
 
 - (IBAction)buttonDone:(id)sender {
     
-    // Save settings
-    [[NSUserDefaults standardUserDefaults] setObject:_fieldDisplayName.text forKey:@"MesoProfileName"];
-    [[NSUserDefaults standardUserDefaults] setObject:_fieldPersonalMessage.text forKey:@"MesoProfileMessage"];
-    
-    // Get image data.
-    NSData *imageData = UIImageJPEGRepresentation(_buttonAvatar.imageView.image, 1);
-    
-    // Get image path in user's folder and store file with name image_CurrentTimestamp.jpg (see documentsPathForFileName below)
-    NSString *imagePath = [self documentsPathForFileName:@"avatar.jpg"];
-    // Write image data to user's folder
-    [imageData writeToFile:imagePath atomically:YES];
-    // Store path in NSUserDefaults
-    [[NSUserDefaults standardUserDefaults] setObject:imagePath forKey:@"MesoProfileAvatar"];
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    // Save profile
+    [MSPSharingManager setUserProfileName:_fieldDisplayName.text];
+    [MSPSharingManager setUserProfileMessage:_fieldPersonalMessage.text];
+    [MSPSharingManager setUserProfileAvatar:_buttonAvatar.imageView.image];
 
     [[(MSPProfileViewController*)self.parentViewController peopleViewController] updateProfile];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -98,13 +88,6 @@
     // Everything but the name is optional
     if ([[_fieldDisplayName text] isEqualToString:@""]) return NO;
     return YES;
-}
-
-- (NSString *)documentsPathForFileName:(NSString *)name {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    
-    return [documentsPath stringByAppendingPathComponent:name];
 }
 
 #pragma mark - Delegates

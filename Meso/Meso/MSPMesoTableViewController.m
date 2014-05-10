@@ -11,6 +11,7 @@
 #import "MSPMesoTableViewController.h"
 #import "LGBluetooth.h"
 #import "MSPProfileViewController.h"
+#import "MSPSharingManager.h"
 
 @interface MSPMesoTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *deviceTable;
@@ -47,7 +48,7 @@
     
     // On load of this tab, check if the user have set up his profile
     // If not, proceed to setup page
-    if (![[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]){
+    if ([MSPSharingManager profileIsSet]){
         // TBD: Show Welcome page & Instructions
         
         [self performSegueWithIdentifier:@"segueProfileSetup" sender:self];
@@ -209,11 +210,11 @@
 - (void) updateProfile{
     
     // Load Profile Info
-    [_labelProfileName setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]];
-    [_labelPersonalMessage setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileMessage"]];
-    NSString* imagePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileAvatar"];
-    if (imagePath){
-        [_imageAvatar setImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]]];
+    [_labelProfileName setText:[MSPSharingManager userProfileName]];
+    [_labelPersonalMessage setText:[MSPSharingManager userProfileMessage]];
+    UIImage* avatar = [MSPSharingManager userProfileAvatar];
+    if (avatar){
+        [_imageAvatar setImage:avatar];
     }
 }
 
