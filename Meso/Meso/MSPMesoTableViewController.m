@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *deviceTable;
 @property (weak, nonatomic) IBOutlet UIImageView *imageAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *labelPersonalMessage;
+@property (weak, nonatomic) IBOutlet UILabel *labelProfileName;
 
 @end
 
@@ -51,6 +52,9 @@
         [self performSegueWithIdentifier:@"segueProfileSetup" sender:self];
     }
     
+    // Load Profile Info
+    [self updateProfile];
+    
     // Setup table
     discoveredDevices = [[NSMutableArray alloc] init];
     
@@ -64,20 +68,6 @@
     peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    // Load Profile Info
-    [self.navigationItem setTitle:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]];
-    [_labelPersonalMessage setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileMessage"]];
-    NSString* imagePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileAvatar"];
-    if (imagePath){
-        [_imageAvatar setImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]]];
-    }
-
-    
-}
 #pragma mark - Bluetooth Peripheral
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
@@ -212,6 +202,17 @@
 
 + (NSDictionary*) makePeerItemFromName:(NSString*)name NowPlayingItem:(NSString*)nowPlaying{
     return @{@"keydevicename": name, @"keynowplaying":nowPlaying};
+}
+
+- (void) updateProfile{
+    
+    // Load Profile Info
+    [_labelProfileName setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]];
+    [_labelPersonalMessage setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileMessage"]];
+    NSString* imagePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileAvatar"];
+    if (imagePath){
+        [_imageAvatar setImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]]];
+    }
 }
 
 @end

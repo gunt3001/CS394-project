@@ -7,6 +7,7 @@
 //
 
 #import "MSPProfileTableViewController.h"
+#import "MSPMesoTableViewController.h"
 
 @interface MSPProfileTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *fieldDisplayName;
@@ -82,7 +83,9 @@
 
     [[NSUserDefaults standardUserDefaults] synchronize];
 
+    [(MSPMesoTableViewController*)self.presentingViewController.presentingViewController updateProfile];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 - (IBAction)nameFieldChanged:(id)sender {
     // Set Done button depending on validation

@@ -11,4 +11,6 @@
 
 @interface MSPMesoTableViewController : UITableViewController <CBPeripheralManagerDelegate>
 
+- (void) updateProfile;
+
 @end
