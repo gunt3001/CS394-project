@@ -10,6 +10,8 @@
 
 @implementation MSPSharingManager
 
+#pragma mark - User Profile
+
 /// Return whether the user has their profile set up
 + (BOOL)profileIsSet{
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]){
@@ -67,6 +69,48 @@
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - Database
+
+/// Returns the database
+/// Initialize it if necessary
++ (NSMutableDictionary*)devicesDatabase{
+    static NSMutableDictionary* discoveredDevices;
+    
+    // First try to load from saved settings
+    if (!discoveredDevices){
+        discoveredDevices = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"MesoDeviceDatabase"]];
+    }
+    
+    // If still not available, initialze a new database
+    if (!discoveredDevices){
+        discoveredDevices = [[NSMutableDictionary alloc] init];
+    }
+    
+    return discoveredDevices;
+}
+
+/// Save Database
++ (void)saveDatabase{
+    [[NSUserDefaults standardUserDefaults] setObject:[self devicesDatabase] forKey:@"MesoDevicesDatabase"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSDictionary *)devicesFound{
+    return [self devicesDatabase];
+}
+
++ (NSArray*)sortedDeviceUUIDs{
+    return [[self devicesDatabase] keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString* obj1Name = [(NSDictionary*)obj1 objectForKey:@"keydevicename"];
+        NSString* obj2Name = [(NSDictionary*)obj2 objectForKey:@"keydevicename"];
+        return [obj1Name compare:obj2Name];
+    }];
+}
+
++(void)addDeviceWithUUID:(NSUUID *)uuid PeerInfo:(NSDictionary *)info{
+    [[self devicesDatabase] setObject:info forKey:uuid];
 }
 
 #pragma mark - Helpers

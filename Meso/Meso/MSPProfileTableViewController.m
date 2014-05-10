@@ -34,7 +34,7 @@
     [super viewDidLoad];
     
     // Load existing profile if there is one
-    if (![MSPSharingManager profileIsSet]){
+    if ([MSPSharingManager profileIsSet]){
         [_fieldDisplayName setText:[MSPSharingManager userProfileName]];
         [_fieldPersonalMessage setText:[MSPSharingManager userProfileMessage]];
         UIImage* image = [MSPSharingManager userProfileAvatar];

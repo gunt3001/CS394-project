@@ -10,6 +10,8 @@
 
 @interface MSPSharingManager : NSObject
 
+#pragma mark - User Profile
+
 /// Return whether the user has their profile set up
 + (BOOL) profileIsSet;
 
@@ -31,5 +33,16 @@
 
 /// Set User's Profile Avatar
 + (void)setUserProfileAvatar:(UIImage*)image;
+
+#pragma mark - Database
+
+/// Return the history of devices found
++ (NSDictionary*)devicesFound;
+
+/// Return sorted array of uuid of devices found
++ (NSArray*)sortedDeviceUUIDs;
+
+/// Add a new device to database
++ (void)addDeviceWithUUID:(NSUUID*)uuid PeerInfo:(NSDictionary*)info;
 
 @end

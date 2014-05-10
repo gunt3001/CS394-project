@@ -23,7 +23,6 @@
 
 @implementation MSPMesoTableViewController{
     // Private variables
-    NSMutableArray* discoveredDevices;
     CBPeripheralManager* peripheralManager;
     dispatch_queue_t peripheralQueue;
     
@@ -48,7 +47,7 @@
     
     // On load of this tab, check if the user have set up his profile
     // If not, proceed to setup page
-    if ([MSPSharingManager profileIsSet]){
+    if (![MSPSharingManager profileIsSet]){
         // TBD: Show Welcome page & Instructions
         
         [self performSegueWithIdentifier:@"segueProfileSetup" sender:self];
@@ -57,13 +56,12 @@
     // Load Profile Info
     [self updateProfile];
     
-    // Setup table
-    discoveredDevices = [[NSMutableArray alloc] init];
-    
     // Make sample data
+    NSUUID* sampleDevice = [[NSUUID alloc] initWithUUIDString:@"68753A44-4D6F-1226-9C60-0050E4C00068"];
     NSDictionary* peer = [MSPMesoTableViewController makePeerItemFromName:@"Device Name" NowPlayingItem:@"Some Song"];
-    [discoveredDevices addObject:peer];
+    [MSPSharingManager addDeviceWithUUID:sampleDevice PeerInfo:peer];
     [_deviceTable reloadData];
+     
     
     // Start advertising your own data
     peripheralQueue = dispatch_queue_create("periqueue", NULL);
@@ -130,7 +128,7 @@
                                     // Make data
                                     NSString* nowPlayingValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                     NSDictionary* peer = [MSPMesoTableViewController makePeerItemFromName:@"Unknown Device" NowPlayingItem:nowPlayingValue];
-                                    [discoveredDevices addObject:peer];
+                                    // [discoveredDevices addObject:peer];
                                     [_deviceTable reloadData];
 
                                     [peripheral disconnectWithCompletion:nil];
@@ -155,7 +153,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [discoveredDevices count];
+    return [[MSPSharingManager devicesFound] count];
 }
 
 
@@ -164,9 +162,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idpeeritem" forIndexPath:indexPath];
     
     // Configure the cell...
-    NSDictionary* peer = [discoveredDevices objectAtIndex:[indexPath row]];
-    [[cell textLabel] setText:[peer objectForKey:@"keydevicename"]];
-    [[cell detailTextLabel] setText:[peer objectForKey:@"keynowplaying"]];
+    NSUUID* key = [[MSPSharingManager sortedDeviceUUIDs] objectAtIndex:[indexPath row]];
+    NSDictionary* peerInfo = [[MSPSharingManager devicesFound] objectForKey:key];
+    [[cell textLabel] setText:[peerInfo objectForKey:@"keydevicename"]];
+    [[cell detailTextLabel] setText:[peerInfo objectForKey:@"keynowplaying"]];
     
     return cell;
 }
