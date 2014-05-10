@@ -66,6 +66,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     
+    [super viewWillAppear:animated];
+    
     // Load Profile Info
     [self.navigationItem setTitle:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]];
     [_labelPersonalMessage setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileMessage"]];
