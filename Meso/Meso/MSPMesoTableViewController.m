@@ -128,7 +128,7 @@
                                     // Make data
                                     NSString* nowPlayingValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                     NSDictionary* peer = [MSPMesoTableViewController makePeerItemFromName:@"Unknown Device" NowPlayingItem:nowPlayingValue];
-                                    // [discoveredDevices addObject:peer];
+                                    [MSPSharingManager addDeviceWithUUID:[NSUUID UUID] PeerInfo:peer];
                                     [_deviceTable reloadData];
 
                                     [peripheral disconnectWithCompletion:nil];

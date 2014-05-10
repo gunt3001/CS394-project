@@ -80,7 +80,7 @@
     
     // First try to load from saved settings
     if (!discoveredDevices){
-        discoveredDevices = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"MesoDeviceDatabase"]];
+        discoveredDevices = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"MesoDevicesDatabase"]];
     }
     
     // If still not available, initialze a new database
@@ -110,7 +110,8 @@
 }
 
 +(void)addDeviceWithUUID:(NSUUID *)uuid PeerInfo:(NSDictionary *)info{
-    [[self devicesDatabase] setObject:info forKey:uuid];
+    [[self devicesDatabase] setObject:info forKey:[uuid UUIDString]];
+    [self saveDatabase];
 }
 
 #pragma mark - Helpers
