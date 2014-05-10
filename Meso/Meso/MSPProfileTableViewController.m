@@ -7,14 +7,14 @@
 //
 
 #import "MSPProfileTableViewController.h"
-#import "MSPMesoTableViewController.h"
+#import "UIImage+Resize.h"
+#import "MSPProfileViewController.h"
 
 @interface MSPProfileTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *fieldDisplayName;
 @property (weak, nonatomic) IBOutlet UITextField *fieldPersonalMessage;
 @property (weak, nonatomic) IBOutlet UIButton *buttonAvatar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonDone;
-
 @end
 
 @implementation MSPProfileTableViewController
@@ -83,7 +83,7 @@
 
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-    [(MSPMesoTableViewController*)self.presentingViewController.presentingViewController updateProfile];
+    [[(MSPProfileViewController*)self.parentViewController peopleViewController] updateProfile];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -127,7 +127,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
     UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [_buttonAvatar setImage:image forState:UIControlStateNormal];
+    
+    // Resize before setting
+    UIImage* resizedImage = [image thumbnailImage:200 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationDefault];
+    [_buttonAvatar setImage:resizedImage forState:UIControlStateNormal];
 }
 
 @end

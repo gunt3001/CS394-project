@@ -17,6 +17,8 @@ Icons Provided By
 Third Party Libraries:
 - MarqueeLabel by cbpowell
 - LGBluetooth by DavidSahakyan
+- UIImage Categories from http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/
+
 </string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>

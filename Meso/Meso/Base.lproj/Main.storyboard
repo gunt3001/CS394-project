@@ -1196,10 +1196,10 @@
             </objects>
             <point key="canvasLocation" x="1207" y="1258"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="K9w-N6-IZ3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CpM-8e-xWN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CpM-8e-xWN" customClass="MSPProfileViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dq0-ig-Sw1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

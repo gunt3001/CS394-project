@@ -42,6 +42,10 @@
 		B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */; };
 		B0DDB31418F76D300075D988 /* MSPPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDB31318F76D300075D988 /* MSPPlayerViewController.m */; };
 		B0F77A13191DC1DD00C04F9E /* MSPProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F77A12191DC1DD00C04F9E /* MSPProfileTableViewController.m */; };
+		B0F77A1A191DE5B900C04F9E /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F77A15191DE5B900C04F9E /* UIImage+Alpha.m */; };
+		B0F77A1B191DE5B900C04F9E /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F77A17191DE5B900C04F9E /* UIImage+Resize.m */; };
+		B0F77A1C191DE5B900C04F9E /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F77A19191DE5B900C04F9E /* UIImage+RoundedCorner.m */; };
+		B0F77A1F191DE94900C04F9E /* MSPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F77A1E191DE94900C04F9E /* MSPProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +116,14 @@
 		B0DDB31318F76D300075D988 /* MSPPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlayerViewController.m; sourceTree = "<group>"; };
 		B0F77A11191DC1DD00C04F9E /* MSPProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPProfileTableViewController.h; sourceTree = "<group>"; };
 		B0F77A12191DC1DD00C04F9E /* MSPProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPProfileTableViewController.m; sourceTree = "<group>"; };
+		B0F77A14191DE5B900C04F9E /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		B0F77A15191DE5B900C04F9E /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		B0F77A16191DE5B900C04F9E /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		B0F77A17191DE5B900C04F9E /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		B0F77A18191DE5B900C04F9E /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		B0F77A19191DE5B900C04F9E /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		B0F77A1D191DE94900C04F9E /* MSPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPProfileViewController.h; sourceTree = "<group>"; };
+		B0F77A1E191DE94900C04F9E /* MSPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +164,8 @@
 				B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */,
 				B0F77A11191DC1DD00C04F9E /* MSPProfileTableViewController.h */,
 				B0F77A12191DC1DD00C04F9E /* MSPProfileTableViewController.m */,
+				B0F77A1D191DE94900C04F9E /* MSPProfileViewController.h */,
+				B0F77A1E191DE94900C04F9E /* MSPProfileViewController.m */,
 				B0BEC4FC18DACCC4003EAC01 /* MSPNowPlayingViewController.h */,
 				B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */,
 				B09A0E3C18DF7D8700B89816 /* MSPiPadTopMenuViewController.h */,
@@ -276,6 +290,12 @@
 		B0E352BD18DBCA2900276682 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				B0F77A14191DE5B900C04F9E /* UIImage+Alpha.h */,
+				B0F77A15191DE5B900C04F9E /* UIImage+Alpha.m */,
+				B0F77A16191DE5B900C04F9E /* UIImage+Resize.h */,
+				B0F77A17191DE5B900C04F9E /* UIImage+Resize.m */,
+				B0F77A18191DE5B900C04F9E /* UIImage+RoundedCorner.h */,
+				B0F77A19191DE5B900C04F9E /* UIImage+RoundedCorner.m */,
 				B026F23C18DDC56100B61B45 /* MarqueeLabel.h */,
 				B026F23D18DDC56100B61B45 /* MarqueeLabel.m */,
 				B0A2681418EACD9700D60128 /* MPMusicPlayerController+PrivateInterface.h */,
@@ -433,8 +453,10 @@
 				B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */,
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
 				B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */,
+				B0F77A1F191DE94900C04F9E /* MSPProfileViewController.m in Sources */,
 				B0DDB31418F76D300075D988 /* MSPPlayerViewController.m in Sources */,
 				B00E735018E6098B00662BAA /* MSPMediaPlayerHelper.m in Sources */,
+				B0F77A1A191DE5B900C04F9E /* UIImage+Alpha.m in Sources */,
 				B026F23E18DDC56100B61B45 /* MarqueeLabel.m in Sources */,
 				B0BEC4F318DA6DE0003EAC01 /* MSPSongsTableViewController.m in Sources */,
 				B09A0E3E18DF7D8700B89816 /* MSPiPadTopMenuViewController.m in Sources */,
@@ -442,10 +464,12 @@
 				B026F23618DD7C5500B61B45 /* MSPStringHelper.m in Sources */,
 				B0AFAE9218DD32C300864EFC /* MSPPlaylistNode.m in Sources */,
 				B0A2681318EACA5200D60128 /* MSPUpNextViewController.m in Sources */,
+				B0F77A1C191DE5B900C04F9E /* UIImage+RoundedCorner.m in Sources */,
 				B012DE2418FDB5EF003EB1A5 /* MSPShareMesoActivity.m in Sources */,
 				B04F4EA018E69080000C5193 /* MSPMesoTableViewController.m in Sources */,
 				B0F77A13191DC1DD00C04F9E /* MSPProfileTableViewController.m in Sources */,
 				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,
+				B0F77A1B191DE5B900C04F9E /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

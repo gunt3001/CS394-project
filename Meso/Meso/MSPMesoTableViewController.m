@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Napat R. All rights reserved.
 //
 
-#import "MSPMesoTableViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "MSPMesoTableViewController.h"
 #import "LGBluetooth.h"
+#import "MSPProfileViewController.h"
 
 @interface MSPMesoTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *deviceTable;
@@ -169,16 +170,17 @@
     return cell;
 }
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     if ([segue.identifier isEqualToString:@"segueProfileSetup"]){
+         [(MSPProfileViewController*)segue.destinationViewController setPeopleViewController:self];
+     }
  }
- */
+
 
 #pragma mark - Bluetooth
 
