@@ -54,12 +54,6 @@
     peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Bluetooth Peripheral
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
