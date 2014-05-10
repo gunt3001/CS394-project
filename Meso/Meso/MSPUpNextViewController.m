@@ -64,6 +64,7 @@
     [self setupMediaUpdate];
     
     // Scroll to now playing item
+    if (![MSPMediaPlayerHelper sharedPlayer]) return;
     NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem]
                                                      inSection:0];
     [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -135,6 +136,7 @@
             
         // Album - show songs in the album
         case 1:
+            if (![MSPMediaPlayerHelper sharedPlayer]) return 0;
             return [MSPMediaPlayerHelper itemsInCurrentSongAlbum].items.count;
             
         default:
@@ -372,13 +374,13 @@
     // Update table data on tab segment change
     [self refreshTable];
     
-    if ([sender selectedSegmentIndex] == 0){
+    if ([sender selectedSegmentIndex] == 0 && [MSPMediaPlayerHelper sharedPlayer]){
         // Scroll back to now playing item
         NSIndexPath* nowPlayingItem = [NSIndexPath indexPathForRow:[[MSPMediaPlayerHelper sharedPlayer] indexOfNowPlayingItem]
                                                          inSection:0];
         [_tableView scrollToRowAtIndexPath:nowPlayingItem atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
-    else if ([sender selectedSegmentIndex] == 1){
+    else if ([sender selectedSegmentIndex] == 1 && [MSPMediaPlayerHelper sharedPlayer]){
         // Scroll to top
         [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
@@ -390,6 +392,8 @@
 - (IBAction)shareButton:(id)sender {
     // Have user select what service to share to
     // Meso, Twitter, or FB
+    
+    if (![MSPMediaPlayerHelper sharedPlayer]) return;
     
     // String to share
     MPMediaItem* nowPlayingItem =[[MSPMediaPlayerHelper sharedPlayer] nowPlayingItem];
