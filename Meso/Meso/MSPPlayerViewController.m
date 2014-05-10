@@ -418,10 +418,14 @@
 - (void)buttonPlayPause:(id)sender {
     // Pause if playing, play if paused
     
-    if ([_musicPlayer playbackState] == MPMusicPlaybackStatePaused ||
-        [_musicPlayer playbackState] == MPMusicPlaybackStateStopped){
+    if ([_musicPlayer playbackState] == MPMusicPlaybackStatePaused){
         [_musicPlayer pause];    // Pause once before playing to fix when state would get occasionally stuck at paused
         [_musicPlayer play];
+    }
+    else if ([_musicPlayer playbackState] == MPMusicPlaybackStateStopped){
+        [_musicPlayer play];
+        
+        [self updateMediaData];
     }
     else if ([_musicPlayer playbackState] == MPMusicPlaybackStatePlaying){
         [_musicPlayer pause];
