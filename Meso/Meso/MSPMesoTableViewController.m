@@ -13,6 +13,8 @@
 
 @interface MSPMesoTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *deviceTable;
+@property (weak, nonatomic) IBOutlet UIImageView *imageAvatar;
+@property (weak, nonatomic) IBOutlet UILabel *labelPersonalMessage;
 
 @end
 
@@ -41,6 +43,14 @@
 {
     [super viewDidLoad];
     
+    // On load of this tab, check if the user have set up his profile
+    // If not, proceed to setup page
+    if (![[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]){
+        // TBD: Show Welcome page & Instructions
+        
+        [self performSegueWithIdentifier:@"segueProfileSetup" sender:self];
+    }
+    
     // Setup table
     discoveredDevices = [[NSMutableArray alloc] init];
     
@@ -54,6 +64,18 @@
     peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    // Load Profile Info
+    [self.navigationItem setTitle:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileName"]];
+    [_labelPersonalMessage setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileMessage"]];
+    NSString* imagePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileAvatar"];
+    if (imagePath){
+        [_imageAvatar setImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]]];
+    }
+
+    
+}
 #pragma mark - Bluetooth Peripheral
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{

@@ -41,6 +41,7 @@
 		B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FA18DAB4C6003EAC01 /* MSPConstants.m */; };
 		B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */; };
 		B0DDB31418F76D300075D988 /* MSPPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDB31318F76D300075D988 /* MSPPlayerViewController.m */; };
+		B0F77A13191DC1DD00C04F9E /* MSPProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F77A12191DC1DD00C04F9E /* MSPProfileTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,8 @@
 		B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPNowPlayingViewController.m; sourceTree = "<group>"; };
 		B0DDB31218F76D300075D988 /* MSPPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPlayerViewController.h; sourceTree = "<group>"; };
 		B0DDB31318F76D300075D988 /* MSPPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPlayerViewController.m; sourceTree = "<group>"; };
+		B0F77A11191DC1DD00C04F9E /* MSPProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPProfileTableViewController.h; sourceTree = "<group>"; };
+		B0F77A12191DC1DD00C04F9E /* MSPProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPProfileTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 				B0A2681218EACA5200D60128 /* MSPUpNextViewController.m */,
 				B04F4E9E18E69080000C5193 /* MSPMesoTableViewController.h */,
 				B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */,
+				B0F77A11191DC1DD00C04F9E /* MSPProfileTableViewController.h */,
+				B0F77A12191DC1DD00C04F9E /* MSPProfileTableViewController.m */,
 				B0BEC4FC18DACCC4003EAC01 /* MSPNowPlayingViewController.h */,
 				B0BEC4FD18DACCC4003EAC01 /* MSPNowPlayingViewController.m */,
 				B09A0E3C18DF7D8700B89816 /* MSPiPadTopMenuViewController.h */,
@@ -439,6 +444,7 @@
 				B0A2681318EACA5200D60128 /* MSPUpNextViewController.m in Sources */,
 				B012DE2418FDB5EF003EB1A5 /* MSPShareMesoActivity.m in Sources */,
 				B04F4EA018E69080000C5193 /* MSPMesoTableViewController.m in Sources */,
+				B0F77A13191DC1DD00C04F9E /* MSPProfileTableViewController.m in Sources */,
 				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
