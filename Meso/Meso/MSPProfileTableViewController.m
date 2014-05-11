@@ -46,9 +46,6 @@
     // Set Done button depending on validation
     [_buttonDone setEnabled:[self validateInput]];
     
-    // Select text field
-    [_fieldDisplayName becomeFirstResponder];
-    
     // Set correct content mode for avatar image
     [[_buttonAvatar imageView] setContentMode:UIViewContentModeScaleAspectFill];
 
