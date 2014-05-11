@@ -738,9 +738,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="People" id="cmZ-My-BxW">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" id="zzZ-TB-B32">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="zzZ-TB-B32">
                             <connections>
-                                <action selector="buttonRefresh:" destination="Gga-bY-8Na" id="pqY-iU-ZUX"/>
+                                <action selector="buttonRefresh:" destination="Gga-bY-8Na" id="Ut4-gN-ODT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="J3f-vS-SYu">

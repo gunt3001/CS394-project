@@ -219,14 +219,28 @@
     // Start scanning for peripherals
     // Process the peripherals found after 4 seconds
 
+    // Temporarily replace the button
+    UIBarButtonItem* oldButton = self.navigationItem.leftBarButtonItem;
+    UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    [self.navigationItem setLeftBarButtonItem:barButton];
+    [activityIndicator startAnimating];
     
-    CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:@"D4D10CD7-6E88-4FBA-80E2-32D5B351B66A"];
+    // Start searching
+    CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:UUID_BT_SERVICE];
     [[LGCentralManager sharedInstance] scanForPeripheralsByInterval:4 services:@[mesoServiceUUID] options:nil completion:^(NSArray *peripherals)
      {
          for (LGPeripheral* eachPeri in peripherals) {
              [self processPeripherals:eachPeri];
          }
+         
+         [self.navigationItem setLeftBarButtonItem:oldButton];
      }];
+    
+    
+    
+    
+    
 }
 
 #pragma mark - Helper functions
