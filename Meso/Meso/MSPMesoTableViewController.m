@@ -92,9 +92,8 @@
         mesoService = [[CBMutableService alloc] initWithType:mesoServiceUUID primary:YES];
         
         // Metadata of...
-        NSString* mesoMetaName = [MSPSharingManager userProfileName];       // Name
-        // TBD: Avatar
-        NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage]; // Personal Message
+        NSString* mesoMetaName = [MSPSharingManager userProfileName];                               // Name
+        NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage];                         // Personal Message
         // TBD: Users Met
         // TBD: Now Playing Song & Art
         // TBD: Shared Song & Art
