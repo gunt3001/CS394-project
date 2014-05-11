@@ -238,14 +238,17 @@
     // Process the peripherals found after given interval in seconds
     
     // First, verify the bluetooth state
-    if ([LGCentralManager sharedInstance].manager.state != CBCentralManagerStatePoweredOn
-        && notify){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth Unavailable"
-                                                        message:@"Make sure your device is compatible with Bluetooth 4.0 and Bluetooth is powered on."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+    if ([LGCentralManager sharedInstance].manager.state != CBCentralManagerStatePoweredOn){
+        
+        if (notify){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth Unavailable"
+                                                            message:@"Make sure your device is compatible with Bluetooth 4.0 and Bluetooth is powered on."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        
         return;
     }
     
