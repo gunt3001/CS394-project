@@ -115,7 +115,7 @@
     UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     // Resize before setting
-    UIImage* resizedImage = [image thumbnailImage:200 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationDefault];
+    UIImage* resizedImage = [image thumbnailImage:200 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];
     [_buttonAvatar setImage:resizedImage forState:UIControlStateNormal];
 }
 
