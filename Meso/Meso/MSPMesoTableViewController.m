@@ -31,6 +31,9 @@
     CBMutableService* mesoService;
     CBMutableCharacteristic* mesoUUIDChar;
     CBMutableCharacteristic* mesoDataChar;
+    
+    // Timers
+    NSTimer* searchTimer;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -60,6 +63,13 @@
     // Start advertising your own data
     peripheralQueue = dispatch_queue_create("periqueue", NULL);
     peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
+    
+    // Set up search timer
+    // Update at a constant time
+    searchTimer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                     target:self
+                                                   selector:@selector(fireTimer:)
+                                                   userInfo:nil repeats:YES];
 }
 
 #pragma mark - Bluetooth Peripheral
@@ -213,14 +223,23 @@
  }
 
 
-#pragma mark - Bluetooth
+#pragma mark - Scanning
 
 - (IBAction)buttonRefresh:(id)sender {
-    // Start scanning for peripherals
-    // Process the peripherals found after 4 seconds
+    [self scanPeripherals:4 Notify:YES];
+}
 
+- (void)fireTimer:(NSTimer*)timer{
+    [self scanPeripherals:4 Notify:NO];
+}
+
+- (void)scanPeripherals:(NSUInteger)interval Notify:(BOOL)notify{
+    // Start scanning for peripherals
+    // Process the peripherals found after given interval in seconds
+    
     // First, verify the bluetooth state
-    if ([LGCentralManager sharedInstance].manager.state != CBCentralManagerStatePoweredOn){
+    if ([LGCentralManager sharedInstance].manager.state != CBCentralManagerStatePoweredOn
+        && notify){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth Unavailable"
                                                         message:@"Make sure your device is compatible with Bluetooth 4.0 and Bluetooth is powered on."
                                                        delegate:nil
@@ -239,7 +258,7 @@
     
     // Start searching
     CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:UUID_BT_SERVICE];
-    [[LGCentralManager sharedInstance] scanForPeripheralsByInterval:4 services:@[mesoServiceUUID] options:nil completion:^(NSArray *peripherals)
+    [[LGCentralManager sharedInstance] scanForPeripheralsByInterval:interval services:@[mesoServiceUUID] options:nil completion:^(NSArray *peripherals)
      {
          for (LGPeripheral* eachPeri in peripherals) {
              [self processPeripherals:eachPeri];
