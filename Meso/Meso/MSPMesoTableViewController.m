@@ -219,6 +219,17 @@
     // Start scanning for peripherals
     // Process the peripherals found after 4 seconds
 
+    // First, verify the bluetooth state
+    if ([LGCentralManager sharedInstance].manager.state != CBCentralManagerStatePoweredOn){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth Unavailable"
+                                                        message:@"Make sure your device is compatible with Bluetooth 4.0 and Bluetooth is powered on."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     // Temporarily replace the button
     UIBarButtonItem* oldButton = self.navigationItem.leftBarButtonItem;
     UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -236,11 +247,6 @@
          
          [self.navigationItem setLeftBarButtonItem:oldButton];
      }];
-    
-    
-    
-    
-    
 }
 
 #pragma mark - Helper functions
