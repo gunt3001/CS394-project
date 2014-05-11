@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSPMesoTableViewController.h"
 
-@interface MSPProfileTableViewController : UITableViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface MSPProfileTableViewController : UITableViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @end

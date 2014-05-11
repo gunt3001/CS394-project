@@ -37,6 +37,9 @@
 /// Return User's Meso UUID
 + (NSUUID*)userUUID;
 
+/// Return User's Profile # of people met
++ (NSUInteger)userProfileNumMet;
+
 #pragma mark - Database
 
 /// Return the history of devices found
@@ -47,5 +50,8 @@
 
 /// Add a new device to database
 + (void)addDeviceWithUUID:(NSUUID*)uuid PeerInfo:(NSDictionary*)info;
+
+/// Clears database
++ (void)clearDatabase;
 
 @end

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *labelPersonalMessage;
 @property (weak, nonatomic) IBOutlet UILabel *labelProfileName;
+@property (weak, nonatomic) IBOutlet UILabel *labelProfileMet;
 
 @end
 
@@ -180,6 +181,7 @@
     // Add data to database
     [MSPSharingManager addDeviceWithUUID:[[NSUUID alloc] initWithUUIDString:uuid] PeerInfo:data];
     [_deviceTable reloadData];
+    [self updateProfile];
     
 }
 
@@ -278,6 +280,7 @@
     // Load Profile Info
     [_labelProfileName setText:[MSPSharingManager userProfileName]];
     [_labelPersonalMessage setText:[MSPSharingManager userProfileMessage]];
+    [_labelProfileMet setText:[NSString stringWithFormat:@"Met %ld People", (long)[MSPSharingManager userProfileNumMet]]];
     UIImage* avatar = [MSPSharingManager userProfileAvatar];
     if (avatar){
         [_imageAvatar setImage:avatar];

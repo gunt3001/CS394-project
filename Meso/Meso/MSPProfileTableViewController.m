@@ -82,6 +82,12 @@
     [_buttonDone setEnabled:[self validateInput]];
 }
 
+- (IBAction)buttonClearHistory:(id)sender {
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure? This will delete everyone you met!" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Clear" otherButtonTitles:nil];
+    
+    [actionSheet showInView:self.view];
+}
+
 #pragma mark - Helpers
 - (BOOL)validateInput{
     // Validate the profile form
@@ -114,6 +120,13 @@
     // Resize before setting
     UIImage* resizedImage = [image thumbnailImage:200 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationDefault];
     [_buttonAvatar setImage:resizedImage forState:UIControlStateNormal];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+        [MSPSharingManager clearDatabase];
+        [[[(MSPProfileViewController*)self.parentViewController peopleViewController] tableView] reloadData];
+    }
 }
 
 @end

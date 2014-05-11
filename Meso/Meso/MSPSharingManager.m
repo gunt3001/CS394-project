@@ -43,6 +43,11 @@
     }
 }
 
+/// Return User's Profile # of people met
++ (NSUInteger)userProfileNumMet{
+    return [self devicesDatabase].count;
+}
+
 +(void)setUserProfileName:(NSString *)name{
     [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"MesoProfileName"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -127,6 +132,12 @@
 
 +(void)addDeviceWithUUID:(NSUUID *)uuid PeerInfo:(NSDictionary *)info{
     [[self devicesDatabase] setObject:info forKey:[uuid UUIDString]];
+    [self saveDatabase];
+}
+
+/// Clears database
++ (void)clearDatabase{
+    [[self devicesDatabase] removeAllObjects];
     [self saveDatabase];
 }
 
