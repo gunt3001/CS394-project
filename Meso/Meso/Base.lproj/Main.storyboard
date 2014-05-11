@@ -657,7 +657,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qiu-4H-ais" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="316" y="800"/>
+            <point key="canvasLocation" x="648" y="1876"/>
         </scene>
         <!--Meso Table View Controller - People-->
         <scene sceneID="bdp-jd-Jga">
@@ -757,7 +757,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTY-jV-0xL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="703" y="800"/>
+            <point key="canvasLocation" x="1035" y="1876"/>
         </scene>
         <!--Profile Table View Controller - Profile-->
         <scene sceneID="6JQ-FY-gWZ">
@@ -811,35 +811,15 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Sharing" footerTitle="If nothing is chosen, the currently playing song will be shared." id="RZ5-47-ONc">
+                            <tableViewSection headerTitle="Sharing" footerTitle="The currently playing song is always shared." id="RZ5-47-ONc">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="pn4-h5-f4E">
-                                        <rect key="frame" x="0.0" y="267" width="320" height="100"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pn4-h5-f4E">
+                                        <rect key="frame" x="0.0" y="267" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pn4-h5-f4E" id="WXb-k6-bbR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vO5-TW-pCS">
-                                                    <rect key="frame" x="20" y="5" width="90" height="90"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="noartplaceholder">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="buttonAvatar:" destination="Eup-Am-6XZ" eventType="touchUpInside" id="6mT-Ve-eJJ"/>
-                                                    </connections>
-                                                </button>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="No Song Chosen" minimumFontSize="17" id="IKx-bV-AFa">
-                                                    <rect key="frame" x="118" y="5" width="182" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                                    <connections>
-                                                        <action selector="nameFieldChanged:" destination="Eup-Am-6XZ" eventType="editingChanged" id="hsL-5U-fUS"/>
-                                                        <outlet property="delegate" destination="Eup-Am-6XZ" id="cLh-vN-Bf2"/>
-                                                    </connections>
-                                                </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="4DS-Ur-ArQ">
                                                     <rect key="frame" x="118" y="43" width="182" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -849,6 +829,23 @@
                                                         <outlet property="delegate" destination="Eup-Am-6XZ" id="ZxM-v9-y35"/>
                                                     </connections>
                                                 </textField>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sharing 1 Songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qom-Wj-GY6">
+                                                    <rect key="frame" x="20" y="9" width="226" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dpK-oA-pPR">
+                                                    <rect key="frame" x="254" y="5" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Edit">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="tDy-cA-wCu" kind="push" id="cho-zH-xCU"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -857,7 +854,7 @@
                             <tableViewSection headerTitle="History" id="9Rl-sz-lTX">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sUV-Dh-vQl">
-                                        <rect key="frame" x="0.0" y="459" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="382" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sUV-Dh-vQl" id="oSN-rX-eJO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -875,6 +872,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6mX-uv-uoi">
                                                     <rect key="frame" x="20" y="5" width="280" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Clear History">
                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -910,7 +908,58 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQg-N3-BXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316" y="477"/>
+            <point key="canvasLocation" x="1970" y="1553"/>
+        </scene>
+        <!--Meso List Table View Controller - Shared Songs-->
+        <scene sceneID="Azn-Uw-xcG">
+            <objects>
+                <tableViewController id="tDy-cA-wCu" customClass="MSPMesoListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qAq-RJ-QXM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsongitem" textLabel="Vm6-j5-lWD" detailTextLabel="Fub-Wp-BQW" style="IBUITableViewCellStyleSubtitle" id="JJd-dd-M5d">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JJd-dd-M5d" id="wBI-At-qby">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vm6-j5-lWD">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fub-Wp-BQW">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tDy-cA-wCu" id="mhJ-cg-UVD"/>
+                            <outlet property="delegate" destination="tDy-cA-wCu" id="cF2-c4-Yba"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Shared Songs" id="tGB-Lt-QFT">
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="ZNe-je-6l9">
+                            <connections>
+                                <action selector="buttonClear:" destination="tDy-cA-wCu" id="FHN-aE-lhT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HGE-dF-piH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2436" y="1553"/>
         </scene>
         <!--Profile-->
         <scene sceneID="NwT-E2-d6h">
@@ -988,7 +1037,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmC-OO-2eO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1207" y="1258"/>
+            <point key="canvasLocation" x="1539" y="2334"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="K9w-N6-IZ3">
@@ -1006,7 +1055,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUD-vS-qKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1187" y="477"/>
+            <point key="canvasLocation" x="1519" y="1553"/>
         </scene>
     </scenes>
     <resources>
@@ -1033,7 +1082,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="XKf-fF-THG"/>
         <segue reference="9jl-oT-0y1"/>
-        <segue reference="7Vc-ac-oOZ"/>
     </inferredMetricsTieBreakers>
 </document>

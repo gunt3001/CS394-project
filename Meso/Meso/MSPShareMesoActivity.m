@@ -7,8 +7,12 @@
 //
 
 #import "MSPShareMesoActivity.h"
+#import "MSPSharingManager.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@implementation MSPShareMesoActivity
+@implementation MSPShareMesoActivity{
+    MPMediaItem* itemToShare;
+}
 
 - (NSString *)activityType{
     return @"com.kmabwp.mesoshareactivity";
@@ -30,7 +34,7 @@
 
 - (void)prepareWithActivityItems:(NSArray *)activityItems{
     // Store activity items
-#warning TBD: Incomplete Implementation
+    itemToShare = activityItems[2];
 }
 
 + (UIActivityCategory)activityCategory{
@@ -39,7 +43,9 @@
 
 - (void)performActivity{
     // Add song to Meso list
-#warning TBD: Incomplete Implementation
+    NSString* title = [itemToShare valueForProperty:MPMediaItemPropertyTitle];
+    NSString* artist = [itemToShare valueForProperty:MPMediaItemPropertyArtist];
+    [MSPSharingManager addSongToMesoList:@[title, artist]];
     [self activityDidFinish:YES];
 }
 

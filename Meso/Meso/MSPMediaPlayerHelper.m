@@ -68,6 +68,13 @@
 
 #pragma mark - Currently Playing Queue
 
++ (NSArray *)nowPlayingItemAsArray{
+    MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
+    NSString* title = [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyTitle];
+    NSString* artist = [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyArtist];
+    return @[title, artist];
+}
+
 /// Return an MPMediaItem in playing queue with specified index
 + (MPMediaItem *)nowPlayingItemAtIndex:(NSInteger)index{
     

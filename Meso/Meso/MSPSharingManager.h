@@ -25,6 +25,9 @@
 /// nil if none exists
 + (UIImage*)userProfileAvatar;
 
+/// Return the User's Sharing List
++ (NSArray*)userProfileMesoList;
+
 /// Set User's Profile Name
 + (void)setUserProfileName:(NSString*)name;
 
@@ -39,6 +42,15 @@
 
 /// Return User's Profile # of people met
 + (NSUInteger)userProfileNumMet;
+
+/// Clear the user's sharing list
++ (void)clearUserProfileMesoList;
+
+/// Add a song to the user's sharing list
++ (void)addSongToMesoList:(NSArray*) song;
+
+/// Remove song at specified index from sharing list
++ (void)removeSongFromMesoList:(NSUInteger) index;
 
 #pragma mark - Database
 

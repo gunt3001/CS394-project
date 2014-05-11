@@ -35,6 +35,9 @@
 
 #pragma mark - Currently Playing Queue
 
+/// Return the currently playing song as array of title and artist
++ (NSArray*) nowPlayingItemAsArray;
+
 /// Return an MPMediaItem in playing queue with specified index
 + (MPMediaItem*) nowPlayingItemAtIndex:(NSInteger)index;
 

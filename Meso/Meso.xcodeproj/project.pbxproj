@@ -16,6 +16,7 @@
 		B026F23B18DDC54600B61B45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B026F23A18DDC54600B61B45 /* QuartzCore.framework */; };
 		B026F23E18DDC56100B61B45 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23D18DDC56100B61B45 /* MarqueeLabel.m */; };
 		B04F4EA018E69080000C5193 /* MSPMesoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */; };
+		B087B571192026B200625F4A /* MSPMesoListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B087B570192026B200625F4A /* MSPMesoListTableViewController.m */; };
 		B09A0E3B18DF70C500B89816 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */; };
 		B09A0E3E18DF7D8700B89816 /* MSPiPadTopMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09A0E3D18DF7D8700B89816 /* MSPiPadTopMenuViewController.m */; };
 		B0A2681318EACA5200D60128 /* MSPUpNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A2681218EACA5200D60128 /* MSPUpNextViewController.m */; };
@@ -76,6 +77,8 @@
 		B026F23D18DDC56100B61B45 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
 		B04F4E9E18E69080000C5193 /* MSPMesoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPMesoTableViewController.h; sourceTree = "<group>"; };
 		B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPMesoTableViewController.m; sourceTree = "<group>"; };
+		B087B56F192026B200625F4A /* MSPMesoListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPMesoListTableViewController.h; sourceTree = "<group>"; };
+		B087B570192026B200625F4A /* MSPMesoListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPMesoListTableViewController.m; sourceTree = "<group>"; };
 		B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		B09A0E3C18DF7D8700B89816 /* MSPiPadTopMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPiPadTopMenuViewController.h; sourceTree = "<group>"; };
 		B09A0E3D18DF7D8700B89816 /* MSPiPadTopMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPiPadTopMenuViewController.m; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 		B02C433C18DA307800C0390C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B087B56F192026B200625F4A /* MSPMesoListTableViewController.h */,
+				B087B570192026B200625F4A /* MSPMesoListTableViewController.m */,
 				B0DDB31218F76D300075D988 /* MSPPlayerViewController.h */,
 				B0DDB31318F76D300075D988 /* MSPPlayerViewController.m */,
 				B0A2681118EACA5200D60128 /* MSPUpNextViewController.h */,
@@ -456,6 +461,7 @@
 				B0A2681618EACD9700D60128 /* MPMusicPlayerController+PrivateInterface.m in Sources */,
 				B0BEC4F818DAA718003EAC01 /* MSPTableViewCell.m in Sources */,
 				B0BEC4FE18DACCC4003EAC01 /* MSPNowPlayingViewController.m in Sources */,
+				B087B571192026B200625F4A /* MSPMesoListTableViewController.m in Sources */,
 				B0B882DD18C69A4E003D37EC /* main.m in Sources */,
 				B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */,
 				B0F77A1F191DE94900C04F9E /* MSPProfileViewController.m in Sources */,

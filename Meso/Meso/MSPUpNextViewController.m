@@ -406,7 +406,7 @@
     UIImage* artAsImage = [art imageWithSize:CGSizeMake(500, 500)];
     
     // Prepare activity view
-    UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString]
+    UIActivityViewController* activity = [[UIActivityViewController alloc] initWithActivityItems:@[artAsImage, shareString, nowPlayingItem]
                                                                            applicationActivities:@[[MSPShareMesoActivity sharedActivity]]];
     
     // Remove unneeded activities

@@ -8,11 +8,12 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "MSPMesoTableViewController.h"
 #import "LGBluetooth.h"
+#import "MSPMesoTableViewController.h"
 #import "MSPProfileViewController.h"
 #import "MSPSharingManager.h"
 #import "MSPConstants.h"
+#import "MSPMediaPlayerHelper.h"
 
 @interface MSPMesoTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *deviceTable;
@@ -92,12 +93,18 @@
         mesoService = [[CBMutableService alloc] initWithType:mesoServiceUUID primary:YES];
         
         // Metadata of...
-        NSString* mesoMetaName = [MSPSharingManager userProfileName];                               // Name
-        NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage];                         // Personal Message
-        // TBD: Users Met
-        // TBD: Now Playing Song & Art
-        // TBD: Shared Song & Art
-        NSDictionary* mesoData = @{@"name": mesoMetaName, @"message": mesoMetaMessage};
+        NSString* mesoMetaName = [MSPSharingManager userProfileName];                                       // Name
+        NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage];                                 // Personal Message
+        NSNumber* mesoMetaNumMet = [NSNumber numberWithUnsignedLong:[MSPSharingManager userProfileNumMet]]; // Users Met
+        NSArray* mesoMetaNowPlaying = [MSPMediaPlayerHelper nowPlayingItemAsArray];                         // Now playing song
+        NSArray* mesoMetaMesoList = [MSPSharingManager userProfileMesoList];                                // User's shared playlist
+        
+        NSDictionary* mesoData = @{@"name": mesoMetaName,
+                                   @"message": mesoMetaMessage,
+                                   @"nummet": mesoMetaNumMet,
+                                   @"nowplay": mesoMetaNowPlaying,
+                                   @"mesolist": mesoMetaMesoList};
+        
         NSData* mesoDataData = [NSKeyedArchiver archivedDataWithRootObject:mesoData];
         
         mesoUUIDChar = [[CBMutableCharacteristic alloc] initWithType:mesoUUIDUUID

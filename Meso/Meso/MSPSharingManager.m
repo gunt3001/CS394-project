@@ -48,6 +48,38 @@
     return [self devicesDatabase].count;
 }
 
+/// Return the User's Sharing List
++ (NSArray*)userProfileMesoList{
+    NSArray* sharingList = [[NSUserDefaults standardUserDefaults] arrayForKey:@"MesoProfileMesoList"];
+    if (!sharingList) sharingList = @[];
+    return sharingList;
+}
+
+/// Clear the user's sharing list
++ (void)clearUserProfileMesoList{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"MesoProfileMesoList"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/// Add a song to the user's sharing list
++ (void)addSongToMesoList:(NSArray*) song{
+    NSMutableArray* sharingList = [self userProfileMesoList].mutableCopy;
+    [sharingList addObject:song];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:sharingList forKey:@"MesoProfileMesoList"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/// Remove song at specified index from sharing list
++ (void)removeSongFromMesoList:(NSUInteger) index{
+    NSMutableArray* sharingList = [self userProfileMesoList].mutableCopy;
+    
+    [sharingList removeObjectAtIndex:index];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:sharingList forKey:@"MesoProfileMesoList"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 +(void)setUserProfileName:(NSString *)name{
     [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"MesoProfileName"];
     [[NSUserDefaults standardUserDefaults] synchronize];
