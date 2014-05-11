@@ -105,7 +105,7 @@
                                    @"nowplay": mesoMetaNowPlaying,
                                    @"mesolist": mesoMetaMesoList};
         
-        NSData* mesoDataData = [NSKeyedArchiver archivedDataWithRootObject:mesoData];
+        NSData* mesoDataData = [NSJSONSerialization dataWithJSONObject:mesoData options:0 error:nil];
         
         mesoUUIDChar = [[CBMutableCharacteristic alloc] initWithType:mesoUUIDUUID
                                                           properties:CBCharacteristicPropertyRead
@@ -163,7 +163,7 @@
                                 
                                 [eachChar readValueWithBlock:^(NSData *data, NSError *error) {
                                     // Make data
-                                    peerData = (NSDictionary*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+                                    peerData = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                     
                                     if (peerUUID && peerData)
                                         [self finishConnectionWithUUID:peerUUID Data:peerData Peripheral:peripheral];
