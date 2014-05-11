@@ -34,6 +34,9 @@
 /// Set User's Profile Avatar
 + (void)setUserProfileAvatar:(UIImage*)image;
 
+/// Return User's Meso UUID
++ (NSUUID*)userUUID;
+
 #pragma mark - Database
 
 /// Return the history of devices found

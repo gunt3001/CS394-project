@@ -71,6 +71,22 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (NSUUID*)userUUID{
+    NSString* uuidString = [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileUUID"];
+    if (!uuidString){
+        // If one doesn't exist, generate one
+        NSUUID* uuid = [NSUUID UUID];
+        
+        // Save to userdefaults
+        [[NSUserDefaults standardUserDefaults] setObject:uuid.UUIDString forKey:@"MesoProfileUUID"];
+        
+        return uuid;
+    }
+    else{
+        return [[NSUUID alloc] initWithUUIDString:uuidString];
+    }
+}
+
 #pragma mark - Database
 
 /// Returns the database
