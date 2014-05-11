@@ -37,3 +37,8 @@ extern float const FAST_SEEKING_DELAY;                  // Delay in seconds befo
 extern float const FAST_SEEKING_RATE;                   // The rate of fast seeking
 extern float const MARQUEE_LABEL_RATE;                  // Rate at which marquee text moves
 extern NSTimeInterval const NOWPLAYING_UPDATE_INTERVAL; // Rate at which elapsed time and progress bar updates
+
+// UUIDs
+extern NSString* const UUID_BT_SERVICE;                  // UUID string used to identify the app's service
+extern NSString* const UUID_BT_CHAR_UUID;                // UUID string used to identify the app's device UUID characteristic
+extern NSString* const UUID_BT_CHAR_DATA;                // UUID string used to identify the app's data characteristic

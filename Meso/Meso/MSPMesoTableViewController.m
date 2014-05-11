@@ -12,6 +12,7 @@
 #import "LGBluetooth.h"
 #import "MSPProfileViewController.h"
 #import "MSPSharingManager.h"
+#import "MSPConstants.h"
 
 @interface MSPMesoTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *deviceTable;
@@ -28,9 +29,8 @@
     
     // Peripheral Manager
     CBMutableService* mesoService;
-    CBMutableCharacteristic* nowPlayingChar;
-    CBMutableCharacteristic* deviceNameChar;
     CBMutableCharacteristic* mesoUUIDChar;
+    CBMutableCharacteristic* mesoDataChar;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -57,13 +57,6 @@
     // Load Profile Info
     [self updateProfile];
     
-    // Make sample data
-    NSUUID* sampleDevice = [[NSUUID alloc] initWithUUIDString:@"68753A44-4D6F-1226-9C60-0050E4C00068"];
-    NSDictionary* peer = [MSPMesoTableViewController makePeerItemFromName:@"Device Name" NowPlayingItem:@"Some Song"];
-    [MSPSharingManager addDeviceWithUUID:sampleDevice PeerInfo:peer];
-    [_deviceTable reloadData];
-     
-    
     // Start advertising your own data
     peripheralQueue = dispatch_queue_create("periqueue", NULL);
     peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
@@ -71,46 +64,51 @@
 
 #pragma mark - Bluetooth Peripheral
 
+/// Called when the device's Bluetooth state changed.
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
     if ([peripheral state] == CBPeripheralManagerStatePoweredOn){
         
         // Generate UUIDs
-        CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:@"D4D10CD7-6E88-4FBA-80E2-32D5B351B66A"];
-        CBUUID* mesoNowPlayingUUID = [CBUUID UUIDWithString:@"A4055D4E-CAEA-4BF3-8FDC-62EA5621D32B"];
-        CBUUID* mesoDeviceNameUUID = [CBUUID UUIDWithString:@"7404CEA2-B789-4533-8AE7-A551488C2C84"];
-        CBUUID* mesoUUIDUUID = [CBUUID UUIDWithString:@"724E6C05-9820-4951-B3CA-DE2737538166"];
+        CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:UUID_BT_SERVICE];
+        CBUUID* mesoUUIDUUID = [CBUUID UUIDWithString:UUID_BT_CHAR_UUID];
+        CBUUID* mesoDataUUID = [CBUUID UUIDWithString:UUID_BT_CHAR_DATA];
         
-        // Create Characteristic
-        MPMusicPlayerController* ipod = [MPMusicPlayerController iPodMusicPlayer];
-        MPMediaItem* nowplaying = [ipod nowPlayingItem];
-        NSString* nowplayingtitle = [nowplaying valueForProperty:MPMediaItemPropertyTitle];
-        NSData* nowplayingdata = [nowplayingtitle dataUsingEncoding:NSUTF8StringEncoding];
+        // Gather data required for broadcasting
         
-        NSString* deviceName = [[UIDevice currentDevice] name];
-        NSData* deviceNameData = [deviceName dataUsingEncoding:NSUTF8StringEncoding];
-        
+        // Meso UUID identifying the device
         NSString* mesoUUID = [MSPSharingManager userUUID].UUIDString;
         NSData* mesoUUIDData = [mesoUUID dataUsingEncoding:NSUTF8StringEncoding];
-        
-        nowPlayingChar = [[CBMutableCharacteristic alloc] initWithType:mesoNowPlayingUUID
-                                                            properties:CBCharacteristicPropertyRead
-                                                                 value:nowplayingdata
-                                                           permissions:CBAttributePermissionsReadable];
-        
-        deviceNameChar = [[CBMutableCharacteristic alloc] initWithType:mesoDeviceNameUUID properties:CBCharacteristicPropertyRead value:deviceNameData permissions:CBAttributePermissionsReadable];
-        
-        mesoUUIDChar = [[CBMutableCharacteristic alloc] initWithType:mesoUUIDUUID properties:CBCharacteristicPropertyRead value:mesoUUIDData permissions:CBAttributePermissionsReadable];
-        
         mesoService = [[CBMutableService alloc] initWithType:mesoServiceUUID primary:YES];
         
+        // Metadata of...
+        NSString* mesoMetaName = [MSPSharingManager userProfileName];       // Name
+        // TBD: Avatar
+        NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage]; // Personal Message
+        // TBD: Users Met
+        // TBD: Now Playing Song & Art
+        // TBD: Shared Song & Art
+        NSDictionary* mesoData = @{@"name": mesoMetaName, @"message": mesoMetaMessage};
+        NSData* mesoDataData = [NSKeyedArchiver archivedDataWithRootObject:mesoData];
+        
+        mesoUUIDChar = [[CBMutableCharacteristic alloc] initWithType:mesoUUIDUUID
+                                                          properties:CBCharacteristicPropertyRead
+                                                               value:mesoUUIDData
+                                                         permissions:CBAttributePermissionsReadable];
+        
+        mesoDataChar = [[CBMutableCharacteristic alloc] initWithType:mesoDataUUID
+                                                          properties:CBCharacteristicPropertyRead
+                                                               value:mesoDataData
+                                                         permissions:CBAttributePermissionsReadable];
+        
+        
         // Set characterisitc to service
-        [mesoService setCharacteristics:@[nowPlayingChar, deviceNameChar, mesoUUIDChar]];
+        [mesoService setCharacteristics:@[mesoUUIDChar, mesoDataChar]];
         
         // Publish Service
         [peripheralManager addService:mesoService];
         
         // Start advertising
-        [peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[mesoService.UUID], CBAdvertisementDataLocalNameKey : deviceName}];
+        [peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[mesoService.UUID], CBAdvertisementDataLocalNameKey : @"Meso Device"}];
     }
     
 }
@@ -124,44 +122,34 @@
             for (LGService *service in services) {
                 
                 // Find Meso Service
-                if ([service.UUIDString isEqualToString:@"D4D10CD7-6E88-4FBA-80E2-32D5B351B66A".lowercaseString]) {
+                if ([service.UUIDString isEqualToString:UUID_BT_SERVICE.lowercaseString]) {
                     [service discoverCharacteristicsWithCompletion:^(NSArray *characteristics, NSError *error) {
                         
-                        __block NSString* peerUUID, *peerName, *peerSong;
-                        __block int i = 0;
+                        __block NSString* peerUUID;
+                        __block NSDictionary* peerData;
                         
                         for (LGCharacteristic* eachChar in characteristics){
                             // UUID
-                            if ([eachChar.UUIDString isEqualToString:@"724E6C05-9820-4951-B3CA-DE2737538166".lowercaseString]){
+                            if ([eachChar.UUIDString isEqualToString:UUID_BT_CHAR_UUID.lowercaseString]){
                                 
                                 [eachChar readValueWithBlock:^(NSData *data, NSError *error) {
                                     // Make data
-                                    NSString* value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                    peerUUID = value;
-                                    i++;
-                                    if (i == 3) [self finishConnectionWithUUID:peerUUID Name:peerName Song:peerSong Peripheral:peripheral];
+                                    NSString* peerUUIDString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                    peerUUID = peerUUIDString;
+                                    
+                                    if (peerUUID && peerData)
+                                        [self finishConnectionWithUUID:peerUUID Data:peerData Peripheral:peripheral];
                                 }];
                             }
-                            // Name
-                            else if ([eachChar.UUIDString isEqualToString:@"7404CEA2-B789-4533-8AE7-A551488C2C84".lowercaseString]){
+                            // Data
+                            else if ([eachChar.UUIDString isEqualToString:UUID_BT_CHAR_DATA.lowercaseString]){
                                 
                                 [eachChar readValueWithBlock:^(NSData *data, NSError *error) {
                                     // Make data
-                                    NSString* value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                    peerName = value;
-                                    i++;
-                                    if (i == 3) [self finishConnectionWithUUID:peerUUID Name:peerName Song:peerSong Peripheral:peripheral];
-                                }];
-                            }
-                            // Now Playing Sharing String
-                            else if ([eachChar.UUIDString isEqualToString:@"A4055D4E-CAEA-4BF3-8FDC-62EA5621D32B".lowercaseString]){
-                                
-                                [eachChar readValueWithBlock:^(NSData *data, NSError *error) {
-                                    // Make data
-                                    NSString* value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                    peerSong = value;
-                                    i++;
-                                    if (i == 3) [self finishConnectionWithUUID:peerUUID Name:peerName Song:peerSong Peripheral:peripheral];
+                                    peerData = (NSDictionary*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+                                    
+                                    if (peerUUID && peerData)
+                                        [self finishConnectionWithUUID:peerUUID Data:peerData Peripheral:peripheral];
                                 }];
                             }
                         }
@@ -173,13 +161,16 @@
     }];
 }
 
-- (void) finishConnectionWithUUID:(NSString*)uuid Name:(NSString*)name Song:(NSString*)song Peripheral:(LGPeripheral*) peripheral{
+/// Close connection and add data to database
+- (void) finishConnectionWithUUID:(NSString*)uuid Data:(NSDictionary*)data Peripheral:(LGPeripheral*) peripheral{
     
-    NSDictionary* peer = [MSPMesoTableViewController makePeerItemFromName:name NowPlayingItem:song];
-    [MSPSharingManager addDeviceWithUUID:[[NSUUID alloc] initWithUUIDString:uuid] PeerInfo:peer];
+    // Disconnect
+    [peripheral disconnectWithCompletion:nil];
+    
+    // Add data to database
+    [MSPSharingManager addDeviceWithUUID:[[NSUUID alloc] initWithUUIDString:uuid] PeerInfo:data];
     [_deviceTable reloadData];
     
-    [peripheral disconnectWithCompletion:nil];
 }
 
 #pragma mark - Table view data source
@@ -204,8 +195,8 @@
     // Configure the cell...
     NSUUID* key = [[MSPSharingManager sortedDeviceUUIDs] objectAtIndex:[indexPath row]];
     NSDictionary* peerInfo = [[MSPSharingManager devicesFound] objectForKey:key];
-    [[cell textLabel] setText:[peerInfo objectForKey:@"keydevicename"]];
-    [[cell detailTextLabel] setText:[peerInfo objectForKey:@"keynowplaying"]];
+    [[cell textLabel] setText:[peerInfo objectForKey:@"name"]];
+    [[cell detailTextLabel] setText:[peerInfo objectForKey:@"message"]];
     
     return cell;
 }
@@ -239,10 +230,6 @@
 }
 
 #pragma mark - Helper functions
-
-+ (NSDictionary*) makePeerItemFromName:(NSString*)name NowPlayingItem:(NSString*)nowPlaying{
-    return @{@"keydevicename": name, @"keynowplaying":nowPlaying};
-}
 
 - (void) updateProfile{
     
