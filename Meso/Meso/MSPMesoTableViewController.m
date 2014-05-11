@@ -227,13 +227,11 @@
 - (IBAction)buttonRefresh:(id)sender {
     // Start scanning for peripherals
     // Process the peripherals found after 4 seconds
-    NSLog(@"Scan Started");
 
     
     CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:@"D4D10CD7-6E88-4FBA-80E2-32D5B351B66A"];
     [[LGCentralManager sharedInstance] scanForPeripheralsByInterval:4 services:@[mesoServiceUUID] options:nil completion:^(NSArray *peripherals)
      {
-         NSLog(@"Scan Stopped, %ld peripherals found", (long)peripherals.count);
          for (LGPeripheral* eachPeri in peripherals) {
              [self processPeripherals:eachPeri];
          }
