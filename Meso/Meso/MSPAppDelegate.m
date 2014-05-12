@@ -21,6 +21,11 @@
     // Please see https://devforums.apple.com/message/949636 for more information
     [[self window] setTintColor:[UIColor brownColor]];
     
+    // Warn in console when running in debug mode
+    if (DEBUG){
+        NSLog(@"You are running in DEBUG mode! There will be tons of console output. To disable logs, run in release mode.");
+    }
+    
     
     // Warn when running in simulator
     if (TARGET_IPHONE_SIMULATOR){
