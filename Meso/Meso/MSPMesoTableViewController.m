@@ -287,7 +287,7 @@
     [_labelProfileName setText:[MSPSharingManager userProfileName]];
     [_labelPersonalMessage setText:[MSPSharingManager userProfileMessage]];
     [_labelProfileMet setText:[NSString stringWithFormat:@"Met %ld People", (long)[MSPSharingManager userProfileNumMet]]];
-    UIImage* avatar = [MSPSharingManager userProfileAvatar];
+    UIImage* avatar = [MSPSharingManager avatarWithID:[MSPSharingManager userProfileAvatarID]];
     if (avatar){
         [_imageAvatar setImage:avatar];
     }

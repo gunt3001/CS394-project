@@ -38,10 +38,6 @@
     if ([MSPSharingManager profileIsSet]){
         [_fieldDisplayName setText:[MSPSharingManager userProfileName]];
         [_fieldPersonalMessage setText:[MSPSharingManager userProfileMessage]];
-        UIImage* image = [MSPSharingManager userProfileAvatar];
-        if (image){
-            [_buttonAvatar setImage:image forState:UIControlStateNormal];
-        }
     }
     
     // Set Done button depending on validation
@@ -58,6 +54,11 @@
     // Display number of shared songs
     if ([MSPSharingManager profileIsSet]){
         [_labelSharedCount setText:[NSString stringWithFormat:@"Sharing %ld songs", (long)[MSPSharingManager userProfileMesoList].count]];
+    }
+    
+    UIImage* image = [MSPSharingManager avatarWithID:[MSPSharingManager userProfileAvatarID]];
+    if (image){
+        [_buttonAvatar setImage:image forState:UIControlStateNormal];
     }
 }
 
@@ -78,7 +79,6 @@
     // Save profile
     [MSPSharingManager setUserProfileName:_fieldDisplayName.text];
     [MSPSharingManager setUserProfileMessage:_fieldPersonalMessage.text];
-    [MSPSharingManager setUserProfileAvatar:_buttonAvatar.imageView.image];
 
     [[(MSPProfileViewController*)self.parentViewController peopleViewController] updateProfile];
     [self dismissViewControllerAnimated:YES completion:nil];

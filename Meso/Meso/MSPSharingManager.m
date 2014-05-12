@@ -30,17 +30,11 @@
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileMessage"];
 }
 
-/// Return User's Profile Avatar
-/// nil if none exists
-+ (UIImage*)userProfileAvatar{
+/// Return User's Profile Avatar ID
++ (NSInteger)userProfileAvatarID{
     
-    NSString* imagePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"MesoProfileAvatar"];
-    if (imagePath){
-        return [UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]];
-    }
-    else{
-        return nil;
-    }
+    NSInteger avatarID = [[NSUserDefaults standardUserDefaults] integerForKey:@"MesoProfileAvatarID"];
+    return avatarID;
 }
 
 /// Return User's Profile # of people met
@@ -100,18 +94,9 @@
 
 }
 
-+ (void)setUserProfileAvatar:(UIImage *)image{
-    if (!image){
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"MesoProfileAvatar"];
-    }
-    else{
-        NSData *imageData = UIImageJPEGRepresentation(image, 1);
-        NSString *imagePath = [self documentsPathForFileName:@"avatar.jpg"];
-        // Write image data to user's folder
-        [imageData writeToFile:imagePath atomically:YES];
-        // Store path in NSUserDefaults
-        [[NSUserDefaults standardUserDefaults] setObject:imagePath forKey:@"MesoProfileAvatar"];
-    }
++ (void)setUserProfileAvatar:(NSInteger)avatarID{
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:(long)avatarID] forKey:@"MesoProfileAvatarID"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -188,6 +173,14 @@
     NSString *documentsPath = [paths objectAtIndex:0];
     
     return [documentsPath stringByAppendingPathComponent:name];
+}
+
+/// Return Avatar with given ID
++ (UIImage*)avatarWithID:(NSInteger) avatarID{
+    
+    NSString *imageToLoad = [NSString stringWithFormat:@"av%02d", avatarID];
+    UIImage* image = [UIImage imageNamed:imageToLoad];
+    return image;
 }
 
 @end

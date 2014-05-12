@@ -21,9 +21,8 @@
 /// Return User's Profile Message
 + (NSString*)userProfileMessage;
 
-/// Return User's Profile Avatar
-/// nil if none exists
-+ (UIImage*)userProfileAvatar;
+/// Return User's Profile Avatar ID
++ (NSInteger)userProfileAvatarID;
 
 /// Return the User's Sharing List
 + (NSArray*)userProfileMesoList;
@@ -35,7 +34,7 @@
 + (void)setUserProfileMessage:(NSString*)message;
 
 /// Set User's Profile Avatar
-+ (void)setUserProfileAvatar:(UIImage*)image;
++ (void)setUserProfileAvatar:(NSInteger)avatarID;
 
 /// Return User's Meso UUID
 + (NSUUID*)userUUID;
@@ -66,5 +65,10 @@
 
 /// Clears database
 + (void)clearDatabase;
+
+#pragma mark - Helpers
+
+/// Return Avatar with given ID
++ (UIImage*)avatarWithID:(NSInteger) avatarID;
 
 @end
