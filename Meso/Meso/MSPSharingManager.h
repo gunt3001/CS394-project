@@ -47,7 +47,8 @@
 + (void)clearUserProfileMesoList;
 
 /// Add a song to the user's sharing list
-+ (void)addSongToMesoList:(NSArray*) song;
+/// Return whether the add was successful
++ (BOOL)addSongToMesoList:(NSArray*) song;
 
 /// Remove song at specified index from sharing list
 + (void)removeSongFromMesoList:(NSUInteger) index;

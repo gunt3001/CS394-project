@@ -62,12 +62,20 @@
 }
 
 /// Add a song to the user's sharing list
-+ (void)addSongToMesoList:(NSArray*) song{
-    NSMutableArray* sharingList = [self userProfileMesoList].mutableCopy;
+/// Return whether the add was successful
++ (BOOL)addSongToMesoList:(NSArray*) song{
+    NSArray* list = [self userProfileMesoList];
+    
+    // Limit to 5 songs
+    if (list.count == 5) return NO;
+    
+    NSMutableArray* sharingList = list.mutableCopy;
     [sharingList addObject:song];
     
     [[NSUserDefaults standardUserDefaults] setObject:sharingList forKey:@"MesoProfileMesoList"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    return YES;
 }
 
 /// Remove song at specified index from sharing list

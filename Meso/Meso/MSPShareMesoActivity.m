@@ -23,7 +23,6 @@
 }
 
 - (UIImage *)activityImage{
-#warning Needs Image
     return [UIImage imageNamed:@"ActivityIcon"];
 }
 
@@ -45,7 +44,15 @@
     // Add song to Meso list
     NSString* title = [itemToShare valueForProperty:MPMediaItemPropertyTitle];
     NSString* artist = [itemToShare valueForProperty:MPMediaItemPropertyArtist];
-    [MSPSharingManager addSongToMesoList:@[title, artist]];
+    if (![MSPSharingManager addSongToMesoList:@[title, artist]]){
+        // Adding failed, list is already full
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sharing List Full"
+                                                        message:@"Sharing list is limited to 5 songs. Please go to your profile and remove some songs first."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Got it."
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     [self activityDidFinish:YES];
 }
 
