@@ -94,12 +94,14 @@
         
         // Metadata of...
         NSString* mesoMetaName = [MSPSharingManager userProfileName];                                       // Name
+        NSNumber* mesoMetaAvatar = [NSNumber numberWithLong:[MSPSharingManager userProfileAvatarID]];       // Avatar
         NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage];                                 // Personal Message
         NSNumber* mesoMetaNumMet = [NSNumber numberWithUnsignedLong:[MSPSharingManager userProfileNumMet]]; // Users Met
         NSArray* mesoMetaNowPlaying = [MSPMediaPlayerHelper nowPlayingItemAsArray];                         // Now playing song
         NSArray* mesoMetaMesoList = [MSPSharingManager userProfileMesoList];                                // User's shared playlist
         
         NSDictionary* mesoData = @{@"name": mesoMetaName,
+                                   @"avatar": mesoMetaAvatar,
                                    @"message": mesoMetaMessage,
                                    @"nummet": mesoMetaNumMet,
                                    @"nowplay": mesoMetaNowPlaying,
@@ -215,6 +217,8 @@
     NSDictionary* peerInfo = [[MSPSharingManager devicesFound] objectForKey:key];
     [[cell textLabel] setText:[peerInfo objectForKey:@"name"]];
     [[cell detailTextLabel] setText:[peerInfo objectForKey:@"message"]];
+    NSInteger avatarID = [(NSNumber*)[peerInfo objectForKey:@"avatar"] integerValue];
+    [[cell imageView] setImage:[MSPSharingManager avatarWithID:avatarID]];
     
     return cell;
 }
