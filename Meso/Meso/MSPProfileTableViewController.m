@@ -12,6 +12,7 @@
 #import "MSPSharingManager.h"
 
 @interface MSPProfileTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *labelSharedCount;
 @property (weak, nonatomic) IBOutlet UITextField *fieldDisplayName;
 @property (weak, nonatomic) IBOutlet UITextField *fieldPersonalMessage;
 @property (weak, nonatomic) IBOutlet UIButton *buttonAvatar;
@@ -49,6 +50,15 @@
     // Set correct content mode for avatar image
     [[_buttonAvatar imageView] setContentMode:UIViewContentModeScaleAspectFill];
 
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // Display number of shared songs
+    if ([MSPSharingManager profileIsSet]){
+        [_labelSharedCount setText:[NSString stringWithFormat:@"Sharing %ld songs", (long)[MSPSharingManager userProfileMesoList].count]];
+    }
 }
 
 #pragma mark - Buttons

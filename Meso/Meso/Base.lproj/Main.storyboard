@@ -829,7 +829,7 @@
                                                         <outlet property="delegate" destination="Eup-Am-6XZ" id="ZxM-v9-y35"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sharing 1 Songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qom-Wj-GY6">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sharing 0 song" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qom-Wj-GY6">
                                                     <rect key="frame" x="20" y="9" width="226" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -904,6 +904,7 @@
                         <outlet property="buttonDone" destination="v6b-Cw-ZxZ" id="6Ib-i9-CLh"/>
                         <outlet property="fieldDisplayName" destination="Txh-TX-waz" id="TKw-TT-2Xg"/>
                         <outlet property="fieldPersonalMessage" destination="a69-zs-Mr3" id="cEF-dg-ImG"/>
+                        <outlet property="labelSharedCount" destination="Qom-Wj-GY6" id="2nb-Le-A0c"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQg-N3-BXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
