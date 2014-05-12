@@ -178,7 +178,7 @@
 /// Return Avatar with given ID
 + (UIImage*)avatarWithID:(NSInteger) avatarID{
     
-    NSString *imageToLoad = [NSString stringWithFormat:@"av%02d", avatarID];
+    NSString *imageToLoad = [NSString stringWithFormat:@"av%02ld", (long)avatarID];
     UIImage* image = [UIImage imageNamed:imageToLoad];
     return image;
 }
