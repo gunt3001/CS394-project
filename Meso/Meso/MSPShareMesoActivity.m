@@ -24,7 +24,7 @@
 
 - (UIImage *)activityImage{
 #warning Needs Image
-    return [UIImage imageNamed:@"radar"];
+    return [UIImage imageNamed:@"ActivityIcon"];
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems{
