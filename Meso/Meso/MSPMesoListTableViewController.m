@@ -69,7 +69,9 @@
     return cell;
 }
 
-
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return @"Swipe Left to Delete. You can add more songs in Now Playing screen.";
+}
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
