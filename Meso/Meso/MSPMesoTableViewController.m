@@ -28,6 +28,8 @@
     
     // Timers
     NSTimer* searchTimer;
+    
+    BOOL     isSearching;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -42,6 +44,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    isSearching = NO;
     
     // On load of this tab, check if the user have set up his profile
     // If not, proceed to setup page
@@ -179,11 +183,19 @@
 #pragma mark - Scanning
 
 - (IBAction)buttonRefresh:(id)sender {
-    [self scanPeripherals:4 Notify:YES];
+    if (!isSearching){
+        isSearching = YES;
+        [self scanPeripherals:4 Notify:YES];
+    }
+    
 }
 
 - (void)fireTimer:(NSTimer*)timer{
-    [self scanPeripherals:4 Notify:NO];
+    if (!isSearching){
+        isSearching = YES;
+        [self scanPeripherals:4 Notify:NO];
+    }
+    
 }
 
 - (void)scanPeripherals:(NSUInteger)interval Notify:(BOOL)notify{
@@ -202,6 +214,7 @@
             [alert show];
         }
         
+        isSearching = NO;
         return;
     }
     
@@ -221,6 +234,7 @@
          }
          
          [self.navigationItem setLeftBarButtonItem:oldButton];
+         isSearching = NO;
      }];
 }
 
