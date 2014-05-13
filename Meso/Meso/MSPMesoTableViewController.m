@@ -7,7 +7,6 @@
 //
 
 #import <MediaPlayer/MediaPlayer.h>
-#import <CoreBluetooth/CoreBluetooth.h>
 #import "LGBluetooth.h"
 #import "MSPMesoTableViewController.h"
 #import "MSPProfileViewController.h"
@@ -26,14 +25,6 @@
 @end
 
 @implementation MSPMesoTableViewController{
-    // Private variables
-    CBPeripheralManager* peripheralManager;
-    dispatch_queue_t peripheralQueue;
-    
-    // Peripheral Manager
-    CBMutableService* mesoService;
-    CBMutableCharacteristic* mesoUUIDChar;
-    CBMutableCharacteristic* mesoDataChar;
     
     // Timers
     NSTimer* searchTimer;
@@ -61,74 +52,12 @@
     // Load Profile Info
     [self updateProfile];
     
-    // Start advertising your own data
-    peripheralQueue = dispatch_queue_create("periqueue", NULL);
-    peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
-    
     // Set up search timer
     // Update at a constant time
     searchTimer = [NSTimer scheduledTimerWithTimeInterval:10
                                                      target:self
                                                    selector:@selector(fireTimer:)
                                                    userInfo:nil repeats:YES];
-}
-
-#pragma mark - Bluetooth Peripheral
-
-/// Called when the device's Bluetooth state changed.
-- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
-    if ([peripheral state] == CBPeripheralManagerStatePoweredOn){
-        
-        // Generate UUIDs
-        CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:UUID_BT_SERVICE];
-        CBUUID* mesoUUIDUUID = [CBUUID UUIDWithString:UUID_BT_CHAR_UUID];
-        CBUUID* mesoDataUUID = [CBUUID UUIDWithString:UUID_BT_CHAR_DATA];
-        
-        // Gather data required for broadcasting
-        
-        // Meso UUID identifying the device
-        NSString* mesoUUID = [MSPSharingManager userUUID].UUIDString;
-        NSData* mesoUUIDData = [mesoUUID dataUsingEncoding:NSUTF8StringEncoding];
-        mesoService = [[CBMutableService alloc] initWithType:mesoServiceUUID primary:YES];
-        
-        // Metadata of...
-        NSString* mesoMetaName = [MSPSharingManager userProfileName];                                       // Name
-        NSNumber* mesoMetaAvatar = [NSNumber numberWithLong:[MSPSharingManager userProfileAvatarID]];       // Avatar
-        NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage];                                 // Personal Message
-        NSNumber* mesoMetaNumMet = [NSNumber numberWithUnsignedLong:[MSPSharingManager userProfileNumMet]]; // Users Met
-        NSArray* mesoMetaNowPlaying = [MSPMediaPlayerHelper nowPlayingItemAsArray];                         // Now playing song
-        NSArray* mesoMetaMesoList = [MSPSharingManager userProfileMesoList];                                // User's shared playlist
-        
-        NSDictionary* mesoData = @{@"name": mesoMetaName,
-                                   @"avatar": mesoMetaAvatar,
-                                   @"message": mesoMetaMessage,
-                                   @"nummet": mesoMetaNumMet,
-                                   @"nowplay": mesoMetaNowPlaying,
-                                   @"mesolist": mesoMetaMesoList};
-        
-        NSData* mesoDataData = [NSJSONSerialization dataWithJSONObject:mesoData options:0 error:nil];
-        
-        mesoUUIDChar = [[CBMutableCharacteristic alloc] initWithType:mesoUUIDUUID
-                                                          properties:CBCharacteristicPropertyRead
-                                                               value:mesoUUIDData
-                                                         permissions:CBAttributePermissionsReadable];
-        
-        mesoDataChar = [[CBMutableCharacteristic alloc] initWithType:mesoDataUUID
-                                                          properties:CBCharacteristicPropertyRead
-                                                               value:mesoDataData
-                                                         permissions:CBAttributePermissionsReadable];
-        
-        
-        // Set characterisitc to service
-        [mesoService setCharacteristics:@[mesoUUIDChar, mesoDataChar]];
-        
-        // Publish Service
-        [peripheralManager addService:mesoService];
-        
-        // Start advertising
-        [peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[mesoService.UUID], CBAdvertisementDataLocalNameKey : @"Meso Device"}];
-    }
-    
 }
 
 #pragma mark - LGBluetooth

@@ -7,8 +7,108 @@
 //
 
 #import "MSPSharingManager.h"
+#import "MSPConstants.h"
+#import "MSPMediaPlayerHelper.h"
 
-@implementation MSPSharingManager
+@implementation MSPSharingManager{
+    // Private variables
+    CBPeripheralManager* peripheralManager;
+    dispatch_queue_t peripheralQueue;
+    
+    // Peripheral Manager
+    CBMutableService* mesoService;
+    CBMutableCharacteristic* mesoUUIDChar;
+    CBMutableCharacteristic* mesoDataChar;
+}
+
+#pragma mark - Bluetooth Broadcasting
+
+- (void)startAdvertising{
+    // Start advertising your own data
+    peripheralQueue = dispatch_queue_create("periqueue", NULL);
+    peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
+    
+}
+
+/// Called when the device's Bluetooth state changed.
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
+    if ([peripheral state] == CBPeripheralManagerStatePoweredOn){
+        
+        // Generate UUIDs
+        CBUUID* mesoServiceUUID = [CBUUID UUIDWithString:UUID_BT_SERVICE];
+        CBUUID* mesoUUIDUUID = [CBUUID UUIDWithString:UUID_BT_CHAR_UUID];
+        CBUUID* mesoDataUUID = [CBUUID UUIDWithString:UUID_BT_CHAR_DATA];
+        
+        // Gather data required for broadcasting
+        
+        // Meso UUID identifying the device
+        NSString* mesoUUID = [MSPSharingManager userUUID].UUIDString;
+        NSData* mesoUUIDData = [mesoUUID dataUsingEncoding:NSUTF8StringEncoding];
+        mesoService = [[CBMutableService alloc] initWithType:mesoServiceUUID primary:YES];
+        
+        
+        
+        
+        mesoUUIDChar = [[CBMutableCharacteristic alloc] initWithType:mesoUUIDUUID
+                                                          properties:CBCharacteristicPropertyRead
+                                                               value:mesoUUIDData
+                                                         permissions:CBAttributePermissionsReadable];
+        
+        mesoDataChar = [[CBMutableCharacteristic alloc] initWithType:mesoDataUUID
+                                                          properties:CBCharacteristicPropertyRead
+                                                               value:nil
+                                                         permissions:CBAttributePermissionsReadable];
+        
+        
+        // Set characterisitc to service
+        [mesoService setCharacteristics:@[mesoUUIDChar, mesoDataChar]];
+        
+        // Publish Service
+        [peripheralManager addService:mesoService];
+        
+        // Start advertising
+        [peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[mesoService.UUID], CBAdvertisementDataLocalNameKey : @"Meso Device"}];
+    }
+    
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request{
+    
+    // Verify Characteristic
+    if ([request.characteristic.UUID isEqual:mesoDataChar.UUID]){
+        
+        // Make sure requested data is in bounds
+        if (request.offset > mesoDataChar.value.length){
+            [peripheralManager respondToRequest:request withResult:CBATTErrorInvalidOffset];
+            return;
+        }
+        
+        // Update Value on Characteristic
+        // Metadata of...
+        NSString* mesoMetaName = [MSPSharingManager userProfileName];                                       // Name
+        NSNumber* mesoMetaAvatar = [NSNumber numberWithLong:[MSPSharingManager userProfileAvatarID]];       // Avatar
+        NSString* mesoMetaMessage = [MSPSharingManager userProfileMessage];                                 // Personal Message
+        NSNumber* mesoMetaNumMet = [NSNumber numberWithUnsignedLong:[MSPSharingManager userProfileNumMet]]; // Users Met
+        NSArray* mesoMetaNowPlaying = [MSPMediaPlayerHelper nowPlayingItemAsArray];                         // Now playing song
+        NSArray* mesoMetaMesoList = [MSPSharingManager userProfileMesoList];                                // User's shared playlist
+        
+        NSDictionary* mesoData = @{@"name": mesoMetaName,
+                                   @"avatar": mesoMetaAvatar,
+                                   @"message": mesoMetaMessage,
+                                   @"nummet": mesoMetaNumMet,
+                                   @"nowplay": mesoMetaNowPlaying,
+                                   @"mesolist": mesoMetaMesoList};
+        NSData* mesoDataData = [NSJSONSerialization dataWithJSONObject:mesoData options:0 error:nil];
+        [mesoDataChar setValue:mesoDataData];
+        
+        // Respond to request
+        request.value = [mesoDataChar.value subdataWithRange:NSMakeRange(request.offset, mesoDataChar.value.length - request.offset)];
+        [peripheralManager respondToRequest:request withResult:CBATTErrorSuccess];
+    }
+    
+    // Otherwise the request failed
+    [peripheralManager respondToRequest:request withResult:CBATTErrorRequestNotSupported];
+}
 
 #pragma mark - User Profile
 

@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface MSPSharingManager : NSObject
+@interface MSPSharingManager : NSObject <CBPeripheralManagerDelegate>
+
+#pragma mark - Bluetooth Broadcasting
+
+/// Start Bluetooth Advertisement
+- (void)startAdvertising;
 
 #pragma mark - User Profile
 

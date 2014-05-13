@@ -39,6 +39,10 @@
     else{
         // Initialize the global music player
         _sharedPlayer = [MSPMediaPlayerHelper initiPodMusicPlayer];
+        
+        // Start Advertising on Bluetooth
+        _sharingManager = [[MSPSharingManager alloc] init];
+        [_sharingManager startAdvertising];
     }
     
     return YES;

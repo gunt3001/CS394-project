@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface MSPMesoTableViewController : UITableViewController <CBPeripheralManagerDelegate>
+@interface MSPMesoTableViewController : UITableViewController
 
 - (void) updateProfile;
 
