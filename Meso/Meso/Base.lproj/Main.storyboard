@@ -1009,11 +1009,11 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar" id="qzg-cR-zQc">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TabBarMeso" id="qzg-cR-zQc">
                                     <rect key="frame" x="20" y="20" width="60" height="60"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minecraft Music &lt;3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TxS-Rb-9gR">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minecraft Music &lt;3" lineBreakMode="tailTruncation" baselineAdjustment="alignBase lines" adjustsFontSizeToFit="NO" id="TxS-Rb-9gR">
                                     <rect key="frame" x="88" y="20" width="212" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1112,7 +1112,6 @@
         <image name="TabBarSongs" width="15" height="23"/>
         <image name="arrowback" width="128" height="128"/>
         <image name="noartplaceholder" width="256" height="256"/>
-        <image name="radar" width="600" height="600"/>
         <image name="repeat" width="25" height="25"/>
         <image name="shuffle" width="18" height="15"/>
     </resources>
