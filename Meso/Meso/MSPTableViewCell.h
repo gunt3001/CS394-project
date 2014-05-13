@@ -19,8 +19,8 @@
 
 /// Cell Outlets for peer's shared songs
 @property (weak, nonatomic) IBOutlet UIImageView *sharedImage;
-
 @property (weak, nonatomic) IBOutlet UILabel *sharedTitle;
 @property (weak, nonatomic) IBOutlet UILabel *sharedSubtitle;
+@property NSDictionary* iTunesStoreData;
 
 @end

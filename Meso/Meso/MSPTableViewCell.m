@@ -9,6 +9,7 @@
 #import "MSPTableViewCell.h"
 #import "MSPConstants.h"
 #import "MSPStringHelper.h"
+#import "MSPITunesHelper.h"
 
 @interface MSPTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *cellAlbumLargeArt;
@@ -184,6 +185,10 @@
     // Album Artist
     NSString *albumArtist = [representativeItem valueForProperty:MPMediaItemPropertyAlbumArtist];
     [_cellAlbumLargeSubtitle setText:albumArtist];
+}
+
+- (IBAction)buttonITunes:(id)sender {
+    [MSPITunesHelper openITunesStore:_iTunesStoreData];
 }
 
 @end

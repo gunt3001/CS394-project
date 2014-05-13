@@ -9,6 +9,7 @@
 #import "MSPPeerTableViewController.h"
 #import "MSPSharingManager.h"
 #import "MSPTableViewCell.h"
+#import "MSPITunesHelper.h"
 
 @interface MSPPeerTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *labelPeerMessage;
@@ -17,7 +18,9 @@
 
 @end
 
-@implementation MSPPeerTableViewController
+@implementation MSPPeerTableViewController{
+    AVPlayer* samplePlayer;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -110,6 +113,14 @@
             [[cell sharedTitle] setText:song[0]];
             [[cell sharedSubtitle] setText:song[1]];
             
+            // iTunes Data
+            NSDictionary* iTunesStoreData = [MSPITunesHelper appleSearchApi:song[1] didGetSongName:song[0]];
+            [cell setITunesStoreData:iTunesStoreData];
+            
+            // Artwork
+            [cell.sharedImage setImage:[MSPITunesHelper artworkImage:iTunesStoreData]];
+            
+            
             break;
         }
         
@@ -119,6 +130,14 @@
             NSArray* song = sharedPlaylist[indexPath.row];
             [[cell sharedTitle] setText:song[0]];
             [[cell sharedSubtitle] setText:song[1]];
+            
+            // iTunes Data
+            NSDictionary* iTunesStoreData = [MSPITunesHelper appleSearchApi:song[1] didGetSongName:song[0]];
+            [cell setITunesStoreData:iTunesStoreData];
+            
+            // Artwork
+            [cell.sharedImage setImage:[MSPITunesHelper artworkImage:iTunesStoreData]];
+            
         }
             
         default:
@@ -126,6 +145,14 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MSPTableViewCell* selectedCell = (MSPTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    
+    samplePlayer = [MSPITunesHelper playPreviewSound:selectedCell.iTunesStoreData];
 }
 
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		198E59C605C343B0A979022C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7939459BD4D74DBBAA2C3E11 /* libPods.a */; };
 		B00E735018E6098B00662BAA /* MSPMediaPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B00E734F18E6098B00662BAA /* MSPMediaPlayerHelper.m */; };
+		B00FC15C19229DC200A60647 /* MSPITunesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B00FC15B19229DC200A60647 /* MSPITunesHelper.m */; };
 		B012DE2418FDB5EF003EB1A5 /* MSPShareMesoActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = B012DE2318FDB5EF003EB1A5 /* MSPShareMesoActivity.m */; };
 		B018762618F0C9D800148EF2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B018762518F0C9D800148EF2 /* Settings.bundle */; };
 		B026F23318DD562000B61B45 /* MSPPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */; };
@@ -67,6 +68,8 @@
 		7939459BD4D74DBBAA2C3E11 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00E734E18E6098B00662BAA /* MSPMediaPlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPMediaPlayerHelper.h; sourceTree = "<group>"; };
 		B00E734F18E6098B00662BAA /* MSPMediaPlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPMediaPlayerHelper.m; sourceTree = "<group>"; };
+		B00FC15A19229DC200A60647 /* MSPITunesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPITunesHelper.h; sourceTree = "<group>"; };
+		B00FC15B19229DC200A60647 /* MSPITunesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPITunesHelper.m; sourceTree = "<group>"; };
 		B012DE2218FDB5EF003EB1A5 /* MSPShareMesoActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPShareMesoActivity.h; sourceTree = "<group>"; };
 		B012DE2318FDB5EF003EB1A5 /* MSPShareMesoActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPShareMesoActivity.m; sourceTree = "<group>"; };
 		B018762518F0C9D800148EF2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 				B026F23518DD7C5500B61B45 /* MSPStringHelper.m */,
 				B0AFAE9018DD32C300864EFC /* MSPPlaylistNode.h */,
 				B0AFAE9118DD32C300864EFC /* MSPPlaylistNode.m */,
+				B00FC15A19229DC200A60647 /* MSPITunesHelper.h */,
+				B00FC15B19229DC200A60647 /* MSPITunesHelper.m */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 				B0A2681318EACA5200D60128 /* MSPUpNextViewController.m in Sources */,
 				B0F77A1C191DE5B900C04F9E /* UIImage+RoundedCorner.m in Sources */,
 				B012DE2418FDB5EF003EB1A5 /* MSPShareMesoActivity.m in Sources */,
+				B00FC15C19229DC200A60647 /* MSPITunesHelper.m in Sources */,
 				B0F2A78719214650001FD371 /* MSPAvatarViewController.m in Sources */,
 				B04F4EA018E69080000C5193 /* MSPMesoTableViewController.m in Sources */,
 				B0F77A13191DC1DD00C04F9E /* MSPProfileTableViewController.m in Sources */,

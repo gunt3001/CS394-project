@@ -656,7 +656,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qiu-4H-ais" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="648" y="1876"/>
+            <point key="canvasLocation" x="600" y="756"/>
         </scene>
         <!--Meso Table View Controller - People-->
         <scene sceneID="bdp-jd-Jga">
@@ -766,7 +766,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTY-jV-0xL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1035" y="1876"/>
+            <point key="canvasLocation" x="987" y="756"/>
         </scene>
         <!--Profile Table View Controller - Profile-->
         <scene sceneID="6JQ-FY-gWZ">
@@ -918,7 +918,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQg-N3-BXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1970" y="1553"/>
+            <point key="canvasLocation" x="2754" y="1577"/>
         </scene>
         <!--Meso List Table View Controller - Shared Songs-->
         <scene sceneID="Azn-Uw-xcG">
@@ -969,7 +969,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGE-dF-piH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2436" y="1553"/>
+            <point key="canvasLocation" x="3220" y="1577"/>
         </scene>
         <!--Avatar View Controller-->
         <scene sceneID="ISy-R1-LqI">
@@ -1005,7 +1005,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zcj-Cm-fbo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432" y="2139"/>
+            <point key="canvasLocation" x="3216" y="2163"/>
         </scene>
         <!--Profile-->
         <scene sceneID="NwT-E2-d6h">
@@ -1052,6 +1052,9 @@
                                             <state key="normal" image="Download_on_iTunes_Badge_US-UK_110x40_1004">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="buttonITunes:" destination="pG3-Ky-mlm" eventType="touchUpInside" id="C0K-tX-CbW"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noartplaceholder" id="NF5-DW-d6u">
                                             <rect key="frame" x="5" y="5" width="50" height="50"/>
@@ -1093,7 +1096,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmC-OO-2eO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1539" y="2334"/>
+            <point key="canvasLocation" x="2323" y="2358"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="K9w-N6-IZ3">
@@ -1111,7 +1114,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUD-vS-qKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1519" y="1553"/>
+            <point key="canvasLocation" x="2303" y="1577"/>
         </scene>
     </scenes>
     <resources>
