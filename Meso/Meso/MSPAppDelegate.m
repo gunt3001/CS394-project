@@ -10,6 +10,10 @@
 #import "MSPMediaPlayerHelper.h"
 #include "TargetConditionals.h"
 
+#ifndef DEBUG
+#define DEBUG 0
+#endif
+
 @implementation MSPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
