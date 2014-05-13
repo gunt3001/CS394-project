@@ -1000,10 +1000,10 @@
         <scene sceneID="NwT-E2-d6h">
             <objects>
                 <tableViewController id="pw1-lp-1el" userLabel="Profile" customClass="MSPPeerTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="uMR-rq-g84">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" sectionHeaderHeight="10" sectionFooterHeight="10" id="uMR-rq-g84">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="4vS-va-TKj">
                             <rect key="frame" x="0.0" y="64" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1028,8 +1028,8 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsharedsongitem" id="pG3-Ky-mlm">
-                                <rect key="frame" x="0.0" y="186" width="320" height="60"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsharedsongitem" id="pG3-Ky-mlm" customClass="MSPTableViewCell">
+                                <rect key="frame" x="0.0" y="219" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pG3-Ky-mlm" id="ei8-Y1-NUR">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -1060,6 +1060,11 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="sharedImage" destination="NF5-DW-d6u" id="bNG-IF-yLg"/>
+                                    <outlet property="sharedSubtitle" destination="eEs-ih-rDb" id="Ksg-N1-zER"/>
+                                    <outlet property="sharedTitle" destination="CZS-Ck-ja3" id="o93-fV-ETc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

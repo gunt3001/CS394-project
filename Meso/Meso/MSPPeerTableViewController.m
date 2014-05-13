@@ -8,6 +8,7 @@
 
 #import "MSPPeerTableViewController.h"
 #import "MSPSharingManager.h"
+#import "MSPTableViewCell.h"
 
 @interface MSPPeerTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *labelPeerMessage;
@@ -55,28 +56,77 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    // 2 Sections, now playing and shared playlist
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
+    switch (section) {
+        case 0:         // Now Playing
+            return 1;
+            break;
+            
+        case 1:         // Shared Playlist
+        {
+            NSArray* sharedPlaylist = [_peerInfo objectForKey:@"mesolist"];
+            return sharedPlaylist.count;
+        }
+            
+        default:
+            return 0;
+            break;
+    }
     return 0;
 }
 
-/*
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    switch (section) {
+        case 0: //Nowplaying
+            return @"Was Listening To";
+            break;
+        
+        case 1:
+            return @"Featured Playlist";
+            
+        default:
+            return @"";
+            break;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    MSPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idsharedsongitem" forIndexPath:indexPath];
     
     // Configure the cell...
     
+    switch (indexPath.section) {
+        case 0:     // Now Playing
+        {
+            NSArray* song = [_peerInfo objectForKey:@"nowplay"];
+            [[cell sharedTitle] setText:song[0]];
+            [[cell sharedSubtitle] setText:song[1]];
+            break;
+        }
+        
+        case 1:     // Shared Playlist
+        {
+            NSArray* sharedPlaylist = [_peerInfo objectForKey:@"mesolist"];
+            NSArray* song = sharedPlaylist[indexPath.row];
+            [[cell sharedTitle] setText:song[0]];
+            [[cell sharedSubtitle] setText:song[1]];
+        }
+            
+        default:
+            break;
+    }
+    
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
