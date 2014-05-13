@@ -72,6 +72,7 @@
     MPMusicPlayerController* iPodMusicPlayer = [MSPMediaPlayerHelper sharedPlayer];
     NSString* title = [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyTitle];
     NSString* artist = [[iPodMusicPlayer nowPlayingItem] valueForProperty:MPMediaItemPropertyArtist];
+    if (!title || !artist) return @[];
     return @[title, artist];
 }
 
