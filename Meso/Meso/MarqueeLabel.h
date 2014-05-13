@@ -376,7 +376,6 @@ typedef NS_ENUM(NSUInteger, MarqueeType) {
 
 + (void)controllerLabelsShouldAnimate:(UIViewController *)controller;
 
-
 @end
 
 

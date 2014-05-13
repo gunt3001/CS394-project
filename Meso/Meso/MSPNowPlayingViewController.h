@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSPPlayerViewController.h"
 
-@interface MSPNowPlayingViewController : UIViewController
-
+@interface MSPNowPlayingViewController : MSPPlayerViewController
 @end

@@ -15,13 +15,11 @@
 @interface MSPPlaylistNode : NSObject
 
 @property (nonatomic) NSString* name;       // Name
-@property (nonatomic) NSArray* children;    // Playlists inside this playlist folder
+@property (nonatomic) NSMutableArray* children;    // Playlists inside this playlist folder
 @property (nonatomic) NSNumber* pid;        // Persistent ID
 
 -(id) initAsRoot;
 -(NSInteger) childrenCount;
 -(BOOL) isFolder;
-
-+ (NSArray*) findChildrenOf:(NSNumber*)pid In:(NSMutableArray*)playlists;
 
 @end

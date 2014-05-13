@@ -7,6 +7,12 @@
 //
 
 #import "MSPAppDelegate.h"
+#import "MSPMediaPlayerHelper.h"
+#include "TargetConditionals.h"
+
+#ifndef DEBUG
+#define DEBUG 0
+#endif
 
 @implementation MSPAppDelegate
 
@@ -14,13 +20,34 @@
 {
     // Override point for customization after application launch.
     
-    // Initialize the global music player
-    _sharedPlayer = [MPMusicPlayerController iPodMusicPlayer];
-    // Tell the iPod to notify of any status changes, which will be handled in appropriate classes
-    [_sharedPlayer beginGeneratingPlaybackNotifications];
+    // Re-set global tint color as a workaround for iOS 7.1 bug
+    // where global tint is not applied correctly when using storyboard
+    // Please see https://devforums.apple.com/message/949636 for more information
+    [[self window] setTintColor:[UIColor brownColor]];
     
-    // Initialize the blurred image cache
-    _sharedBlurredImageCache = [[MSPBlurredImagesWithCache alloc] init];
+    // Warn in console when running in debug mode
+    if (DEBUG){
+        NSLog(@"You are running in DEBUG mode! There will be tons of console output. To disable logs, run in release mode.");
+    }
+    
+    
+    // Warn when running in simulator
+    if (TARGET_IPHONE_SIMULATOR){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Simulator Unsupported"
+                                                        message:@"This app is designed to run on a real device with music library. It won't function inside a simulator."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Got it."
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        // Initialize the global music player
+        _sharedPlayer = [MSPMediaPlayerHelper initiPodMusicPlayer];
+        
+        // Start Advertising on Bluetooth
+        _sharingManager = [[MSPSharingManager alloc] init];
+        [_sharingManager startAdvertising];
+    }
     
     return YES;
 }
@@ -45,6 +72,12 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Refresh the playback state. This will run the music app if it is not running
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [_sharedPlayer playbackState];
+    });
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

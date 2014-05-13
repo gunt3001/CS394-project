@@ -11,6 +11,8 @@
 #import "MSPAppDelegate.h"
 #import "MSPConstants.h"
 #import "MSPTableViewCell.h"
+#import "MSPStringHelper.h"
+#import "MSPMediaPlayerHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MSPPlaylistsTableViewController ()
@@ -61,11 +63,7 @@
     if (_playlistPID){
         
         // Query the songs from this playlist from the music library
-        MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-        [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                            predicateWithValue:_playlistPID
-                                            forProperty:MPMediaPlaylistPropertyPersistentID]];
-        MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
+        MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
         
         // Return number of songs in this playlist
         return [[playlist items] count] + 1;
@@ -104,31 +102,10 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"idsongitem" forIndexPath:indexPath];
             
             // Query the songs from this playlist from the music library
-            MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-            [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                                predicateWithValue:_playlistPID
-                                                forProperty:MPMediaPlaylistPropertyPersistentID]];
-            MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
+            MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
             MPMediaItem* song = [[playlist items] objectAtIndex:[indexPath row] - 1];           // Offset by 1 for shuffle button
             
-            // Get song info
-            // Title
-            NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
-            // Artist
-            NSString* songArtist = [song valueForProperty:MPMediaItemPropertyArtist];
-            // Album
-            NSString* songAlbum = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
-            // Artwork
-            MPMediaItemArtwork* songArt = [song valueForProperty:MPMediaItemPropertyArtwork];
-            
-            // Set cell data
-            [[cell textLabel] setText:songTitle];
-            if (songArtist == nil) songArtist = STRING_UNKNOWN_ARTIST;
-            if (songAlbum == nil) songAlbum = STRING_UNKNOWN_ALBUM;
-            [[cell detailTextLabel] setText:[NSString stringWithFormat:TABLE_VIEW_SUBTITLE_FORMAT, songArtist, songAlbum]];
-            // Artwork
-            [cell addThumbnailWithMediaItemArtwork:songArt];
-            [cell setIndentationWidth:(TABLE_VIEW_ALBUM_ART_WIDTH)];
+            [cell setSongInfo:song WithString:nil ShowAlbum:YES];
         }
         
         return cell;
@@ -161,7 +138,7 @@
         
         // Shuffle button have reduced height
         if ([indexPath row] == 0){
-            return TABLE_VIEW_SHUFFLE_ROW_HEIGHT;
+            return 45;
         }
         
         // Songs have height as set in constants
@@ -214,50 +191,23 @@
         // If it's a song
         else if ([[senderCell reuseIdentifier] isEqualToString:@"idsongitem"]){
             
-            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-            
-            // Query the song
-            MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-            [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                                predicateWithValue:_playlistPID
-                                                forProperty:MPMediaPlaylistPropertyPersistentID]];
-            MPMediaPlaylist* playlist = [[playlistsQuery collections] objectAtIndex:0];
+            // Get the song
+            MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
             NSIndexPath* indexPath = [[self tableView] indexPathForCell:senderCell];
             MPMediaItem* song = [[playlist items] objectAtIndex:[indexPath row] - 1];       // Offset by 1 for shuffle button
             
-            // Temporarily turn off shuffle
-            MPMusicShuffleMode oldShufMode = [iPodMusicPlayer shuffleMode];
-            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeOff];
-            
-            // Set playing queue and now playing item
-            [iPodMusicPlayer setQueueWithQuery:playlistsQuery];
-            [iPodMusicPlayer setNowPlayingItem:song];
-            
-            // Turn shuffle back on, if it was on
-            if (oldShufMode != MPMusicShuffleModeOff){
-                [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeDefault];
-            }
-            
-            [iPodMusicPlayer play];
+            // Play the song
+            [MSPMediaPlayerHelper playSong:song QueueCollection:playlist];
             
         }
         // If it's a shuffle button
         else if ([[senderCell reuseIdentifier] isEqualToString:@"idshuffleitem"]){
             
-            MPMusicPlayerController* iPodMusicPlayer = [((MSPAppDelegate*)[[UIApplication sharedApplication] delegate]) sharedPlayer];
-            
             // Query Playlist
-            MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
-            [playlistsQuery addFilterPredicate:[MPMediaPropertyPredicate
-                                                predicateWithValue:_playlistPID
-                                                forProperty:MPMediaPlaylistPropertyPersistentID]];
-            // Set playing queue
-            [iPodMusicPlayer setQueueWithQuery:playlistsQuery];
+            MPMediaPlaylist* playlist = [MSPMediaPlayerHelper playlistFromPID:_playlistPID];
             
-            // Turn on shuffle
-            [iPodMusicPlayer setShuffleMode:MPMusicShuffleModeSongs];
-            
-            [iPodMusicPlayer play];
+            // Play playlist
+            [MSPMediaPlayerHelper playCollection:playlist ForceShuffle:YES];
         }
     }
 }

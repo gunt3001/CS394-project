@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "TabBarPlaylist.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "TabBarPlaylist@2x.png"
+      "filename" : "TabBarImage-Playlists-off@2x.png"
     }
   ],
   "info" : {

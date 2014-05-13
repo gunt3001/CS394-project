@@ -20,19 +20,19 @@
         // Query everything from iPod Library
         MPMediaQuery* playlistsQuery = [MPMediaQuery playlistsQuery];
         NSArray* playlists = [playlistsQuery collections];
-        NSMutableArray* workingPlaylists = [[NSMutableArray alloc] initWithArray:playlists];
         
         // Recursively generate the tree structure
         // Root node have ID of 0
         _pid = [NSNumber numberWithInt:0];
         
         _name = @"root";
-        _children = [MSPPlaylistNode findChildrenOf:_pid In:workingPlaylists];
+        _children = [[NSMutableArray alloc] init];
+        [self generateTreeWithArray:playlists];
     }
     return self;
 }
 
-- (id)initWithName:(NSString*)name Children:(NSArray*)children Pid:(NSNumber*)pid{
+- (id)initWithName:(NSString*)name Children:(NSMutableArray*)children Pid:(NSNumber*)pid{
     self = [super init];
     if (self){
         _name = name;
@@ -52,32 +52,87 @@
     return [_children count];
 }
 
-+ (NSArray*) findChildrenOf:(NSNumber*)pid In:(NSMutableArray*)playlists{
-    // Return the array of children playlist of the given persistent id
+/// Generate a tree structure from an array of playlist nodes
+- (void) generateTreeWithArray:(NSArray*)playlists{
     
-    NSMutableArray* returnArray = [[NSMutableArray alloc] init];
-     
-    // Iterate through the playlist to find their children recursively
+    // Temporary dictionary used to look up a node in the tree structure
+    NSMutableDictionary* mapping = [[NSMutableDictionary alloc] init];
+    
+    // First loop - create node for all playlists (O(n))
     for (MPMediaPlaylist* eachPlaylist in playlists) {
-        NSString* eachName = [eachPlaylist valueForProperty:MPMediaPlaylistPropertyName];
-        NSNumber* eachParentPID = [eachPlaylist valueForProperty:MSPMediaPlaylistPropertyParentPersistentID];
-        NSNumber* eachPID = [eachPlaylist valueForProperty:MPMediaPlaylistPropertyPersistentID];
+        
+        // Get data for the playlist
+        NSString* name = [eachPlaylist valueForProperty:MPMediaPlaylistPropertyName];
+        NSNumber* PID = [eachPlaylist valueForProperty:MPMediaPlaylistPropertyPersistentID];
+        
+        // Make a new node out of it
+        MSPPlaylistNode* node = [[MSPPlaylistNode alloc] initWithName:name
+                                                             Children:[[NSMutableArray alloc] init]
+                                                                  Pid:PID];
+        
+        // Add to dictionary
+        [mapping setObject:node forKey:PID];
+        
+    }
+    
+    // Second loop - generate tree structure
+    for (MPMediaPlaylist* eachPlaylist in playlists) {
+        
+        // Get data for the playlist
+        NSNumber* parentPID = [eachPlaylist valueForProperty:MSPMediaPlaylistPropertyParentPersistentID];
+        NSNumber* PID = [eachPlaylist valueForProperty:MPMediaPlaylistPropertyPersistentID];
         
         // Parent PID must be casted to unsigned long long first
         // This is to fix a bug with Apple's private API
-        eachParentPID = [NSNumber numberWithUnsignedLongLong:[eachParentPID unsignedLongLongValue]];
+        parentPID = [NSNumber numberWithUnsignedLongLong:[parentPID unsignedLongLongValue]];
         
-        if ([eachParentPID isEqualToNumber:pid]){
-            // if we found a child for this playlist, create our own MSPPlaylistsTree object and add it to return list
-            MSPPlaylistNode* child = [[MSPPlaylistNode alloc]
-                                       initWithName:eachName
-                                       Children:[MSPPlaylistNode findChildrenOf:eachPID In:playlists]
-                                       Pid:eachPID];
-            [returnArray addObject:child];
+        // Check if the playlist is at root
+        if ([parentPID isEqualToNumber:_pid]){
+            
+            // Add as children of root
+            MSPPlaylistNode* node = [mapping objectForKey:PID];
+            [_children addObject:node];
+            
+        }
+        // Otherwise it's in a folder somewhere, add it as children of appropriate node
+        else{
+            
+            MSPPlaylistNode* node = [mapping objectForKey:PID];
+            MSPPlaylistNode* parentNode = [mapping objectForKey:parentPID];
+            [[parentNode children] addObject:node];
+            
+        }
+    }
+    
+    // Recursively sort and put folders up top
+    [self sort];
+}
+
+/// Recursively sort the node's children to put folders up top, playlists at bottom
+-(void) sort{
+    
+    // Base Case: This is a playlist (no children)
+    if (![self isFolder]) return;
+    
+    NSMutableArray* nonFolders = [[NSMutableArray alloc] init];
+    for (MSPPlaylistNode* eachChild in _children) {
+        if ([eachChild isFolder]){
+            // Recursively sort subfolder
+            [eachChild sort];
+        }
+        else{
+            // Otherwise, it's a playlist not a folder
+            // Put it in a temporary array to add to the end of original later
+            [nonFolders addObject:eachChild];
         }
 
     }
-    return returnArray;
+    
+    // Add back to end of original
+    for (MSPPlaylistNode* eachNonFolderNode in nonFolders) {
+        [_children removeObject:eachNonFolderNode];
+        [_children addObject:eachNonFolderNode];
+    }
 }
 
 @end
