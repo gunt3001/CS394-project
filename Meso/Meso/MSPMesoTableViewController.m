@@ -54,9 +54,7 @@
     
     // On load of this tab, check if the user have set up his profile
     // If not, proceed to setup page
-    if (![MSPSharingManager profileIsSet]){
-        // TBD: Show Welcome page & Instructions
-        
+    if (![MSPSharingManager profileIsSet]){        
         [self performSegueWithIdentifier:@"segueProfileSetup" sender:self];
     }
     
