@@ -14,6 +14,7 @@
 #import "MSPSharingManager.h"
 #import "MSPConstants.h"
 #import "MSPMediaPlayerHelper.h"
+#import "MSPPeerTableViewController.h"
 
 @interface MSPMesoTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *deviceTable;
@@ -229,9 +230,22 @@
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
+     
+     // When going to profile edit page, make reference to self
      if ([segue.identifier isEqualToString:@"segueProfileSetup"]){
          [(MSPProfileViewController*)segue.destinationViewController setPeopleViewController:self];
+         return;
      }
+     
+     // When tapping on a peer, set peer info to destination view controller
+     else if ([segue.identifier isEqualToString:@"seguePeerInfo"]){
+         NSInteger selectedPeer = [self.tableView indexPathForSelectedRow].row;
+         NSUUID* key = [[MSPSharingManager sortedDeviceUUIDs] objectAtIndex:selectedPeer];
+         NSDictionary* peerInfo = [[MSPSharingManager devicesFound] objectForKey:key];
+         [(MSPPeerTableViewController*)segue.destinationViewController setPeerInfo:peerInfo];
+         return;
+     }
+     
  }
 
 

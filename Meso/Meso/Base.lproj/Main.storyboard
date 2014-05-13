@@ -725,7 +725,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="pw1-lp-1el" kind="push" id="RPt-sM-cu7"/>
+                                    <segue destination="pw1-lp-1el" kind="push" identifier="seguePeerInfo" id="RPt-sM-cu7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1000,7 +1000,7 @@
         <!--Profile-->
         <scene sceneID="NwT-E2-d6h">
             <objects>
-                <tableViewController id="pw1-lp-1el" userLabel="Profile" sceneMemberID="viewController">
+                <tableViewController id="pw1-lp-1el" userLabel="Profile" customClass="MSPPeerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="uMR-rq-g84">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1016,7 +1016,7 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minecraft Music &lt;3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TxS-Rb-9gR">
                                     <rect key="frame" x="88" y="20" width="212" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Met 652 People" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZEK-OF-mR6">
@@ -1029,7 +1029,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsharedsongitem" id="pG3-Ky-mlm" customClass="MSPTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idsharedsongitem" id="pG3-Ky-mlm">
                                 <rect key="frame" x="0.0" y="186" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pG3-Ky-mlm" id="ei8-Y1-NUR">
@@ -1070,6 +1070,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="JohnSmith4999" id="bVm-OO-UNF"/>
+                    <connections>
+                        <outlet property="imagePeerAvatar" destination="qzg-cR-zQc" id="Dfv-EL-zBM"/>
+                        <outlet property="labelPeerMessage" destination="TxS-Rb-9gR" id="zKT-HT-fbs"/>
+                        <outlet property="labelPeerMet" destination="ZEK-OF-mR6" id="qCK-2R-U3A"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmC-OO-2eO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

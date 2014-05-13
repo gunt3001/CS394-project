@@ -15,6 +15,7 @@
 		B026F23618DD7C5500B61B45 /* MSPStringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23518DD7C5500B61B45 /* MSPStringHelper.m */; };
 		B026F23B18DDC54600B61B45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B026F23A18DDC54600B61B45 /* QuartzCore.framework */; };
 		B026F23E18DDC56100B61B45 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B026F23D18DDC56100B61B45 /* MarqueeLabel.m */; };
+		B03B00501921BEDD00CA3008 /* MSPPeerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03B004F1921BEDD00CA3008 /* MSPPeerTableViewController.m */; };
 		B04F4EA018E69080000C5193 /* MSPMesoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */; };
 		B087B571192026B200625F4A /* MSPMesoListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B087B570192026B200625F4A /* MSPMesoListTableViewController.m */; };
 		B09A0E3B18DF70C500B89816 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B09A0E3A18DF70C500B89816 /* Main-iPad.storyboard */; };
@@ -76,6 +77,8 @@
 		B026F23A18DDC54600B61B45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B026F23C18DDC56100B61B45 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
 		B026F23D18DDC56100B61B45 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
+		B03B004E1921BEDD00CA3008 /* MSPPeerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPPeerTableViewController.h; sourceTree = "<group>"; };
+		B03B004F1921BEDD00CA3008 /* MSPPeerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPPeerTableViewController.m; sourceTree = "<group>"; };
 		B04F4E9E18E69080000C5193 /* MSPMesoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPMesoTableViewController.h; sourceTree = "<group>"; };
 		B04F4E9F18E69080000C5193 /* MSPMesoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPMesoTableViewController.m; sourceTree = "<group>"; };
 		B087B56F192026B200625F4A /* MSPMesoListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPMesoListTableViewController.h; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 				B0AFAE8D18DD2CB800864EFC /* MSPPlaylistsTableViewController.m */,
 				B026F23118DD562000B61B45 /* MSPPlaylistsViewController.h */,
 				B026F23218DD562000B61B45 /* MSPPlaylistsViewController.m */,
+				B03B004E1921BEDD00CA3008 /* MSPPeerTableViewController.h */,
+				B03B004F1921BEDD00CA3008 /* MSPPeerTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 				B0A996DF191EC150006AD01C /* MSPSharingManager.m in Sources */,
 				B0BEC4FB18DAB4C6003EAC01 /* MSPConstants.m in Sources */,
 				B0F77A1B191DE5B900C04F9E /* UIImage+Resize.m in Sources */,
+				B03B00501921BEDD00CA3008 /* MSPPeerTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
