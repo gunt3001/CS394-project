@@ -152,7 +152,6 @@
 /// Clear the user's sharing list
 + (void)clearUserProfileMesoList{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"MesoProfileMesoList"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 /// Add a song to the user's sharing list
@@ -167,7 +166,6 @@
     [sharingList addObject:song];
     
     [[NSUserDefaults standardUserDefaults] setObject:sharingList forKey:@"MesoProfileMesoList"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     return YES;
 }
@@ -179,18 +177,15 @@
     [sharingList removeObjectAtIndex:index];
     
     [[NSUserDefaults standardUserDefaults] setObject:sharingList forKey:@"MesoProfileMesoList"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(void)setUserProfileName:(NSString *)name{
     [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"MesoProfileName"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 
 }
 
 +(void)setUserProfileMessage:(NSString *)message{
     [[NSUserDefaults standardUserDefaults] setObject:message forKey:@"MesoProfileMessage"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 
 }
 
@@ -198,7 +193,6 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:(long)avatarID] forKey:@"MesoProfileAvatarID"];
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (NSUUID*)userUUID{
@@ -240,7 +234,6 @@
 /// Save Database
 + (void)saveDatabase{
     [[NSUserDefaults standardUserDefaults] setObject:[self devicesDatabase] forKey:@"MesoDevicesDatabase"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (NSDictionary *)devicesFound{
